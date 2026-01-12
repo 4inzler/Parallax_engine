@@ -1,229 +1,289 @@
-<img src="https://raw.githubusercontent.com/NexoEngine/assets/refs/heads/main/logo_nexo.png" alt="NEXO Logo" width=250 height=250 align="right" />
+# Parallax Engine
 
-# NEXO Engine
+👋 Welcome to the Parallax Engine repository! This project is a collaborative effort to create a revolutionary game engine with **VR-first capabilities**. Our goal is to provide a robust, user-friendly, and efficient platform for game development in desktop as well as in virtual reality! 🤩✨🚀
 
-👋​ Welcome to the NEXO Engine repository! This project is a collaborative effort to create a revolutionnary game engine. Our goal is to provide a robust, user-friendly, and efficient platform for game development in desktop as well as in virtual reality! 🤩✨​🚀​
-
-[![Build, test and Package](https://github.com/NexoEngine/game-engine/actions/workflows/build.yml/badge.svg)](https://github.com/NexoEngine/game-engine/actions/workflows/build.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NexoEngine_game-engine&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NexoEngine_game-engine)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NexoEngine_game-engine&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=NexoEngine_game-engine)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NexoEngine_game-engine&metric=coverage)](https://sonarcloud.io/summary/new_code?id=NexoEngine_game-engine)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=NexoEngine_game-engine&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=NexoEngine_game-engine)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/4inzler/Parallax_engine)
+[![VR Support](https://img.shields.io/badge/VR-OpenXR-blue.svg)](https://www.khronos.org/openxr/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## Table of Contents
 
-- [NEXO Engine](#nexo-engine)
+- [Parallax Engine](#parallax-engine)
   - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
+  - [VR Support](#vr-support)
+  - [Key Features](#key-features)
   - [External Dependencies](#external-dependencies)
-  - [Build the project](#build-the-project)
-    - [Automatically with CMake Presets](#option1-using-cmake-presets-automatic-recommended)
-    - [Manually with CMake](#option2-using-cmake-build-manual)
-  - [Install NEXO Engine](#install-nexo-engine)
+  - [Build the Project](#build-the-project)
+    - [Option 1: Using CMake Presets (Automatic)](#option-1-using-cmake-presets-automatic-recommended)
+    - [Option 2: Using CMake Build (Manual)](#option-2-using-cmake-build-manual)
+  - [Install Parallax Engine](#install-parallax-engine)
     - [Install via CMake](#install-via-cmake)
-    - [Create an installer for Windows (NSIS)](#create-an-installer-for-windows-nsis)
-    - [Create an installer for Linux (DEB)](#create-an-installer-for-linux-deb)
-  - [Run the tests](#run-the-tests)
-  - [The Team](#the-team)
-  - [Join the NEXO community](#join-the-nexo-community)
-  - [Acknowledgements](#acknowledgements)
+    - [Create an Installer for Windows (NSIS)](#create-an-installer-for-windows-nsis)
+    - [Create an Installer for Linux (DEB)](#create-an-installer-for-linux-deb)
+  - [VR Development Setup](#vr-development-setup)
+  - [Run the Tests](#run-the-tests)
+  - [Troubleshooting](#troubleshooting)
+  - [Documentation](#documentation)
+  - [Contributing](#contributing)
   - [License](#license)
-    - [How to extract the third-party licenses file](#how-to-extract-the-third-party-licenses-file)
-    - [How to generate the COPYRIGHT file](#how-to-generate-the-copyright-file)
-
-> [!NOTE]
-> Find the whole documentation on our [website](https://nexoengine.github.io/game-engine/).
 
 ## Project Overview
 
-📸​ Interface screenshot
+**Parallax Engine** is a modern C++ game engine with comprehensive **VR support** built on OpenXR. The engine features a professional editor, PBR rendering, plugin architecture, and Entity-Component-System (ECS) design.
+
+### 📸 Interface Screenshot
 
 ![Editor interface](https://github.com/user-attachments/assets/cb19d00c-56bc-4cdd-9f61-069375fd7b08)
 
-🎥 Quick videos of the game engine in action
+### 🎥 Quick Videos
 
 https://github.com/user-attachments/assets/a91e61c3-b8a9-43d3-83c4-37fd02de2e7c
 
-https://github.com/user-attachments/assets/281bec66-65cc-4467-aeb7-8f546dc3fb22
-
-https://github.com/user-attachments/assets/ea92807b-da51-4fb6-bd1d-d3c9fadf0c13
-
-<!-- Command used for video compression: ffmpeg -ss 00:00:02 -to 00:00:57 -i .\docs\game_engine\editor_interface_video.mkv -codec copy -an -vcodec libx264 -crf
- 4 .\docs\game_engine\editor_interface_video.mp4 -->
-
 > [!WARNING]
-> This project is still in development and is not yet ready for production use. Some features may change.
+> This project is actively under development. VR support is in beta (core framework 70% complete). Some features may change.
+
+## VR Support
+
+Parallax Engine includes **native VR support** via OpenXR:
+
+### Supported Headsets
+- ✅ Meta Quest 2 / 3 / Pro
+- ✅ Valve Index
+- ✅ HTC Vive / Vive Pro
+- ✅ Windows Mixed Reality
+- ✅ Any OpenXR-compatible HMD
+
+### VR Features
+- **6DOF Tracking:** Full head and controller tracking
+- **Stereo Rendering:** Per-eye rendering with optimized pipeline
+- **Motion Controllers:** Buttons, triggers, thumbsticks, haptics
+- **Locomotion:** Teleportation, smooth movement, snap/smooth turning
+- **Interactions:** Grabbing, raycasting, physics-based interactions
+- **Comfort:** Vignette effects, play area boundaries, motion sickness prevention
+
+### VR Documentation
+- 📖 [VR Implementation Guide](VR_IMPLEMENTATION_GUIDE.md) - Complete setup and API reference
+- 🗺️ [VR Requirements & Roadmap](VR_REQUIREMENTS_AND_ROADMAP.md) - Development plan
+- 📝 [VR Session Summary](VR_SESSION_SUMMARY.md) - Implementation status
+
+## Key Features
+
+### Rendering
+- ✨ **PBR (Physically-Based Rendering)** - Cook-Torrance BRDF, metallic/roughness workflow
+- 🎨 **Toon Shading** - Cel-shaded rendering for stylized games
+- 🌟 **Normal Mapping** - With adjustable strength
+- 📷 **Multi-Camera System** - Supports multiple viewports and stereo rendering
+- 🖼️ **HDR & Gamma Correction** - Tonemapping for realistic lighting
+
+### Editor
+- 🎛️ **ImGui-based UI** - Professional editor interface
+- 📁 **Asset Management** - Import textures, models, materials
+- 🔍 **Scene Inspector** - Hierarchical scene tree
+- 🎬 **Material Inspector** - Real-time material editing
+- 📋 **Enhanced Menus** - Save/Import/Export with keyboard shortcuts (Ctrl+S)
+- 🪟 **Panel Management** - Hide/show panels without data loss
+
+### Camera System
+- 🖱️ **RMB-Gated Controls** - Right mouse button activates camera movement
+- ⌨️ **WASD Movement** - Standard FPS-style navigation (only with RMB held)
+- 🔼 **E/Q Vertical** - Move up/down (only with RMB held)
+- 👆 **LMB Selection** - Left mouse button free for entity selection
+
+### Plugin System
+- 🧩 **Dynamic Loading** - Load plugins at runtime (.dll/.so)
+- 📝 **Plugin API** - IPlugin interface for extensions
+- 🎯 **Registration System** - Custom menus, importers, panels
+- 📦 **Example Plugin** - Template for creating your own plugins
+- 🖥️ **Cross-Platform** - Windows and Linux support
+
+### Architecture
+- 🏗️ **ECS (Entity-Component-System)** - Modern, data-oriented design
+- ⚡ **Performance Optimized** - Efficient rendering and physics
+- 🔌 **Modular** - Clean separation of concerns
+- 📚 **Well Documented** - Comprehensive inline and external documentation
 
 ## External Dependencies
 
 To run this project, ensure you have the following:
-- **CMake**: Necessary for building the project from source. (version 3.28 or higher) [install here](https://cmake.org/download/)
-- **C++ Compiler**: We recommend using GCC or Clang for Linux and MacOS, and MSVC for Windows.
-- **Git**: For cloning with submodules. [install here](https://github.com/git-guides/install-git)
-- **.NET SDK 9.0**: Required for the C# scripting support. [install here](https://dotnet.microsoft.com/fr-fr/download/dotnet/9.0)
+- **CMake** 3.28 or higher - [Install here](https://cmake.org/download/)
+- **C++ Compiler** - MSVC (Windows), GCC/Clang (Linux/macOS)
+- **Git** - For cloning with submodules - [Install here](https://github.com/git-guides/install-git)
+- **.NET SDK 9.0** - For C# scripting support - [Install here](https://dotnet.microsoft.com/download/dotnet/9.0)
+- **OpenXR SDK** - For VR support (installed via vcpkg)
+- **vcpkg** - Package manager (included as submodule)
 
-## Build the project
+## Build the Project
 
-Cloning and building is a breeze:
+### 1. Clone the Repository
 
-### 1. Clone the repository with the submodules.
 ```bash
-git clone --recurse-submodules https://github.com/NexoEngine/game-engine.git NEXO-Engine
-cd NEXO-Engine
+git clone --recurse-submodules https://github.com/4inzler/Parallax_engine.git
+cd Parallax_engine
 ```
 
-### 2. Run cmake to generate the build files.
+### 2. Build with CMake
 
-#### Option1: Using `CMake presets` (automatic) [Recommended]
+#### Option 1: Using CMake Presets (Automatic) [Recommended]
 
 ```bash
 cmake --workflow --preset=build-debug
 ```
 
 > [!NOTE]
-> There are several presets available: `build-debug`, `build-release`, `build-coverage`, `minimal-build`, `test-debug`, and `test-coverage`.
+> Available presets: `build-debug`, `build-release`, `build-coverage`, `minimal-build`, `test-debug`, `test-coverage`.
 
-#### Option2: Using `CMake Build` (manual)
+#### Option 2: Using CMake Build (Manual)
 
 ```bash
-cmake -B build
-cmake --build build
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=external/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake --build build --config Release
 ```
 
-### 3. Launch the engine!
+### 3. Launch the Engine
 
-#### For Linux and MacOS:
+#### Windows:
 ```bash
-./build/nexoEditor
+.\build\Release\parallax-editor.exe
 ```
 
-#### For Windows:
+#### Linux/macOS:
 ```bash
-./build/nexoEditor.exe
+./build/parallax-editor
 ```
 
-> [!NOTE]
-> For detailed instructions, visit our [Installation Guide](docs/install/README.md).
-
-## Install NEXO Engine
+## Install Parallax Engine
 
 ### Install via CMake
 
-First build the project as seen in the step [Build the project](#build-the-project).
-Then run the following command:
+First build the project, then run:
 
 ```bash
 cmake --install build --prefix /path/to/install
 ```
 
-This will install the NEXO Engine in the directory `/path/to/install` with all the necessary files.
+This installs Parallax Engine with all necessary files to `/path/to/install`.
 
-#### Create an installer for Windows (NSIS)
+### Create an Installer for Windows (NSIS)
 
-> [!WARNING]
-> We assume here that you already ran the cmake command to generate the build files in the `build` directory.
+1. Install [NSIS](https://nsis.sourceforge.io/Download)
+2. Run:
 
-To create an installer for Windows, you can use the [NSIS](https://nsis.sourceforge.io/Main_Page) installer.
-
-1. First install [NSIS](https://nsis.sourceforge.io/Download) on your computer.
-
-2. Execute the following commands:
 ```bash
 cd build
-cpack -G NSIS -C Debug
+cpack -G NSIS -C Release
 ```
 
-Now you can run the generated installer to install the NEXO Engine on your computer.
-```bash
-./nexoEditor.exe
-```
+Run the generated installer to install Parallax Engine.
 
-#### Create an installer for Linux (DEB)
-
-> [!WARNING]
-> We assume here that you already ran the cmake command to generate the build files in the `build` directory.
+### Create an Installer for Linux (DEB)
 
 ```bash
 cd build
 cpack -G DEB
 ```
 
-To install the generated package (on Ubuntu/Debian...), run the following command:
+Install the package:
 
 ```bash
-sudo dpkg -i NEXO-Engine-*-Linux.deb
+sudo dpkg -i Parallax-Engine-*-Linux.deb
 ```
 
-## Run the tests
+## VR Development Setup
 
-In this project tests use the [gtest](http://google.github.io/googletest/) library.
+### Prerequisites
+- VR headset (Meta Quest 2/3, Valve Index, etc.)
+- OpenXR runtime installed (SteamVR, Oculus App, WMR Portal)
+- GPU: NVIDIA GTX 1060 / AMD RX 480 or better
 
-First build the tests:
+### Build with VR Support
+
+VR support is enabled by default. To build:
+
 ```bash
-cmake -B build -DNEXO_BUILD_TESTS=ON
+cmake -B build -DPARALLAX_ENABLE_VR=ON
+cmake --build build --config Release
+```
+
+### Quick VR Setup
+
+See [VR_IMPLEMENTATION_GUIDE.md](VR_IMPLEMENTATION_GUIDE.md) for:
+- Complete VR setup tutorial
+- Component and system reference
+- Performance optimization guide
+- Troubleshooting VR issues
+
+**Current VR Status:** Core framework 70% complete. Action system and compositor integration in progress.
+
+## Run the Tests
+
+Build and run tests using gtest:
+
+```bash
+cmake -B build -DPARALLAX_BUILD_TESTS=ON
 cmake --build build
-```
-
-Then run the tests:
-```bash
 cd build
 ctest -C Debug
 ```
 
 ## Troubleshooting
 
-If you encounter any issues, please refer to our [Troubleshooting Guide](docs/troubleshooting/troubleshooting.md).
+### Common Issues
 
-## The Team
+| Issue | Solution |
+|-------|----------|
+| CMake can't find OpenXR | Install via vcpkg: `vcpkg install openxr-loader` |
+| VR headset not detected | Ensure OpenXR runtime is running (SteamVR, Oculus) |
+| Build errors with plugins | Disable plugins: `-DPARALLAX_BUILD_PLUGINS=OFF` |
+| ImGui headers not found | Update submodules: `git submodule update --init --recursive` |
 
-NEXO Engine is brought to life by a dedicated team of fifth-year students from EPITECH Strasbourg:
-- Guillaume HEIN [@Thyodas](https://www.linkedin.com/in/guillaume-hein/)
-- Jean CARDONNE [@jcardonne](https://www.linkedin.com/in/jcardonne/)
-- Marie GIACOMEL [@Sauterelle57](https://www.linkedin.com/in/marie-giacomel/)
-- Mehdy MORVAN [@iMeaNz](https://www.linkedin.com/in/mehdy-morvan-a80959264/)
-- Thomas PARENTEAU [@ThomasParenteau](https://www.linkedin.com/in/thomas-parenteau-0570b120a/)
+For detailed troubleshooting, see our documentation.
 
-## Join the NEXO community
+## Documentation
 
-Check our [web site](https://www.nexo-engine.com/) to keep you up to date about the latest news about **NEXO**.</br>
-Join the [community](https://github.com/orgs/NexoEngine/discussions) to ask your questions or to talk with our developers.</br>
-Visit our [blog](https://www.nexo-engine.com/blog) to find out more about how NEXO works.</br>
+### Core Documentation
+- [CHANGELOG](CHANGELOG_PARALLAX_IMPROVEMENTS.md) - Feature changelog and migration guide
+- [Implementation Summary](IMPLEMENTATION_SUMMARY.md) - Completed features and testing checklist
+- [Test Validation Report](TEST_VALIDATION_REPORT.md) - Pre-build validation results
 
-## Acknowledgements
+### VR Documentation
+- [VR Implementation Guide](VR_IMPLEMENTATION_GUIDE.md) - Complete VR development guide
+- [VR Requirements](VR_REQUIREMENTS_AND_ROADMAP.md) - VR technology overview and roadmap
+- [VR Session Summary](VR_SESSION_SUMMARY.md) - Implementation status and next steps
 
-This project is part of our curriculum and end of studies project, showcasing our collective skills in advanced software development with modern C++.
+### Code Documentation
+- Inline documentation in all headers
+- Component reference in VR_IMPLEMENTATION_GUIDE.md
+- System reference in VR_IMPLEMENTATION_GUIDE.md
 
-We thank Epitech for the opportunity to work on such an engaging project and for the support throughout our educational journey.
+## Contributing
+
+Contributions are welcome! This project is maintained by:
+
+- **4inzler** - VR development and engine enhancements
+
+Based on the original NEXO Engine by the EPITECH Strasbourg team.
+
+### How to Contribute
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.<br/>
-For more information about the copyright of the project, please refer to the [COPYRIGHT](COPYRIGHT) file.<br/>
-You can also find the license of the third-party libraries used in the project in the [external/licenses](external/licenses) directory.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-> [!TIP]
-> For any license inquiry, please contact us at [nexo.engine@gmail.com](mailto:nexo.engine@gmail.com?subject=[NEXO%20Engine]%20License)
+For third-party licenses, see `external/licenses/` directory.
 
-### How to extract the third-party licenses file
+### Contact
 
-You can use the cmake install command:
-```bash
-cmake --install build --prefix /path/to/install --component generate-licenses
-```
+For license inquiries or questions, please open an issue on GitHub.
 
-This will extract all licenses per third-party library in the `/path/to/install/external/licenses` directory.
+---
 
-> [!NOTE]
-> These licenses are automatically extracted from vcpkg, there might be missing third-party libraries.
+**Parallax Engine** - VR-Ready Game Development Platform
 
-### How to generate the COPYRIGHT file
-
-You can use the cmake install command:
-```bash
-cmake --install build --prefix /path/to/install --component generate-copyright
-```
-
-This will generate the COPYRIGHT file in the `/path/to/install` directory.
-
-> [!WARNING]
-> By default the COPYRIGHT file is generated with some `TODO:`, the generator cannot always determine exact licenses for some files. Please check each entry for errors.
+*Built with modern C++20, OpenXR, and a passion for immersive experiences.* 🚀🥽

@@ -26,6 +26,7 @@
   - [Troubleshooting](#troubleshooting)
   - [Documentation](#documentation)
   - [Contributing](#contributing)
+  - [Acknowledgments](#acknowledgments)
   - [License](#license)
 
 ## Project Overview
@@ -272,11 +273,64 @@ Based on the original NEXO Engine by the EPITECH Strasbourg team.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## Acknowledgments
+
+Parallax Engine is built upon the foundation of **[NEXO Engine](https://github.com/NexoEngine/game-engine)**, created by talented students from EPITECH Strasbourg.
+
+### NEXO Engine Team
+
+We extend our deepest gratitude to the original NEXO Engine team:
+- **Guillaume HEIN** ([@Thyodas](https://github.com/Thyodas))
+- **Jean CARDONNE** ([@jcardonne](https://github.com/jcardonne))
+- **Marie GIACOMEL** ([@Sauterelle57](https://github.com/Sauterelle57))
+- **Mehdy MORVAN** ([@iMeaNz](https://github.com/iMeaNz))
+- **Thomas PARENTEAU** ([@ThomasParenteau](https://github.com/ThomasParenteau))
+
+Their excellent work on the core ECS architecture, rendering pipeline, editor framework, and build system made Parallax Engine possible.
+
+**What we inherited from NEXO:**
+- Complete Entity-Component-System architecture
+- Modern C++20 codebase with excellent code quality
+- Robust OpenGL rendering pipeline with multi-camera support
+- Professional ImGui-based editor with docking system
+- Physics integration (Jolt Physics)
+- Cross-platform build system (CMake + vcpkg)
+- Comprehensive documentation and CI/CD
+
+**What Parallax added:**
+- VR support with OpenXR integration
+- Stereo rendering and VR camera system
+- Motion controller input and interactions
+- RMB-gated camera controls
+- PBR and toon shading systems
+- Plugin architecture and API
+
+For complete credits and third-party attributions, see **[CREDITS.md](CREDITS.md)**.
+
+### Links to NEXO Engine
+
+- **Repository:** https://github.com/NexoEngine/game-engine
+- **Website:** https://www.nexo-engine.com/
+- **Documentation:** https://nexoengine.github.io/game-engine/
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-For third-party licenses, see `external/licenses/` directory.
+**Original Copyright Notice:**
+```
+Copyright (c) 2024-2025 NEXO Engine Team
+```
+
+**Derivative Work:**
+```
+Copyright (c) 2026 Parallax Engine
+Based on NEXO Engine
+```
+
+As required by the MIT License, the above copyright notices and permission notice must be included in all copies or substantial portions of the Software.
+
+For third-party licenses, see `external/licenses/` directory or **[CREDITS.md](CREDITS.md)** for complete attribution.
 
 ### Contact
 

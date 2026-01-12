@@ -31,7 +31,7 @@
 
 ## Project Overview
 
-**Parallax Engine** is a modern C++ game engine with comprehensive **VR support** built on OpenXR. The engine features a professional editor, PBR rendering, plugin architecture, and Entity-Component-System (ECS) design.
+**Parallax Engine** is a modern C++ game engine with comprehensive **VR support** built on OpenXR. Developed by **Arosen Systems** (a subsidiary of **Parel LLC**) for the upcoming **Parel VR** game, the engine features a professional editor, PBR rendering, plugin architecture, and Entity-Component-System (ECS) design.
 
 ### 📸 Interface Screenshot
 
@@ -259,9 +259,12 @@ For detailed troubleshooting, see our documentation.
 
 ## Contributing
 
-Contributions are welcome! This project is maintained by:
+Contributions are welcome! This project is developed by:
 
-- **4inzler** - VR development and engine enhancements
+**Current Development:**
+- **Arosen Systems** - A subsidiary of Parel LLC
+- **Parel Development Team** - VR development and engine enhancements
+- **Project:** Parel VR - Next-generation VR gaming experience
 
 Based on the original NEXO Engine by the EPITECH Strasbourg team.
 
@@ -324,7 +327,8 @@ Copyright (c) 2024-2025 NEXO Engine Team
 
 **Derivative Work:**
 ```
-Copyright (c) 2026 Parallax Engine
+Copyright (c) 2026 Parel LLC / Arosen Systems
+Parallax Engine - Developed by Parel Development Team for Parel VR
 Based on NEXO Engine
 ```
 

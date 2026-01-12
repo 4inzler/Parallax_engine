@@ -5,19 +5,32 @@
 Parallax Engine is a derivative work based on the NEXO Engine, enhanced with VR capabilities and additional features.
 
 **Current Development:**
-- **4inzler** - VR implementation, engine enhancements, and ongoing development
+- **Arosen Systems** - A subsidiary of Parel LLC
+- **Project:** Parel VR - Next-generation VR gaming experience
+- **Development Team:** Parel Development Team
 
 **VR Implementation (2026):**
 - OpenXR integration and VR framework
-- Stereo rendering pipeline
+- Stereo rendering pipeline for Parel VR
 - Motion controller support
 - VR locomotion and interaction systems
+- Comfort features for extended VR gameplay
 
 **Engine Enhancements (2026):**
 - RMB-gated camera controls
 - PBR and toon shading systems
 - Plugin architecture and API
 - Enhanced editor UI and menu systems
+- VR-optimized rendering pipeline
+
+**Organization Structure:**
+```
+Parel LLC
+└── Arosen Systems (Subsidiary)
+    └── Parel Development Team
+        └── Parallax Engine Development
+            └── Parel VR (Game Project)
+```
 
 ---
 
@@ -79,7 +92,8 @@ Guillaume HEIN, Jean CARDONNE, Marie GIACOMEL, Mehdy MORVAN, Thomas PARENTEAU
 
 **Derivative Work Copyright:**
 ```
-Copyright (c) 2026 Parallax Engine
+Copyright (c) 2026 Parel LLC / Arosen Systems
+Parallax Engine - Developed by Parel Development Team
 Based on NEXO Engine - Copyright (c) 2024-2025 NEXO Engine Team
 ```
 
@@ -176,8 +190,11 @@ For questions or suggestions, please open an issue on GitHub.
 
 ## Links
 
-### Parallax Engine
+### Parallax Engine / Parel VR
 - **Repository:** https://github.com/4inzler/Parallax_engine
+- **Developer:** Arosen Systems (Subsidiary of Parel LLC)
+- **Project:** Parel VR - VR Game in Development
+- **Development Team:** Parel Development Team
 - **License:** MIT License (see LICENSE file)
 
 ### NEXO Engine (Original Project)

@@ -207,8 +207,18 @@ namespace nexo::assets {
                 std::string extractedPath;
 
                 parseFullLocation(fullLocation, extractedAssetName, extractedPath, extractedPackName);
+                extractedPath = normalizePathAndRemovePrefixSlash(extractedPath);
 
-                return _name == AssetName(extractedAssetName) && _packName == AssetPackName(extractedPackName) && _path == extractedPath;
+                try {
+                    const AssetName parsedName(extractedAssetName);
+                    std::optional<AssetPackName> parsedPackName;
+                    if (!extractedPackName.empty()) {
+                        parsedPackName = AssetPackName(extractedPackName);
+                    }
+                    return _name == parsedName && _packName == parsedPackName && _path == extractedPath;
+                } catch (const InvalidName&) {
+                    return false;
+                }
             }
 
             /**

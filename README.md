@@ -72,6 +72,24 @@ Parallax Engine includes **native VR support** via OpenXR:
 - 📷 **Multi-Camera System** - Supports multiple viewports and stereo rendering
 - 🖼️ **HDR & Gamma Correction** - Tonemapping for realistic lighting
 
+### 🎨 Ray Tracing (Advanced)
+- 🌟 **Ray-Traced Lighting** - Realistic light bouncing and global illumination
+- 💎 **Ray-Traced Reflections** - Perfect mirrors, water, metallic surfaces
+- 🌑 **Ray-Traced Shadows** - Soft shadows with realistic penumbra
+- 🌍 **Global Illumination** - Indirect lighting from light bouncing
+- 🎯 **Ambient Occlusion** - Contact shadows for depth perception
+- ⚡ **VR-Optimized** - Hybrid rendering, foveated RT, adaptive quality
+- 🔧 **Multiple APIs** - DXR (DirectX), Vulkan RT, NVIDIA OptiX, Software fallback
+
+### 🔊 Audio Ray Tracing (Advanced)
+- 🎵 **Realistic Sound Propagation** - Geometric acoustics simulation
+- 🚪 **Occlusion & Obstruction** - Sound blocked/muffled by walls
+- 🏛️ **Authentic Reverb** - Room-accurate acoustics (small room vs. cathedral)
+- 📊 **Frequency-Dependent** - Highs attenuate more than lows through materials
+- 🎧 **3D Binaural Audio** - HRTF for VR headphones, perfect spatial audio
+- 🌊 **Material-Aware** - Wood, concrete, carpet, glass sound differently
+- 🎮 **VR-Optimized** - Head tracking, low latency, Steam Audio integration
+
 ### Editor
 - 🎛️ **ImGui-based UI** - Professional editor interface
 - 📁 **Asset Management** - Import textures, models, materials
@@ -246,6 +264,13 @@ For detailed troubleshooting, see our documentation.
 - [VR Implementation Guide](VR_IMPLEMENTATION_GUIDE.md) - Complete VR development guide
 - [VR Requirements](VR_REQUIREMENTS_AND_ROADMAP.md) - VR technology overview and roadmap
 - [VR Session Summary](VR_SESSION_SUMMARY.md) - Implementation status and next steps
+
+### Ray Tracing Documentation
+- [Ray Tracing Guide](RAYTRACING_GUIDE.md) - Complete guide to visual and audio ray tracing
+  - Visual ray tracing (realistic lighting, reflections, shadows)
+  - Audio ray tracing (spatial audio, occlusion, reverb)
+  - VR-specific optimizations
+  - Performance tuning for 90 FPS
 
 ### Code Documentation
 - Inline documentation in all headers

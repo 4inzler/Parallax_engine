@@ -33,13 +33,8 @@
 
 **Parallax Engine** is a modern C++ game engine with comprehensive **VR support** built on OpenXR. Developed by **Arosen Systems** (a subsidiary of **Parel LLC**) for the upcoming **Parel VR** game, the engine features a professional editor, PBR rendering, plugin architecture, and Entity-Component-System (ECS) design.
 
-### 📸 Interface Screenshot
-
-![Editor interface](https://github.com/user-attachments/assets/cb19d00c-56bc-4cdd-9f61-069375fd7b08)
-
-### 🎥 Quick Videos
-
-https://github.com/user-attachments/assets/a91e61c3-b8a9-43d3-83c4-37fd02de2e7c
+> [!NOTE]
+> Screenshots and gameplay videos of **Parel VR** running on Parallax Engine will be added as development progresses.
 
 > [!WARNING]
 > This project is actively under development. VR support is in beta (core framework 70% complete). Some features may change.

@@ -34,6 +34,7 @@ namespace nexo::components {
         float roughness = 0.0f;  // 0 = smooth, 1 = rough
         float metallic = 0.0f;   // 0 = non-metal, 1 = fully metallic
         float opacity = 1.0f;    // 1 = opaque, 0 = fully transparent
+        float normalStrength = 1.0f;  // 0 = disabled, 1 = full strength
 
         assets::AssetRef<assets::Texture> albedoTexture = nullptr;
         assets::AssetRef<assets::Texture> normalMap = nullptr;

@@ -37,6 +37,10 @@
 
 #include "DocumentWindows/EditorScene/EditorScene.hpp"
 #include "DocumentWindows/InspectorWindow/InspectorWindow.hpp"
+#include "DocumentWindows/SceneTreeWindow/SceneTreeWindow.hpp"
+#include "DocumentWindows/ConsoleWindow/ConsoleWindow.hpp"
+#include "DocumentWindows/AssetManager/AssetManagerWindow.hpp"
+#include "DocumentWindows/MaterialInspector/MaterialInspector.hpp"
 
 namespace nexo::editor {
 
@@ -246,13 +250,170 @@ namespace nexo::editor {
     {
         if (ImGui::BeginMainMenuBar())
         {
+            // File Menu
             if (ImGui::BeginMenu("File"))
             {
-                if (ImGui::MenuItem("Exit"))
+                if (ImGui::MenuItem(ICON_FA_SAVE " Save", "Ctrl+S"))
+                {
+                    // TODO: Implement scene save functionality
+                    LOG(NEXO_INFO, "Save requested");
+                }
+
+                ImGui::Separator();
+
+                // Import submenu
+                if (ImGui::BeginMenu(ICON_FA_DOWNLOAD " Import"))
+                {
+                    if (ImGui::MenuItem("Unity Package..."))
+                    {
+                        // TODO: Implement Unity package import
+                        LOG(NEXO_INFO, "Unity Package import requested");
+                    }
+
+                    if (ImGui::MenuItem("Model (OBJ)..."))
+                    {
+                        // TODO: Implement OBJ model import
+                        LOG(NEXO_INFO, "OBJ Model import requested");
+                    }
+
+                    if (ImGui::MenuItem("Model (FBX)..."))
+                    {
+                        // TODO: Implement FBX model import (requires plugin)
+                        LOG(NEXO_WARN, "FBX import requires FBX Importer plugin");
+                    }
+
+                    ImGui::Separator();
+
+                    if (ImGui::MenuItem("Texture..."))
+                    {
+                        // TODO: Implement texture import
+                        LOG(NEXO_INFO, "Texture import requested");
+                    }
+
+                    ImGui::EndMenu();
+                }
+
+                // Export submenu
+                if (ImGui::BeginMenu(ICON_FA_UPLOAD " Export"))
+                {
+                    static char exportExtension[32] = "scene";
+
+                    ImGui::Text("Export Format:");
+                    ImGui::InputText("##ExportExt", exportExtension, sizeof(exportExtension));
+
+                    ImGui::Separator();
+
+                    if (ImGui::MenuItem("Export Scene"))
+                    {
+                        // TODO: Implement scene export with custom extension
+                        LOG(NEXO_INFO, "Export scene as .{}", exportExtension);
+                    }
+
+                    if (ImGui::MenuItem("Export Selection"))
+                    {
+                        // TODO: Implement selection export
+                        LOG(NEXO_INFO, "Export selection as .{}", exportExtension);
+                    }
+
+                    ImGui::EndMenu();
+                }
+
+                ImGui::Separator();
+
+                if (ImGui::MenuItem(ICON_FA_SIGN_OUT " Exit", "Alt+F4"))
                     m_quit = true;
 
                 ImGui::EndMenu();
             }
+
+            // View Menu
+            if (ImGui::BeginMenu("View"))
+            {
+                if (ImGui::MenuItem(ICON_FA_TH " Tab Viewer"))
+                {
+                    // TODO: Open Tab Viewer window
+                    LOG(NEXO_INFO, "Tab Viewer requested");
+                }
+
+                ImGui::Separator();
+
+                // Show/hide individual panels
+                ImGui::Text("Panels:");
+
+                if (auto sceneTree = m_windowRegistry.getWindow<SceneTreeWindow>(NEXO_WND_USTRID_SCENE_TREE).lock())
+                {
+                    bool opened = sceneTree->isOpened();
+                    if (ImGui::MenuItem(ICON_FA_SITEMAP " Scene Tree", nullptr, &opened))
+                    {
+                        sceneTree->setOpened(opened);
+                    }
+                }
+
+                if (auto inspector = m_windowRegistry.getWindow<InspectorWindow>(NEXO_WND_USTRID_INSPECTOR).lock())
+                {
+                    bool opened = inspector->isOpened();
+                    if (ImGui::MenuItem(ICON_FA_INFO_CIRCLE " Inspector", nullptr, &opened))
+                    {
+                        inspector->setOpened(opened);
+                    }
+                }
+
+                if (auto console = m_windowRegistry.getWindow<ConsoleWindow>(NEXO_WND_USTRID_CONSOLE).lock())
+                {
+                    bool opened = console->isOpened();
+                    if (ImGui::MenuItem(ICON_FA_TERMINAL " Console", nullptr, &opened))
+                    {
+                        console->setOpened(opened);
+                    }
+                }
+
+                if (auto assetMgr = m_windowRegistry.getWindow<AssetManagerWindow>(NEXO_WND_USTRID_ASSET_MANAGER).lock())
+                {
+                    bool opened = assetMgr->isOpened();
+                    if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Asset Manager", nullptr, &opened))
+                    {
+                        assetMgr->setOpened(opened);
+                    }
+                }
+
+                if (auto matInspector = m_windowRegistry.getWindow<MaterialInspector>(NEXO_WND_USTRID_MATERIAL_INSPECTOR).lock())
+                {
+                    bool opened = matInspector->isOpened();
+                    if (ImGui::MenuItem(ICON_FA_PAINT_BRUSH " Material Inspector", nullptr, &opened))
+                    {
+                        matInspector->setOpened(opened);
+                    }
+                }
+
+                ImGui::EndMenu();
+            }
+
+            // Plugins Menu
+            if (ImGui::BeginMenu("Plugins"))
+            {
+                ImGui::TextDisabled("Plugin system coming soon...");
+                ImGui::Separator();
+
+                if (ImGui::MenuItem(ICON_FA_PUZZLE_PIECE " Load Plugin..."))
+                {
+                    // TODO: Implement plugin loader
+                    LOG(NEXO_INFO, "Plugin loader requested");
+                }
+
+                if (ImGui::MenuItem(ICON_FA_LIST " Manage Plugins..."))
+                {
+                    // TODO: Open plugin manager window
+                    LOG(NEXO_INFO, "Plugin manager requested");
+                }
+
+                ImGui::Separator();
+
+                ImGui::TextDisabled("Loaded Plugins:");
+                ImGui::TextDisabled("  (None)");
+
+                ImGui::EndMenu();
+            }
+
             ImGui::EndMainMenuBar();
         }
     }
@@ -332,6 +493,7 @@ namespace nexo::editor {
 
     void Editor::handleGlobalCommands()
     {
+        // Ctrl+Z for Undo, Ctrl+Shift+Z for Redo
         if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl) && ImGui::IsKeyPressed(ImGuiKey_Z))
         {
             if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
@@ -343,6 +505,15 @@ namespace nexo::editor {
                 ActionManager::get().undo();
             }
         }
+
+        // Ctrl+S for Save
+        if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl) && ImGui::IsKeyPressed(ImGuiKey_S))
+        {
+            // TODO: Implement scene save functionality
+            LOG(NEXO_INFO, "Save requested (Ctrl+S)");
+        }
+
+        // Ctrl+Shift+T for Test Window
         if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl) && ImGui::IsKeyDown(ImGuiKey_LeftShift) && ImGui::IsKeyPressed(ImGuiKey_T))
         {
             if (const auto testWindow = getWindow<TestWindow>(NEXO_WND_USTRID_TEST).lock()) {

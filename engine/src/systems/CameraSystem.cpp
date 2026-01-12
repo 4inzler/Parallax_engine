@@ -98,6 +98,10 @@ namespace nexo::system {
 
 			cameraComponent.resizing = false;
 
+			// Camera movement only when RMB is held
+			if (!event::isMouseDown(NEXO_MOUSE_RIGHT))
+				continue;
+
             if (event::isKeyPressed(NEXO_KEY_SHIFT))
                 cameraController.translationSpeed = 10.0f;
             if (event::isKeyReleased(NEXO_KEY_SHIFT))
@@ -112,13 +116,13 @@ namespace nexo::system {
 			if (event::isKeyPressed(NEXO_KEY_S))
 				transform.pos -= front * cameraController.translationSpeed * deltaTime; // Backward
 			if (event::isKeyPressed(NEXO_KEY_Q))
-				transform.pos -= right * cameraController.translationSpeed * deltaTime; // Left
+				transform.pos -= up * cameraController.translationSpeed * deltaTime;    // Down (Q key)
 			if (event::isKeyPressed(NEXO_KEY_D))
 				transform.pos += right * cameraController.translationSpeed * deltaTime; // Right
-			if (event::isKeyPressed(NEXO_KEY_SPACE))
-				transform.pos += up * cameraController.translationSpeed * deltaTime;    // Up
-			if (event::isKeyPressed(NEXO_KEY_TAB))
-				transform.pos -= up * cameraController.translationSpeed * deltaTime;    // Down
+			if (event::isKeyPressed(NEXO_KEY_E))
+				transform.pos += up * cameraController.translationSpeed * deltaTime;    // Up (E key)
+			if (event::isKeyPressed(NEXO_KEY_A))
+				transform.pos -= right * cameraController.translationSpeed * deltaTime; // Left (A key)
 		}
 	}
 
@@ -160,7 +164,7 @@ namespace nexo::system {
             const auto &cameraComponent = getComponent<components::CameraComponent>(entity);
             const bool isActiveScene = sceneTag.isActive && sceneTag.id == sceneRendered;
             const bool isActiveCamera = isActiveScene && cameraComponent.active;
-            const bool mouseDown = event::isMouseDown(NEXO_MOUSE_LEFT);
+            const bool mouseDown = event::isMouseDown(NEXO_MOUSE_RIGHT);
 
             // Check for scene transition - if the camera wasn't active before but is now
             const bool sceneTransition = isActiveCamera && !controller.wasActiveLastFrame;

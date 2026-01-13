@@ -114,6 +114,8 @@ set(SRCS
         editor/src/DocumentWindows/GameWindow/Setup.cpp
         editor/src/DocumentWindows/GameWindow/Show.cpp
         editor/src/DocumentWindows/GameWindow/Update.cpp
+        editor/src/plugins/PluginManager.cpp
+        editor/src/plugins/CAbiPluginAdapter.cpp
 )
 
 # Windows App Icon

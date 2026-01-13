@@ -12,6 +12,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <filesystem>
 
 #ifdef _WIN32
     #include <windows.h>
@@ -51,6 +52,12 @@ namespace parallax::editor::plugins {
          * @return true if plugin loaded successfully
          */
         bool loadPlugin(const std::string& path);
+
+        /**
+         * @brief Load all plugins from a directory (non-recursive)
+         * @return Number of successfully loaded plugins
+         */
+        size_t loadPluginsFromDirectory(const std::filesystem::path& directory);
 
         /**
          * @brief Unload a plugin by name

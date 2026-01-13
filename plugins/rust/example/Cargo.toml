@@ -1,0 +1,12 @@
+[package]
+name = "parallax_rust_example"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "Example Rust plugin for Parallax"
+
+[lib]
+crate-type = ["cdylib"]
+name = "parallax_rust_example"
+
+[dependencies]

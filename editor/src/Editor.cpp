@@ -24,6 +24,7 @@
 #include "Editor.hpp"
 #include "Logger.hpp"
 #include "Path.hpp"
+#include "plugins/PluginManager.hpp"
 #include "backends/ImGuiBackend.hpp"
 #include "IconsFontAwesome.h"
 #include "ImParallax/Elements.hpp"
@@ -34,6 +35,14 @@
 #include "imgui.h"
 #include <ImGuizmo.h>
 #include <algorithm>
+
+#ifdef _WIN32
+    #ifndef NOMINMAX
+    #define NOMINMAX
+    #endif
+    #undef min
+    #undef max
+#endif
 
 #include "DocumentWindows/EditorScene/EditorScene.hpp"
 #include "DocumentWindows/InspectorWindow/InspectorWindow.hpp"
@@ -239,6 +248,11 @@ namespace parallax::editor {
         app.initScripting(); // TODO: scripting is init here since it requires a scene, later scenes shouldn't be created in the editor window
         for (const auto inspectorWindow : m_windowRegistry.getWindows<InspectorWindow>())
             inspectorWindow->registerTypeErasedProperties(); // TODO: this should be done in the InspectorWindow constructor, but we need the scripting to init
+
+        const auto pluginDirectory = Path::resolvePathRelativeToExe("plugins");
+        auto& pluginManager = plugins::PluginManager::getInstance();
+        const size_t loadedPlugins = pluginManager.loadPluginsFromDirectory(pluginDirectory);
+        LOG(PARALLAX_INFO, "Plugin scan completed: {} loaded from {}", loadedPlugins, pluginDirectory.string());
     }
 
     bool Editor::isOpen() const
@@ -391,25 +405,43 @@ namespace parallax::editor {
             // Plugins Menu
             if (ImGui::BeginMenu("Plugins"))
             {
-                ImGui::TextDisabled("Plugin system coming soon...");
-                ImGui::Separator();
-
-                if (ImGui::MenuItem(ICON_FA_PUZZLE_PIECE " Load Plugin..."))
+                auto& pluginManager = plugins::PluginManager::getInstance();
+                if (ImGui::MenuItem(ICON_FA_PUZZLE_PIECE " Reload Plugins"))
                 {
-                    // TODO: Implement plugin loader
-                    LOG(PARALLAX_INFO, "Plugin loader requested");
-                }
-
-                if (ImGui::MenuItem(ICON_FA_LIST " Manage Plugins..."))
-                {
-                    // TODO: Open plugin manager window
-                    LOG(PARALLAX_INFO, "Plugin manager requested");
+                    pluginManager.unloadAllPlugins();
+                    const auto pluginDirectory = Path::resolvePathRelativeToExe("plugins");
+                    const size_t count = pluginManager.loadPluginsFromDirectory(pluginDirectory);
+                    LOG(PARALLAX_INFO, "Reloaded plugins ({} found) from {}", count, pluginDirectory.string());
                 }
 
                 ImGui::Separator();
+                const auto loadedPlugins = pluginManager.getLoadedPlugins();
+                if (loadedPlugins.empty())
+                {
+                    ImGui::TextDisabled("Loaded Plugins: None");
+                }
+                else
+                {
+                    ImGui::TextDisabled("Loaded Plugins:");
+                    for (const auto& name : loadedPlugins)
+                        ImGui::BulletText("%s", name.c_str());
+                }
 
-                ImGui::TextDisabled("Loaded Plugins:");
-                ImGui::TextDisabled("  (None)");
+                const auto& menuItems = pluginManager.getMenuItems();
+                if (!menuItems.empty())
+                {
+                    ImGui::Separator();
+                    ImGui::TextDisabled("Plugin Actions");
+                    for (const auto& item : menuItems)
+                    {
+                        const char* shortcut = item.shortcut.empty() ? nullptr : item.shortcut.c_str();
+                        if (ImGui::MenuItem(item.menuPath.c_str(), shortcut))
+                        {
+                            if (item.callback)
+                                item.callback();
+                        }
+                    }
+                }
 
                 ImGui::EndMenu();
             }
@@ -712,6 +744,11 @@ namespace parallax::editor {
 
         drawMenuBar();
         m_windowRegistry.render();
+
+        auto& pluginManager = plugins::PluginManager::getInstance();
+        const float pluginDeltaTime = ImGui::GetIO().DeltaTime;
+        pluginManager.updatePlugins(pluginDeltaTime);
+        pluginManager.renderPluginGuis();
 
         handleGlobalCommands();
 

@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "PluginManager.hpp"
+#include "CAbiPluginAdapter.hpp"
+#include "PluginAbi.hpp"
 #include "Logger.hpp"
 #include <filesystem>
 
@@ -56,6 +58,19 @@ namespace parallax::editor::plugins {
 #endif
     }
 
+    static ParallaxGetPluginApiFn getCAbiFunction(PluginHandle handle)
+    {
+        if (!handle) return nullptr;
+
+#ifdef _WIN32
+        return reinterpret_cast<ParallaxGetPluginApiFn>(
+            GetProcAddress(handle, "ParallaxGetPluginApi"));
+#else
+        return reinterpret_cast<ParallaxGetPluginApiFn>(
+            dlsym(handle, "ParallaxGetPluginApi"));
+#endif
+    }
+
     bool PluginManager::loadPlugin(const std::string& path)
     {
         if (!std::filesystem::exists(path))
@@ -76,11 +91,66 @@ namespace parallax::editor::plugins {
             return false;
         }
 
-        // Get the factory function
+        // Try C ABI plugin first (Rust/C)
+        if (const ParallaxGetPluginApiFn getApi = getCAbiFunction(handle))
+        {
+            const ParallaxPluginApi* api = getApi();
+            if (!api)
+            {
+                LOG(PARALLAX_ERROR, "Plugin {} returned null API", path);
+                unloadLibrary(handle);
+                return false;
+            }
+
+            if (api->abi_version != PARALLAX_PLUGIN_ABI_VERSION)
+            {
+                LOG(PARALLAX_ERROR, "Plugin {} has incompatible ABI version {} (expected {})",
+                    path, api->abi_version, PARALLAX_PLUGIN_ABI_VERSION);
+                unloadLibrary(handle);
+                return false;
+            }
+
+            auto plugin = std::make_unique<CAbiPluginAdapter>(api, *this);
+            PluginInfo info = plugin->getInfo();
+
+            if (info.name.empty())
+            {
+                LOG(PARALLAX_ERROR, "Plugin {} returned empty name", path);
+                unloadLibrary(handle);
+                return false;
+            }
+
+            if (isPluginLoaded(info.name))
+            {
+                LOG(PARALLAX_WARN, "Plugin {} is already loaded", info.name);
+                unloadLibrary(handle);
+                return false;
+            }
+
+            if (!plugin->onLoad(*this))
+            {
+                LOG(PARALLAX_ERROR, "Plugin {} failed to initialize", info.name);
+                unloadLibrary(handle);
+                return false;
+            }
+
+            LoadedPlugin loadedPlugin;
+            loadedPlugin.instance = std::move(plugin);
+            loadedPlugin.handle = handle;
+            loadedPlugin.info = info;
+            loadedPlugin.path = path;
+
+            m_plugins[info.name] = std::move(loadedPlugin);
+
+            LOG(PARALLAX_INFO, "C-ABI Plugin loaded: {} v{} by {}", info.name, info.version, info.author);
+            return true;
+        }
+
+        // Fallback: C++ plugin (CreatePlugin factory)
         PluginFactoryFunc createPlugin = getFactoryFunction(handle);
         if (!createPlugin)
         {
-            LOG(PARALLAX_ERROR, "Plugin {} does not export CreatePlugin function", path);
+            LOG(PARALLAX_ERROR, "Plugin {} does not export CreatePlugin function or ParallaxGetPluginApi", path);
             unloadLibrary(handle);
             return false;
         }
@@ -124,6 +194,33 @@ namespace parallax::editor::plugins {
 
         LOG(PARALLAX_INFO, "Plugin loaded: {} v{} by {}", info.name, info.version, info.author);
         return true;
+    }
+
+    size_t PluginManager::loadPluginsFromDirectory(const std::filesystem::path& directory)
+    {
+        if (!std::filesystem::exists(directory)) {
+            LOG(PARALLAX_WARN, "Plugin directory not found: {}", directory.string());
+            return 0;
+        }
+
+        size_t loaded = 0;
+        const auto extension =
+#ifdef _WIN32
+            ".dll";
+#else
+            ".so";
+#endif
+
+        for (const auto& entry : std::filesystem::directory_iterator(directory)) {
+            if (!entry.is_regular_file())
+                continue;
+            if (entry.path().extension() != extension)
+                continue;
+
+            loaded += loadPlugin(entry.path().string()) ? 1 : 0;
+        }
+
+        return loaded;
     }
 
     bool PluginManager::unloadPlugin(const std::string& pluginName)

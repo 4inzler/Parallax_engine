@@ -24,14 +24,14 @@ namespace parallax::event {
     #define PARALLAX_KEY_2 50
     #define PARALLAX_KEY_3 51
 
-    #define PARALLAX_KEY_Q 65
+    #define PARALLAX_KEY_Q 81
     #define PARALLAX_KEY_D 68
     #define PARALLAX_KEY_E 69
     #define PARALLAX_KEY_I 73
     #define PARALLAX_KEY_J 74
     #define PARALLAX_KEY_K 75
     #define PARALLAX_KEY_L 76
-    #define PARALLAX_KEY_A 81
+    #define PARALLAX_KEY_A 65
     #define PARALLAX_KEY_S 83
     #define PARALLAX_KEY_Z 87
 

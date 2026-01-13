@@ -225,17 +225,17 @@ namespace parallax::scripting {
     try {
         m_managedApi.NativeInterop = {
             .Initialize = getManagedFptr<Int32(*)(NativeApiCallbacks*, UInt32)>(
-                "Parallax.NativeInterop, Parallax",
+                "Parallax.NativeInterop, ParallaxManaged",
                 "Initialize",
                 UNMANAGEDCALLERSONLY
             ),
             .DemonstrateNativeCalls = getManagedFptr<void(*)()>(
-                "Parallax.NativeInterop, Parallax",
+                "Parallax.NativeInterop, ParallaxManaged",
                 "DemonstrateNativeCalls",
                 UNMANAGEDCALLERSONLY
             ),
             .Update = getManagedFptr<void(*)(Double)>(
-                "Parallax.NativeInterop, Parallax",
+                "Parallax.NativeInterop, ParallaxManaged",
                 "Update",
                 UNMANAGEDCALLERSONLY
             )
@@ -243,26 +243,26 @@ namespace parallax::scripting {
 
         m_managedApi.Lib = {
             .CustomEntryPoint = getManagedFptr<void(*)(lib_args)>(
-                "Parallax.Lib, Parallax",
+                "Parallax.Lib, ParallaxManaged",
                 "CustomEntryPoint",
-                "Parallax.Lib+CustomEntryPointDelegate, Parallax"
+                "Parallax.Lib+CustomEntryPointDelegate, ParallaxManaged"
             ),
             .CustomEntryPointUnmanagedCallersOnly = getManagedFptr<void(*)(lib_args)>(
-                "Parallax.Lib, Parallax",
+                "Parallax.Lib, ParallaxManaged",
                 "CustomEntryPointUnmanagedCallersOnly",
                 UNMANAGEDCALLERSONLY
             ),
             .Hello = getManagedFptr<void(*)(lib_args*, UInt32)>(
-                "Parallax.Lib, Parallax",
+                "Parallax.Lib, ParallaxManaged",
                 "Hello"
             ),
             .Add = getManagedFptr<Int32(*)(Int32, Int32)>(
-                "Parallax.Lib, Parallax",
+                "Parallax.Lib, ParallaxManaged",
                 "Add",
                 UNMANAGEDCALLERSONLY
             ),
             .AddToPtr = getManagedFptr<Int32(*)(Int32, Int32, Int32*)>(
-                "Parallax.Lib, Parallax",
+                "Parallax.Lib, ParallaxManaged",
                 "AddToPtr",
                 UNMANAGEDCALLERSONLY
             )
@@ -270,22 +270,22 @@ namespace parallax::scripting {
 
         m_managedApi.SystemBase = {
             .InitializeSystems = getManagedFptr<Int32(*)(ManagedWorldState *worldState, UInt32 size)>(
-                "Parallax.Systems.SystemBase, Parallax",
+                "Parallax.Systems.SystemBase, ParallaxManaged",
                 "InitializeSystems",
                 UNMANAGEDCALLERSONLY
             ),
             .InitializeComponents = getManagedFptr<Int32(*)()>(
-                "Parallax.Components.IComponentBase, Parallax",
+                "Parallax.Components.IComponentBase, ParallaxManaged",
                 "InitializeComponents",
                 UNMANAGEDCALLERSONLY
             ),
             .ShutdownSystems = getManagedFptr<Int32(*)(ManagedWorldState *worldState, UInt32 size)>(
-                "Parallax.Systems.SystemBase, Parallax",
+                "Parallax.Systems.SystemBase, ParallaxManaged",
                 "ShutdownSystems",
                 UNMANAGEDCALLERSONLY
             ),
             .UpdateSystems = getManagedFptr<Int32(*)(ManagedWorldState *worldState, UInt32 size)>(
-                "Parallax.Systems.SystemBase, Parallax",
+                "Parallax.Systems.SystemBase, ParallaxManaged",
                 "UpdateSystems",
                 UNMANAGEDCALLERSONLY
             )

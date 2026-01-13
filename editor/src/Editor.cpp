@@ -738,6 +738,24 @@ namespace parallax::editor {
 
         ImGuiBackend::begin();
 
+        ImGuiIO& io = ImGui::GetIO();
+        const bool isCameraDragging = ImGui::IsMouseDown(ImGuiMouseButton_Right);
+        static bool navKeyboardDisabled = false;
+        static bool navKeyboardPrevState = false;
+        if (isCameraDragging) {
+            if (!navKeyboardDisabled) {
+                navKeyboardPrevState = (io.ConfigFlags & ImGuiConfigFlags_NavEnableKeyboard) != 0;
+                io.ConfigFlags &= ~ImGuiConfigFlags_NavEnableKeyboard;
+                navKeyboardDisabled = true;
+            }
+        } else if (navKeyboardDisabled) {
+            if (navKeyboardPrevState)
+                io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+            else
+                io.ConfigFlags &= ~ImGuiConfigFlags_NavEnableKeyboard;
+            navKeyboardDisabled = false;
+        }
+
         ImGuizmo::SetImGuiContext(ImGui::GetCurrentContext());
         ImGuizmo::BeginFrame();
         buildDockspace();

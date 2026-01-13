@@ -22,9 +22,10 @@
     - [Create an Installer for Windows (NSIS)](#create-an-installer-for-windows-nsis)
     - [Create an Installer for Linux (DEB)](#create-an-installer-for-linux-deb)
   - [VR Development Setup](#vr-development-setup)
-  - [Run the Tests](#run-the-tests)
-  - [Troubleshooting](#troubleshooting)
-  - [Documentation](#documentation)
+    - [Run the Tests](#run-the-tests)
+    - [Troubleshooting](#troubleshooting)
+    - [Releases](#releases)
+    - [Documentation](#documentation)
   - [Contributing](#contributing)
   - [Acknowledgments](#acknowledgments)
   - [License](#license)
@@ -252,6 +253,18 @@ ctest -C Debug
 | ImGui headers not found | Update submodules: `git submodule update --init --recursive` |
 
 For detailed troubleshooting, see our documentation.
+
+## Releases
+
+- A ready-to-run Windows x64 bundle is checked into this repo at [`release/Parallax-windows-x64.zip`](release/Parallax-windows-x64.zip). It includes:
+  - `Parallax.exe` + managed assemblies (`ParallaxManaged.*`)
+  - All required DLLs from `vcpkg_installed/x64-windows/bin`
+  - `resources/`, `config/`, and the `plugins/` folder (Rust example plugin + future plugins)
+  - The `plugins/rust/example` sample plugin already compiled for easy experimentation
+
+- To install: unzip the archive to any folder and launch `Parallax.exe`. Use Plugins → Reload Plugins if you add/remove DLL-based plugins and confirm the Unity plugin (when added) runs from that `plugins/` subfolder.
+
+## Documentation
 
 ## Documentation
 

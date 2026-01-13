@@ -20,6 +20,8 @@
 #include "Logger.hpp"
 #include "Path.hpp"
 
+#include <string_view>
+
 namespace parallax::renderer {
 
     ShaderLibrary::ShaderLibrary()
@@ -27,16 +29,27 @@ namespace parallax::renderer {
         // Helper lambda to safely load a shader with proper error handling
         auto safeLoadShader = [this](const std::string& name, const std::string& relativePath) {
             try {
-                // Resolve the absolute path
-                const std::filesystem::path absPath = Path::resolvePathRelativeToExe(relativePath);
+                // Helper to resolve shader locations for both build and release layouts
+                auto resolvePath = [&](const std::string& candidate) {
+                    const auto absPath = Path::resolvePathRelativeToExe(candidate);
+                    if (std::filesystem::exists(absPath))
+                        return absPath;
 
-                // Check if the shader file exists
+                    constexpr std::string_view legacyPrefix{"../resources/"};
+                    std::string suffix = candidate;
+                    if (suffix.rfind(legacyPrefix.data(), 0) == 0)
+                        suffix = suffix.substr(legacyPrefix.size());
+
+                    return Path::resolvePathRelativeToExe(std::filesystem::path("resources") / suffix);
+                };
+
+                const std::filesystem::path absPath = resolvePath(relativePath);
+
                 if (!std::filesystem::exists(absPath)) {
                     LOG(PARALLAX_ERROR, "Shader file not found: {}", absPath.string());
                     return false;
                 }
 
-                // Try to load the shader
                 load(name, absPath.string());
                 LOG(PARALLAX_INFO, "Shader '{}' loaded successfully", name);
                 return true;

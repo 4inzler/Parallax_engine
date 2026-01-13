@@ -8,42 +8,42 @@
 #
 #  Author:      Guillaume HEIN
 #  Date:        24/11/2024
-#  Description: CMake to pack the Nexo project and create an installer.
+#  Description: CMake to pack the Parallax project and create an installer.
 #
 ###############################################################################
 
 cmake_minimum_required(VERSION 3.28)
 
-project(nexo-pack)
+project(parallax-pack)
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/scripts/install.cmake")
 
 # Set the version number
-set(NEXO_VERSION_MAJOR 0)
-set(NEXO_VERSION_MINOR 2)
-set(NEXO_VERSION_PATCH 1)
+set(PARALLAX_VERSION_MAJOR 0)
+set(PARALLAX_VERSION_MINOR 2)
+set(PARALLAX_VERSION_PATCH 1)
 
 # Set the project name
-set(PROJECT_NAME "NEXO-Engine")
+set(PROJECT_NAME "PARALLAX-Engine")
 
 # CPack specific variables
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
-set(CPACK_PACKAGE_VENDOR "NEXO Engine")
-set(CPACK_PACKAGE_CONTACT "nexo.engine@gmail.com")
+set(CPACK_PACKAGE_VENDOR "PARALLAX Engine")
+set(CPACK_PACKAGE_CONTACT "parallax.engine@gmail.com")
 set(CPACK_STRIP_FILES YES)
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY
-    "NEXO Engine - A C++ OpenGL game engine usable in virtual reality.")
+    "PARALLAX Engine - A C++ OpenGL game engine usable in virtual reality.")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION
     "Features a scene editor, console logging, and asset importing."
 )
-set(CPACK_PACKAGE_VERSION "${NEXO_VERSION_MAJOR}.${NEXO_VERSION_MINOR}.${NEXO_VERSION_PATCH}")
-set(CPACK_PACKAGE_VERSION_MAJOR "${NEXO_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${NEXO_VERSION_MINOR}")
-set(CPACK_PACKAGE_VERSION_PATCH "${NEXO_VERSION_PATCH}")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "NexoEngine")
+set(CPACK_PACKAGE_VERSION "${PARALLAX_VERSION_MAJOR}.${PARALLAX_VERSION_MINOR}.${PARALLAX_VERSION_PATCH}")
+set(CPACK_PACKAGE_VERSION_MAJOR "${PARALLAX_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PARALLAX_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PARALLAX_VERSION_PATCH}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "ParallaxEngine")
 
 # Set the icon path
-set(NEXO_ICON_PATH "${CMAKE_SOURCE_DIR}/resources/nexo.ico")
+set(PARALLAX_ICON_PATH "${CMAKE_SOURCE_DIR}/resources/parallax.ico")
 
 # Configs for different package generators (but not the actual CPack configuration)
 include("${CMAKE_SOURCE_DIR}/scripts/linux/deb_config.cmake")
@@ -63,18 +63,18 @@ set(CPACK_PROJECT_CONFIG_FILE "${PROJECT_BINARY_DIR}/CMakeCPackOptions.cmake")
 include(CPack)
 cpack_add_component(documentation
                     DISPLAY_NAME "Documentation"
-                    DESCRIPTION "The documentation of the NEXO Engine. Will be installed in the docs directory."
+                    DESCRIPTION "The documentation of the PARALLAX Engine. Will be installed in the docs directory."
                     GROUP optional
 )
 cpack_add_component(headers
                     DISPLAY_NAME "Headers"
-                    DESCRIPTION "The headers of the NEXO Engine. Will be installed in the headers directory."
+                    DESCRIPTION "The headers of the PARALLAX Engine. Will be installed in the headers directory."
                     DISABLED
                     GROUP optional
 )
 
 cpack_add_component_group(optional
                           DISPLAY_NAME "Optional Components"
-                          DESCRIPTION "Optional components of the NEXO Engine."
+                          DESCRIPTION "Optional components of the PARALLAX Engine."
                           EXPANDED
 )

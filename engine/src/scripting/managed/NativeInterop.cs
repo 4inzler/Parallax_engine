@@ -22,10 +22,10 @@ using System;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Nexo.Components;
-using Nexo.Components.Ui;
+using Parallax.Components;
+using Parallax.Components.Ui;
 
-namespace Nexo
+namespace Parallax
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct ComponentTypeIds
@@ -170,7 +170,7 @@ namespace Nexo
             var fields = typeof(ComponentTypeIds).GetFields();
             foreach (var field in fields)
             {
-                var expectedTypeName = $"Nexo.Components.{field.Name}";
+                var expectedTypeName = $"Parallax.Components.{field.Name}";
                 var type = Type.GetType(expectedTypeName);
 
                 if (type != null)

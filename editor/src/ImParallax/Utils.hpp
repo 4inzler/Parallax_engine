@@ -21,7 +21,7 @@
 #include <vector>
 #include <string>
 
-namespace ImNexo::utils {
+namespace ImParallax::utils {
 
     /**
     * @brief Linearly interpolates between two colors (ImU32, ImGui 32-bits ARGB format).

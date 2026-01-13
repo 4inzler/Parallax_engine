@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=NEXO Engine
+Name=PARALLAX Engine
 Comment=@CPACK_PACKAGE_DESCRIPTION_SUMMARY@
 Exec=@DEB_EXECUTABLE_PATH@
-Icon=nexo
+Icon=parallax
 Terminal=false
 Type=Application
 Categories=@DEB_CATEGORIES@

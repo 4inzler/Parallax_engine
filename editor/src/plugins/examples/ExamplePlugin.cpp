@@ -11,7 +11,7 @@
 #include "Logger.hpp"
 #include <imgui.h>
 
-namespace nexo::editor::plugins {
+namespace parallax::editor::plugins {
 
     /**
      * @brief Example plugin that adds a custom menu item and window
@@ -31,7 +31,7 @@ namespace nexo::editor::plugins {
 
         bool onLoad(PluginManager& manager) override
         {
-            LOG(NEXO_INFO, "Example Plugin: onLoad() called");
+            LOG(PARALLAX_INFO, "Example Plugin: onLoad() called");
 
             // Register a menu item
             MenuItemRegistration menuItem;
@@ -40,7 +40,7 @@ namespace nexo::editor::plugins {
             menuItem.shortcut = "Ctrl+Alt+E";
             menuItem.callback = [this]() {
                 m_windowOpen = !m_windowOpen;
-                LOG(NEXO_INFO, "Example window toggled: {}", m_windowOpen ? "open" : "closed");
+                LOG(PARALLAX_INFO, "Example window toggled: {}", m_windowOpen ? "open" : "closed");
             };
 
             manager.registerMenuItem(menuItem);
@@ -63,7 +63,7 @@ namespace nexo::editor::plugins {
 
         void onUnload() override
         {
-            LOG(NEXO_INFO, "Example Plugin: onUnload() called");
+            LOG(PARALLAX_INFO, "Example Plugin: onUnload() called");
         }
 
         void onUpdate(float deltaTime) override
@@ -93,7 +93,7 @@ namespace nexo::editor::plugins {
                     if (ImGui::Button("Click me!"))
                     {
                         m_clickCount++;
-                        LOG(NEXO_INFO, "Example button clicked {} times", m_clickCount);
+                        LOG(PARALLAX_INFO, "Example button clicked {} times", m_clickCount);
                     }
 
                     ImGui::SameLine();
@@ -135,7 +135,7 @@ namespace nexo::editor::plugins {
         int m_clickCount = 0;
     };
 
-} // namespace nexo::editor::plugins
+} // namespace parallax::editor::plugins
 
 // Export the plugin
-EXPORT_PLUGIN(nexo::editor::plugins::ExamplePlugin)
+EXPORT_PLUGIN(parallax::editor::plugins::ExamplePlugin)

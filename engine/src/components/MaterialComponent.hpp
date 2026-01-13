@@ -19,7 +19,7 @@
 
 #include "assets/Assets/Material/Material.hpp"
 
-namespace nexo::components {
+namespace parallax::components {
     struct MaterialComponent {
         assets::AssetRef<assets::Material> material;
         struct Memento {

@@ -23,7 +23,7 @@ typedef struct XrSpace_T* XrSpace;
 typedef struct XrSwapchain_T* XrSwapchain;
 typedef uint64_t XrSystemId;
 
-namespace nexo::vr {
+namespace parallax::vr {
 
     /**
      * @brief OpenXR rendering API binding (OpenGL in our case)
@@ -208,4 +208,4 @@ namespace nexo::vr {
                                               float nearZ, float farZ);
     };
 
-} // namespace nexo::vr
+} // namespace parallax::vr

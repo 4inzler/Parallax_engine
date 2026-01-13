@@ -22,7 +22,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace nexo::renderer
+namespace parallax::renderer
 {
     /**
     * @brief Generates the vertex, texture coordinate, and normal data for a tetrahedron mesh.

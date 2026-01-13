@@ -52,10 +52,10 @@
 #include "systems/lights/DirectionalLightsSystem.hpp"
 #include "systems/lights/PointLightsSystem.hpp"
 
-std::unique_ptr<nexo::Application> nexo::Application::_instance = nullptr;
-std::shared_ptr<nexo::ecs::Coordinator> nexo::Application::m_coordinator = nullptr;
+std::unique_ptr<parallax::Application> parallax::Application::_instance = nullptr;
+std::shared_ptr<parallax::ecs::Coordinator> parallax::Application::m_coordinator = nullptr;
 
-namespace nexo {
+namespace parallax {
 
     void Application::registerAllDebugListeners()
     {
@@ -65,7 +65,7 @@ namespace nexo {
         m_eventManager->registerListener<event::EventMouseClick>(this);
         m_eventManager->registerListener<event::EventMouseScroll>(this);
         m_eventManager->registerListener<event::EventMouseMove>(this);
-        LOG(NEXO_DEV, "Debug listeners registered");
+        LOG(PARALLAX_DEV, "Debug listeners registered");
     }
 
     void Application::registerSignalListeners()
@@ -73,7 +73,7 @@ namespace nexo {
         m_eventManager->registerListener<event::EventAnySignal>(this);
         m_eventManager->registerListener<event::EventSignalTerminate>(this);
         m_eventManager->registerListener<event::EventSignalInterrupt>(this);
-        LOG(NEXO_DEV, "Signal listeners registered");
+        LOG(PARALLAX_DEV, "Signal listeners registered");
     }
 
     void Application::registerEcsComponents() const
@@ -173,7 +173,7 @@ namespace nexo {
 
         m_window->setMouseClickCallback([this](const int button, const int action, const int mods) {
             event::EventMouseClick event;
-            event.button = static_cast<nexo::event::MouseButton>(button);
+            event.button = static_cast<parallax::event::MouseButton>(button);
             event.mods = mods;
             switch (action)
             {
@@ -255,7 +255,7 @@ namespace nexo {
 
         ecs::System::coord = m_coordinator;
 
-        LOG(NEXO_DEV, "Application created");
+        LOG(PARALLAX_DEV, "Application created");
     }
 
     void Application::displayProfileResults() const
@@ -265,7 +265,7 @@ namespace nexo {
             std::ostringstream stream;
             stream << std::fixed << std::setprecision(3) << result.time;
             std::string label = stream.str() + "ms" + " " + result.name;
-            LOG(NEXO_DEV, "{}", label);
+            LOG(PARALLAX_DEV, "{}", label);
         }
     }
 
@@ -285,7 +285,7 @@ namespace nexo {
         {
             THROW_EXCEPTION(renderer::NxGraphicsApiInitFailure, "Failed to initialize OpenGL context with glad");
         }
-        LOG(NEXO_INFO, "OpenGL context initialized with glad");
+        LOG(PARALLAX_INFO, "OpenGL context initialized with glad");
         glViewport(0, 0, static_cast<int>(m_window->getWidth()), static_cast<int>(m_window->getHeight()));
 #endif
 
@@ -297,7 +297,7 @@ namespace nexo {
         registerSystems();
         m_SceneManager.setCoordinator(m_coordinator);
 
-        LOG(NEXO_DEV, "Application initialized");
+        LOG(PARALLAX_DEV, "Application initialized");
     }
 
     void Application::beginFrame()

@@ -18,7 +18,7 @@
 
 #include "ActionHistory.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     void ActionHistory::addAction(std::unique_ptr<Action> action)
     {
         undoStack.push_back(std::move(action));

@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-namespace ImNexo {
+namespace ImParallax {
 
     /**
     * @struct ChannelLabel

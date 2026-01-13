@@ -23,7 +23,7 @@
 #include <iostream>
 #include <memory>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
      * @enum NxShaderDataType

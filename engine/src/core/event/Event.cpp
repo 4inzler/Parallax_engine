@@ -19,7 +19,7 @@
 #include "Event.hpp"
 #include "Listener.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
 
 	void EventManager::dispatchEvents()
 	{

@@ -18,7 +18,7 @@
 
 #pragma once
 
-namespace nexo::components {
+namespace parallax::components {
 
     struct SceneTag {
         unsigned int id{};

@@ -16,7 +16,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-namespace Nexo.Components.Ui;
+namespace Parallax.Components.Ui;
 
 public enum FieldType : UInt64
 {

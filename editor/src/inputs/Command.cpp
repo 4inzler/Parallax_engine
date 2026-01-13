@@ -25,7 +25,7 @@
 #include <iostream>
 #include <utility>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     struct StringHash {
         using is_transparent = void;                   // enable heterogeneous lookup

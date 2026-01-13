@@ -18,7 +18,7 @@
 
 #include "Components.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     void ComponentManager::entityDestroyed(const Entity entity, const Signature &entitySignature)
     {

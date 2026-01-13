@@ -17,12 +17,12 @@
 If you encounter the following error message when packing with `cpack -G DEB`:
 
 ```bash
-NEXO Engine symlink couldn't be created. Required for the DEB package generator. See README's troubleshooting section.
+PARALLAX Engine symlink couldn't be created. Required for the DEB package generator. See README's troubleshooting section.
 ```
 
 To create an installer using the cpack DEB generator, our scripts try to create
-a symlink to NEXO's binary. This symlink is
-required for installing NEXO in the path of a DEB compatible linux distribution.
+a symlink to PARALLAX's binary. This symlink is
+required for installing PARALLAX in the path of a DEB compatible linux distribution.
 
 #### Solution
 
@@ -35,7 +35,7 @@ If you are running Windows:
 > [!WARNING]
 > If you are running Windows, you may not want to generate a DEB package. It may not be supported.
 
-If you are running another OS, it is unexpected, so please submit an issue [here](https://github.com/NexoEngine/game-engine/issues)
+If you are running another OS, it is unexpected, so please submit an issue [here](https://github.com/ParallaxEngine/game-engine/issues)
 with the details of your OS and the error message; we will help you from there.
 
 ### CPackDeb: file utility is not available
@@ -80,7 +80,7 @@ If you encounter an infinite loop when running the `cmake` command, it may be du
 
 ## Still having issues? Any other questions?
 
-If you are still having issues, please submit an issue [here](https://github.com/NexoEngine/game-engine/issues)
+If you are still having issues, please submit an issue [here](https://github.com/ParallaxEngine/game-engine/issues)
 with the details of your problem. Thank you!
 
 

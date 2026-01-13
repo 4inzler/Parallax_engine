@@ -19,7 +19,7 @@
 
 #include "AEntityProperty.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 	class DirectionalLightProperty final : public AEntityProperty {
 		public:
 			using AEntityProperty::AEntityProperty;

@@ -14,7 +14,7 @@
 
 #include "AssetManagerWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
      * @brief Handles the right-click event on the asset manager window.
@@ -62,4 +62,4 @@ namespace nexo::editor {
         }
     }
 
-} // namespace nexo::editor
+} // namespace parallax::editor

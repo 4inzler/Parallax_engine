@@ -24,7 +24,7 @@
 #include <vector>
 #include <optional>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     enum class SelectionType {
         NONE,

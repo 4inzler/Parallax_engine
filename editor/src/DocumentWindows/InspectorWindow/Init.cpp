@@ -33,7 +33,7 @@
 #include "components/MaterialComponent.hpp"
 #include "components/PhysicsBodyComponent.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void InspectorWindow::setup()
     {

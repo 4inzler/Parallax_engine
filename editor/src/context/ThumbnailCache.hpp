@@ -22,7 +22,7 @@
 #include "assets/Assets/Material/Material.hpp"
 #include "utils/ScenePreview.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     /**
      * @class ThumbnailCache
      * @brief Singleton managing thumbnail textures for various asset types.
@@ -160,4 +160,4 @@ namespace nexo::editor {
 
         std::unordered_map<boost::uuids::uuid, ThumbnailInfo> m_thumbnailCache;
     };
-} // namespace nexo::editor
+} // namespace parallax::editor

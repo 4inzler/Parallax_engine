@@ -20,7 +20,7 @@
 #include "assets/AssetLocation.hpp"
 #include "context/ThumbnailCache.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void AssetManagerWindow::handleAssetDrop(const std::string& path)
     {
@@ -97,7 +97,7 @@ namespace nexo::editor {
 
         std::string locationString = assetName + "@" + targetFolder;
 
-        LOG(NEXO_DEV, "Creating asset location: {} (current folder: '{}', hovered: '{}')", locationString,
+        LOG(PARALLAX_DEV, "Creating asset location: {} (current folder: '{}', hovered: '{}')", locationString,
             m_currentFolder, m_hoveredFolder);
 
         assets::AssetLocation location(locationString);
@@ -122,7 +122,7 @@ namespace nexo::editor {
         const std::filesystem::path path(filePath);
 
         if (!exists(path)) {
-            LOG(NEXO_WARN, "Dropped file does not exist: {}", filePath);
+            LOG(PARALLAX_WARN, "Dropped file does not exist: {}", filePath);
             return;
         }
 
@@ -132,9 +132,9 @@ namespace nexo::editor {
         try {
             assets::AssetImporter importer;
             if (const auto assetRef = importer.importAssetAuto(location, fileInput); !assetRef)
-                LOG(NEXO_ERROR, "Failed to import asset: {}", location.getPath().data());
+                LOG(PARALLAX_ERROR, "Failed to import asset: {}", location.getPath().data());
         } catch (const std::exception& e) {
-            LOG(NEXO_ERROR, "Exception while importing {}: {}", location.getPath().data(), e.what());
+            LOG(PARALLAX_ERROR, "Exception while importing {}: {}", location.getPath().data(), e.what());
         }
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

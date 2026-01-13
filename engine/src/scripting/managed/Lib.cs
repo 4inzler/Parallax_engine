@@ -12,14 +12,14 @@
 //
 //  Author:      Guillaume HEIN
 //  Date:        09/05/2025
-//  Description: Source file for the NEXO managed library
+//  Description: Source file for the PARALLAX managed library
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 using System;
 using System.Runtime.InteropServices;
 
-namespace Nexo
+namespace Parallax
 {
     public static class Lib
     {
@@ -64,7 +64,7 @@ namespace Nexo
         }
 
         [UnmanagedCallersOnly]
-        public static Int32 AddNexoDllDirectory(IntPtr pPathString)
+        public static Int32 AddParallaxDllDirectory(IntPtr pPathString)
         {
             if (pPathString == IntPtr.Zero)
             {

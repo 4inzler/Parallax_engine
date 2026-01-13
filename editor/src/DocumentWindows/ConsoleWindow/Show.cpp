@@ -19,11 +19,11 @@
 
 #include "ConsoleWindow.hpp"
 #include "IconsFontAwesome.h"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Elements.hpp"
 #include "utils/FileSystem.hpp"
 #include "Path.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void ConsoleWindow::showVerbositySettingsPopup()
     {
@@ -62,7 +62,7 @@ namespace nexo::editor {
 
         ImGui::Separator();
         ImGui::Checkbox("File logging", &m_exportLog);
-        if (ImNexo::Button("Open log folder"))
+        if (ImParallax::Button("Open log folder"))
             utils::openFolder(Path::resolvePathRelativeToExe("../logs").string());
 
         ImGui::EndPopup();
@@ -107,8 +107,8 @@ namespace nexo::editor {
     void ConsoleWindow::show()
     {
         ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
-        ImGui::Begin(ICON_FA_FILE_TEXT " Console" NEXO_WND_USTRID_CONSOLE, &m_opened, ImGuiWindowFlags_NoCollapse);
-        beginRender(NEXO_WND_USTRID_CONSOLE);
+        ImGui::Begin(ICON_FA_FILE_TEXT " Console" PARALLAX_WND_USTRID_CONSOLE, &m_opened, ImGuiWindowFlags_NoCollapse);
+        beginRender(PARALLAX_WND_USTRID_CONSOLE);
 
         const float footerHeight = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
         ImGui::BeginChild("ScrollingRegion", ImVec2(0, -footerHeight), false, ImGuiWindowFlags_HorizontalScrollbar);
@@ -141,7 +141,7 @@ namespace nexo::editor {
         }
 
         ImGui::SameLine();
-        if (ImNexo::Button("..."))
+        if (ImParallax::Button("..."))
             ImGui::OpenPopup("VerbositySettings");
 
         if (ImGui::BeginPopup("VerbositySettings"))

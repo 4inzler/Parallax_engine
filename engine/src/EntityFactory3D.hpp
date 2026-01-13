@@ -24,7 +24,7 @@
 #include "components/Components.hpp"
 #include "components/Model.hpp"
 
-namespace nexo
+namespace parallax
 {
 
      enum Primitives

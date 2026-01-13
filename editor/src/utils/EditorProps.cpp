@@ -21,10 +21,10 @@
 #include "components/BillboardMesh.hpp"
 #include "components/Render3D.hpp"
 #include "Path.hpp"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "assets/AssetCatalog.hpp"
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
 
     static void addCameraProps(const ecs::Entity entity)
     {

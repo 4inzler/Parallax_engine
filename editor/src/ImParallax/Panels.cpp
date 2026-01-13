@@ -16,8 +16,8 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "ImNexo/ImNexo.hpp"
-#include "Nexo.hpp"
+#include "ImParallax/ImParallax.hpp"
+#include "Parallax.hpp"
 #include "Panels.hpp"
 #include "Elements.hpp"
 #include "Widgets.hpp"
@@ -34,8 +34,8 @@
 #include "utils/EditorProps.hpp"
 #include "context/ActionManager.hpp"
 
-namespace ImNexo {
-    bool MaterialInspector(nexo::components::Material &material)
+namespace ImParallax {
+    bool MaterialInspector(parallax::components::Material &material)
 	{
 		bool modified = false;
 		// --- Shader Selection ---
@@ -70,7 +70,7 @@ namespace ImNexo {
 			//TODO: implement rendering mode
 		}
 
-    	auto& catalog = nexo::assets::AssetCatalog::getInstance();
+    	auto& catalog = parallax::assets::AssetCatalog::getInstance();
 	    // --- Albedo texture ---
         {
             static ImGuiColorEditFlags colorPickerModeAlbedo = ImGuiColorEditFlags_PickerHueBar;
@@ -82,8 +82,8 @@ namespace ImNexo {
 		    if (TextureButton("Albedo texture", albedoTexture, newTexturePath)
 		    	&& !newTexturePath.empty()) {
 		    	// TODO: /!\ This is not futureproof, this would modify the texture for every asset that use this material
-		    	const auto newTexture = catalog.createAsset<nexo::assets::Texture>(
-					nexo::assets::AssetLocation(newTexturePath.filename().string()),
+		    	const auto newTexture = catalog.createAsset<parallax::assets::Texture>(
+					parallax::assets::AssetLocation(newTexturePath.filename().string()),
 					newTexturePath
 				);
 		    	if (newTexture)
@@ -104,8 +104,8 @@ namespace ImNexo {
 		    if (TextureButton("Specular texture", metallicTexture, newTexturePath)
 		    	&& !newTexturePath.empty()) {
 		    	// TODO: /!\ This is not futureproof, this would modify the texture for every asset that use this material
-				const auto newTexture = catalog.createAsset<nexo::assets::Texture>(
-					nexo::assets::AssetLocation(newTexturePath.filename().string()),
+				const auto newTexture = catalog.createAsset<parallax::assets::Texture>(
+					parallax::assets::AssetLocation(newTexturePath.filename().string()),
 					newTexturePath
 				);
 		    	if (newTexture)
@@ -127,32 +127,32 @@ namespace ImNexo {
     * @param sceneViewportSize The dimensions to use for the camera's framebuffer
     * @return The entity ID of the created camera
     */
-	static nexo::ecs::Entity createDefaultPerspectiveCamera(const nexo::scene::SceneId sceneId, const ImVec2 sceneViewportSize)
+	static parallax::ecs::Entity createDefaultPerspectiveCamera(const parallax::scene::SceneId sceneId, const ImVec2 sceneViewportSize)
 	{
-        auto &app = nexo::getApp();
-        nexo::renderer::NxFramebufferSpecs framebufferSpecs;
+        auto &app = parallax::getApp();
+        parallax::renderer::NxFramebufferSpecs framebufferSpecs;
         framebufferSpecs.attachments = {
-            nexo::renderer::NxFrameBufferTextureFormats::RGBA8, nexo::renderer::NxFrameBufferTextureFormats::RED_INTEGER, nexo::renderer::NxFrameBufferTextureFormats::Depth
+            parallax::renderer::NxFrameBufferTextureFormats::RGBA8, parallax::renderer::NxFrameBufferTextureFormats::RED_INTEGER, parallax::renderer::NxFrameBufferTextureFormats::Depth
         };
 
         // Define layout: 60% for inspector, 40% for preview
         framebufferSpecs.width = static_cast<unsigned int>(sceneViewportSize.x);
         framebufferSpecs.height = static_cast<unsigned int>(sceneViewportSize.y);
-        const auto renderTarget = nexo::renderer::NxFramebuffer::create(framebufferSpecs);
-        const nexo::ecs::Entity defaultCamera = nexo::CameraFactory::createPerspectiveCamera({0.0f, 0.0f, -5.0f}, static_cast<unsigned int>(sceneViewportSize.x), static_cast<unsigned int>(sceneViewportSize.y), renderTarget);
+        const auto renderTarget = parallax::renderer::NxFramebuffer::create(framebufferSpecs);
+        const parallax::ecs::Entity defaultCamera = parallax::CameraFactory::createPerspectiveCamera({0.0f, 0.0f, -5.0f}, static_cast<unsigned int>(sceneViewportSize.x), static_cast<unsigned int>(sceneViewportSize.y), renderTarget);
         app.getSceneManager().getScene(sceneId).addEntity(defaultCamera);
-        nexo::editor::utils::addPropsTo(defaultCamera, nexo::editor::utils::PropsType::CAMERA);
+        parallax::editor::utils::addPropsTo(defaultCamera, parallax::editor::utils::PropsType::CAMERA);
         return defaultCamera;
 	}
 
-	bool CameraInspector(const nexo::scene::SceneId sceneId)
+	bool CameraInspector(const parallax::scene::SceneId sceneId)
 	{
-	    auto &app = nexo::getApp();
+	    auto &app = parallax::getApp();
 		static int undoStackSize = -1;
 		// We store the current undo stack size so that when finalizing the camera creation,
 		// we can remove the correct number of actions from the undo stack in order to only keep the camera creation action
 		if (undoStackSize == -1)
-		    undoStackSize = static_cast<int>(nexo::editor::ActionManager::get().getUndoStackSize());
+		    undoStackSize = static_cast<int>(parallax::editor::ActionManager::get().getUndoStackSize());
 
         const ImVec2 availSize = ImGui::GetContentRegionAvail();
         const float totalWidth = availSize.x;
@@ -161,8 +161,8 @@ namespace ImNexo {
         // Define layout: 60% for inspector, 40% for preview
         const float inspectorWidth = totalWidth * 0.4f;
         const float previewWidth = totalWidth - inspectorWidth - 8; // Subtract spacing between panels
-        static nexo::ecs::Entity camera = nexo::ecs::MAX_ENTITIES;
-        if (camera == nexo::ecs::MAX_ENTITIES)
+        static parallax::ecs::Entity camera = parallax::ecs::MAX_ENTITIES;
+        if (camera == parallax::ecs::MAX_ENTITIES)
         {
             camera = createDefaultPerspectiveCamera(sceneId, ImVec2(previewWidth, totalHeight));
         }
@@ -177,7 +177,7 @@ namespace ImNexo {
             // Now it's safe to delete the entity
             app.deleteEntity(camera);
 
-            camera = nexo::ecs::MAX_ENTITIES;
+            camera = parallax::ecs::MAX_ENTITIES;
             cameraName[0] = '\0';
             nameIsEmpty = false;
             undoStackSize = -1;
@@ -216,9 +216,9 @@ namespace ImNexo {
 
             if (Header("##CameraNode", "Camera"))
             {
-                auto &cameraComponent = nexo::Application::m_coordinator->getComponent<nexo::components::CameraComponent>(camera);
+                auto &cameraComponent = parallax::Application::m_coordinator->getComponent<parallax::components::CameraComponent>(camera);
                 cameraComponent.render = true;
-                static nexo::components::CameraComponent::Memento beforeState;
+                static parallax::components::CameraComponent::Memento beforeState;
                 auto cameraComponentCopy = cameraComponent;
                 resetItemStates();
                 Camera(cameraComponent);
@@ -226,8 +226,8 @@ namespace ImNexo {
                     beforeState = cameraComponentCopy.save();
                 } else if (isItemDeactivated()) {
                     auto afterState = cameraComponent.save();
-                    auto action = std::make_unique<nexo::editor::ComponentChangeAction<nexo::components::CameraComponent>>(camera, beforeState, afterState);
-                    nexo::editor::ActionManager::get().recordAction(std::move(action));
+                    auto action = std::make_unique<parallax::editor::ComponentChangeAction<parallax::components::CameraComponent>>(camera, beforeState, afterState);
+                    parallax::editor::ActionManager::get().recordAction(std::move(action));
                 }
                 ImGui::TreePop();
             }
@@ -239,8 +239,8 @@ namespace ImNexo {
             if (Header("##TransformNode", "Transform Component"))
             {
                 static glm::vec3 lastDisplayedEuler(0.0f);
-                auto &transformComponent = nexo::Application::m_coordinator->getComponent<nexo::components::TransformComponent>(camera);
-                static nexo::components::TransformComponent::Memento beforeState;
+                auto &transformComponent = parallax::Application::m_coordinator->getComponent<parallax::components::TransformComponent>(camera);
+                static parallax::components::TransformComponent::Memento beforeState;
                 resetItemStates();
                 auto transformComponentCopy = transformComponent;
                 Transform(transformComponent, lastDisplayedEuler);
@@ -248,17 +248,17 @@ namespace ImNexo {
                     beforeState = transformComponentCopy.save();
                 } else if (isItemDeactivated()) {
                     auto afterState = transformComponent.save();
-                    auto action = std::make_unique<nexo::editor::ComponentChangeAction<nexo::components::TransformComponent>>(camera, beforeState, afterState);
-                    nexo::editor::ActionManager::get().recordAction(std::move(action));
+                    auto action = std::make_unique<parallax::editor::ComponentChangeAction<parallax::components::TransformComponent>>(camera, beforeState, afterState);
+                    parallax::editor::ActionManager::get().recordAction(std::move(action));
                 }
                 ImGui::TreePop();
             }
 
-            if (nexo::Application::m_coordinator->entityHasComponent<nexo::components::PerspectiveCameraTarget>(camera) &&
+            if (parallax::Application::m_coordinator->entityHasComponent<parallax::components::PerspectiveCameraTarget>(camera) &&
                 Header("##PerspectiveCameraTarget", "Camera Target Component"))
             {
-                auto &cameraTargetComponent = nexo::Application::m_coordinator->getComponent<nexo::components::PerspectiveCameraTarget>(camera);
-                nexo::components::PerspectiveCameraTarget::Memento beforeState{};
+                auto &cameraTargetComponent = parallax::Application::m_coordinator->getComponent<parallax::components::PerspectiveCameraTarget>(camera);
+                parallax::components::PerspectiveCameraTarget::Memento beforeState{};
                 resetItemStates();
                 auto cameraTargetComponentCopy = cameraTargetComponent;
                 CameraTarget(cameraTargetComponent);
@@ -266,17 +266,17 @@ namespace ImNexo {
                     beforeState = cameraTargetComponentCopy.save();
                 } else if (isItemDeactivated()) {
                     auto afterState = cameraTargetComponent.save();
-                    auto action = std::make_unique<nexo::editor::ComponentChangeAction<nexo::components::PerspectiveCameraTarget>>(camera, beforeState, afterState);
-                    nexo::editor::ActionManager::get().recordAction(std::move(action));
+                    auto action = std::make_unique<parallax::editor::ComponentChangeAction<parallax::components::PerspectiveCameraTarget>>(camera, beforeState, afterState);
+                    parallax::editor::ActionManager::get().recordAction(std::move(action));
                 }
                 ImGui::TreePop();
             }
 
-            if (nexo::Application::m_coordinator->entityHasComponent<nexo::components::PerspectiveCameraController>(camera) &&
+            if (parallax::Application::m_coordinator->entityHasComponent<parallax::components::PerspectiveCameraController>(camera) &&
                 Header("##PerspectiveCameraController", "Camera Controller Component"))
             {
-                auto &cameraControllerComponent = nexo::Application::m_coordinator->getComponent<nexo::components::PerspectiveCameraController>(camera);
-                nexo::components::PerspectiveCameraController::Memento beforeState{};
+                auto &cameraControllerComponent = parallax::Application::m_coordinator->getComponent<parallax::components::PerspectiveCameraController>(camera);
+                parallax::components::PerspectiveCameraController::Memento beforeState{};
                 auto cameraControllerComponentCopy = cameraControllerComponent;
                 resetItemStates();
                 CameraController(cameraControllerComponent);
@@ -284,8 +284,8 @@ namespace ImNexo {
                     beforeState = cameraControllerComponentCopy.save();
                 } else if (isItemDeactivated()) {
                     auto afterState = cameraControllerComponent.save();
-                    auto action = std::make_unique<nexo::editor::ComponentChangeAction<nexo::components::PerspectiveCameraController>>(camera, beforeState, afterState);
-                    nexo::editor::ActionManager::get().recordAction(std::move(action));
+                    auto action = std::make_unique<parallax::editor::ComponentChangeAction<parallax::components::PerspectiveCameraController>>(camera, beforeState, afterState);
+                    parallax::editor::ActionManager::get().recordAction(std::move(action));
                 }
                 ImGui::TreePop();
             }
@@ -343,25 +343,25 @@ namespace ImNexo {
                     // Draw component buttons side-by-side with controlled spacing
                     ImGui::BeginGroup();
 
-                    if (!nexo::Application::m_coordinator->entityHasComponent<nexo::components::PerspectiveCameraTarget>(camera) &&
-                        !nexo::Application::m_coordinator->entityHasComponent<nexo::components::PerspectiveCameraController>(camera) &&
+                    if (!parallax::Application::m_coordinator->entityHasComponent<parallax::components::PerspectiveCameraTarget>(camera) &&
+                        !parallax::Application::m_coordinator->entityHasComponent<parallax::components::PerspectiveCameraController>(camera) &&
                         ButtonWithIconAndText("camera_target", ICON_FA_CAMERA, "Camera target", ImVec2(75.0f, 75.0f)))
                     {
-                        auto action = std::make_unique<nexo::editor::ComponentAddAction<nexo::components::PerspectiveCameraTarget>>(camera);
-                        nexo::editor::ActionManager::get().recordAction(std::move(action));
-                        nexo::components::PerspectiveCameraTarget cameraTarget{};
-                        nexo::Application::m_coordinator->addComponent(camera, cameraTarget);
+                        auto action = std::make_unique<parallax::editor::ComponentAddAction<parallax::components::PerspectiveCameraTarget>>(camera);
+                        parallax::editor::ActionManager::get().recordAction(std::move(action));
+                        parallax::components::PerspectiveCameraTarget cameraTarget{};
+                        parallax::Application::m_coordinator->addComponent(camera, cameraTarget);
                         showComponentSelector = false;
                     }
                     ImGui::SameLine();
-                    if (!nexo::Application::m_coordinator->entityHasComponent<nexo::components::PerspectiveCameraTarget>(camera) &&
-                        !nexo::Application::m_coordinator->entityHasComponent<nexo::components::PerspectiveCameraController>(camera) &&
+                    if (!parallax::Application::m_coordinator->entityHasComponent<parallax::components::PerspectiveCameraTarget>(camera) &&
+                        !parallax::Application::m_coordinator->entityHasComponent<parallax::components::PerspectiveCameraController>(camera) &&
                         ButtonWithIconAndText("camera_controller", ICON_FA_GAMEPAD, "Camera Controller", ImVec2(75.0f, 75.0f)))
                     {
-                        auto action = std::make_unique<nexo::editor::ComponentAddAction<nexo::components::PerspectiveCameraController>>(camera);
-                        nexo::editor::ActionManager::get().recordAction(std::move(action));
-                        nexo::components::PerspectiveCameraController cameraController{};
-                        nexo::Application::m_coordinator->addComponent(camera, cameraController);
+                        auto action = std::make_unique<parallax::editor::ComponentAddAction<parallax::components::PerspectiveCameraController>>(camera);
+                        parallax::editor::ActionManager::get().recordAction(std::move(action));
+                        parallax::components::PerspectiveCameraController cameraController{};
+                        parallax::Application::m_coordinator->addComponent(camera, cameraController);
                         showComponentSelector = false;
                     }
                     ImGui::EndGroup();
@@ -383,9 +383,9 @@ namespace ImNexo {
         {
             ImGui::BeginChild("CameraPreview", ImVec2(previewWidth - 4, totalHeight), true);
 
-            nexo::Application::SceneInfo sceneInfo{sceneId, nexo::RenderingType::FRAMEBUFFER};
+            parallax::Application::SceneInfo sceneInfo{sceneId, parallax::RenderingType::FRAMEBUFFER};
             app.run(sceneInfo);
-            auto const &cameraComponent = nexo::Application::m_coordinator->getComponent<nexo::components::CameraComponent>(camera);
+            auto const &cameraComponent = parallax::Application::m_coordinator->getComponent<parallax::components::CameraComponent>(camera);
             const unsigned int textureId = cameraComponent.m_renderTarget->getColorAttachmentId(0);
 
             const float displayHeight = totalHeight - 20;
@@ -411,16 +411,16 @@ namespace ImNexo {
                 return false;
             }
             nameIsEmpty = false;
-            auto &selector = nexo::editor::Selector::get();
-            const auto &uuid = nexo::Application::m_coordinator->getComponent<nexo::components::UuidComponent>(camera);
-            auto &cameraComponent = nexo::Application::m_coordinator->getComponent<nexo::components::CameraComponent>(camera);
+            auto &selector = parallax::editor::Selector::get();
+            const auto &uuid = parallax::Application::m_coordinator->getComponent<parallax::components::UuidComponent>(camera);
+            auto &cameraComponent = parallax::Application::m_coordinator->getComponent<parallax::components::CameraComponent>(camera);
             cameraComponent.active = false;
             selector.setUiHandle(uuid.uuid, std::string(ICON_FA_CAMERA "  ") + cameraName);
-            unsigned int stackSize = nexo::editor::ActionManager::get().getUndoStackSize() - undoStackSize;
-            nexo::editor::ActionManager::get().clearHistory(stackSize);
-            auto action = std::make_unique<nexo::editor::EntityCreationAction>(camera);
-            nexo::editor::ActionManager::get().recordAction(std::move(action));
-            camera = nexo::ecs::MAX_ENTITIES;
+            unsigned int stackSize = parallax::editor::ActionManager::get().getUndoStackSize() - undoStackSize;
+            parallax::editor::ActionManager::get().clearHistory(stackSize);
+            auto action = std::make_unique<parallax::editor::EntityCreationAction>(camera);
+            parallax::editor::ActionManager::get().recordAction(std::move(action));
+            camera = parallax::ecs::MAX_ENTITIES;
             cameraName[0] = '\0';
             undoStackSize = -1;
             ImGui::CloseCurrentPopup();
@@ -429,8 +429,8 @@ namespace ImNexo {
         ImGui::SameLine();
         if (ImGui::Button("Cancel", ImVec2(buttonWidth, 0)))
         {
-            unsigned int stackSize = nexo::editor::ActionManager::get().getUndoStackSize() - undoStackSize;
-            nexo::editor::ActionManager::get().clearHistory(stackSize);
+            unsigned int stackSize = parallax::editor::ActionManager::get().getUndoStackSize() - undoStackSize;
+            parallax::editor::ActionManager::get().clearHistory(stackSize);
             closingPopup = true;
             return false;
         }

@@ -12,17 +12,17 @@
 //
 //  Author:      Guillaume HEIN
 //  Date:        22/06/2025
-//  Description: Interface for the user's components in NEXO's ECS framework
+//  Description: Interface for the user's components in PARALLAX's ECS framework
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using Nexo;
-using Nexo.Components.Ui;
+using Parallax;
+using Parallax.Components.Ui;
 
-namespace Nexo.Components;
+namespace Parallax.Components;
 
 public interface IComponentBase
 {

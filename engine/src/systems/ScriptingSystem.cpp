@@ -20,13 +20,13 @@
 
 #include "scripting/native/Scripting.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
     ScriptingSystem::ScriptingSystem()
     {
         scripting::HostHandler::Parameters params;
         params.errorCallback = [this](const scripting::HostString& message) {
-            LOG(NEXO_ERROR, "Scripting host error: {}", message.to_utf8());
+            LOG(PARALLAX_ERROR, "Scripting host error: {}", message.to_utf8());
             m_latestScriptingError = message.to_utf8();
         };
 
@@ -34,7 +34,7 @@ namespace nexo::system {
 
         // Initialize the host
         if (host.initialize(params) != scripting::HostHandler::SUCCESS) {
-            LOG(NEXO_ERROR, "Failed to initialize host");
+            LOG(PARALLAX_ERROR, "Failed to initialize host");
             THROW_EXCEPTION(scripting::ScriptingBackendInitFailed, m_latestScriptingError);
         }
     }
@@ -46,22 +46,22 @@ namespace nexo::system {
 
         updateWorldState();
         if (auto ret = scriptHost.getManagedApi().SystemBase.InitializeComponents(); ret != 0) {
-            LOG(NEXO_ERROR, "Failed to initialize scripting components, returned: {}", ret);
+            LOG(PARALLAX_ERROR, "Failed to initialize scripting components, returned: {}", ret);
             return ret;
         }
-        LOG(NEXO_INFO, "Scripting components initialized successfully");
+        LOG(PARALLAX_INFO, "Scripting components initialized successfully");
         if (auto ret = scriptHost.getManagedApi().SystemBase.InitializeSystems(&m_worldState, sizeof(m_worldState)); ret != 0) {
-            LOG(NEXO_ERROR, "Failed to initialize scripting systems, returned: {}", ret);
+            LOG(PARALLAX_ERROR, "Failed to initialize scripting systems, returned: {}", ret);
             return ret;
         }
-        LOG(NEXO_INFO, "Scripting systems initialized successfully");
+        LOG(PARALLAX_INFO, "Scripting systems initialized successfully");
 
         if (scriptHost.runScriptExample() == EXIT_FAILURE) {
-            LOG(NEXO_ERROR, "Error in runScriptExample");
+            LOG(PARALLAX_ERROR, "Error in runScriptExample");
             return 1;
         }
 
-        LOG(NEXO_INFO, "Successfully ran runScriptExample");
+        LOG(PARALLAX_INFO, "Successfully ran runScriptExample");
         return 0;
     }
 
@@ -72,10 +72,10 @@ namespace nexo::system {
 
         updateWorldState();
         if (const auto ret = api.SystemBase.UpdateSystems(&m_worldState, sizeof(m_worldState)); ret != 0) {
-            LOG_ONCE(NEXO_ERROR, "Failed to update scripting systems");
+            LOG_ONCE(PARALLAX_ERROR, "Failed to update scripting systems");
             return ret;
         }
-        Logger::resetOnce(NEXO_LOG_ONCE_KEY("Failed to update scripting systems"));
+        Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("Failed to update scripting systems"));
         return 0;
     }
 
@@ -86,10 +86,10 @@ namespace nexo::system {
 
         updateWorldState();
         if (auto ret = api.SystemBase.ShutdownSystems(&m_worldState, sizeof(m_worldState)); ret != 0) {
-            LOG(NEXO_ERROR, "Failed to shutdown scripting systems: {}", ret);
+            LOG(PARALLAX_ERROR, "Failed to shutdown scripting systems: {}", ret);
             return ret;
         }
-        LOG(NEXO_INFO, "Scripting systems shutdown successfully");
+        LOG(PARALLAX_INFO, "Scripting systems shutdown successfully");
         return 0;
     }
 
@@ -99,4 +99,4 @@ namespace nexo::system {
         m_worldState.update(app.getWorldState());
     }
 
-} // namespace nexo::system
+} // namespace parallax::system

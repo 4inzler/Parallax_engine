@@ -28,7 +28,7 @@
 #include "opengl/OpenGlShader.hpp"
 #include "renderer/RendererExceptions.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     class ShaderTest : public OpenGLTest {
         protected:

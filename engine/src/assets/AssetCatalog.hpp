@@ -26,7 +26,7 @@
 #include "AssetLocation.hpp"
 #include "assets/AssetRef.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     /**
      * @class AssetCatalog
@@ -242,4 +242,4 @@ namespace nexo::assets {
                std::views::transform([](const auto& asset) { return std::static_pointer_cast<AssetType>(asset); });
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

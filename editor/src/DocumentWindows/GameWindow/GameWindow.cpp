@@ -18,7 +18,7 @@
 
 #include "GameWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void GameWindow::setSceneId(const unsigned int sceneId)
     {

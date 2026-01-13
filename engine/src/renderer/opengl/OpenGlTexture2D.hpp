@@ -21,7 +21,7 @@
 #include "renderer/Texture.hpp"
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     /**
     * @class NxOpenGlTexture2D
     * @brief OpenGL-specific implementation of the `NxTexture2D` class.

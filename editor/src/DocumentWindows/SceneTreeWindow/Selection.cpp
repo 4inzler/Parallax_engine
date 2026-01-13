@@ -28,7 +28,7 @@
 #include <memory>
 #include <format>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void SceneTreeWindow::entitySelected(const SceneObject &obj)
     {

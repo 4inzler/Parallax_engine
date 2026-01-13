@@ -25,7 +25,7 @@
 
 #include "FieldType.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     struct Field {
         std::string name;   // Pointer to the name of the field
@@ -34,4 +34,4 @@ namespace nexo::ecs {
         uint64_t offset;    // Offset of the field in the component
     };
 
-} // namespace nexo::ecs
+} // namespace parallax::ecs

@@ -20,7 +20,7 @@
 #include "renderer/Attributes.hpp"
 #include "renderer/VertexArray.hpp"
 
-namespace nexo::components {
+namespace parallax::components {
 
     struct StaticMeshComponent {
         std::shared_ptr<renderer::NxVertexArray> vao;

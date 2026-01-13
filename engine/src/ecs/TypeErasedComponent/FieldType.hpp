@@ -21,7 +21,7 @@
 
 #include <cstdint>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     enum class FieldType : uint64_t {
         // Special type, if blank, the field is not used
@@ -48,4 +48,4 @@ namespace nexo::ecs {
         _Count // Count of the number of field types, used for validation
     };
 
-} // namespace nexo::ecs
+} // namespace parallax::ecs

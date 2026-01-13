@@ -18,7 +18,7 @@
 #include "AEntityProperty.hpp"
 #include "components/PhysicsBodyComponent.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class PhysicsBodyProperty final : public AEntityProperty {
         public:

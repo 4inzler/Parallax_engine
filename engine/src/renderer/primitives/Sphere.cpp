@@ -28,7 +28,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace nexo::renderer
+namespace parallax::renderer
 {
     static void normalizeVertices(std::vector<glm::vec3>& vertices)
     {

@@ -22,7 +22,7 @@
 #include <memory>
 #include <functional>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
     * Generic action for objects that can save and restore their state

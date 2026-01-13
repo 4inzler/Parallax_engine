@@ -24,7 +24,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace nexo::renderer
+namespace parallax::renderer
 {
     // Quad vertices for a 1x1 billboard centered at origin
     constexpr glm::vec3 billboardPositions[4] = {

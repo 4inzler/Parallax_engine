@@ -18,7 +18,7 @@
 
 #include "InputOpenGl.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
     bool InputOpenGl::isKeyPressed(const int keycode) const
     {
         return glfwGetKey(static_cast<GLFWwindow *>(m_window->window()), keycode) == GLFW_PRESS;

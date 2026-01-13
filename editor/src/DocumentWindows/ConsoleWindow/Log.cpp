@@ -19,7 +19,7 @@
 #include "ConsoleWindow.hpp"
 #include <fstream>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void ConsoleWindow::addLog(const LogMessage &message)
     {

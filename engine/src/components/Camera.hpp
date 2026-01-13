@@ -24,7 +24,7 @@
 #include "renderer/RenderPipeline.hpp"
 #include <glm/glm.hpp>
 
-namespace nexo::components {
+namespace parallax::components {
 
 	enum class CameraType {
 		PERSPECTIVE,

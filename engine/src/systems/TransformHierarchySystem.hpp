@@ -24,7 +24,7 @@
 #include "components/SceneComponents.hpp"
 #include "components/RenderContext.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
     /**
      * @class TransformHierarchySystem
      * @brief System that handles hierarchical transformations for entities with parents.

@@ -20,7 +20,7 @@
 
 #include "assets/AssetImporterBase.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     class TextureImporter final : public AssetImporterBase {
         public:
@@ -34,4 +34,4 @@ namespace nexo::assets {
             static bool canReadFile(const ImporterFileInput& input);
     };
 
-} // namespace nexo::assets
+} // namespace parallax::assets

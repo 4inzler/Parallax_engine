@@ -20,7 +20,7 @@
 #include "Application.hpp"
 #include "components/Editor.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     int Selector::getPrimaryEntity() const
     {

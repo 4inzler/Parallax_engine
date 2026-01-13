@@ -20,7 +20,7 @@
 
 #include "renderer/VertexArray.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
     * @class NxOpenGlVertexArray

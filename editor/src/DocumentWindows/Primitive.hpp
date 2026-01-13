@@ -22,7 +22,7 @@
 #include "EntityFactory2D.hpp"
 #include "EntityFactory3D.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
     using Primitive2DFunction = ecs::Entity(*)(glm::vec3 pos, glm::vec2 size, float rotation, glm::vec4 color);
     inline const char* primitives2DNames[] = {

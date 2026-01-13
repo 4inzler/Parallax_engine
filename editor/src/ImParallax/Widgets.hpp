@@ -23,7 +23,7 @@
 #include "Components.hpp"
 #include "DocumentWindows/PopupManager.hpp"
 
-namespace ImNexo {
+namespace ImParallax {
 
     /**
     * @brief Draws a color editor with a button and an optional inline color picker.
@@ -100,7 +100,7 @@ namespace ImNexo {
         DropdownOrientation orientation = DropdownOrientation::DOWN
     );
 
-    void PrimitiveSubMenu(int sceneId, nexo::editor::PopupManager &popupManager);
-    void PrimitiveCustomizationMenu(int sceneId, nexo::Primitives primitive);
+    void PrimitiveSubMenu(int sceneId, parallax::editor::PopupManager &popupManager);
+    void PrimitiveCustomizationMenu(int sceneId, parallax::Primitives primitive);
 
 }

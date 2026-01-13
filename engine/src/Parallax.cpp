@@ -1,4 +1,4 @@
-//// ImNexo.cpp ///////////////////////////////////////////////////////////////
+//// Parallax.cpp /////////////////////////////////////////////////////////////////
 //
 // ⢀⢀⢀⣤⣤⣤⡀⢀⢀⢀⢀⢀⢀⢠⣤⡄⢀⢀⢀⢀⣠⣤⣤⣤⣤⣤⣤⣤⣤⣤⡀⢀⢀⢀⢠⣤⣄⢀⢀⢀⢀⢀⢀⢀⣤⣤⢀⢀⢀⢀⢀⢀⢀⢀⣀⣄⢀⢀⢠⣄⣀⢀⢀⢀⢀⢀⢀⢀
 // ⢀⢀⢀⣿⣿⣿⣷⡀⢀⢀⢀⢀⢀⢸⣿⡇⢀⢀⢀⢀⣿⣿⡟⡛⡛⡛⡛⡛⡛⡛⢁⢀⢀⢀⢀⢻⣿⣦⢀⢀⢀⢀⢠⣾⡿⢃⢀⢀⢀⢀⢀⣠⣾⣿⢿⡟⢀⢀⡙⢿⢿⣿⣦⡀⢀⢀⢀⢀
@@ -11,64 +11,31 @@
 // ⢀⢀⢀⢿⢿⢀⢀⢀⢀⢀⢀⢀⢀⢸⢿⢃⢀⢀⢀⢀⢻⢿⢿⢿⢿⢿⢿⢿⢿⢿⢃⢀⢀⢀⢿⡟⢁⢀⢀⢀⢀⢀⢀⢀⡙⢿⡗⢀⢀⢀⢀⢀⡈⡉⡛⡛⢀⢀⢹⡛⢋⢁⢀⢀⢀⢀⢀⢀
 //
 //  Author:      Mehdy MORVAN
-//  Date:        01/05/2025
-//  Description: Source file for the ImNexo functions
+//  Date:        08/11/2024
+//  Description: Main source file for parallax
 //
 ///////////////////////////////////////////////////////////////////////////////
+#include "Parallax.hpp"
 
-#include "ImNexo.hpp"
+namespace parallax {
 
-namespace ImNexo {
-    bool isItemActive()
+    Application &init()
     {
-        return g_isItemActive;
+        Application &app = Application::getInstance();
+        app.init();
+        LOG(PARALLAX_INFO, "Parallax engine initialized");
+        return app;
     }
 
-    static void resetItemActiveState()
+    Application &getApp()
     {
-        g_isItemActive = false;
+        return Application::getInstance();
     }
 
-    void setItemActive()
+    void runEngine(const Application::SceneInfo &sceneInfo)
     {
-        g_isItemActive = true;
-    }
-
-    bool isItemActivated()
-    {
-        return g_isItemActivated;
-    }
-
-    static void resetItemActivatedState()
-    {
-        g_isItemActivated = false;
-    }
-
-    void setItemActivated()
-    {
-        g_isItemActivated = true;
-    }
-
-    bool isItemDeactivated()
-    {
-        return g_isItemDeactivated;
-    }
-
-    static void resetItemDeactivatedState()
-    {
-        g_isItemDeactivated = false;
-    }
-
-    void setItemDeactivated()
-    {
-        g_isItemDeactivated = true;
-    }
-
-    void resetItemStates()
-    {
-        resetItemActivatedState();
-        resetItemActiveState();
-        resetItemDeactivatedState();
+        Application &app = Application::getInstance();
+        app.run(sceneInfo);
     }
 
 }

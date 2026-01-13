@@ -20,7 +20,7 @@
 #include <chrono>
 #include <utility>
 
-namespace nexo {
+namespace parallax {
 
     struct ProfileResult {
         std::string name;

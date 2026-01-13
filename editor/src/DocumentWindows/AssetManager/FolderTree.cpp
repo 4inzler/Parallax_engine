@@ -23,7 +23,7 @@
 #include "assets/Asset.hpp"
 #include "assets/AssetCatalog.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     static void drawSearchBar(std::string& searchBuffer)
     {
@@ -81,7 +81,7 @@ namespace nexo::editor {
     void AssetManagerWindow::rightClickOnAssetManagerMenu()
     {
         if (ImGui::MenuItem("New Folder")) m_popupManager.openPopup("Create Folder Popup");
-        if (ImGui::MenuItem("Import")) LOG(NEXO_INFO, "Importing assets is not implemented yet");
+        if (ImGui::MenuItem("Import")) LOG(PARALLAX_INFO, "Importing assets is not implemented yet");
 
         PopupManager::endPopup();
     }
@@ -141,4 +141,4 @@ namespace nexo::editor {
         }
         ImGui::TreePop();
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

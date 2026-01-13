@@ -29,7 +29,7 @@
 #include "contexts/opengl.hpp"
 #include "../utils/comparison.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     class Renderer3DTest : public ::testing::Test {
         GLFWwindow *window = nullptr;
 

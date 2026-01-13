@@ -20,7 +20,7 @@
 #include "ADocumentWindow.hpp"
 #include "DocumentWindows/EditorScene/EditorScene.hpp"
 #include "IconsFontAwesome.h"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "core/scene/SceneManager.hpp"
 #include "context/Selector.hpp"
 
@@ -31,7 +31,7 @@
 #include <imgui.h>
 #include <map>
 
-namespace nexo::editor
+namespace parallax::editor
 {
     /**
      * @brief Stores scene identification information.

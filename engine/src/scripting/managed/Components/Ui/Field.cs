@@ -20,7 +20,7 @@ using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace Nexo.Components.Ui;
+namespace Parallax.Components.Ui;
 
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct Field

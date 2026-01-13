@@ -22,7 +22,7 @@
 #include "Application.hpp"
 #include "components/Light.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 	void AmbientLightSystem::update()
 	{
 		auto &renderContext = getSingleton<components::RenderContext>();
@@ -40,15 +40,15 @@ namespace nexo::system {
         auto &app = Application::getInstance();
         const std::string &sceneName = app.getSceneManager().getScene(sceneRendered).getName();
 		if (!partition) {
-            LOG_ONCE(NEXO_WARN, "No ambient light found in scene {}, skipping", sceneName);
+            LOG_ONCE(PARALLAX_WARN, "No ambient light found in scene {}, skipping", sceneName);
             return;
         }
-        Logger::resetOnce(NEXO_LOG_ONCE_KEY("No ambient light found in scene {}, skipping", sceneName));
+        Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("No ambient light found in scene {}, skipping", sceneName));
 
         if (partition->count != 1)
-            LOG_ONCE(NEXO_WARN, "For scene {}, found {} ambient lights, only one is supported, picking the first one", sceneName, partition->count);
+            LOG_ONCE(PARALLAX_WARN, "For scene {}, found {} ambient lights, only one is supported, picking the first one", sceneName, partition->count);
         else
-            Logger::resetOnce(NEXO_LOG_ONCE_KEY("For scene {}, found {} ambient lights, only one is supported, picking the first one", sceneName, partition->count));
+            Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("For scene {}, found {} ambient lights, only one is supported, picking the first one", sceneName, partition->count));
 
         renderContext.sceneLights.ambientLight = get<components::AmbientLightComponent>()[0].color;
 	}

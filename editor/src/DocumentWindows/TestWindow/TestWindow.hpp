@@ -22,7 +22,7 @@
 #include <vector>
 #include <filesystem>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     enum class TestResult {
         NOT_TESTED,

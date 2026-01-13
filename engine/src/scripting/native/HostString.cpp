@@ -22,7 +22,7 @@
 
 #include "HostString.hpp"
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     void HostString::init_from_utf8(const std::string& utf8)
     {
@@ -76,4 +76,4 @@ namespace nexo::scripting {
         #endif
     }
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

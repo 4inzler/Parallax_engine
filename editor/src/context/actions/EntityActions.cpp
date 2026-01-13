@@ -19,7 +19,7 @@
 #include "EntityActions.hpp"
 #include "ComponentRestoreFactory.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void EntityCreationAction::redo()
     {

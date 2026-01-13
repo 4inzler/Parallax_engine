@@ -21,7 +21,7 @@
 #include <Jolt/Jolt.h>
 #include <Jolt/Physics/Body/BodyID.h>
 
-namespace nexo::components {
+namespace parallax::components {
     struct PhysicsBodyComponent {
         enum class Type { Static, Dynamic };
         

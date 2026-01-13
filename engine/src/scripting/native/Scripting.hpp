@@ -30,7 +30,7 @@
 #include "ManagedApi.hpp"
 #include "Path.hpp"
 
-#ifdef WIN32
+#if defined(_WIN32) || defined(WIN32)
     #define STR(s) L ## s
     #define CH(c) L ## c
     #define DIR_SEPARATOR L'\\'
@@ -43,7 +43,7 @@
     #define MAX_PATH PATH_MAX
 #endif
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     struct HostfxrFn {
         hostfxr_set_error_writer_fn set_error_writer;
@@ -74,10 +74,10 @@ namespace nexo::scripting {
             using ErrorCallBackFn = std::function<void(const HostString& message)>;
 
             // Globals
-            static inline const std::filesystem::path DEFAULT_NEXO_MANAGED_PATH =
+            static inline const std::filesystem::path DEFAULT_PARALLAX_MANAGED_PATH =
                 Path::resolvePathRelativeToExe("."); // TODO: Change it later for packing
-            static inline const std::string     NEXO_RUNTIMECONFIG_FILENAME  = "Nexo.runtimeconfig.json";
-            static inline const std::string     NEXO_ASSEMBLY_FILENAME       = "Nexo.dll";
+            static inline const std::string     PARALLAX_RUNTIMECONFIG_FILENAME  = "ParallaxManaged.runtimeconfig.json";
+            static inline const std::string     PARALLAX_ASSEMBLY_FILENAME       = "ParallaxManaged.dll";
             static inline const ErrorCallBackFn DEFAULT_ERROR_CALLBACK       = HostHandler::defaultErrorCallback;
 
         protected:
@@ -124,8 +124,8 @@ namespace nexo::scripting {
                 std::filesystem::path assemblyPath;
                 std::filesystem::path dotnetRoot;
 
-                // Nexo
-                std::filesystem::path nexoManagedPath = DEFAULT_NEXO_MANAGED_PATH;
+                // Parallax
+                std::filesystem::path parallaxManagedPath = DEFAULT_PARALLAX_MANAGED_PATH;
 
                 ErrorCallBackFn errorCallback = DEFAULT_ERROR_CALLBACK;
             };
@@ -193,4 +193,4 @@ namespace nexo::scripting {
     // Function to register native callback functions
     void registerNativeFunctions();
     
-} // namespace nexo::scripting
+} // namespace parallax::scripting

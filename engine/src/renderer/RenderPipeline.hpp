@@ -23,7 +23,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     class RenderPipeline {
         public:

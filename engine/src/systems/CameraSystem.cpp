@@ -27,7 +27,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <numbers>
 
-namespace nexo::system {
+namespace parallax::system {
 
 	void CameraContextSystem::update()
 	{
@@ -46,10 +46,10 @@ namespace nexo::system {
 		auto &app = Application::getInstance();
         const std::string &sceneName = app.getSceneManager().getScene(sceneRendered).getName();
 		if (!partition) {
-            LOG_ONCE(NEXO_WARN, "No camera found in scene {}, skipping", sceneName);
+            LOG_ONCE(PARALLAX_WARN, "No camera found in scene {}, skipping", sceneName);
             return;
         }
-        nexo::Logger::resetOnce(NEXO_LOG_ONCE_KEY("No camera found in scene {}, skipping", sceneName));
+        parallax::Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("No camera found in scene {}, skipping", sceneName));
 
 		const auto cameraSpan = get<components::CameraComponent>();
 		const auto transformComponentArray = get<components::TransformComponent>();
@@ -99,29 +99,29 @@ namespace nexo::system {
 			cameraComponent.resizing = false;
 
 			// Camera movement only when RMB is held
-			if (!event::isMouseDown(NEXO_MOUSE_RIGHT))
+			if (!event::isMouseDown(PARALLAX_MOUSE_RIGHT))
 				continue;
 
-            if (event::isKeyPressed(NEXO_KEY_SHIFT))
+            if (event::isKeyPressed(PARALLAX_KEY_SHIFT))
                 cameraController.translationSpeed = 10.0f;
-            if (event::isKeyReleased(NEXO_KEY_SHIFT))
+            if (event::isKeyReleased(PARALLAX_KEY_SHIFT))
                 cameraController.translationSpeed = 5.0f;
 
 			glm::vec3 front = transform.quat * glm::vec3(0.0f, 0.0f, -1.0f);
 			glm::vec3 up    = transform.quat * glm::vec3(0.0f, 1.0f,  0.0f);
 			glm::vec3 right = transform.quat * glm::vec3(1.0f, 0.0f,  0.0f);
 
-			if (event::isKeyPressed(NEXO_KEY_Z))
+			if (event::isKeyPressed(PARALLAX_KEY_Z))
 				transform.pos += front * cameraController.translationSpeed * deltaTime; // Forward
-			if (event::isKeyPressed(NEXO_KEY_S))
+			if (event::isKeyPressed(PARALLAX_KEY_S))
 				transform.pos -= front * cameraController.translationSpeed * deltaTime; // Backward
-			if (event::isKeyPressed(NEXO_KEY_Q))
+			if (event::isKeyPressed(PARALLAX_KEY_Q))
 				transform.pos -= up * cameraController.translationSpeed * deltaTime;    // Down (Q key)
-			if (event::isKeyPressed(NEXO_KEY_D))
+			if (event::isKeyPressed(PARALLAX_KEY_D))
 				transform.pos += right * cameraController.translationSpeed * deltaTime; // Right
-			if (event::isKeyPressed(NEXO_KEY_E))
+			if (event::isKeyPressed(PARALLAX_KEY_E))
 				transform.pos += up * cameraController.translationSpeed * deltaTime;    // Up (E key)
-			if (event::isKeyPressed(NEXO_KEY_A))
+			if (event::isKeyPressed(PARALLAX_KEY_A))
 				transform.pos -= right * cameraController.translationSpeed * deltaTime; // Left (A key)
 		}
 	}
@@ -164,7 +164,7 @@ namespace nexo::system {
             const auto &cameraComponent = getComponent<components::CameraComponent>(entity);
             const bool isActiveScene = sceneTag.isActive && sceneTag.id == sceneRendered;
             const bool isActiveCamera = isActiveScene && cameraComponent.active;
-            const bool mouseDown = event::isMouseDown(NEXO_MOUSE_RIGHT);
+            const bool mouseDown = event::isMouseDown(PARALLAX_MOUSE_RIGHT);
 
             // Check for scene transition - if the camera wasn't active before but is now
             const bool sceneTransition = isActiveCamera && !controller.wasActiveLastFrame;
@@ -278,7 +278,7 @@ namespace nexo::system {
 			const auto &sceneTag = getComponent<components::SceneTag>(entity);
 			const auto &cameraComponent = getComponent<components::CameraComponent>(entity);
 			auto &targetComponent = getComponent<components::PerspectiveCameraTarget>(entity);
-			if (!sceneTag.isActive || sceneTag.id != sceneRendered || cameraComponent.resizing || !event::isMouseDown(NEXO_MOUSE_RIGHT) || !cameraComponent.active)
+			if (!sceneTag.isActive || sceneTag.id != sceneRendered || cameraComponent.resizing || !event::isMouseDown(PARALLAX_MOUSE_RIGHT) || !cameraComponent.active)
 			{
 				targetComponent.lastMousePosition = currentMousePosition;
 				continue;

@@ -18,7 +18,7 @@
 
 #include "InspectorWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void InspectorWindow::shutdown()
     {

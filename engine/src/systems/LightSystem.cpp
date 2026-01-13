@@ -18,7 +18,7 @@
 
 #include "LightSystem.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 	void LightSystem::update() const
 	{
 		m_ambientLightSystem->update();

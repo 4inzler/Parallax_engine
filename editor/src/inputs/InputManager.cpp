@@ -21,7 +21,7 @@
 #include <iostream>
 #include <set>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void InputManager::processInputs(const WindowState& windowState)
     {

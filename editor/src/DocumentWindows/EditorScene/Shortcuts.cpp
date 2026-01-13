@@ -21,7 +21,7 @@
 #include "context/ActionManager.hpp"
 #include "components/Uuid.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     static void hideCallback()
     {

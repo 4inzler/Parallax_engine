@@ -25,7 +25,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	// Test component types
 	struct PositionComponent {

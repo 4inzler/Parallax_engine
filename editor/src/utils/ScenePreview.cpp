@@ -19,12 +19,12 @@
 #include "ScenePreview.hpp"
 #include "CameraFactory.hpp"
 #include "LightFactory.hpp"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "components/Camera.hpp"
 #include "components/MaterialComponent.hpp"
 #include "components/StaticMesh.hpp"
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
 
     float computeBoundingSphereRadius(const components::TransformComponent &objectTransform)
     {
@@ -103,7 +103,7 @@ namespace nexo::editor::utils {
     {
         const auto &modelComponent = Application::m_coordinator->tryGetComponent<components::ModelComponent>(entity);
         if (!modelComponent) {
-            LOG(NEXO_ERROR, "Entity {} does not have model component, using default camera position computation",
+            LOG(PARALLAX_ERROR, "Entity {} does not have model component, using default camera position computation",
                 entity);
             return oldComputeCameraPosition(entity);
         }
@@ -111,7 +111,7 @@ namespace nexo::editor::utils {
         const std::vector<glm::vec3> &vertices = {};
 
         if (vertices.empty()) {
-            LOG(NEXO_ERROR, "No vertices available for entity {}, using default camera position computation", entity);
+            LOG(PARALLAX_ERROR, "No vertices available for entity {}, using default camera position computation", entity);
             return oldComputeCameraPosition(entity);
         }
 
@@ -222,4 +222,4 @@ namespace nexo::editor::utils {
         setupPreviewLights(out.sceneId, out.entityCopy);
         out.sceneGenerated = true;
     }
-} // namespace nexo::editor::utils
+} // namespace parallax::editor::utils

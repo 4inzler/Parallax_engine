@@ -18,7 +18,7 @@
 
 #include "TestWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void TestWindow::update()
     {

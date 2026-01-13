@@ -21,7 +21,7 @@
 #include <filesystem>
 #include <boost/dll/runtime_symbol_info.hpp>
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Utils for handling paths
@@ -29,7 +29,7 @@ namespace nexo {
     class Path {
     public:
         /**
-         * @brief Get the path to the executable (e.g.: nexoEditor)
+         * @brief Get the path to the executable (e.g.: Parallax)
          * @return The path to the executable
          */
         static const std::filesystem::path& getExecutablePath();
@@ -59,4 +59,4 @@ namespace nexo {
     std::string normalizePathAndRemovePrefixSlash(const std::string &rawPath);
 
     std::vector<std::string> splitPath(const std::filesystem::path& path);
-} // namespace nexo
+} // namespace parallax

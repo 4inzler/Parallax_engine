@@ -24,7 +24,7 @@
 #include "renderer/Renderer3D.hpp"
 #include "components/Editor.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
     /**
     * @brief Sets up the lighting uniforms in the given shader.
     *
@@ -196,10 +196,10 @@ namespace nexo::system {
 		auto &app = Application::getInstance();
         const std::string &sceneName = app.getSceneManager().getScene(sceneRendered).getName();
 		if (!partition) {
-            LOG_ONCE(NEXO_WARN, "Nothing to render in scene {}, skipping", sceneName);
+            LOG_ONCE(PARALLAX_WARN, "Nothing to render in scene {}, skipping", sceneName);
             return;
 		}
-        Logger::resetOnce(NEXO_LOG_ONCE_KEY("Nothing to render in scene {}, skipping", sceneName));
+        Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("Nothing to render in scene {}, skipping", sceneName));
 
 		const auto transformComponentArray = get<components::TransformComponent>();
 		const auto billboardSpan = get<components::BillboardComponent>();

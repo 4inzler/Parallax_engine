@@ -1,8 +1,8 @@
 {
-	"name": "nexo-engine",
+	"name": "parallax-engine",
 	"version-string": "0.1.0",
-	"description": "Nexo Engine",
-	"documentation": "https://nexoengine.github.io/game-engine/",
+	"description": "Parallax Engine",
+	"documentation": "https://parallaxengine.github.io/game-engine/",
 	"builtin-baseline": "96d5fb3de135b86d7222c53f2352ca92827a156b",
 	"dependencies": [
 		{

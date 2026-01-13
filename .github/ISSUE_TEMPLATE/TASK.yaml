@@ -1,8 +1,8 @@
 name: Task template
-description: Use this template to create tasks for the Nexo Engine project.
+description: Use this template to create tasks for the Parallax Engine project.
 type: "Task"
 title: "[feat | refactor | chore | bug]: "
-projects: ["NexoEngine/3"]
+projects: ["ParallaxEngine/3"]
 
 body:
   - type: textarea

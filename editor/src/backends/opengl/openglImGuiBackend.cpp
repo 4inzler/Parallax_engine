@@ -23,7 +23,7 @@
 #include "imgui_impl_glfw.h"
 #include <loguru/loguru.hpp>
 
-namespace nexo::editor {
+namespace parallax::editor {
     void OpenGLImGuiBackend::init(GLFWwindow *window)
     {
         if (!ImGui_ImplGlfw_InitForOpenGL(window, true) || !ImGui_ImplOpenGL3_Init("#version 330"))
@@ -67,7 +67,7 @@ namespace nexo::editor {
 
                 case GLFW_INVALID_ENUM:
                 case GLFW_INVALID_VALUE:
-                    LOG(NEXO_WARN, "[OPENGL WARNING] ({}): {}", error, description);
+                    LOG(PARALLAX_WARN, "[OPENGL WARNING] ({}): {}", error, description);
                 break;
 
                 case GLFW_OUT_OF_MEMORY:
@@ -76,19 +76,19 @@ namespace nexo::editor {
                 case GLFW_API_UNAVAILABLE:
                 case GLFW_VERSION_UNAVAILABLE:
                 case GLFW_FORMAT_UNAVAILABLE:
-                    LOG(NEXO_ERROR, "[OPENGL ERROR] ({}): {}", error, description);
+                    LOG(PARALLAX_ERROR, "[OPENGL ERROR] ({}): {}", error, description);
                 break;
 
                 case GLFW_PLATFORM_ERROR:
-                    LOG(NEXO_ERROR, "[OPENGL PLATFORM ERROR] ({}): {}", error, description);
+                    LOG(PARALLAX_ERROR, "[OPENGL PLATFORM ERROR] ({}): {}", error, description);
                 break;
 
                 case GLFW_NO_WINDOW_CONTEXT:
-                    LOG(NEXO_WARN, "[OPENGL WARNING] ({}): {}", error, description);
+                    LOG(PARALLAX_WARN, "[OPENGL WARNING] ({}): {}", error, description);
                 break;
 
                 default:
-                    LOG(NEXO_ERROR, "[OPENGL UNKNOWN ERROR] ({}): {}", error, description);
+                    LOG(PARALLAX_ERROR, "[OPENGL UNKNOWN ERROR] ({}): {}", error, description);
             }
         };
 

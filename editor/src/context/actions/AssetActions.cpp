@@ -15,7 +15,7 @@
 #include "AssetActions.hpp"
 #include "assets/AssetCatalog.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     AssetMoveAction::AssetMoveAction(assets::AssetID assetId,
                                    const std::string& fromPath,
@@ -34,4 +34,4 @@ namespace nexo::editor {
         catalog.moveAsset(m_assetId, m_fromPath);
     }
 
-} // namespace nexo::editor
+} // namespace parallax::editor

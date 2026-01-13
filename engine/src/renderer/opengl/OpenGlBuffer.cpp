@@ -20,7 +20,7 @@
 
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     // VERTEX BUFFER
 
     NxOpenGlVertexBuffer::NxOpenGlVertexBuffer(const float *vertices, const unsigned int size)

@@ -13,7 +13,7 @@
 #include <vector>
 #include <string>
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Ray tracing backend API
@@ -293,4 +293,4 @@ namespace nexo {
         bool frameTimeTooHigh = false;          // >11ms for VR
     };
 
-} // namespace nexo
+} // namespace parallax

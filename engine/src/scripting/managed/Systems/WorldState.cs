@@ -12,13 +12,13 @@
 //
 //  Author:      Guillaume HEIN
 //  Date:        11/06/2025
-//  Description: Interface for the user's systems in NEXO's ECS framework
+//  Description: Interface for the user's systems in PARALLAX's ECS framework
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 using System.Runtime.InteropServices;
 
-namespace Nexo.Systems;
+namespace Parallax.Systems;
 
 public unsafe class WorldState
 {

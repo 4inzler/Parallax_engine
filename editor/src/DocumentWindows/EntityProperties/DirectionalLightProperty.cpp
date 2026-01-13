@@ -17,27 +17,27 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "DirectionalLightProperty.hpp"
-#include "ImNexo/EntityProperties.hpp"
-#include "ImNexo/ImNexo.hpp"
+#include "ImParallax/EntityProperties.hpp"
+#include "ImParallax/ImParallax.hpp"
 #include "components/Light.hpp"
-#include "ImNexo/Widgets.hpp"
+#include "ImParallax/Widgets.hpp"
 #include "context/ActionManager.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void DirectionalLightProperty::show(const ecs::Entity entity)
     {
         auto& directionalComponent = Application::getEntityComponent<components::DirectionalLightComponent>(entity);
         static components::DirectionalLightComponent::Memento beforeState;
 
-        if (ImNexo::Header("##DirectionalNode", "Directional light"))
+        if (ImParallax::Header("##DirectionalNode", "Directional light"))
         {
             const auto directionalComponentCopy = directionalComponent;
-            ImNexo::resetItemStates();
-            ImNexo::DirectionalLight(directionalComponent);
-            if (ImNexo::isItemActivated()) {
+            ImParallax::resetItemStates();
+            ImParallax::DirectionalLight(directionalComponent);
+            if (ImParallax::isItemActivated()) {
                 beforeState = directionalComponentCopy.save();
-            } else if (ImNexo::isItemDeactivated()) {
+            } else if (ImParallax::isItemDeactivated()) {
                 auto afterState = directionalComponent.save();
                 auto action = std::make_unique<ComponentChangeAction<components::DirectionalLightComponent>>(entity, beforeState, afterState);
                 ActionManager::get().recordAction(std::move(action));

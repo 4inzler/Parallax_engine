@@ -26,7 +26,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     using ResizeCallback = std::function<void(int, int)>;
     using CloseCallback = std::function<void()>;
@@ -114,7 +114,7 @@ namespace nexo::renderer {
             * @param title Title of the window.
             * @return A shared pointer to the created `NxWindow` instance.
             */
-            static std::shared_ptr<NxWindow> create(int width = 1920, int height = 1080, const std::string &title = "Nexo window");
+            static std::shared_ptr<NxWindow> create(int width = 1920, int height = 1080, const std::string &title = "Parallax window");
 
             virtual void setErrorCallback(void *fctPtr) = 0;
             virtual void setResizeCallback(ResizeCallback callback) = 0;

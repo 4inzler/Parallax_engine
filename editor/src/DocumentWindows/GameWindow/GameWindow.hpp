@@ -23,7 +23,7 @@
 #include "ecs/Definitions.hpp"
 #include <string>
 
-namespace nexo::editor
+namespace parallax::editor
 {
 
     class EditorScene;

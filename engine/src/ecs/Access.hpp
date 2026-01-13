@@ -20,7 +20,7 @@
 #include <tuple>
 #include <type_traits>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
     /**
      * @brief Access type for components in systems
      */

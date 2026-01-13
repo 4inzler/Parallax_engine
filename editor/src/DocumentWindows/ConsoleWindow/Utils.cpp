@@ -18,7 +18,7 @@
 
 #include "ConsoleWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     /**
      * @brief Converts a loguru verbosity level to its corresponding string label.
      *
@@ -54,7 +54,7 @@ namespace nexo::editor {
      * @param level The custom logging level to convert.
      * @return The equivalent loguru verbosity level.
      */
-    loguru::Verbosity nexoLevelToLoguruLevel(const LogLevel level)
+    loguru::Verbosity parallaxLevelToLoguruLevel(const LogLevel level)
     {
         switch (level)
         {
@@ -116,6 +116,6 @@ namespace nexo::editor {
 
         auto local_time = local_zoned.get_local_time();
         std::string ts = std::format("{:%Y%m%d_%H%M%S}", local_time);
-        return std::format("../logs/NEXO-{}.log", ts);
+        return std::format("../logs/PARALLAX-{}.log", ts);
     }
 }

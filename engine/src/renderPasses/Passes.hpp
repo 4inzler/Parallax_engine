@@ -20,7 +20,7 @@
 
 #include "RenderPass.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     enum Passes : PassId {
         FORWARD,
         GRID,

@@ -14,7 +14,7 @@
 
 #include "PrimitiveWindow.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
     void PrimitiveWindow::shutdown()
     {

@@ -14,7 +14,7 @@
 #include <string>
 #include <map>
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Audio raytracing API backend
@@ -361,4 +361,4 @@ namespace nexo {
         uint64_t audioBufferMemoryMB = 0;
     };
 
-} // namespace nexo
+} // namespace parallax

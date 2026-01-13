@@ -21,7 +21,7 @@
 #include <stdexcept>
 #include <type_traits>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	// Base test fixture for exception tests
 	class ECSExceptionsTest : public ::testing::Test {

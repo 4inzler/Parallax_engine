@@ -18,8 +18,8 @@
 
 #include "GameWindow.hpp"
 #include "IconsFontAwesome.h"
-#include "ImNexo/Elements.hpp"
-#include "ImNexo/Widgets.hpp"
+#include "ImParallax/Elements.hpp"
+#include "ImParallax/Widgets.hpp"
 #include "Application.hpp"
 #include "ecs/Coordinator.hpp"
 #include "components/Camera.hpp"
@@ -28,7 +28,7 @@
 #include <format>
 #include "ecs/Definitions.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
 
     void GameWindow::show()
@@ -74,11 +74,11 @@ namespace nexo::editor
         ImGui::SetCursorPosY((ImGui::GetWindowHeight() - ImGui::GetFrameHeight()) * 0.5f);
 
         // Stop button
-        static const std::vector<ImNexo::GradientStop> standardGradient = {
+        static const std::vector<ImParallax::GradientStop> standardGradient = {
             {0.0f, IM_COL32(50, 50, 70, 230)},
             {1.0f, IM_COL32(30, 30, 45, 230)}};
 
-        if (ImNexo::IconGradientButton("stop_game", ICON_FA_STOP, ImVec2(buttonWidth, buttonHeight), standardGradient))
+        if (ImParallax::IconGradientButton("stop_game", ICON_FA_STOP, ImVec2(buttonWidth, buttonHeight), standardGradient))
         {
             m_opened = false;
         }
@@ -91,11 +91,11 @@ namespace nexo::editor
         if (m_isPaused)
         {
             // Resume button
-            static const std::vector<ImNexo::GradientStop> selectedGradient = {
+            static const std::vector<ImParallax::GradientStop> selectedGradient = {
                 {0.0f, IM_COL32(70, 70, 120, 230)},
                 {1.0f, IM_COL32(50, 50, 100, 230)}};
 
-            if (ImNexo::IconGradientButton("resume_game", ICON_FA_PLAY, ImVec2(buttonWidth, buttonHeight), selectedGradient))
+            if (ImParallax::IconGradientButton("resume_game", ICON_FA_PLAY, ImVec2(buttonWidth, buttonHeight), selectedGradient))
             {
                 m_isPaused = false;
             }
@@ -105,7 +105,7 @@ namespace nexo::editor
         else
         {
             // Pause button
-            if (ImNexo::IconGradientButton("pause_game", ICON_FA_PAUSE, ImVec2(buttonWidth, buttonHeight), standardGradient))
+            if (ImParallax::IconGradientButton("pause_game", ICON_FA_PAUSE, ImVec2(buttonWidth, buttonHeight), standardGradient))
             {
                 m_isPaused = true;
             }
@@ -162,6 +162,6 @@ namespace nexo::editor
         m_viewportBounds[1] = viewportMax;
 
         const unsigned int textureId = cameraComponent.m_renderTarget->getColorAttachmentId(0);
-        ImNexo::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)), m_contentSize);
+        ImParallax::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)), m_contentSize);
     }
 }

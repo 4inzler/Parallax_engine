@@ -12,15 +12,15 @@
 //
 //  Author:      Guillaume HEIN
 //  Date:        21/06/2025
-//  Description: Source file for the Cube system in NEXO's ECS framework
+//  Description: Source file for the Cube system in PARALLAX's ECS framework
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 using System.Numerics;
-using Nexo.Components;
-using Nexo.Systems;
+using Parallax.Components;
+using Parallax.Systems;
 
-namespace Nexo.Scripts;
+namespace Parallax.Scripts;
 
 public struct TestComponent() : IComponentBase
 {

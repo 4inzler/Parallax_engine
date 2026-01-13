@@ -18,7 +18,7 @@
 
 #include "MaterialInspector.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void MaterialInspector::setup()
 	{

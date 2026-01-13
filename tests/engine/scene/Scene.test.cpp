@@ -24,20 +24,20 @@
 #include "components/Uuid.hpp"
 #include "ecs/Coordinator.hpp"
 
-namespace nexo::scene {
+namespace parallax::scene {
 
 class SceneTest : public ::testing::Test {
 protected:
     void SetUp() override {
         // Reset scene ID counter for consistent test behavior
         nextSceneId = 0;
-        coordinator = std::make_shared<nexo::ecs::Coordinator>();
+        coordinator = std::make_shared<parallax::ecs::Coordinator>();
         coordinator->init();
         coordinator->registerComponent<components::SceneTag>();
         coordinator->registerComponent<components::TransformComponent>();
     }
 
-    std::shared_ptr<nexo::ecs::Coordinator> coordinator;
+    std::shared_ptr<parallax::ecs::Coordinator> coordinator;
 };
 
 TEST_F(SceneTest, Constructor) {
@@ -53,7 +53,7 @@ TEST_F(SceneTest, Constructor) {
 
 TEST_F(SceneTest, AddEntity) {
     Scene scene("TestScene", coordinator);
-    nexo::ecs::Entity entity = coordinator->createEntity();
+    parallax::ecs::Entity entity = coordinator->createEntity();
 
     // Create a scene tag that the Scene can update
     components::SceneTag expectedTag{scene.getId(), true, true};
@@ -69,7 +69,7 @@ TEST_F(SceneTest, AddEntity) {
 
 TEST_F(SceneTest, RemoveEntity) {
     Scene scene("TestScene", coordinator);
-    nexo::ecs::Entity entity = coordinator->createEntity();
+    parallax::ecs::Entity entity = coordinator->createEntity();
 
     // First add the entity
     scene.addEntity(entity);
@@ -88,8 +88,8 @@ TEST_F(SceneTest, RemoveEntity) {
 
 TEST_F(SceneTest, SetActiveStatus) {
     Scene scene("TestScene", coordinator);
-    nexo::ecs::Entity entity1 = coordinator->createEntity();
-    nexo::ecs::Entity entity2 = coordinator->createEntity();
+    parallax::ecs::Entity entity1 = coordinator->createEntity();
+    parallax::ecs::Entity entity2 = coordinator->createEntity();
 
     // Add entities to the scene
     scene.addEntity(entity1);
@@ -113,8 +113,8 @@ TEST_F(SceneTest, SetActiveStatus) {
 
 TEST_F(SceneTest, SetRenderStatus) {
     Scene scene("TestScene", coordinator);
-    nexo::ecs::Entity entity1 = coordinator->createEntity();
-    nexo::ecs::Entity entity2 = coordinator->createEntity();
+    parallax::ecs::Entity entity1 = coordinator->createEntity();
+    parallax::ecs::Entity entity2 = coordinator->createEntity();
 
     // Add entities to the scene
     scene.addEntity(entity1);
@@ -137,8 +137,8 @@ TEST_F(SceneTest, SetRenderStatus) {
 }
 
 TEST_F(SceneTest, SceneDestructor) {
-    nexo::ecs::Entity entity1;
-    nexo::ecs::Entity entity2;
+    parallax::ecs::Entity entity1;
+    parallax::ecs::Entity entity2;
 
     {
         Scene scene("TestScene", coordinator);
@@ -194,7 +194,7 @@ TEST_F(SceneTest, UuidGeneration) {
 TEST_F(SceneTest, AddMultipleEntities) {
     Scene scene("TestScene", coordinator);
 
-    std::vector<nexo::ecs::Entity> entities;
+    std::vector<parallax::ecs::Entity> entities;
     for (int i = 0; i < 5; i++) {
         entities.push_back(coordinator->createEntity());
     }
@@ -211,7 +211,7 @@ TEST_F(SceneTest, AddMultipleEntities) {
 
 TEST_F(SceneTest, ToggleActiveStatus) {
     Scene scene("TestScene", coordinator);
-    nexo::ecs::Entity entity = coordinator->createEntity();
+    parallax::ecs::Entity entity = coordinator->createEntity();
 
     // Add entity to scene
     scene.addEntity(entity);
@@ -234,7 +234,7 @@ TEST_F(SceneTest, ToggleActiveStatus) {
 
 TEST_F(SceneTest, ToggleRenderStatus) {
     Scene scene("TestScene", coordinator);
-    nexo::ecs::Entity entity = coordinator->createEntity();
+    parallax::ecs::Entity entity = coordinator->createEntity();
 
     // Add entity to scene
     scene.addEntity(entity);
@@ -257,7 +257,7 @@ TEST_F(SceneTest, ToggleRenderStatus) {
 
 TEST_F(SceneTest, AddRemoveMultipleTimes) {
     Scene scene("TestScene", coordinator);
-    nexo::ecs::Entity entity = coordinator->createEntity();
+    parallax::ecs::Entity entity = coordinator->createEntity();
 
     // Add entity
     scene.addEntity(entity);
@@ -306,4 +306,4 @@ TEST_F(SceneTest, SetRenderStatusNoEntities) {
     EXPECT_TRUE(scene.isRendered());
 }
 
-} // namespace nexo::scene
+} // namespace parallax::scene

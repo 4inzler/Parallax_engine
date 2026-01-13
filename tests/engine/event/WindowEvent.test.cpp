@@ -20,7 +20,7 @@
 #include <gmock/gmock.h>
 #include "core/event/WindowEvent.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
         TEST(WindowEventTest, EventWindowCloseInstantiation) {
         EventWindowClose closeEvent;
         SUCCEED(); // Validate no crash on instantiation

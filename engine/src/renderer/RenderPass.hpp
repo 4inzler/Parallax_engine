@@ -23,7 +23,7 @@
 #include "Framebuffer.hpp"
 
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     using PassId = uint32_t;
 
     class RenderPipeline;

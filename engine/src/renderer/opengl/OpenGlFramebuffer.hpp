@@ -25,7 +25,7 @@
 #include <glm/glm.hpp>
 #include <iostream>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     template<typename T>
     constexpr GLenum getGLTypeFromTemplate()

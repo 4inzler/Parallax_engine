@@ -23,10 +23,10 @@
 #include "Editor.hpp"
 #include <loguru.hpp>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     std::string verbosityToString(loguru::Verbosity level);
-    loguru::Verbosity nexoLevelToLoguruLevel(LogLevel level);
+    loguru::Verbosity parallaxLevelToLoguruLevel(LogLevel level);
     ImVec4 getVerbosityColor(loguru::Verbosity level);
     std::string generateLogFilePath();
 
@@ -60,7 +60,7 @@ namespace nexo::editor {
             * This constructor sets up the console's logging functionality by registering a loguru callback via
             * loguru::add_callback to route log messages to the console (using the static loguruCallback) and by
             * establishing an engine log callback that maps custom LogLevel messages to loguru verbosity levels
-            * using nexoLevelToLoguruLevel before logging them with VLOG_F.
+            * using parallaxLevelToLoguruLevel before logging them with VLOG_F.
             *
             * @param windowName The name of the window
             * @param registry The window registry used to register this console window.

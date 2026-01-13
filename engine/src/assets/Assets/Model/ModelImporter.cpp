@@ -36,7 +36,7 @@
 
 #include "core/exceptions/Exceptions.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     bool ModelImporter::canRead(const ImporterInputVariant& inputVariant)
     {
@@ -127,7 +127,7 @@ namespace nexo::assets {
         }
 
         if (format == renderer::NxTextureFormat::INVALID) {
-            LOG(NEXO_WARN, "ModelImporter: Model {}: Texture {} has an invalid format hint: {}", std::quoted(ctx.location.getFullLocation()), texture->mFilename.C_Str(), texture->achFormatHint);
+            LOG(PARALLAX_WARN, "ModelImporter: Model {}: Texture {} has an invalid format hint: {}", std::quoted(ctx.location.getFullLocation()), texture->mFilename.C_Str(), texture->achFormatHint);
             return nullptr;
         }
 
@@ -213,7 +213,7 @@ namespace nexo::assets {
             modelPath = std::get<ImporterFileInput>(ctx.input).filePath;
         else {
             modelPath = Path::getExecutablePath();
-            LOG(NEXO_WARN, "ModelImporter: Model {}: Model path not given (imported from memory), using executable path for texture lookup.", std::quoted(ctx.location.getFullLocation()));
+            LOG(PARALLAX_WARN, "ModelImporter: Model {}: Model path not given (imported from memory), using executable path for texture lookup.", std::quoted(ctx.location.getFullLocation()));
         }
         const std::filesystem::path modelDirectory = modelPath.parent_path();
 
@@ -282,7 +282,7 @@ namespace nexo::assets {
             // Load Textures
             auto loadTexture = [&](aiTextureType type) -> AssetRef<Texture> {
                 if (material->GetTextureCount(type) > 1) {
-                    LOG(NEXO_WARN, "ModelImporter: Model {}: Material {} has more than one texture of type {}, only the first one will be used.", std::quoted(ctx.location.getFullLocation()), matIdx, type);
+                    LOG(PARALLAX_WARN, "ModelImporter: Model {}: Material {} has more than one texture of type {}, only the first one will be used.", std::quoted(ctx.location.getFullLocation()), matIdx, type);
                 }
 
                 aiString aiStr;
@@ -318,7 +318,7 @@ namespace nexo::assets {
             materialComponent->roughnessMap = loadTexture(aiTextureType_SHININESS);
             materialComponent->emissiveMap = loadTexture(aiTextureType_EMISSIVE);
 
-            LOG(NEXO_INFO, "Loaded material: Diffuse = {}, Normal = {}, Metallic = {}, Roughness = {}",
+            LOG(PARALLAX_INFO, "Loaded material: Diffuse = {}, Normal = {}, Metallic = {}, Roughness = {}",
                 materialComponent->albedoTexture ? "Yes" : "No",
                 materialComponent->normalMap ? "Yes" : "No",
                 materialComponent->metallicMap ? "Yes" : "No",
@@ -424,13 +424,13 @@ namespace nexo::assets {
         if (mesh->mMaterialIndex < m_materials.size()) {
             materialComponent = m_materials[mesh->mMaterialIndex];
         } else {
-            LOG(NEXO_ERROR, "ModelImporter: Model {}: Mesh {} has invalid material index {}.", std::quoted(ctx.location.getFullLocation()), std::quoted(mesh->mName.C_Str()), mesh->mMaterialIndex);
+            LOG(PARALLAX_ERROR, "ModelImporter: Model {}: Mesh {} has invalid material index {}.", std::quoted(ctx.location.getFullLocation()), std::quoted(mesh->mName.C_Str()), mesh->mMaterialIndex);
         }
         if (!materialComponent) {
-            LOG(NEXO_WARN, "ModelImporter: Model {}: Mesh {} has no material.", std::quoted(ctx.location.getFullLocation()), std::quoted(mesh->mName.C_Str()));
+            LOG(PARALLAX_WARN, "ModelImporter: Model {}: Mesh {} has no material.", std::quoted(ctx.location.getFullLocation()), std::quoted(mesh->mName.C_Str()));
         }
 
-        LOG(NEXO_INFO, "Loaded mesh {}", mesh->mName.C_Str());
+        LOG(PARALLAX_INFO, "Loaded mesh {}", mesh->mName.C_Str());
         return {mesh->mName.C_Str(), vao, materialComponent, centerLocal};
     }
 
@@ -444,4 +444,4 @@ namespace nexo::assets {
         };
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

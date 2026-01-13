@@ -27,7 +27,7 @@
 #include <type_traits>
 #include <unordered_map>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
     /**
      * @brief Metaprogramming helper to extract singleton components from a parameter pack
      *

@@ -22,7 +22,7 @@
 #include "components/SceneComponents.hpp"
 #include "ecs/GroupSystem.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
 	/**
 	* @brief System responsible for updating point lights in the scene.

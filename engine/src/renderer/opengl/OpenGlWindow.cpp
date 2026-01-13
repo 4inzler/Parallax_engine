@@ -33,7 +33,7 @@
     #pragma comment (lib, "Dwmapi")
 #endif
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     static void glfwErrorCallback(const int errorCode, const char *errorStr)
     {
         std::cerr << "[GLFW ERROR] Code : " << errorCode << " / Description : " << errorStr << std::endl;
@@ -106,7 +106,7 @@ namespace nexo::renderer {
     {
         if (!glfwInit())
             THROW_EXCEPTION(NxGraphicsApiInitFailure, "OPENGL");
-        LOG(NEXO_DEV, "Initializing opengl window");
+        LOG(PARALLAX_DEV, "Initializing opengl window");
         glfwSetErrorCallback(glfwErrorCallback);
 
 #ifdef __linux__
@@ -116,7 +116,7 @@ namespace nexo::renderer {
             glfwWindowHintString(GLFW_X11_CLASS_NAME, _x11ClassName.c_str());
             glfwWindowHintString(GLFW_X11_INSTANCE_NAME, _x11InstanceName.c_str());
         } else {
-            LOG(NEXO_WARN, "[GLFW WARNING] Unsupported platform for specific window hints.");
+            LOG(PARALLAX_WARN, "[GLFW WARNING] Unsupported platform for specific window hints.");
         }
 #endif
 
@@ -134,7 +134,7 @@ namespace nexo::renderer {
         setVsync(true);
         setDarkMode(false);
         setupCallback();
-        LOG(NEXO_DEV, "Opengl window ({}, {}) initialized", _props.width, _props.height);
+        LOG(PARALLAX_DEV, "Opengl window ({}, {}) initialized", _props.width, _props.height);
     }
 
     void NxOpenGlWindow::shutdown()
@@ -178,9 +178,9 @@ namespace nexo::renderer {
                             std::format("Failed to load icon '{}': {}", iconStringPath, stbi_failure_reason()));
         }
         if (icon.width == 0 || icon.height == 0) {
-            LOG(NEXO_WARN, "Icon '{}' has a size of 0x0", iconStringPath);
+            LOG(PARALLAX_WARN, "Icon '{}' has a size of 0x0", iconStringPath);
         }
-        LOG(NEXO_DEV, "Window icon loaded from '{}', size {}x{}", iconStringPath, icon.width, icon.height);
+        LOG(PARALLAX_DEV, "Window icon loaded from '{}', size {}x{}", iconStringPath, icon.width, icon.height);
         glfwSetWindowIcon(_openGlWindow, 1, &icon);
         stbi_image_free(icon.pixels);
     }
@@ -189,7 +189,7 @@ namespace nexo::renderer {
     {
         _props.title = title;
         glfwSetWindowTitle(_openGlWindow, _props.title.c_str());
-        LOG(NEXO_DEV, "Window title set to '{}'", _props.title);
+        LOG(PARALLAX_DEV, "Window title set to '{}'", _props.title);
     }
 
     const std::string &NxOpenGlWindow::getTitle() const
@@ -202,7 +202,7 @@ namespace nexo::renderer {
 #if defined(_WIN32) || defined(_WIN64)
         HWND hWnd = glfwGetWin32Window(_openGlWindow);
         if (hWnd == nullptr) {
-            LOG(NEXO_ERROR, "[GLFW ERROR] Failed to get Win32 window handle for dark mode setting");
+            LOG(PARALLAX_ERROR, "[GLFW ERROR] Failed to get Win32 window handle for dark mode setting");
             return;
         }
 
@@ -210,12 +210,12 @@ namespace nexo::renderer {
         const BOOL setImmersiveDarkModeSuccess = SUCCEEDED(DwmSetWindowAttribute(
             hWnd, DWMWINDOWATTRIBUTE::DWMWA_USE_IMMERSIVE_DARK_MODE, &useDarkMode, sizeof(useDarkMode)));
         if (!setImmersiveDarkModeSuccess) {
-            LOG(NEXO_ERROR, "[GLFW ERROR] Failed to set enable/disable immersive dark mode for window: {}",
+            LOG(PARALLAX_ERROR, "[GLFW ERROR] Failed to set enable/disable immersive dark mode for window: {}",
                 GetLastError());
             return;
         }
 #endif
-        LOG(NEXO_DEV, "Setting dark mode to {}", enabled ? "enabled" : "disabled");
+        LOG(PARALLAX_DEV, "Setting dark mode to {}", enabled ? "enabled" : "disabled");
         _props.isDarkMode = enabled;
     }
 
@@ -234,14 +234,14 @@ namespace nexo::renderer {
     void NxOpenGlWindow::setWaylandAppId(const char* appId)
     {
         _waylandAppId = appId;
-        LOG(NEXO_DEV, "Wayland app id set to '{}'", appId);
+        LOG(PARALLAX_DEV, "Wayland app id set to '{}'", appId);
     }
 
     void NxOpenGlWindow::setWmClass(const char* className, const char* instanceName)
     {
         _x11ClassName = className;
         _x11InstanceName = instanceName;
-        LOG(NEXO_DEV, "X11 class name set to '{}' and instance name set to '{}'", className, instanceName);
+        LOG(PARALLAX_DEV, "X11 class name set to '{}' and instance name set to '{}'", className, instanceName);
     }
 #endif
 }

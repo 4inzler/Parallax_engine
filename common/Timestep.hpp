@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-namespace nexo {
+namespace parallax {
     class Timestep {
         public:
             explicit(false) Timestep(const double time = 0.0f) : m_time(time) {}

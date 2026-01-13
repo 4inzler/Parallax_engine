@@ -19,7 +19,7 @@
 
 #include <string>
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
 
     /**
      * @brief Opens a file explorer window showing a specified folder.

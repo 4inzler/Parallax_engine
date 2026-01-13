@@ -22,22 +22,22 @@
 #include <utility>
 
 #include "IDocumentWindow.hpp"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "WindowRegistry.hpp"
 #include "inputs/WindowState.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
-    #define NEXO_WND_USTRID_INSPECTOR "###Inspector"
-    #define NEXO_WND_USTRID_SCENE_TREE "###Scene Tree"
-    #define NEXO_WND_USTRID_ASSET_MANAGER "###Asset Manager"
-    #define NEXO_WND_USTRID_CONSOLE "###Console"
-    #define NEXO_WND_USTRID_MATERIAL_INSPECTOR "###Material Inspector"
-    #define NEXO_WND_USTRID_PRIMITIVE_WINDOW "###Primitive Window"
-    #define NEXO_WND_USTRID_DEFAULT_SCENE "###Default Scene"
-    #define NEXO_WND_USTRID_BOTTOM_BAR "###CommandsBar"
-    #define NEXO_WND_USTRID_TEST "###TestWindow"
-    #define NEXO_WND_USTRID_GAME_WINDOW "###GameWindow"
+    #define PARALLAX_WND_USTRID_INSPECTOR "###Inspector"
+    #define PARALLAX_WND_USTRID_SCENE_TREE "###Scene Tree"
+    #define PARALLAX_WND_USTRID_ASSET_MANAGER "###Asset Manager"
+    #define PARALLAX_WND_USTRID_CONSOLE "###Console"
+    #define PARALLAX_WND_USTRID_MATERIAL_INSPECTOR "###Material Inspector"
+    #define PARALLAX_WND_USTRID_PRIMITIVE_WINDOW "###Primitive Window"
+    #define PARALLAX_WND_USTRID_DEFAULT_SCENE "###Default Scene"
+    #define PARALLAX_WND_USTRID_BOTTOM_BAR "###CommandsBar"
+    #define PARALLAX_WND_USTRID_TEST "###TestWindow"
+    #define PARALLAX_WND_USTRID_GAME_WINDOW "###GameWindow"
 
     class ADocumentWindow : public IDocumentWindow {
         public:

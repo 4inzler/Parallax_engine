@@ -14,7 +14,7 @@
 
 #include "AssetManagerWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     template <typename T>
     void AssetManagerWindow::drawErrorMessageInPopup(T& actionState)
@@ -57,4 +57,4 @@ namespace nexo::editor {
         }
         return 0;
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

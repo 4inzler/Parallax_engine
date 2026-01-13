@@ -20,7 +20,7 @@
 #include "renderer/Shader.hpp"
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
     * @class NxOpenGlShader

@@ -18,7 +18,7 @@
 
 #include "Projection.hpp"
 
-namespace nexo::math {
+namespace parallax::math {
 
     glm::vec3 projectRayToWorld(const float x, const float y,
                                     const glm::mat4 &viewProjectionMatrix,

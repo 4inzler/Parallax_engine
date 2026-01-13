@@ -22,10 +22,10 @@
 #include "ValidatedName.hpp"
 #include "FilenameValidator.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     struct AssetNameValidator : FilenameValidator {};
 
     using AssetName = ValidatedName<AssetNameValidator>;
 
-} // namespace nexo::assets
+} // namespace parallax::assets

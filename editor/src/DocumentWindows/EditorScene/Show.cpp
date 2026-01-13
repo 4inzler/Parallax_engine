@@ -21,13 +21,13 @@
 #include "EntityFactory3D.hpp"
 #include "LightFactory.hpp"
 #include "IconsFontAwesome.h"
-#include "ImNexo/Panels.hpp"
+#include "ImParallax/Panels.hpp"
 #include "utils/EditorProps.hpp"
 #include "context/actions/EntityActions.hpp"
 #include "context/ActionManager.hpp"
 #include <imgui_internal.h>
 
-namespace nexo::editor
+namespace parallax::editor
 {
     void EditorScene::renderNoActiveCamera() const
     {
@@ -129,7 +129,7 @@ namespace nexo::editor
         {
             m_popupManager.openPopupWithCallback("Popup camera inspector", [this]()
             {
-                ImNexo::CameraInspector(this->m_sceneId);
+                ImParallax::CameraInspector(this->m_sceneId);
             }, ImVec2(1440, 900));
         }
         PopupManager::endPopup();
@@ -152,7 +152,7 @@ namespace nexo::editor
 
         // Render framebuffer
         const unsigned int textureId = cameraComponent.m_renderTarget->getColorAttachmentId(0);
-        ImNexo::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)), m_contentSize);
+        ImParallax::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)), m_contentSize);
 
         handleDropTarget();
         const ImVec2 viewportMin = ImGui::GetItemRectMin();
@@ -167,7 +167,7 @@ namespace nexo::editor
         if (m_shouldSplitDock && !m_gameWindowNameToSplit.empty())
         {
             const std::string currentWindowName = m_windowName;
-            const ImGuiWindow *currentImGuiWindow = ImGui::FindWindowByName((currentWindowName + NEXO_WND_USTRID_DEFAULT_SCENE + std::to_string(m_sceneId)).c_str());
+            const ImGuiWindow *currentImGuiWindow = ImGui::FindWindowByName((currentWindowName + PARALLAX_WND_USTRID_DEFAULT_SCENE + std::to_string(m_sceneId)).c_str());
 
             if (currentImGuiWindow && currentImGuiWindow->DockId)
             {
@@ -177,12 +177,12 @@ namespace nexo::editor
                 if (ImGui::DockBuilderSplitNode(editorDockId, ImGuiDir_Right, 0.5f, &rightNode, &leftNode))
                 {
                     // Dock the windows
-                    ImGui::DockBuilderDockWindow((currentWindowName + NEXO_WND_USTRID_DEFAULT_SCENE + std::to_string(m_sceneId)).c_str(), leftNode);
+                    ImGui::DockBuilderDockWindow((currentWindowName + PARALLAX_WND_USTRID_DEFAULT_SCENE + std::to_string(m_sceneId)).c_str(), leftNode);
                     ImGui::DockBuilderDockWindow(m_gameWindowNameToSplit.c_str(), rightNode);
                     ImGui::DockBuilderFinish(editorDockId);
 
                     // Update registry
-                    m_windowRegistry.setDockId(currentWindowName + NEXO_WND_USTRID_DEFAULT_SCENE + std::to_string(m_sceneId), leftNode);
+                    m_windowRegistry.setDockId(currentWindowName + PARALLAX_WND_USTRID_DEFAULT_SCENE + std::to_string(m_sceneId), leftNode);
                     m_windowRegistry.setDockId(m_gameWindowNameToSplit, rightNode);
                 }
             }
@@ -197,7 +197,7 @@ namespace nexo::editor
         m_windowName = selector.getUiHandle(m_sceneUuid, std::string(ICON_FA_GLOBE) + "   " + m_windowName);
         const std::string &sceneWindowName = std::format("{}{}{}",
                                                          m_windowName,
-                                                         NEXO_WND_USTRID_DEFAULT_SCENE,
+                                                         PARALLAX_WND_USTRID_DEFAULT_SCENE,
                                                          m_sceneId);
         m_wasVisibleLastFrame = m_isVisibleInDock;
         m_isVisibleInDock = false;
@@ -206,7 +206,7 @@ namespace nexo::editor
                          ImGuiWindowFlags_NoScrollWithMouse))
         {
             const std::string renderName = std::format("{}{}",
-                                                       NEXO_WND_USTRID_DEFAULT_SCENE,
+                                                       PARALLAX_WND_USTRID_DEFAULT_SCENE,
                                                        m_sceneId
             );
             beginRender(renderName);
@@ -237,11 +237,11 @@ namespace nexo::editor
             }
             if (m_popupManager.showPopup("Sphere creation popup"))
             {
-                ImNexo::PrimitiveCustomizationMenu(m_sceneId, SPHERE);
+                ImParallax::PrimitiveCustomizationMenu(m_sceneId, SPHERE);
             }
             if (m_popupManager.showPopup("Cylinder creation popup"))
             {
-                ImNexo::PrimitiveCustomizationMenu(m_sceneId, CYLINDER);
+                ImParallax::PrimitiveCustomizationMenu(m_sceneId, CYLINDER);
             }
         }
         ImGui::End();

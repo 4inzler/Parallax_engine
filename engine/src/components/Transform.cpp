@@ -20,7 +20,7 @@
 
 #include <algorithm>
 
-namespace nexo::components {
+namespace parallax::components {
     void TransformComponent::restore(const TransformComponent::Memento &memento)
     {
         pos = memento.position;

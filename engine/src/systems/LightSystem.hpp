@@ -22,7 +22,7 @@
 #include "lights/PointLightsSystem.hpp"
 #include "lights/SpotLightsSystem.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
 	/**
      * @brief High-level system that aggregates and updates all light systems.

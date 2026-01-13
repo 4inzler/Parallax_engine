@@ -21,7 +21,7 @@
 
 #include "Texture.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     /**
     * @class NxSubTexture2D
     * @brief Represents a portion of a 2D texture, useful for sprite rendering.

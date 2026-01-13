@@ -12,7 +12,7 @@
 //
 //  Author:      Mehdy MORVAN
 //  Date:        12/11/2024
-//  Description: Source for the nexo exception base class
+//  Description: Source for the parallax exception base class
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -20,7 +20,7 @@
 
 #include <format>
 
-namespace nexo {
+namespace parallax {
     const char *Exception::what() const noexcept
     {
         return m_formattedMessage.c_str();

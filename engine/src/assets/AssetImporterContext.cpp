@@ -18,7 +18,7 @@
 
 #include "AssetImporterContext.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     void AssetImporterContext::setMainAsset(std::unique_ptr<IAsset> asset)
     {
@@ -56,4 +56,4 @@ namespace nexo::assets {
         return m_jsonParameters;
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

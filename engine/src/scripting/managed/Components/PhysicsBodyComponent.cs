@@ -19,7 +19,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Nexo.Components
+namespace Parallax.Components
 {
     /// <summary>
     /// Component for physics bodies

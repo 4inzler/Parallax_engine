@@ -18,28 +18,28 @@
 
 #include "AmbientLightProperty.hpp"
 #include "components/Light.hpp"
-#include "ImNexo/Widgets.hpp"
+#include "ImParallax/Widgets.hpp"
 #include "context/actions/EntityActions.hpp"
 #include "context/ActionManager.hpp"
-#include "ImNexo/EntityProperties.hpp"
-#include "ImNexo/ImNexo.hpp"
+#include "ImParallax/EntityProperties.hpp"
+#include "ImParallax/ImParallax.hpp"
 #include <imgui.h>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void AmbientLightProperty::show(const ecs::Entity entity)
     {
         auto& ambientComponent = Application::getEntityComponent<components::AmbientLightComponent>(entity);
         static components::AmbientLightComponent::Memento beforeState;
 
-        if (ImNexo::Header("##AmbientNode", "Ambient light"))
+        if (ImParallax::Header("##AmbientNode", "Ambient light"))
         {
             const auto ambientComponentCopy = ambientComponent;
-            ImNexo::resetItemStates();
-            ImNexo::Ambient(ambientComponent);
-            if (ImNexo::isItemActivated()) {
+            ImParallax::resetItemStates();
+            ImParallax::Ambient(ambientComponent);
+            if (ImParallax::isItemActivated()) {
                 beforeState = ambientComponentCopy.save();
-            } else if (ImNexo::isItemDeactivated()) {
+            } else if (ImParallax::isItemDeactivated()) {
                 auto afterState = ambientComponent.save();
                 auto action = std::make_unique<ComponentChangeAction<components::AmbientLightComponent>>(entity, beforeState, afterState);
                 ActionManager::get().recordAction(std::move(action));

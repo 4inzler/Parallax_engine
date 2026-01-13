@@ -18,7 +18,7 @@
 #include "components/PhysicsBodyComponent.hpp"
 #include "systems/PhysicsSystem.hpp"
 
-using namespace nexo;
+using namespace parallax;
 
 class PhysicsSystemTest : public ::testing::Test {
     protected:

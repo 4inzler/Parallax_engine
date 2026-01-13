@@ -18,10 +18,10 @@
 
 #include "InspectorWindow.hpp"
 #include "context/Selector.hpp"
-#include "ImNexo/Components.hpp"
+#include "ImParallax/Components.hpp"
 #include "IconsFontAwesome.h"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void InspectorWindow::showSceneProperties(const scene::SceneId sceneId)
     {
@@ -35,7 +35,7 @@ namespace nexo::editor {
         if (const size_t spacePos = uiHandle.find(' '); spacePos != std::string::npos)
             uiHandle = uiHandle.substr(spacePos + 1);
 
-        if (ImNexo::Header("##SceneNode", uiHandle))
+        if (ImParallax::Header("##SceneNode", uiHandle))
         {
             ImGui::Spacing();
             ImGui::Columns(2, "sceneProps");
@@ -74,8 +74,8 @@ namespace nexo::editor {
 
     void InspectorWindow::show()
     {
-        ImGui::Begin(ICON_FA_SLIDERS " Inspector" NEXO_WND_USTRID_INSPECTOR, &m_opened, ImGuiWindowFlags_NoCollapse);
-        beginRender(NEXO_WND_USTRID_INSPECTOR);
+        ImGui::Begin(ICON_FA_SLIDERS " Inspector" PARALLAX_WND_USTRID_INSPECTOR, &m_opened, ImGuiWindowFlags_NoCollapse);
+        beginRender(PARALLAX_WND_USTRID_INSPECTOR);
         auto const &selector = Selector::get();
 
         if (selector.getPrimarySelectionType() == SelectionType::SCENE) {

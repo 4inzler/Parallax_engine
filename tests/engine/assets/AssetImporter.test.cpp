@@ -23,7 +23,7 @@
 #include "assets/Assets/Texture/Texture.hpp"
 #include "assets/Assets/Model/Model.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     using testing::Expectation;
     using testing::Invoke;
@@ -357,4 +357,4 @@ namespace nexo::assets {
         ASSERT_FALSE(assetRef.isValid());
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

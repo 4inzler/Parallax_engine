@@ -28,13 +28,13 @@
 #include "Listener.hpp"
 #include "Logger.hpp"
 
-namespace nexo::scene {
+namespace parallax::scene {
     class Scene;
 }
 
 #define LISTENS_TO(...) public event::Listens<__VA_ARGS__>
 
-namespace nexo::event {
+namespace parallax::event {
 
     template<typename L, typename E>
     concept HandlesEvent =
@@ -102,7 +102,7 @@ namespace nexo::event {
             {
                 if (auto *p = dynamic_cast<Listener<T>*>(&listener))
                     return p->handleEvent(event);
-                LOG(NEXO_WARN, "Event(triggerListener): Listener {} is missing a handler", listener.getListenerName());
+                LOG(PARALLAX_WARN, "Event(triggerListener): Listener {} is missing a handler", listener.getListenerName());
             }
     };
 
@@ -134,7 +134,7 @@ namespace nexo::event {
             }
 
             m_listeners[typeIndex].push_back(listener);
-            LOG(NEXO_DEV, "EventManager(registerListeners): Registered listener {}", listener->getListenerName());
+            LOG(PARALLAX_DEV, "EventManager(registerListeners): Registered listener {}", listener->getListenerName());
         }
 
         /**
@@ -154,16 +154,16 @@ namespace nexo::event {
 
                 if (const auto listenerIt = std::ranges::find(listeners, listener); listenerIt != listeners.end()) {
                     listeners.erase(listenerIt);
-                    LOG(NEXO_DEV, "EventManager(unregisterListener): Unregistered listener {}", listener->getListenerName());
+                    LOG(PARALLAX_DEV, "EventManager(unregisterListener): Unregistered listener {}", listener->getListenerName());
 
                     if (listeners.empty()) {
                         m_listeners.erase(it);
                     }
                 } else {
-                    LOG(NEXO_WARN, "EventManager(unregisterListener): Listener not found for this event type");
+                    LOG(PARALLAX_WARN, "EventManager(unregisterListener): Listener not found for this event type");
                 }
             } else {
-                LOG(NEXO_WARN, "EventManager(unregisterListener): No listeners found for this event type");
+                LOG(PARALLAX_WARN, "EventManager(unregisterListener): No listeners found for this event type");
             }
         }
 

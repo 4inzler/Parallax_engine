@@ -21,13 +21,13 @@
 #include "NativeApi.hpp"
 #include "EntityFactory3D.hpp"
 #include "Logger.hpp"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "components/Uuid.hpp"
 #include "components/PhysicsBodyComponent.hpp"
 #include "ui/Field.hpp"
 #include "systems/PhysicsSystem.hpp"
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     // Static message to return to C#
     static const char* nativeMessage = "Hello from C++ native code!";
@@ -97,7 +97,7 @@ namespace nexo::scripting {
         {
             const auto opt = Application::m_coordinator->tryGetComponent<components::TransformComponent>(entity);
             if (!opt.has_value()) {
-                LOG(NEXO_WARN, "GetTransformComponent: Entity {} does not have a TransformComponent", entity);
+                LOG(PARALLAX_WARN, "GetTransformComponent: Entity {} does not have a TransformComponent", entity);
                 return nullptr;
             }
             return &opt.value().get();
@@ -106,7 +106,7 @@ namespace nexo::scripting {
         void* NxGetComponent(const ecs::Entity entity, const UInt32 componentTypeId)
         {
             if (componentTypeId > ecs::MAX_COMPONENT_TYPE) {
-                LOG(NEXO_ERROR, "NxGetComponent: Maximum component type ID exceeded for entity {}", entity);
+                LOG(PARALLAX_ERROR, "NxGetComponent: Maximum component type ID exceeded for entity {}", entity);
                 return nullptr;
             }
             const auto& coordinator = *Application::m_coordinator;
@@ -117,11 +117,11 @@ namespace nexo::scripting {
         void NxAddComponent(const ecs::Entity entity, const UInt32 componentTypeId, const void* componentData)
         {
             if (componentTypeId > ecs::MAX_COMPONENT_TYPE) {
-                LOG(NEXO_ERROR, "NxAddComponent: Maximum component type ID exceeded for entity {}", entity);
+                LOG(PARALLAX_ERROR, "NxAddComponent: Maximum component type ID exceeded for entity {}", entity);
                 return;
             }
             if (componentData == nullptr) {
-                LOG(NEXO_ERROR, "NxAddComponent: componentData is null for entity {}", entity);
+                LOG(PARALLAX_ERROR, "NxAddComponent: componentData is null for entity {}", entity);
                 return;
             }
             const auto& coordinator = *Application::m_coordinator;
@@ -132,7 +132,7 @@ namespace nexo::scripting {
         void NxRemoveComponent(const ecs::Entity entity, const UInt32 componentTypeId)
         {
             if (componentTypeId > ecs::MAX_COMPONENT_TYPE) {
-                LOG(NEXO_ERROR, "NxRemoveComponent: Maximum component type ID exceeded for entity {}", entity);
+                LOG(PARALLAX_ERROR, "NxRemoveComponent: Maximum component type ID exceeded for entity {}", entity);
                 return;
             }
             auto& coordinator = *Application::m_coordinator;
@@ -148,7 +148,7 @@ namespace nexo::scripting {
         bool NxHasComponent(const ecs::Entity entity, const UInt32 componentTypeId)
         {
             if (componentTypeId > ecs::MAX_COMPONENT_TYPE) {
-                LOG(NEXO_ERROR, "NxHasComponent: Maximum component type ID exceeded for entity {}", entity);
+                LOG(PARALLAX_ERROR, "NxHasComponent: Maximum component type ID exceeded for entity {}", entity);
                 return false;
             }
             const auto& coordinator = *Application::m_coordinator;
@@ -159,7 +159,7 @@ namespace nexo::scripting {
         Int64 NxRegisterComponent(const char *name, const UInt64 componentSize, const Field *fields, const UInt64 fieldCount)
         {
             if (!name || !fields || fieldCount == 0 || componentSize == 0) {
-                LOG(NEXO_ERROR, "Invalid parameters for component registration");
+                LOG(PARALLAX_ERROR, "Invalid parameters for component registration");
                 return -1;
             }
 
@@ -167,10 +167,10 @@ namespace nexo::scripting {
 
             for (UInt64 i = 0; i < fieldCount; ++i) {
                 if (!fields[i].name) {
-                    LOG(NEXO_WARN, "Field {} has null name", i);
+                    LOG(PARALLAX_WARN, "Field {} has null name", i);
                     return -1;
                 }
-                LOG(NEXO_DEV, "Registering field {}: {} of type {}", i, static_cast<char*>(fields[i].name), static_cast<UInt64>(fields[i].type));
+                LOG(PARALLAX_DEV, "Registering field {}: {} of type {}", i, static_cast<char*>(fields[i].name), static_cast<UInt64>(fields[i].type));
             }
 
             const auto componentType = coordinator.registerComponent(componentSize);
@@ -225,7 +225,7 @@ namespace nexo::scripting {
             auto physicsSystem = app.getPhysicsSystem();
 
             if (!physicsSystem) {
-                LOG(NEXO_ERROR, "Physics system not available");
+                LOG(PARALLAX_ERROR, "Physics system not available");
                 return;
             }
 
@@ -239,7 +239,7 @@ namespace nexo::scripting {
 
             physicsSystem->createBodyFromShape(entity, transform, cppShapeType, cppMotionType);
 
-            LOG(NEXO_DEV, "Physics body created");
+            LOG(PARALLAX_DEV, "Physics body created");
         }
 
         void NxApplyForce(ecs::Entity entity, const Vector3 force)
@@ -247,12 +247,12 @@ namespace nexo::scripting {
             const auto& app = Application::getInstance();
             const auto physicsSystem = app.getPhysicsSystem();
             if (!physicsSystem) {
-                LOG(NEXO_ERROR, "Physics system not available");
+                LOG(PARALLAX_ERROR, "Physics system not available");
                 return;
             }
             auto& coordinator = *Application::m_coordinator;
             if (!coordinator.entityHasComponent<components::PhysicsBodyComponent>(entity)) {
-                LOG(NEXO_ERROR, "Entity {} has no PhysicsBodyComponent", entity);
+                LOG(PARALLAX_ERROR, "Entity {} has no PhysicsBodyComponent", entity);
                 return;
             }
             const auto& bodyComp = coordinator.getComponent<components::PhysicsBodyComponent>(entity);
@@ -262,4 +262,4 @@ namespace nexo::scripting {
         }
     }
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

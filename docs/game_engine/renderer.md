@@ -1,6 +1,6 @@
 \page renderer_readme Renderer API
 # The Rendering API
-The Nexo rendering api is fully abstracted in order to handle different types of graphics API.  
+The Parallax rendering api is fully abstracted in order to handle different types of graphics API.  
 Here are the API graphics that are supported :
 > - OpenGL (>=v4.0)
 

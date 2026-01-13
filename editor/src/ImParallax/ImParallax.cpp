@@ -1,4 +1,4 @@
-//// ImNexo.hpp ///////////////////////////////////////////////////////////////
+//// ImParallax.cpp ///////////////////////////////////////////////////////////////
 //
 // ⢀⢀⢀⣤⣤⣤⡀⢀⢀⢀⢀⢀⢀⢠⣤⡄⢀⢀⢀⢀⣠⣤⣤⣤⣤⣤⣤⣤⣤⣤⡀⢀⢀⢀⢠⣤⣄⢀⢀⢀⢀⢀⢀⢀⣤⣤⢀⢀⢀⢀⢀⢀⢀⢀⣀⣄⢀⢀⢠⣄⣀⢀⢀⢀⢀⢀⢀⢀
 // ⢀⢀⢀⣿⣿⣿⣷⡀⢀⢀⢀⢀⢀⢸⣿⡇⢀⢀⢀⢀⣿⣿⡟⡛⡛⡛⡛⡛⡛⡛⢁⢀⢀⢀⢀⢻⣿⣦⢀⢀⢀⢀⢠⣾⡿⢃⢀⢀⢀⢀⢀⣠⣾⣿⢿⡟⢀⢀⡙⢿⢿⣿⣦⡀⢀⢀⢀⢀
@@ -12,26 +12,63 @@
 //
 //  Author:      Mehdy MORVAN
 //  Date:        01/05/2025
-//  Description: Header for the ImNexo functions
+//  Description: Source file for the ImParallax functions
 //
 ///////////////////////////////////////////////////////////////////////////////
-#pragma once
 
-namespace ImNexo {
+#include "ImParallax.hpp"
 
-    inline bool g_isItemActive = false;
-    inline bool g_isItemActivated = false;
-    inline bool g_isItemDeactivated = false;
+namespace ImParallax {
+    bool isItemActive()
+    {
+        return g_isItemActive;
+    }
 
-    bool isItemActive();
-    void setItemActive();
+    static void resetItemActiveState()
+    {
+        g_isItemActive = false;
+    }
 
-    bool isItemActivated();
-    void setItemActivated();
+    void setItemActive()
+    {
+        g_isItemActive = true;
+    }
 
-    bool isItemDeactivated();
-    void setItemDeactivated();
+    bool isItemActivated()
+    {
+        return g_isItemActivated;
+    }
 
-    void resetItemStates();
+    static void resetItemActivatedState()
+    {
+        g_isItemActivated = false;
+    }
+
+    void setItemActivated()
+    {
+        g_isItemActivated = true;
+    }
+
+    bool isItemDeactivated()
+    {
+        return g_isItemDeactivated;
+    }
+
+    static void resetItemDeactivatedState()
+    {
+        g_isItemDeactivated = false;
+    }
+
+    void setItemDeactivated()
+    {
+        g_isItemDeactivated = true;
+    }
+
+    void resetItemStates()
+    {
+        resetItemActivatedState();
+        resetItemActiveState();
+        resetItemDeactivatedState();
+    }
 
 }

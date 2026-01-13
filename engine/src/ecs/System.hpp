@@ -26,11 +26,11 @@
 #include "Logger.hpp"
 #include "ECSExceptions.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
     class Coordinator;
 }
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	/**
 	* @class SparseSet
@@ -178,7 +178,7 @@ namespace nexo::ecs {
 
                 if (m_querySystems.contains(typeName))
                 {
-                    LOG(NEXO_WARN, "ECS::SystemManager::registerSystem: trying to register a system more than once");
+                    LOG(PARALLAX_WARN, "ECS::SystemManager::registerSystem: trying to register a system more than once");
                     return nullptr;
                 }
 
@@ -203,7 +203,7 @@ namespace nexo::ecs {
 
                 if (m_groupSystems.contains(typeName))
                 {
-                    LOG(NEXO_WARN, "ECS::SystemManager::registerSystem: trying to register a system more than once");
+                    LOG(PARALLAX_WARN, "ECS::SystemManager::registerSystem: trying to register a system more than once");
                     return nullptr;
                 }
 

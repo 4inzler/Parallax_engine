@@ -15,7 +15,7 @@
 #include "FolderManager.hpp"
 #include "AssetManagerWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
      * @brief Constructs a FolderManager instance.
@@ -527,4 +527,4 @@ namespace nexo::editor {
         const size_t lastSlash = path.find_last_of('/');
         return (lastSlash == std::string::npos) ? "" : path.substr(0, lastSlash);
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

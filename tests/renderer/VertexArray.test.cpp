@@ -26,7 +26,7 @@
 #include "contexts/opengl.hpp"
 #include "RendererExceptions.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     TEST_F(OpenGLTest, VertexArrayCreationAndBinding)
     {

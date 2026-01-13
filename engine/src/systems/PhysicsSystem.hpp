@@ -35,7 +35,7 @@
 #include <components/Transform.hpp>
 #include <vector>
 
-namespace nexo::system
+namespace parallax::system
 {
     namespace Layers
     {

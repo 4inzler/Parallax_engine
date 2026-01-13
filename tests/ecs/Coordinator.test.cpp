@@ -25,7 +25,7 @@
 #include "ecs/System.hpp"
 #include "ecs/Entity.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
     // Mock Component for testing
     struct TestComponent {
         int data;

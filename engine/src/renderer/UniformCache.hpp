@@ -23,7 +23,7 @@
 #include <glm/glm.hpp>
 #include <optional>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     using UniformValue = std::variant<
         float,

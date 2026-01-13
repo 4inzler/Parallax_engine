@@ -27,10 +27,10 @@
 #include "components/Camera.hpp"
 #include "components/Render.hpp"
 #include "context/ActionManager.hpp"
-#include "ImNexo/Elements.hpp"
-#include "ImNexo/Components.hpp"
+#include "ImParallax/Elements.hpp"
+#include "ImParallax/Components.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     constexpr const char *getPrimitiveTypeName(components::PrimitiveType type)
     {
@@ -79,7 +79,7 @@ namespace nexo::editor {
             ImGui::BeginChild("MaterialPreview", ImVec2(previewWidth - 4, totalHeight), true);
 
             auto &app = getApp();
-            const Application::SceneInfo sceneInfo{scenePreviewInfo.sceneId, nexo::RenderingType::FRAMEBUFFER};
+            const Application::SceneInfo sceneInfo{scenePreviewInfo.sceneId, parallax::RenderingType::FRAMEBUFFER};
             app.run(sceneInfo);
             auto const &cameraComponent = Application::m_coordinator->getComponent<components::CameraComponent>(scenePreviewInfo.cameraId);
             const unsigned int textureId = cameraComponent.m_renderTarget->getColorAttachmentId(0);
@@ -91,7 +91,7 @@ namespace nexo::editor {
             const float displayWidth = displayHeight * aspectRatio;
 
             ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX() + 4, ImGui::GetCursorPosY() + 4));
-            ImNexo::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)),
+            ImParallax::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)),
                         ImVec2(displayWidth, displayHeight));
 
             ImGui::EndChild();
@@ -103,7 +103,7 @@ namespace nexo::editor {
         // Bottom buttons - centered
         constexpr float buttonWidth = 120.0f;
 
-        if (ImNexo::Button("OK", ImVec2(buttonWidth, 0)))
+        if (ImParallax::Button("OK", ImVec2(buttonWidth, 0)))
         {
             // TODO: Insert logic to create the new material
 
@@ -118,7 +118,7 @@ namespace nexo::editor {
             ImGui::CloseCurrentPopup();
         }
         ImGui::SameLine();
-        if (ImNexo::Button("Cancel", ImVec2(buttonWidth, 0)))
+        if (ImParallax::Button("Cancel", ImVec2(buttonWidth, 0)))
         {
             if (scenePreviewInfo.sceneGenerated)
             {
@@ -139,7 +139,7 @@ namespace nexo::editor {
             return;
         auto& renderComponent = Application::getEntityComponent<components::RenderComponent>(entity);
 
-        if (ImNexo::Header("##RenderNode", "Render Component"))
+        if (ImParallax::Header("##RenderNode", "Render Component"))
         {
             ImGui::Text("Hide");
             ImGui::SameLine(0, 12);

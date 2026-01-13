@@ -25,7 +25,7 @@
 #include "Logger.hpp"
 #include "ECSExceptions.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	/**
 	* @brief Base interface for singleton components.
@@ -110,7 +110,7 @@ namespace nexo::ecs {
 			{
 			    ComponentType typeName = getUniqueComponentTypeID<T>();
 				if (m_singletonComponents.contains(typeName)) {
-					LOG(NEXO_WARN, "ECS::SingletonComponentManager::registerSingletonComponent: trying to register a singleton component more than once");
+					LOG(PARALLAX_WARN, "ECS::SingletonComponentManager::registerSingletonComponent: trying to register a singleton component more than once");
 					return;
 				}
 				m_singletonComponents.insert(

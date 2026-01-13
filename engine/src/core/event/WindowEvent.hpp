@@ -24,7 +24,7 @@
 
 #include "Event.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
 
     class EventWindowClose final : public Event<EventWindowClose> {};
 

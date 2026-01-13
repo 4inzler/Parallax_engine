@@ -8,17 +8,17 @@
 #
 #  Author:      Guillaume HEIN
 #  Date:        25/11/2024
-#  Description: CMake to configure the DEB package for the Nexo Engine.
+#  Description: CMake to configure the DEB package for the Parallax Engine.
 #
 ###############################################################################
 
 # Set the executable path
-set(DEB_EXECUTABLE_PATH "/usr/share/nexo-engine/bin/nexoEditor")
+set(DEB_EXECUTABLE_PATH "/usr/share/parallax-engine/bin/Parallax")
 
 # Set the categories
 set(DEB_CATEGORIES "Development;Graphics;3DGraphics;Building;")
 
-# generate postinst, postrm and nexo-engine.desktop files using templates
+# generate postinst, postrm and parallax-engine.desktop files using templates
 configure_file("${CMAKE_SOURCE_DIR}/scripts/linux/postinst.in"
                "${CMAKE_BINARY_DIR}/postinst" @ONLY
                FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
@@ -27,8 +27,8 @@ configure_file("${CMAKE_SOURCE_DIR}/scripts/linux/postrm.in"
                "${CMAKE_BINARY_DIR}/postrm" @ONLY
                FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
 )
-configure_file(${CMAKE_SOURCE_DIR}/scripts/linux/nexo-engine.desktop.in
-               ${CMAKE_BINARY_DIR}/nexo-engine.desktop @ONLY
+configure_file(${CMAKE_SOURCE_DIR}/scripts/linux/parallax-engine.desktop.in
+               ${CMAKE_BINARY_DIR}/parallax-engine.desktop @ONLY
                FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )
 
@@ -44,10 +44,10 @@ endif()
 
 if(CAN_CREATE_SYMLINK)
     # Create symlink for the executable
-    set(DEB_TEMP_GENERATED_SYMLINK_PATH "${CMAKE_BINARY_DIR}/nexoEditor-symlink")
-    execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink "../share/nexo-engine/bin/nexoEditor" ${DEB_TEMP_GENERATED_SYMLINK_PATH})
+    set(DEB_TEMP_GENERATED_SYMLINK_PATH "${CMAKE_BINARY_DIR}/Parallax-symlink")
+    execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink "../share/parallax-engine/bin/Parallax" ${DEB_TEMP_GENERATED_SYMLINK_PATH})
 else ()
-    message(VERBOSE "NEXO Engine symlink couldn't be created. Required for the DEB package generator. See README's troubleshooting section.")
+    message(VERBOSE "PARALLAX Engine symlink couldn't be created. Required for the DEB package generator. See README's troubleshooting section.")
 endif()
 
 # Install the desktop entry
@@ -59,7 +59,7 @@ set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
 # DEB package generator specific settings
 # Component deb-symlink
 install(FILES ${DEB_TEMP_GENERATED_SYMLINK_PATH}
-        DESTINATION /usr/bin  RENAME "nexoEditor"
+        DESTINATION /usr/bin  RENAME "Parallax"
         COMPONENT deb-symlink EXCLUDE_FROM_ALL # EXCLUDE_FROM_ALL is important to avoid installing the symlink in the default component
         OPTIONAL # OPTIONAL if symlink couldn't be created
 )
@@ -68,19 +68,19 @@ install(FILES ${DEB_TEMP_GENERATED_SYMLINK_PATH}
 if(NOT CAN_CREATE_SYMLINK)
     # Create an install code to fatal error if the symlink couldn't be created
     # for component deb-symlink
-    install(CODE "message(FATAL_ERROR \"NEXO Engine symlink couldn't be created. Required for the DEB package generator. See README's troubleshooting section.\")"
+    install(CODE "message(FATAL_ERROR \"PARALLAX Engine symlink couldn't be created. Required for the DEB package generator. See README's troubleshooting section.\")"
             COMPONENT deb-symlink EXCLUDE_FROM_ALL
     )
 endif()
 
 # Component deb-icon
-install(FILES "${CMAKE_SOURCE_DIR}/resources/nexo.png"
+install(FILES "${CMAKE_SOURCE_DIR}/resources/parallax.png"
         DESTINATION /usr/share/icons/hicolor/256x256/apps
         COMPONENT deb-icon EXCLUDE_FROM_ALL
         PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )
 # Component deb-desktop-entry
-install(FILES ${CMAKE_BINARY_DIR}/nexo-engine.desktop
+install(FILES ${CMAKE_BINARY_DIR}/parallax-engine.desktop
         DESTINATION /usr/share/applications
         COMPONENT deb-desktop-entry EXCLUDE_FROM_ALL
         PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ

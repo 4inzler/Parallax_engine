@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
     * Base Action interface for all undoable operations

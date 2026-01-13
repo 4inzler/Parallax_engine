@@ -18,10 +18,10 @@
 #pragma once
 
 #include "Action.hpp"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "context/ActionGroup.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     template<typename ComponentType>
     class ComponentRestoreAction final : public Action {

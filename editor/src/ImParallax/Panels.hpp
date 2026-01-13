@@ -1,4 +1,4 @@
-//// Nexo.cpp /////////////////////////////////////////////////////////////////
+//// NxUiPanels.hpp ///////////////////////////////////////////////////////////////
 //
 // ⢀⢀⢀⣤⣤⣤⡀⢀⢀⢀⢀⢀⢀⢠⣤⡄⢀⢀⢀⢀⣠⣤⣤⣤⣤⣤⣤⣤⣤⣤⡀⢀⢀⢀⢠⣤⣄⢀⢀⢀⢀⢀⢀⢀⣤⣤⢀⢀⢀⢀⢀⢀⢀⢀⣀⣄⢀⢀⢠⣄⣀⢀⢀⢀⢀⢀⢀⢀
 // ⢀⢀⢀⣿⣿⣿⣷⡀⢀⢀⢀⢀⢀⢸⣿⡇⢀⢀⢀⢀⣿⣿⡟⡛⡛⡛⡛⡛⡛⡛⢁⢀⢀⢀⢀⢻⣿⣦⢀⢀⢀⢀⢠⣾⡿⢃⢀⢀⢀⢀⢀⣠⣾⣿⢿⡟⢀⢀⡙⢿⢿⣿⣦⡀⢀⢀⢀⢀
@@ -11,31 +11,45 @@
 // ⢀⢀⢀⢿⢿⢀⢀⢀⢀⢀⢀⢀⢀⢸⢿⢃⢀⢀⢀⢀⢻⢿⢿⢿⢿⢿⢿⢿⢿⢿⢃⢀⢀⢀⢿⡟⢁⢀⢀⢀⢀⢀⢀⢀⡙⢿⡗⢀⢀⢀⢀⢀⡈⡉⡛⡛⢀⢀⢹⡛⢋⢁⢀⢀⢀⢀⢀⢀
 //
 //  Author:      Mehdy MORVAN
-//  Date:        08/11/2024
-//  Description: Main source file for nexo
+//  Date:        18/04/2025
+//  Description: Header file for ui panels
 //
 ///////////////////////////////////////////////////////////////////////////////
-#include "Nexo.hpp"
+#pragma once
 
-namespace nexo {
+#include "core/scene/SceneManager.hpp"
 
-    Application &init()
-    {
-        Application &app = Application::getInstance();
-        app.init();
-        LOG(NEXO_INFO, "Nexo engine initialized");
-        return app;
-    }
+namespace ImParallax {
+    /**
+    * @brief Draws a material inspector widget for editing material properties.
+    *
+    * This function displays controls for shader selection, rendering mode, and textures/colors
+    * for material properties such as albedo and specular components.
+    *
+    * @param material Reference to the components::Material to be inspected and modified.
+    * @return true if any material property was modified; false otherwise.
+    */
+    bool MaterialInspector(parallax::components::Material &material);
 
-    Application &getApp()
-    {
-        return Application::getInstance();
-    }
-
-    void runEngine(const Application::SceneInfo &sceneInfo)
-    {
-        Application &app = Application::getInstance();
-        app.run(sceneInfo);
-    }
-
+    /**
+     * @brief Displays a camera creation and configuration dialog.
+     *
+     * Creates a modal window with a split layout:
+     * - Left panel: Camera property inspector with fields for name, camera parameters,
+     *   transform values, and optional components
+     * - Right panel: Real-time preview of the camera's view
+     *
+     * The dialog includes an animated "Add Component" dropdown that allows adding
+     * optional camera components (Camera Target or Camera Controller). At the bottom,
+     * OK and Cancel buttons allow confirming or aborting camera creation.
+     *
+     * When OK is clicked, the camera name is validated. If valid, the camera is added
+     * to the specified scene with the configured parameters. If Cancel is clicked or
+     * the dialog is otherwise closed, any temporary camera is deleted.
+     *
+     * @param sceneId The ID of the scene where the camera will be created
+     * @param sceneViewportSize The size of the scene viewport for proper camera aspect ratio
+     * @return true if the dialog was closed (either by confirming or canceling), false if still open
+     */
+    bool CameraInspector(parallax::scene::SceneId sceneId);
 }

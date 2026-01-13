@@ -19,7 +19,7 @@
 #include "ActionManager.hpp"
 #include "context/actions/EntityActions.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     void ActionManager::recordAction(std::unique_ptr<Action> action)
     {
         history.addAction(std::move(action));

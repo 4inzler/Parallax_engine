@@ -24,15 +24,15 @@
                     "type": "BOOL",
                     "value": true
                 },
-                "NEXO_BOOTSTRAP_VCPKG": {
+                "PARALLAX_BOOTSTRAP_VCPKG": {
                     "type": "BOOL",
                     "value": true
                 },
-                "NEXO_BUILD_TESTS": {
+                "PARALLAX_BUILD_TESTS": {
                     "type": "BOOL",
                     "value": true
                 },
-                "NEXO_BUILD_EXAMPLES": {
+                "PARALLAX_BUILD_EXAMPLES": {
                     "type": "BOOL",
                     "value": true
                 }
@@ -43,7 +43,7 @@
             "description": "Enable coverage for binaries",
             "inherits": "default",
             "cacheVariables": {
-                "NEXO_COVERAGE": {
+                "PARALLAX_COVERAGE": {
                     "type": "BOOL",
                     "value": true
                 },
@@ -58,11 +58,11 @@
             "description": "Minimal configuration without tests or examples",
             "inherits": "default",
             "cacheVariables": {
-                "NEXO_BUILD_TESTS": {
+                "PARALLAX_BUILD_TESTS": {
                     "type": "BOOL",
                     "value": false
                 },
-                "NEXO_BUILD_EXAMPLES": {
+                "PARALLAX_BUILD_EXAMPLES": {
                     "type": "BOOL",
                     "value": false
                 },

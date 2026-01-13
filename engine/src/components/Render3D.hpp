@@ -22,7 +22,7 @@
 #include "assets/AssetRef.hpp"
 #include "assets/Assets/Texture/Texture.hpp"
 
-namespace nexo::components {
+namespace parallax::components {
 
     struct Material {
         glm::vec4 albedoColor = glm::vec4(1.0f);

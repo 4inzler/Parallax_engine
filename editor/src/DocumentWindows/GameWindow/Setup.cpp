@@ -26,12 +26,12 @@
 #include "CameraFactory.hpp"
 #include "Logger.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
 
     void GameWindow::setup()
     {
-        LOG(NEXO_INFO, "Setting up GameWindow for scene {}", m_sceneId);
+        LOG(PARALLAX_INFO, "Setting up GameWindow for scene {}", m_sceneId);
 
         auto &coordinator = *Application::m_coordinator;
         auto &app = getApp();
@@ -48,7 +48,7 @@ namespace nexo::editor
                     camera.render = true;
                     camera.active = true;
                     mainCameraFound = true;
-                    LOG(NEXO_INFO, "Using existing main camera {} for scene {}", m_gameCamera, m_sceneId);
+                    LOG(PARALLAX_INFO, "Using existing main camera {} for scene {}", m_gameCamera, m_sceneId);
                     break;
                 }
             }
@@ -80,7 +80,7 @@ namespace nexo::editor
             // Add the camera to the scene
             scene.addEntity(m_gameCamera);
 
-            LOG(NEXO_INFO, "Created new game camera {} for scene {}", m_gameCamera, m_sceneId);
+            LOG(PARALLAX_INFO, "Created new game camera {} for scene {}", m_gameCamera, m_sceneId);
         }
     }
 

@@ -20,11 +20,11 @@
 #include <iostream>
 #include <utility>
 
-namespace nexo::event {
+namespace parallax::event {
     class AEvent;
 }
 
-namespace nexo::event {
+namespace parallax::event {
 
 	/**
 	* @brief Base class for all event listeners.

@@ -18,7 +18,7 @@
 
 #include "WindowRegistry.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
 	void WindowRegistry::setup() const
 	{

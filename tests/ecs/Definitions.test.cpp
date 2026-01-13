@@ -22,7 +22,7 @@
 #include <vector>
 #include <type_traits>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	class DefinitionsTest : public ::testing::Test {};
 

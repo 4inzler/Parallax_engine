@@ -19,7 +19,7 @@
 
 #include "renderer/ShaderStorageBuffer.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 	class NxOpenGlShaderStorageBuffer final : public NxShaderStorageBuffer {
 	public:
 		explicit NxOpenGlShaderStorageBuffer(unsigned int size);

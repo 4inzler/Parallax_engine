@@ -8,7 +8,7 @@
 
 #include "Exception.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     /**
      * @class InvalidName
@@ -132,4 +132,4 @@ namespace nexo::assets {
         _value = name;
         return std::nullopt;
     }
-} // namespace nexo::assets
+} // namespace parallax::assets

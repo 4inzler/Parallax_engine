@@ -19,7 +19,7 @@
 
 #include <string>
 
-namespace nexo::editor {
+namespace parallax::editor {
 	// Custom transparent heterogeneous hasher for strings.
 	struct TransparentStringHash {
 	    // This alias tells the container that our hasher supports heterogeneous lookup.

@@ -20,7 +20,7 @@
 
 #include <ranges>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void ActionGroup::addAction(std::unique_ptr<Action> action)
     {

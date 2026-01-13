@@ -18,7 +18,7 @@
 
 #include "EditorScene.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     void EditorScene::shutdown()
     {
     	// Should probably check if it is necessary to delete the scene here ?

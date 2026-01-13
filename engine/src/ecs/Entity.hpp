@@ -26,7 +26,7 @@
 
 #include "Definitions.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     /**
     * @class EntityManager

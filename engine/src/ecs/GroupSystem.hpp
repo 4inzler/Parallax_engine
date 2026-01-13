@@ -28,7 +28,7 @@
 #include <type_traits>
 #include <span>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     /**
      * @class GroupSystem
@@ -325,12 +325,12 @@ namespace nexo::ecs {
 			{
 				if constexpr (sizeof...(OT) > 0) {
 					if constexpr (sizeof...(NOT) > 0) {
-						auto group = coord->registerGroup<OT...>(nexo::ecs::get<NOT...>());
+						auto group = coord->registerGroup<OT...>(parallax::ecs::get<NOT...>());
 						if (!group)
 							THROW_EXCEPTION(InternalError, "Group is null in GroupSystem");
 						return std::static_pointer_cast<ActualGroupType>(group);
 					} else {
-						auto group = coord->registerGroup<OT...>(nexo::ecs::get<>());
+						auto group = coord->registerGroup<OT...>(parallax::ecs::get<>());
 						if (!group)
 							THROW_EXCEPTION(InternalError, "Group is null in GroupSystem");
 						return std::static_pointer_cast<ActualGroupType>(group);

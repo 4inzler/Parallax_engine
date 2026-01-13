@@ -24,7 +24,7 @@
 #include <typeindex>
 #include <format>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class FileNotFoundException final : public Exception {
         public:

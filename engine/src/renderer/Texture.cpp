@@ -25,7 +25,7 @@
     #include "opengl/OpenGlTexture2D.hpp"
 #endif
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     NxTextureFormat NxTextureFormatFromString(const std::string_view& format)
     {

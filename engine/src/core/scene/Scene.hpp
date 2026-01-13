@@ -21,7 +21,7 @@
 #include "components/Model.hpp"
 #include <set>
 
-namespace nexo::scene {
+namespace parallax::scene {
 	inline unsigned int nextSceneId = 0;
 
 	/**

@@ -21,7 +21,7 @@
 #include <memory>
 #include <vector>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
     * Groups multiple actions into a single undoable action

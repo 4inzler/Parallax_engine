@@ -15,7 +15,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Set project name
-project(nexoTests VERSION 1.0.0)
+project(parallaxTests VERSION 1.0.0)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 20)
@@ -59,8 +59,8 @@ set_tests_properties(${rendererTestsList} PROPERTIES LABELS "renderer")
 set_tests_properties(${ecsTestsList} PROPERTIES LABELS "ecs")
 
 # Exclude tests from the "ALL" target
-message(STATUS "NEXO_BUILD_TESTS: ${NEXO_BUILD_TESTS}")
-if(NOT NEXO_BUILD_TESTS)
+message(STATUS "PARALLAX_BUILD_TESTS: ${PARALLAX_BUILD_TESTS}")
+if(NOT PARALLAX_BUILD_TESTS)
     message(STATUS "Excluding tests from the 'ALL' target")
     set_target_properties(engine_tests PROPERTIES EXCLUDE_FROM_ALL TRUE)
     set_target_properties(common_tests PROPERTIES EXCLUDE_FROM_ALL TRUE)

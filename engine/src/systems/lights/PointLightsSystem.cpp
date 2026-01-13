@@ -24,7 +24,7 @@
 #include "core/exceptions/Exceptions.hpp"
 #include "Application.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 	void PointLightsSystem::update()
 	{
 		auto &renderContext = getSingleton<components::RenderContext>();
@@ -42,10 +42,10 @@ namespace nexo::system {
 		auto &app = Application::getInstance();
         const std::string &sceneName = app.getSceneManager().getScene(sceneRendered).getName();
 		if (!partition) {
-            LOG_ONCE(NEXO_WARN, "No point light found in scene {}, skipping", sceneName);
+            LOG_ONCE(PARALLAX_WARN, "No point light found in scene {}, skipping", sceneName);
             return;
         }
-        nexo::Logger::resetOnce(NEXO_LOG_ONCE_KEY("No point light found in scene {}, skipping", sceneName));
+        parallax::Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("No point light found in scene {}, skipping", sceneName));
 
 		if (partition->count > MAX_POINT_LIGHTS)
 		    THROW_EXCEPTION(core::TooManyPointLightsException, sceneRendered, partition->count);

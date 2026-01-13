@@ -27,7 +27,7 @@
 #include <vector>
 #include <glm/gtc/type_ptr.hpp>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     static GLenum shaderTypeFromString(const std::string_view &type)
     {
@@ -232,7 +232,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform1f(location, value);
@@ -250,7 +250,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform1f(location, value);
@@ -267,7 +267,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform2f(location, values.x, values.y);
@@ -284,7 +284,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform3f(location, values.x, values.y, values.z);
@@ -302,7 +302,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform3f(location, values.x, values.y, values.z);
@@ -319,7 +319,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform4f(location, values.x, values.y, values.z, values.w);
@@ -337,7 +337,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform4f(location, values.x, values.y, values.z, values.w);
@@ -354,7 +354,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
@@ -372,7 +372,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
@@ -389,7 +389,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform1i(location, value);
@@ -406,7 +406,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform1i(location, static_cast<int>(value));
@@ -424,7 +424,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
         glUniform1i(location, value);
@@ -439,7 +439,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
 
@@ -455,7 +455,7 @@ namespace nexo::renderer {
 
         const int location = getUniformLocation(name);
         if (location == -1) {
-            LOG(NEXO_WARN, "For shader {}, uniform {} not found", m_name, name);
+            LOG(PARALLAX_WARN, "For shader {}, uniform {} not found", m_name, name);
             return false;
         }
 

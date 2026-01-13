@@ -13,7 +13,7 @@
 #include <functional>
 #include <memory>
 
-namespace nexo::editor::plugins {
+namespace parallax::editor::plugins {
 
     // Forward declarations
     class PluginManager;
@@ -96,7 +96,7 @@ namespace nexo::editor::plugins {
      */
     using PluginFactoryFunc = IPlugin*(*)();
 
-} // namespace nexo::editor::plugins
+} // namespace parallax::editor::plugins
 
 /**
  * @brief Macro to export plugin factory function
@@ -111,6 +111,6 @@ namespace nexo::editor::plugins {
 #endif
 
 #define EXPORT_PLUGIN(PluginClass) \
-    extern "C" PLUGIN_EXPORT nexo::editor::plugins::IPlugin* CreatePlugin() { \
+    extern "C" PLUGIN_EXPORT parallax::editor::plugins::IPlugin* CreatePlugin() { \
         return new PluginClass(); \
     }

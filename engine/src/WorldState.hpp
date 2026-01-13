@@ -21,7 +21,7 @@
 
 #include "Application.hpp"
 
-namespace nexo {
+namespace parallax {
 
     struct WorldState {
         struct WorldTime {
@@ -34,4 +34,4 @@ namespace nexo {
         } stats;
     };
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

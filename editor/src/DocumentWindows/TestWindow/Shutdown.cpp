@@ -33,7 +33,7 @@
   #include <glad/glad.h>
 #endif
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void TestWindow::resetTestCases()
     {
@@ -181,13 +181,13 @@ namespace nexo::editor {
         const auto filePath = getTestReportFilePath();
 
         if (filePath.empty()) {
-            LOG(NEXO_WARN, "Test report generation cancelled by user");
+            LOG(PARALLAX_WARN, "Test report generation cancelled by user");
             return;
         }
 
         std::ofstream out(filePath.string());
         if (!out) {
-            THROW_EXCEPTION(FileWriteException, filePath.string(), nexo::strerror(errno));
+            THROW_EXCEPTION(FileWriteException, filePath.string(), parallax::strerror(errno));
         }
 
 

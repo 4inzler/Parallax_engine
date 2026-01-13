@@ -38,7 +38,7 @@
 #include "ComponentArray.hpp"
 #include "Group.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 	/**
 	 * @brief Helper template to tag non-owned component types
 	 *
@@ -162,17 +162,17 @@ namespace std {
 	 * Allows GroupKey to be used as a key in unordered_map
 	 */
 	template<>
-	struct hash<nexo::ecs::GroupKey> {
-		size_t operator()(const nexo::ecs::GroupKey& key) const noexcept
+	struct hash<parallax::ecs::GroupKey> {
+		size_t operator()(const parallax::ecs::GroupKey& key) const noexcept
 		{
-			const size_t h1 = std::hash<nexo::ecs::Signature>()(key.ownedSignature);
-			const size_t h2 = std::hash<nexo::ecs::Signature>()(key.nonOwnedSignature);
+			const size_t h1 = std::hash<parallax::ecs::Signature>()(key.ownedSignature);
+			const size_t h2 = std::hash<parallax::ecs::Signature>()(key.nonOwnedSignature);
 			return h1 ^ (h2 << 1);
 		}
 	};
 }
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	/**
 	 * @class ComponentManager
@@ -233,7 +233,7 @@ namespace nexo::ecs {
 
 		        assert(typeID < m_componentArrays.size() && "Component type ID exceeds component array size");
 		        if (m_componentArrays[typeID] != nullptr) {
-		            LOG(NEXO_WARN, "Component already registered");
+		            LOG(PARALLAX_WARN, "Component already registered");
 		            return;
 		        }
 

@@ -7,59 +7,64 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(NEXO_COVERAGE OFF CACHE BOOL "Enable coverage for binaries")
-set(NEXO_GIT_SUBMODULE OFF CACHE BOOL "Enable git submodules init and update")
-set(NEXO_BOOTSTRAP_VCPKG OFF CACHE BOOL "Enable vcpkg bootstrap")
-set(NEXO_BUILD_TESTS ON CACHE BOOL "Enable tests")
-set(NEXO_BUILD_EXAMPLES OFF CACHE BOOL "Enable examples")
-set(NEXO_GRAPHICS_API "OpenGL" CACHE STRING "Graphics API to use")
+set(PARALLAX_COVERAGE OFF CACHE BOOL "Enable coverage for binaries")
+set(PARALLAX_GIT_SUBMODULE OFF CACHE BOOL "Enable git submodules init and update")
+set(PARALLAX_BOOTSTRAP_VCPKG OFF CACHE BOOL "Enable vcpkg bootstrap")
+set(PARALLAX_BUILD_TESTS ON CACHE BOOL "Enable tests")
+set(PARALLAX_BUILD_EXAMPLES OFF CACHE BOOL "Enable examples")
+set(PARALLAX_GRAPHICS_API "OpenGL" CACHE STRING "Graphics API to use")
+
+if(MINGW)
+    message(WARNING "Disabling tests on MinGW: prebuilt vcpkg x64-windows gtest is incompatible with MinGW; build tests with MSVC or a MinGW triplet to run tests.")
+    set(PARALLAX_BUILD_TESTS OFF CACHE BOOL "Enable tests" FORCE)
+endif()
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    set(NEXO_COMPILER_FLAGS_ALL --std=c++${CMAKE_CXX_STANDARD})
-    set(NEXO_COMPILER_FLAGS_DEBUG -g -Wmissing-field-initializers -Wall -Wextra -Wpedantic)
-    set(NEXO_COMPILER_FLAGS_RELEASE -O3 -DNDEBUG)
-    set(NEXO_COVERAGE_FLAGS -O0 --coverage)
+    set(PARALLAX_COMPILER_FLAGS_ALL --std=c++${CMAKE_CXX_STANDARD})
+    set(PARALLAX_COMPILER_FLAGS_DEBUG -g -Wmissing-field-initializers -Wall -Wextra -Wpedantic)
+    set(PARALLAX_COMPILER_FLAGS_RELEASE -O3 -DNDEBUG)
+    set(PARALLAX_COVERAGE_FLAGS -O0 --coverage)
 
-    set(NEXO_LINKER_FLAGS_ALL "")
-    set(NEXO_LINKER_FLAGS_DEBUG "")
-    set(NEXO_LINKER_FLAGS_RELEASE "-flto")
+    set(PARALLAX_LINKER_FLAGS_ALL "")
+    set(PARALLAX_LINKER_FLAGS_DEBUG "")
+    set(PARALLAX_LINKER_FLAGS_RELEASE "-flto")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    set(NEXO_COMPILER_FLAGS_ALL /nologo /W4 /std:c++${CMAKE_CXX_STANDARD} /Zc:preprocessor /utf-8)
-    set(NEXO_COMPILER_FLAGS_DEBUG /Zi /Od /Zc:preprocessor /MDd /D_DEBUG /D_ITERATOR_DEBUG_LEVEL=2 /D_SECURE_SCL=1)
-    set(NEXO_COMPILER_FLAGS_RELEASE /O2 /Zc:preprocessor /DNDEBUG /MD)
-    set(NEXO_COVERAGE_FLAGS "")  # MSVC doesn't support coverage in the same way
+    set(PARALLAX_COMPILER_FLAGS_ALL /nologo /W4 /std:c++${CMAKE_CXX_STANDARD} /Zc:preprocessor /utf-8)
+    set(PARALLAX_COMPILER_FLAGS_DEBUG /Zi /Od /Zc:preprocessor /MDd /D_DEBUG /D_ITERATOR_DEBUG_LEVEL=2 /D_SECURE_SCL=1)
+    set(PARALLAX_COMPILER_FLAGS_RELEASE /O2 /Zc:preprocessor /DNDEBUG /MD)
+    set(PARALLAX_COVERAGE_FLAGS "")  # MSVC doesn't support coverage in the same way
 
-    set(NEXO_LINKER_FLAGS_ALL "")
-    set(NEXO_LINKER_FLAGS_DEBUG "")
-    set(NEXO_LINKER_FLAGS_RELEASE "/LTCG")
+    set(PARALLAX_LINKER_FLAGS_ALL "")
+    set(PARALLAX_LINKER_FLAGS_DEBUG "")
+    set(PARALLAX_LINKER_FLAGS_RELEASE "/LTCG")
 else()
     message(WARNING "Unsupported compiler: ${CMAKE_CXX_COMPILER_ID}, using default flags")
 endif()
 
 add_compile_options(
-        "${NEXO_COMPILER_FLAGS_ALL}"
-        "$<$<CONFIG:Debug>:${NEXO_COMPILER_FLAGS_DEBUG}>"
-        "$<$<CONFIG:Release>:${NEXO_COMPILER_FLAGS_RELEASE}>"
+        "${PARALLAX_COMPILER_FLAGS_ALL}"
+        "$<$<CONFIG:Debug>:${PARALLAX_COMPILER_FLAGS_DEBUG}>"
+        "$<$<CONFIG:Release>:${PARALLAX_COMPILER_FLAGS_RELEASE}>"
 )
 
 add_link_options(
-        "${NEXO_LINKER_FLAGS_ALL}"
-        "$<$<CONFIG:Debug>:${NEXO_LINKER_FLAGS_DEBUG}>"
-        "$<$<CONFIG:Release>:${NEXO_LINKER_FLAGS_RELEASE}>"
+        "${PARALLAX_LINKER_FLAGS_ALL}"
+        "$<$<CONFIG:Debug>:${PARALLAX_LINKER_FLAGS_DEBUG}>"
+        "$<$<CONFIG:Release>:${PARALLAX_LINKER_FLAGS_RELEASE}>"
 )
 
 # Prevent Visual Studio (or other build tools) from creating per config sub-directories (e.g. Debug, Release)
 # Useful to look for resource files relative to the executable path
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_BINARY_DIR}>)
 
-if (NEXO_COVERAGE)
-    message(STATUS "Coverage enabled, adding flags: ${NEXO_COVERAGE_FLAGS}")
-    add_compile_options("$<$<CONFIG:Debug>:${NEXO_COVERAGE_FLAGS}>")
-    add_link_options("$<$<CONFIG:Debug>:${NEXO_COVERAGE_FLAGS}>")
+if (PARALLAX_COVERAGE)
+    message(STATUS "Coverage enabled, adding flags: ${PARALLAX_COVERAGE_FLAGS}")
+    add_compile_options("$<$<CONFIG:Debug>:${PARALLAX_COVERAGE_FLAGS}>")
+    add_link_options("$<$<CONFIG:Debug>:${PARALLAX_COVERAGE_FLAGS}>")
 endif()
 
 # SETUP GIT SUBMODULES
-if (NEXO_GIT_SUBMODULE)
+if (PARALLAX_GIT_SUBMODULE)
     find_package(Git QUIET)
 
     if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
@@ -84,7 +89,7 @@ if (NEXO_GIT_SUBMODULE)
 endif()
 
 # SETUP VCPKG
-if(NEXO_BOOTSTRAP_VCPKG)
+if(PARALLAX_BOOTSTRAP_VCPKG)
     message(STATUS "Bootstraping VCPKG")
     if (WIN32)
         execute_process(
@@ -112,12 +117,14 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/editor/CMakeLists.txt")
 include("${CMAKE_CURRENT_SOURCE_DIR}/engine/CMakeLists.txt")
 # SETUP MANAGED CSHARP LIB
 include("${CMAKE_CURRENT_SOURCE_DIR}/engine/src/scripting/managed/CMakeLists.txt")
-add_dependencies(nexoEditor nexoManaged)
+add_dependencies(Parallax parallaxManaged)
 # SETUP EXAMPLE
 include("${CMAKE_CURRENT_SOURCE_DIR}/examples/CMakeLists.txt")
 # SETUP TESTS
-enable_testing()
-include("${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt")
+if (PARALLAX_BUILD_TESTS)
+    enable_testing()
+    include("${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt")
+endif()
 
 include_directories("./common")
 

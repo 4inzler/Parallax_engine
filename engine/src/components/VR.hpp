@@ -12,7 +12,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <string>
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Eye type for stereo rendering
@@ -256,4 +256,4 @@ namespace nexo {
         glm::vec3 highlightColor = glm::vec3(1.0f, 1.0f, 0.0f);
     };
 
-} // namespace nexo
+} // namespace parallax

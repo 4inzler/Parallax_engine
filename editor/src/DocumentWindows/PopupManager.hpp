@@ -22,7 +22,7 @@
 #include <functional>
 #include <imgui.h>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
 	/**
      * @brief Manages the state of popups within the UI.

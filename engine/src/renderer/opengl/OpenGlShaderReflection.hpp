@@ -22,7 +22,7 @@
 #include <unordered_map>
 #include "Shader.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     class ShaderReflection {
     public:

@@ -21,7 +21,7 @@
 #include "Types.hpp"
 #include "Light.hpp"
 
-namespace nexo::components {
+namespace parallax::components {
     struct RenderContext {
         int sceneRendered = -1;
         SceneType sceneType = SceneType::GAME;

@@ -38,7 +38,7 @@
 #include <glm/gtx/string_cast.hpp>
 #include <filesystem>
 
-namespace nexo
+namespace parallax
 {
     ecs::Entity EntityFactory3D::createCube(glm::vec3 pos, glm::vec3 size, glm::vec3 rotation, glm::vec4 color)
     {
@@ -451,7 +451,7 @@ namespace nexo
         glm::vec3 translation;
         glm::vec3 scale;
         glm::quat rotation;
-        nexo::math::decomposeTransformQuat(node.transform, translation, rotation, scale);
+        parallax::math::decomposeTransformQuat(node.transform, translation, rotation, scale);
 
         components::TransformComponent transform;
         transform.pos = translation;

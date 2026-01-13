@@ -21,7 +21,7 @@
 #include "ECSExceptions.hpp"
 #include <string>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	struct TestComponentA {
 	    int value;

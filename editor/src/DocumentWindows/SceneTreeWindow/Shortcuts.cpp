@@ -22,7 +22,7 @@
 #include "components/Uuid.hpp"
 #include "context/actions/EntityActions.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     void SceneTreeWindow::setupShortcuts()
     {
         setupDefaultState();
@@ -213,7 +213,7 @@ namespace nexo::editor {
         if (selectedEntities.empty())
             return;
 
-        auto& app = nexo::getApp();
+        auto& app = parallax::getApp();
         auto& actionManager = ActionManager::get();
         const int currentSceneId = selector.getSelectedScene();
 

@@ -26,7 +26,7 @@
 #include <string>
 #include <type_traits>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     // Define test components
     struct Position {

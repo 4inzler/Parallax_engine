@@ -21,7 +21,7 @@
 #include "UniformCache.hpp"
 #include "VertexArray.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     // Function to get the quad, initializing it on first use
     inline std::shared_ptr<NxVertexArray> getFullscreenQuad()

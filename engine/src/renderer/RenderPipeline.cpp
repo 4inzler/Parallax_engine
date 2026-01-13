@@ -25,7 +25,7 @@
 #include <set>
 #include <utility>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     PassId RenderPipeline::addRenderPass(std::shared_ptr<RenderPass> pass)
     {
         // If this is the first pass, set it as the final output

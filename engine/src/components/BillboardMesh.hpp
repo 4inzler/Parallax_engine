@@ -22,7 +22,7 @@
 #include "VertexArray.hpp"
 #include <glm/glm.hpp>
 
-namespace nexo::components {
+namespace parallax::components {
     enum class BillboardType {
         FULL,       // Always faces camera completely (like particles)
         AXIS_Y,     // Rotates only around Y axis (like trees)

@@ -7,8 +7,8 @@ jobs:
     name: Analyze (${{ matrix.language }}/${{ matrix.compiler }}) on ${{ matrix.os }}
     env:
       VCPKG_EXE: ${{ github.workspace }}/vcpkg/vcpkg
-      FEED_URL: https://nuget.pkg.github.com/NexoEngine/index.json
-      VCPKG_BINARY_SOURCES: "clear;nuget,https://nuget.pkg.github.com/NexoEngine/index.json,readwrite"
+      FEED_URL: https://nuget.pkg.github.com/ParallaxEngine/index.json
+      VCPKG_BINARY_SOURCES: "clear;nuget,https://nuget.pkg.github.com/ParallaxEngine/index.json,readwrite"
       DOTNET_INSTALL_DIR: "./.dotnet"
     runs-on: ${{ matrix.os }}
     permissions:
@@ -99,7 +99,7 @@ jobs:
       - name: Add NuGet sources
         shell: bash
         env:
-          USERNAME: NexoEngine
+          USERNAME: ParallaxEngine
         run: |
           mono `${{ env.VCPKG_EXE }} fetch nuget | tail -n 1` \
             sources add \
@@ -116,7 +116,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         env:
-          USERNAME: NexoEngine
+          USERNAME: ParallaxEngine
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}

@@ -22,7 +22,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
 
-namespace nexo::system {
+namespace parallax::system {
     void TransformMatrixSystem::update()
     {
         const auto &renderContext = getSingleton<components::RenderContext>();

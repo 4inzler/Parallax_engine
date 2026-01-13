@@ -23,7 +23,7 @@
 #include "assets/Assets/Material/Material.hpp"
 #include "utils/ScenePreview.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     struct MaterialInspectorData {
         ecs::Entity m_selectedEntity{};

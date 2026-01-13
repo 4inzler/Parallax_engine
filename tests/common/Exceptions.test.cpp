@@ -19,7 +19,7 @@
 #include <gtest/gtest.h>
 #include "Exception.hpp"
 
-namespace nexo {
+namespace parallax {
 
     TEST(ExceptionTest, BasicExceptionMessage) {
         Exception ex("Test exception message", std::source_location::current());

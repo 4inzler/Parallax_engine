@@ -21,7 +21,7 @@
 #include "components/RenderContext.hpp"
 #include "components/SceneComponents.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
 	/**
 	* @brief System responsible for updating ambient light data in the scene.

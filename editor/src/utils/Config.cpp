@@ -24,7 +24,7 @@
 #include <regex>
 #include <iostream>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     ImGuiID findWindowDockIDFromConfig(const std::string& windowName)
     {

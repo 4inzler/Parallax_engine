@@ -20,7 +20,7 @@
 #include <filesystem>
 #include <hostfxr.h>
 
-#ifdef WIN32
+#if defined(_WIN32) || defined(WIN32)
     #define NOMINMAX
     #include <windows.h>
 #endif
@@ -34,7 +34,7 @@
 #include "ManagedTypedef.hpp"
 #include "core/event/SignalEvent.hpp"
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     HostHandler::~HostHandler()
     {
@@ -151,11 +151,11 @@ namespace nexo::scripting {
     HostHandler::Status HostHandler::initRuntime()
     {
         const std::filesystem::path runtimeConfigPath =
-            m_params.nexoManagedPath / NEXO_RUNTIMECONFIG_FILENAME;
+            m_params.parallaxManagedPath / PARALLAX_RUNTIMECONFIG_FILENAME;
 
         if (!std::filesystem::exists(runtimeConfigPath))
         {
-            m_params.errorCallback(std::format("Nexo runtime config file not found: {}", runtimeConfigPath.string()));
+            m_params.errorCallback(std::format("Parallax runtime config file not found: {}", runtimeConfigPath.string()));
             return m_status = RUNTIME_CONFIG_NOT_FOUND;
         }
 
@@ -202,10 +202,10 @@ namespace nexo::scripting {
         unsigned int rc = 0;
 
         const std::filesystem::path assemblyPath =
-            m_params.nexoManagedPath / NEXO_ASSEMBLY_FILENAME;
+            m_params.parallaxManagedPath / PARALLAX_ASSEMBLY_FILENAME;
 
         if (!std::filesystem::exists(assemblyPath)) {
-            m_params.errorCallback(std::format("Nexo assembly file not found: {}", assemblyPath.string()));
+            m_params.errorCallback(std::format("Parallax assembly file not found: {}", assemblyPath.string()));
             return m_status = ASSEMBLY_NOT_FOUND;
         }
 
@@ -225,17 +225,17 @@ namespace nexo::scripting {
     try {
         m_managedApi.NativeInterop = {
             .Initialize = getManagedFptr<Int32(*)(NativeApiCallbacks*, UInt32)>(
-                "Nexo.NativeInterop, Nexo",
+                "Parallax.NativeInterop, Parallax",
                 "Initialize",
                 UNMANAGEDCALLERSONLY
             ),
             .DemonstrateNativeCalls = getManagedFptr<void(*)()>(
-                "Nexo.NativeInterop, Nexo",
+                "Parallax.NativeInterop, Parallax",
                 "DemonstrateNativeCalls",
                 UNMANAGEDCALLERSONLY
             ),
             .Update = getManagedFptr<void(*)(Double)>(
-                "Nexo.NativeInterop, Nexo",
+                "Parallax.NativeInterop, Parallax",
                 "Update",
                 UNMANAGEDCALLERSONLY
             )
@@ -243,26 +243,26 @@ namespace nexo::scripting {
 
         m_managedApi.Lib = {
             .CustomEntryPoint = getManagedFptr<void(*)(lib_args)>(
-                "Nexo.Lib, Nexo",
+                "Parallax.Lib, Parallax",
                 "CustomEntryPoint",
-                "Nexo.Lib+CustomEntryPointDelegate, Nexo"
+                "Parallax.Lib+CustomEntryPointDelegate, Parallax"
             ),
             .CustomEntryPointUnmanagedCallersOnly = getManagedFptr<void(*)(lib_args)>(
-                "Nexo.Lib, Nexo",
+                "Parallax.Lib, Parallax",
                 "CustomEntryPointUnmanagedCallersOnly",
                 UNMANAGEDCALLERSONLY
             ),
             .Hello = getManagedFptr<void(*)(lib_args*, UInt32)>(
-                "Nexo.Lib, Nexo",
+                "Parallax.Lib, Parallax",
                 "Hello"
             ),
             .Add = getManagedFptr<Int32(*)(Int32, Int32)>(
-                "Nexo.Lib, Nexo",
+                "Parallax.Lib, Parallax",
                 "Add",
                 UNMANAGEDCALLERSONLY
             ),
             .AddToPtr = getManagedFptr<Int32(*)(Int32, Int32, Int32*)>(
-                "Nexo.Lib, Nexo",
+                "Parallax.Lib, Parallax",
                 "AddToPtr",
                 UNMANAGEDCALLERSONLY
             )
@@ -270,22 +270,22 @@ namespace nexo::scripting {
 
         m_managedApi.SystemBase = {
             .InitializeSystems = getManagedFptr<Int32(*)(ManagedWorldState *worldState, UInt32 size)>(
-                "Nexo.Systems.SystemBase, Nexo",
+                "Parallax.Systems.SystemBase, Parallax",
                 "InitializeSystems",
                 UNMANAGEDCALLERSONLY
             ),
             .InitializeComponents = getManagedFptr<Int32(*)()>(
-                "Nexo.Components.IComponentBase, Nexo",
+                "Parallax.Components.IComponentBase, Parallax",
                 "InitializeComponents",
                 UNMANAGEDCALLERSONLY
             ),
             .ShutdownSystems = getManagedFptr<Int32(*)(ManagedWorldState *worldState, UInt32 size)>(
-                "Nexo.Systems.SystemBase, Nexo",
+                "Parallax.Systems.SystemBase, Parallax",
                 "ShutdownSystems",
                 UNMANAGEDCALLERSONLY
             ),
             .UpdateSystems = getManagedFptr<Int32(*)(ManagedWorldState *worldState, UInt32 size)>(
-                "Nexo.Systems.SystemBase, Nexo",
+                "Parallax.Systems.SystemBase, Parallax",
                 "UpdateSystems",
                 UNMANAGEDCALLERSONLY
             )

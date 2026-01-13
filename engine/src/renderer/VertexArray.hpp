@@ -19,7 +19,7 @@
 
 #include "Buffer.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
     * @class NxVertexArray

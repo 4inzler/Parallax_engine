@@ -23,7 +23,7 @@
 #include "Event.hpp"
 #include "Signals.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
 
     class EventAnySignal final : public Event<EventAnySignal> {
         public:
@@ -93,4 +93,4 @@ namespace nexo::event {
             inline static std::shared_ptr<SignalHandler> s_instance = nullptr;
     };
 
-} // namespace nexo::event
+} // namespace parallax::event

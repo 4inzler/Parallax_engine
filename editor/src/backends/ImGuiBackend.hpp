@@ -20,7 +20,7 @@
 
 #include "renderer/Window.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 	/**
 	* @class ImGuiBackend
 	* @brief Static interface class for ImGui backend operations

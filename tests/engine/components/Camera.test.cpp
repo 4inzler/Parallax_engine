@@ -26,7 +26,7 @@
 #include <cmath>
 
 // Dummy implementation of the Framebuffer interface for testing.
-class DummyFramebuffer : public nexo::renderer::NxFramebuffer {
+class DummyFramebuffer : public parallax::renderer::NxFramebuffer {
 public:
     void bind() override {}
     void bindAsTexture(unsigned int, unsigned int) override {};
@@ -39,8 +39,8 @@ public:
     void resize(unsigned int, unsigned int ) override {}
     void getPixelWrapper(unsigned int, int, int, void *, const std::type_info &) const override {}
     void clearAttachmentWrapper(unsigned int, const void *, const std::type_info &) const override {}
-    [[nodiscard]] nexo::renderer::NxFramebufferSpecs &getSpecs() override { static nexo::renderer::NxFramebufferSpecs specs; return specs; }
-    [[nodiscard]] const nexo::renderer::NxFramebufferSpecs &getSpecs() const override { static nexo::renderer::NxFramebufferSpecs specs; return specs; }
+    [[nodiscard]] parallax::renderer::NxFramebufferSpecs &getSpecs() override { static parallax::renderer::NxFramebufferSpecs specs; return specs; }
+    [[nodiscard]] const parallax::renderer::NxFramebufferSpecs &getSpecs() const override { static parallax::renderer::NxFramebufferSpecs specs; return specs; }
     [[nodiscard]] bool hasDepthAttachment() const override { return true; };
     [[nodiscard]] bool hasStencilAttachment() const override { return true; };
     [[nodiscard]] bool hasDepthStencilAttachment() const override { return true; };
@@ -49,7 +49,7 @@ public:
     unsigned int getDepthAttachmentId() const override { return 0; }
 };
 
-std::shared_ptr<nexo::renderer::NxFramebuffer> createDummyFramebuffer() {
+std::shared_ptr<parallax::renderer::NxFramebuffer> createDummyFramebuffer() {
     return std::make_shared<DummyFramebuffer>();
 }
 
@@ -66,13 +66,13 @@ protected:
 };
 
 TEST_F(CameraComponentTest, PerspectiveProjectionMatrix) {
-    nexo::components::CameraComponent cam;
+    parallax::components::CameraComponent cam;
     cam.width = 800;
     cam.height = 600;
     cam.fov = 45.0f;
     cam.nearPlane = 0.1f;
     cam.farPlane = 1000.0f;
-    cam.type = nexo::components::CameraType::PERSPECTIVE;
+    cam.type = parallax::components::CameraType::PERSPECTIVE;
 
     glm::mat4 proj = cam.getProjectionMatrix();
     glm::mat4 expected = glm::perspective(glm::radians(45.0f), 800.0f/600.0f, 0.1f, 1000.0f);
@@ -81,10 +81,10 @@ TEST_F(CameraComponentTest, PerspectiveProjectionMatrix) {
 }
 
 TEST_F(CameraComponentTest, OrthographicProjectionMatrix) {
-    nexo::components::CameraComponent cam;
+    parallax::components::CameraComponent cam;
     cam.width = 800;
     cam.height = 600;
-    cam.type = nexo::components::CameraType::ORTHOGRAPHIC;
+    cam.type = parallax::components::CameraType::ORTHOGRAPHIC;
 
     glm::mat4 proj = cam.getProjectionMatrix();
     glm::mat4 expected = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, cam.nearPlane, cam.farPlane);
@@ -93,9 +93,9 @@ TEST_F(CameraComponentTest, OrthographicProjectionMatrix) {
 }
 
 TEST_F(CameraComponentTest, ViewMatrixCalculation) {
-    nexo::components::CameraComponent cam;
+    parallax::components::CameraComponent cam;
     // Create a dummy transform for the camera.
-    nexo::components::TransformComponent transform;
+    parallax::components::TransformComponent transform;
     transform.pos = glm::vec3(0.0f, 0.0f, 5.0f);
     transform.quat = glm::quat(glm::vec3(0.0f)); // Identity rotation
 
@@ -106,7 +106,7 @@ TEST_F(CameraComponentTest, ViewMatrixCalculation) {
 }
 
 TEST_F(CameraComponentTest, ResizeViewportAndRenderTarget) {
-    nexo::components::CameraComponent cam;
+    parallax::components::CameraComponent cam;
     cam.width = 640;
     cam.height = 480;
     // Set a dummy framebuffer.
@@ -120,13 +120,13 @@ TEST_F(CameraComponentTest, ResizeViewportAndRenderTarget) {
 }
 
 TEST_F(CameraComponentTest, GetViewMatrixForOrthographicCamera) {
-    nexo::components::CameraComponent cam;
+    parallax::components::CameraComponent cam;
     cam.width = 800;
     cam.height = 600;
-    cam.type = nexo::components::CameraType::ORTHOGRAPHIC;
+    cam.type = parallax::components::CameraType::ORTHOGRAPHIC;
 
     // Create a dummy transform for the camera.
-    nexo::components::TransformComponent transform;
+    parallax::components::TransformComponent transform;
     transform.pos = glm::vec3(100.0f, 50.0f, 0.0f);
     transform.quat = glm::quat(glm::vec3(0.0f)); // Identity rotation
 

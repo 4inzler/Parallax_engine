@@ -21,7 +21,7 @@
     #include "opengl/OpenGlFramebuffer.hpp"
 #endif
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     std::shared_ptr<NxFramebuffer> NxFramebuffer::create(const NxFramebufferSpecs &specs)
     {

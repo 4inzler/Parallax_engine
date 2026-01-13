@@ -19,7 +19,7 @@
 #include "Path.hpp"
 #include <ranges>
 
-namespace nexo {
+namespace parallax {
 
     const std::filesystem::path& Path::getExecutablePath()
     {

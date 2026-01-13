@@ -77,8 +77,8 @@ Implemented OpenXR runtime integration:
 
 **Singleton Pattern:**
 ```cpp
-auto& openXR = nexo::vr::OpenXRManager::getInstance();
-openXR.initialize(nexo::vr::GraphicsAPI::OPENGL);
+auto& openXR = parallax::vr::OpenXRManager::getInstance();
+openXR.initialize(parallax::vr::GraphicsAPI::OPENGL);
 openXR.createSession();
 ```
 
@@ -219,17 +219,17 @@ Player Entity (Root)
 #include "vr/OpenXRManager.hpp"
 
 // In your application initialization:
-auto& openXR = nexo::vr::OpenXRManager::getInstance();
+auto& openXR = parallax::vr::OpenXRManager::getInstance();
 
-if (!openXR.initialize(nexo::vr::GraphicsAPI::OPENGL))
+if (!openXR.initialize(parallax::vr::GraphicsAPI::OPENGL))
 {
-    LOG(NEXO_ERROR, "Failed to initialize OpenXR");
+    LOG(PARALLAX_ERROR, "Failed to initialize OpenXR");
     // Fallback to non-VR mode
 }
 
 if (!openXR.createSession())
 {
-    LOG(NEXO_ERROR, "Failed to create VR session");
+    LOG(PARALLAX_ERROR, "Failed to create VR session");
 }
 ```
 
@@ -660,7 +660,7 @@ bool isVRAvailable = openXR.initialize();
 
 if (!isVRAvailable)
 {
-    LOG(NEXO_WARN, "VR not available, using desktop mode");
+    LOG(PARALLAX_WARN, "VR not available, using desktop mode");
     // Don't add VR systems
     // Use standard CameraContextSystem instead of VRStereoCameraSystem
 }
@@ -841,9 +841,9 @@ Enable OpenXR debug output:
 
 ```cpp
 // Add to OpenXRManager::initialize()
-LOG(NEXO_DEBUG, "[OpenXR] HMD Position: ({}, {}, {})",
+LOG(PARALLAX_DEBUG, "[OpenXR] HMD Position: ({}, {}, {})",
     m_hmdPosition.x, m_hmdPosition.y, m_hmdPosition.z);
-LOG(NEXO_DEBUG, "[OpenXR] Left Eye FOV: L={}, R={}, U={}, D={}",
+LOG(PARALLAX_DEBUG, "[OpenXR] Left Eye FOV: L={}, R={}, U={}, D={}",
     m_eyeRenderInfo[0].angleLeft, ...);
 ```
 

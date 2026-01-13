@@ -20,11 +20,11 @@
 #include "Application.hpp"
 #include "EntityFactory3D.hpp"
 #include "Framebuffer.hpp"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "assets/Assets/Material/Material.hpp"
 #include "components/Camera.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     ThumbnailCache& ThumbnailCache::getInstance()
     {
@@ -266,4 +266,4 @@ namespace nexo::editor {
     {
         return m_thumbnailCache.contains(assetId);
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

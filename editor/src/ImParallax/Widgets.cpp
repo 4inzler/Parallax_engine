@@ -23,10 +23,10 @@
 
 #include "Widgets.hpp"
 #include "IconsFontAwesome.h"
-#include "Nexo.hpp"
-#include "ImNexo.hpp"
+#include "Parallax.hpp"
+#include "ImParallax.hpp"
 
-namespace ImNexo
+namespace ImParallax
 {
     bool ColorEditor(
         const std::string& label,
@@ -183,28 +183,28 @@ namespace ImNexo
    * @param sceneId The ID of the scene where the primitive will be created.
    * @param primitive The type of primitive to create (e.g., SPHERE or CYLINDER).
    */
-    void PrimitiveCustomizationMenu(const int sceneId, const nexo::Primitives primitive)
+    void PrimitiveCustomizationMenu(const int sceneId, const parallax::Primitives primitive)
     {
-        auto& app = nexo::Application::getInstance();
+        auto& app = parallax::Application::getInstance();
         auto& sceneManager = app.getSceneManager();
 
         // Static variables to track the last selected primitive and segment count
-        static nexo::Primitives lastPrimitive = primitive;
-        static int segmentCount = primitive == nexo::SPHERE ? 1 : 8;
+        static parallax::Primitives lastPrimitive = primitive;
+        static int segmentCount = primitive == parallax::SPHERE ? 1 : 8;
 
         // Reset segment count if the primitive type changes
         if (lastPrimitive != primitive)
         {
-            segmentCount = primitive == nexo::SPHERE ? 1 : 8;
+            segmentCount = primitive == parallax::SPHERE ? 1 : 8;
             lastPrimitive = primitive;
         }
 
         // Define the minimum and maximum segment counts based on the primitive type
-        const unsigned int minSegmentCount = primitive == nexo::SPHERE ? 0 : 3;
-        const unsigned int maxSegmentCount = primitive == nexo::SPHERE ? 8 : 100;
+        const unsigned int minSegmentCount = primitive == parallax::SPHERE ? 0 : 3;
+        const unsigned int maxSegmentCount = primitive == parallax::SPHERE ? 8 : 100;
 
         // Set the slider title based on the primitive type
-        const char* title = primitive == nexo::SPHERE ? "Subdivision" : "Segments";
+        const char* title = primitive == parallax::SPHERE ? "Subdivision" : "Segments";
 
         // Render a slider to adjust the segment count
         ImGui::SliderScalar(title, ImGuiDataType_S32, &segmentCount, &minSegmentCount, &maxSegmentCount, "%d");
@@ -215,15 +215,15 @@ namespace ImNexo
             constexpr glm::vec4 DEFAULT_COLOR_PRIMITIVE = {0.05f * 1.5f, 0.09f * 1.15f, 0.13f * 1.25f, 1.0f};
 
             // Create the selected primitive with the specified parameters
-            const nexo::ecs::Entity newPrimitive = primitive == nexo::SPHERE
-                                                       ? nexo::EntityFactory3D::createSphere(
+            const parallax::ecs::Entity newPrimitive = primitive == parallax::SPHERE
+                                                       ? parallax::EntityFactory3D::createSphere(
                                                            {0.0f, 0.0f, 0.0f},
                                                            {1.0f, 1.0f, 1.0f},
                                                            {0.0f, 0.0f, 0.0f},
                                                            glm::vec4(DEFAULT_COLOR_PRIMITIVE),
                                                            segmentCount
                                                        )
-                                                       : nexo::EntityFactory3D::createCylinder(
+                                                       : parallax::EntityFactory3D::createCylinder(
                                                            {0.0f, 0.0f, 0.0f},
                                                            {1.0f, 1.0f, 1.0f},
                                                            {0.0f, 0.0f, 0.0f},
@@ -235,8 +235,8 @@ namespace ImNexo
             sceneManager.getScene(sceneId).addEntity(newPrimitive);
 
             // Record the creation action for undo/redo functionality
-            auto createAction = std::make_unique<nexo::editor::EntityCreationAction>(newPrimitive);
-            nexo::editor::ActionManager::get().recordAction(std::move(createAction));
+            auto createAction = std::make_unique<parallax::editor::EntityCreationAction>(newPrimitive);
+            parallax::editor::ActionManager::get().recordAction(std::move(createAction));
         }
 
         // End the popup rendering
@@ -245,21 +245,21 @@ namespace ImNexo
 
 
 
-    void PrimitiveSubMenu(const int sceneId, nexo::editor::PopupManager& popupManager)
+    void PrimitiveSubMenu(const int sceneId, parallax::editor::PopupManager& popupManager)
     {
-        auto& app = nexo::Application::getInstance();
+        auto& app = parallax::Application::getInstance();
         auto& sceneManager = app.getSceneManager();
 
         if (ImGui::BeginMenu("Primitives"))
         {
             if (ImGui::MenuItem("Cube"))
             {
-                const nexo::ecs::Entity newCube = nexo::EntityFactory3D::createCube(
+                const parallax::ecs::Entity newCube = parallax::EntityFactory3D::createCube(
                     {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f},
                     {0.0f, 0.0f, 0.0f}, {0.05f * 1.5, 0.09f * 1.15, 0.13f * 1.25, 1.0f});
                 sceneManager.getScene(sceneId).addEntity(newCube);
-                auto createAction = std::make_unique<nexo::editor::EntityCreationAction>(newCube);
-                nexo::editor::ActionManager::get().recordAction(std::move(createAction));
+                auto createAction = std::make_unique<parallax::editor::EntityCreationAction>(newCube);
+                parallax::editor::ActionManager::get().recordAction(std::move(createAction));
             }
             if (ImGui::MenuItem("Sphere"))
             {
@@ -271,21 +271,21 @@ namespace ImNexo
             }
             if (ImGui::MenuItem("Pyramid"))
             {
-                const nexo::ecs::Entity newPyramid = nexo::EntityFactory3D::createPyramid(
+                const parallax::ecs::Entity newPyramid = parallax::EntityFactory3D::createPyramid(
                     {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f},
                     {0.0f, 0.0f, 0.0f}, {0.05f * 1.5, 0.09f * 1.15, 0.13f * 1.25, 1.0f});
                 sceneManager.getScene(sceneId).addEntity(newPyramid);
-                auto createAction = std::make_unique<nexo::editor::EntityCreationAction>(newPyramid);
-                nexo::editor::ActionManager::get().recordAction(std::move(createAction));
+                auto createAction = std::make_unique<parallax::editor::EntityCreationAction>(newPyramid);
+                parallax::editor::ActionManager::get().recordAction(std::move(createAction));
             }
             if (ImGui::MenuItem("Tetrahedron"))
             {
-                const nexo::ecs::Entity newTetrahedron = nexo::EntityFactory3D::createTetrahedron(
+                const parallax::ecs::Entity newTetrahedron = parallax::EntityFactory3D::createTetrahedron(
                     {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f},
                     {0.0f, 0.0f, 0.0f}, {0.05f * 1.5, 0.09f * 1.15, 0.13f * 1.25, 1.0f});
                 sceneManager.getScene(sceneId).addEntity(newTetrahedron);
-                auto createAction = std::make_unique<nexo::editor::EntityCreationAction>(newTetrahedron);
-                nexo::editor::ActionManager::get().recordAction(std::move(createAction));
+                auto createAction = std::make_unique<parallax::editor::EntityCreationAction>(newTetrahedron);
+                parallax::editor::ActionManager::get().recordAction(std::move(createAction));
             }
             ImGui::EndMenu();
         }

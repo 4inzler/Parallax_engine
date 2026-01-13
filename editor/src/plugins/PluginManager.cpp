@@ -10,7 +10,7 @@
 #include "Logger.hpp"
 #include <filesystem>
 
-namespace nexo::editor::plugins {
+namespace parallax::editor::plugins {
 
     PluginManager& PluginManager::getInstance()
     {
@@ -60,7 +60,7 @@ namespace nexo::editor::plugins {
     {
         if (!std::filesystem::exists(path))
         {
-            LOG(NEXO_ERROR, "Plugin file not found: {}", path);
+            LOG(PARALLAX_ERROR, "Plugin file not found: {}", path);
             return false;
         }
 
@@ -69,9 +69,9 @@ namespace nexo::editor::plugins {
         if (!handle)
         {
 #ifdef _WIN32
-            LOG(NEXO_ERROR, "Failed to load plugin: {} (Error: {})", path, GetLastError());
+            LOG(PARALLAX_ERROR, "Failed to load plugin: {} (Error: {})", path, GetLastError());
 #else
-            LOG(NEXO_ERROR, "Failed to load plugin: {} (Error: {})", path, dlerror());
+            LOG(PARALLAX_ERROR, "Failed to load plugin: {} (Error: {})", path, dlerror());
 #endif
             return false;
         }
@@ -80,7 +80,7 @@ namespace nexo::editor::plugins {
         PluginFactoryFunc createPlugin = getFactoryFunction(handle);
         if (!createPlugin)
         {
-            LOG(NEXO_ERROR, "Plugin {} does not export CreatePlugin function", path);
+            LOG(PARALLAX_ERROR, "Plugin {} does not export CreatePlugin function", path);
             unloadLibrary(handle);
             return false;
         }
@@ -89,7 +89,7 @@ namespace nexo::editor::plugins {
         std::unique_ptr<IPlugin> plugin(createPlugin());
         if (!plugin)
         {
-            LOG(NEXO_ERROR, "Failed to create plugin instance from {}", path);
+            LOG(PARALLAX_ERROR, "Failed to create plugin instance from {}", path);
             unloadLibrary(handle);
             return false;
         }
@@ -100,7 +100,7 @@ namespace nexo::editor::plugins {
         // Check if plugin with same name is already loaded
         if (isPluginLoaded(info.name))
         {
-            LOG(NEXO_WARN, "Plugin {} is already loaded", info.name);
+            LOG(PARALLAX_WARN, "Plugin {} is already loaded", info.name);
             unloadLibrary(handle);
             return false;
         }
@@ -108,7 +108,7 @@ namespace nexo::editor::plugins {
         // Initialize the plugin
         if (!plugin->onLoad(*this))
         {
-            LOG(NEXO_ERROR, "Plugin {} failed to initialize", info.name);
+            LOG(PARALLAX_ERROR, "Plugin {} failed to initialize", info.name);
             unloadLibrary(handle);
             return false;
         }
@@ -122,7 +122,7 @@ namespace nexo::editor::plugins {
 
         m_plugins[info.name] = std::move(loadedPlugin);
 
-        LOG(NEXO_INFO, "Plugin loaded: {} v{} by {}", info.name, info.version, info.author);
+        LOG(PARALLAX_INFO, "Plugin loaded: {} v{} by {}", info.name, info.version, info.author);
         return true;
     }
 
@@ -131,7 +131,7 @@ namespace nexo::editor::plugins {
         auto it = m_plugins.find(pluginName);
         if (it == m_plugins.end())
         {
-            LOG(NEXO_WARN, "Plugin {} is not loaded", pluginName);
+            LOG(PARALLAX_WARN, "Plugin {} is not loaded", pluginName);
             return false;
         }
 
@@ -144,7 +144,7 @@ namespace nexo::editor::plugins {
         // Remove from map
         m_plugins.erase(it);
 
-        LOG(NEXO_INFO, "Plugin unloaded: {}", pluginName);
+        LOG(PARALLAX_INFO, "Plugin unloaded: {}", pluginName);
         return true;
     }
 
@@ -160,7 +160,7 @@ namespace nexo::editor::plugins {
         m_importers.clear();
         m_panels.clear();
 
-        LOG(NEXO_INFO, "All plugins unloaded");
+        LOG(PARALLAX_INFO, "All plugins unloaded");
     }
 
     bool PluginManager::isPluginLoaded(const std::string& pluginName) const
@@ -208,19 +208,19 @@ namespace nexo::editor::plugins {
     void PluginManager::registerMenuItem(const MenuItemRegistration& menuItem)
     {
         m_menuItems.push_back(menuItem);
-        LOG(NEXO_DEBUG, "Menu item registered: {}", menuItem.menuPath);
+        LOG(PARALLAX_DEBUG, "Menu item registered: {}", menuItem.menuPath);
     }
 
     void PluginManager::registerImporter(std::shared_ptr<IImporter> importer)
     {
         m_importers.push_back(importer);
-        LOG(NEXO_DEBUG, "Importer registered");
+        LOG(PARALLAX_DEBUG, "Importer registered");
     }
 
     void PluginManager::registerPanel(std::shared_ptr<IDocumentWindow> panel)
     {
         m_panels.push_back(panel);
-        LOG(NEXO_DEBUG, "Panel registered");
+        LOG(PARALLAX_DEBUG, "Panel registered");
     }
 
-} // namespace nexo::editor::plugins
+} // namespace parallax::editor::plugins

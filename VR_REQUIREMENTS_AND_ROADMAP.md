@@ -1,6 +1,6 @@
 # VR Game Development - Critical Requirements & Implementation Roadmap
 
-**Engine:** Parallax Engine (formerly Nexo)
+**Engine:** Parallax Engine (formerly Parallax)
 **Target:** VR Game Development
 **Status:** VR Support Not Yet Implemented
 **Priority:** 🔴 CRITICAL - Core VR features required before game development

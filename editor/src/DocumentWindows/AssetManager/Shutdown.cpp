@@ -18,11 +18,11 @@
 
 #include "AssetManagerWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void AssetManagerWindow::shutdown()
     {
         // Nothing to do in the shutdown for now
     }
 
-} // namespace nexo::editor
+} // namespace parallax::editor

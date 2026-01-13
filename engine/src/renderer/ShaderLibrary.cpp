@@ -20,7 +20,7 @@
 #include "Logger.hpp"
 #include "Path.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     ShaderLibrary::ShaderLibrary()
     {
@@ -32,19 +32,19 @@ namespace nexo::renderer {
 
                 // Check if the shader file exists
                 if (!std::filesystem::exists(absPath)) {
-                    LOG(NEXO_ERROR, "Shader file not found: {}", absPath.string());
+                    LOG(PARALLAX_ERROR, "Shader file not found: {}", absPath.string());
                     return false;
                 }
 
                 // Try to load the shader
                 load(name, absPath.string());
-                LOG(NEXO_INFO, "Shader '{}' loaded successfully", name);
+                LOG(PARALLAX_INFO, "Shader '{}' loaded successfully", name);
                 return true;
             } catch (const std::exception& e) {
-                LOG(NEXO_ERROR, "Failed to load shader '{}': {}", name, e.what());
+                LOG(PARALLAX_ERROR, "Failed to load shader '{}': {}", name, e.what());
                 return false;
             } catch (...) {
-                LOG(NEXO_ERROR, "Unknown error loading shader '{}'", name);
+                LOG(PARALLAX_ERROR, "Unknown error loading shader '{}'", name);
                 return false;
             }
         };
@@ -94,7 +94,7 @@ namespace nexo::renderer {
     {
         if (!m_shaders.contains(name))
         {
-            LOG(NEXO_WARN, "ShaderLibrary::get: shader {} not found", name);
+            LOG(PARALLAX_WARN, "ShaderLibrary::get: shader {} not found", name);
             return nullptr;
         }
         return m_shaders.at(name);

@@ -16,7 +16,7 @@
 #include "ADocumentWindow.hpp"
 #include "EntityFactory3D.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
     class PrimitiveWindow final : public ADocumentWindow
     {

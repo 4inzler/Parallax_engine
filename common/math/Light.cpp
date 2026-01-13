@@ -18,7 +18,7 @@
 
 #include "Light.hpp"
 
-namespace nexo::math {
+namespace parallax::math {
 	std::pair<float, float> computeAttenuationFromDistance(float distance)
 	{
 		// Clamp distance to the min/max of the table

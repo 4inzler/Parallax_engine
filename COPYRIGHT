@@ -33,6 +33,19 @@ Comment: NEXO Engine Logo
 Copyright: 2025 NEXO Engine contributors
 License: CC-BY-SA-4.0
 
+Files:
+ resources/parallax.ico
+ resources/parallax.png
+ resources/parallax.rc
+ resources/parallax_header.bmp
+Comment: Parallax Engine Logo
+Copyright: 2025 Parel LLC
+           Jacob C Mayhew-Holben SOLE MBR
+           % Jacob C Mayhew-Holben SOLE MBR For assistance you may call us at:
+           1563 Prairie Drive 1-800-829-4933
+           Albion, MI 49224
+License: CC-BY-SA-4.0
+
 Files: *
 Copyright: 2006-2021, assimp team
 License: BSD-3-clause

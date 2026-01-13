@@ -18,7 +18,7 @@
 
 #include "Camera.hpp"
 
-namespace nexo::components {
+namespace parallax::components {
     [[nodiscard]] glm::mat4 CameraComponent::getProjectionMatrix() const
     {
         if (type == CameraType::PERSPECTIVE) {

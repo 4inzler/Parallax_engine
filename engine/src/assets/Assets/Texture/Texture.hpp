@@ -20,7 +20,7 @@
 
 #include "assets/Asset.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     struct TextureData {
         std::shared_ptr<renderer::NxTexture2D> texture;

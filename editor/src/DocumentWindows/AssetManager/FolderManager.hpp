@@ -19,7 +19,7 @@
 
 #include "assets/AssetCatalog.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class FolderManager {
        private:
@@ -67,4 +67,4 @@ namespace nexo::editor {
         [[nodiscard]] static std::string getParentPath(const std::string& path);
     };
 
-} // namespace nexo::editor
+} // namespace parallax::editor

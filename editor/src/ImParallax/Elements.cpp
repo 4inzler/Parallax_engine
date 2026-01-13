@@ -25,7 +25,7 @@
 #include <math.h>
 #include <numbers>
 
-namespace ImNexo {
+namespace ImParallax {
 
     /**
      * @brief Draw an icon centered within a rectangle with optional vertical positioning
@@ -357,4 +357,4 @@ namespace ImNexo {
     {
         return ImGui::ImageButton(str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
     }
-} // namespace ImNexo
+} // namespace ImParallax

@@ -12,7 +12,7 @@
 //
 //  Author:      Mehdy MORVAN
 //  Date:        10/11/2024
-//  Description: Header for the nexo exceptions abstract class
+//  Description: Header for the parallax exceptions abstract class
 //
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -24,7 +24,7 @@
 #include "Exception.hpp"
 #include "components/Light.hpp"
 
-namespace nexo::core {
+namespace parallax::core {
     class FileNotFoundException final : public Exception {
         public:
             explicit FileNotFoundException(const std::string &filePath,

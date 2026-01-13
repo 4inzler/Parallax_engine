@@ -23,7 +23,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <vector>
 
-namespace nexo::components {
+namespace parallax::components {
 
     struct TransformComponent final {
         struct Memento {

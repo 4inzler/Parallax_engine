@@ -20,13 +20,13 @@
 
 #include <ranges>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     void SparseSet::insert(Entity entity)
     {
         if (contains(entity))
         {
-            LOG(NEXO_WARN, "Entity {} already added to the sparse set", entity);
+            LOG(PARALLAX_WARN, "Entity {} already added to the sparse set", entity);
             return;
         }
 
@@ -38,7 +38,7 @@ namespace nexo::ecs {
     {
         if (!contains(entity))
         {
-            LOG(NEXO_WARN, "Entity {} does not exist in the sparse set", entity);
+            LOG(PARALLAX_WARN, "Entity {} does not exist in the sparse set", entity);
             return;
         }
 

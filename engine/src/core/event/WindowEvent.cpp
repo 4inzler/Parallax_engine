@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "WindowEvent.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
 
     std::ostream& operator<<(std::ostream& os, const KeyAction& action)
     {

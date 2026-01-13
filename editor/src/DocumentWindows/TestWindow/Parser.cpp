@@ -28,7 +28,7 @@
 #include <cerrno>
 #include <fstream>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     static std::string parseBullet(const std::string &line)
     {
@@ -41,7 +41,7 @@ namespace nexo::editor {
     {
         std::ifstream in(entry.path());
         if (!in)
-            THROW_EXCEPTION(FileReadException, entry.path().string(), nexo::strerror(errno));
+            THROW_EXCEPTION(FileReadException, entry.path().string(), parallax::strerror(errno));
 
         TestSection* currentSection = nullptr;
         TestSection* currentSubSection = nullptr;
@@ -86,16 +86,16 @@ namespace nexo::editor {
 
         for (const auto &entry : std::filesystem::directory_iterator(testDir)) {
             if (!entry.is_regular_file()) {
-                LOG(NEXO_WARN, "{} is a directory, skipping...", entry.path().string());
+                LOG(PARALLAX_WARN, "{} is a directory, skipping...", entry.path().string());
                 continue;
             }
             if (entry.path().extension() != ".test") {
-                LOG(NEXO_WARN, "{} is not a test file, skipping...", entry.path().string());
+                LOG(PARALLAX_WARN, "{} is not a test file, skipping...", entry.path().string());
                 continue;
             }
             try {
                 parseFile(entry);
-            } catch (const nexo::Exception &e) {
+            } catch (const parallax::Exception &e) {
                 LOG_EXCEPTION(e);
             }
         }

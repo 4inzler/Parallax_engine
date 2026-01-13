@@ -19,7 +19,7 @@
 
 #include "ecs/Coordinator.hpp"
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
 
     enum class PropsType {
         CAMERA,

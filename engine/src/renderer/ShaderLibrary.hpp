@@ -20,7 +20,7 @@
 #include <unordered_map>
 #include "Shader.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     struct TransparentStringHasher {
         using is_transparent = void;  // enable heterogeneous lookup

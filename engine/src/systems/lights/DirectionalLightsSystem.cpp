@@ -22,7 +22,7 @@
 #include "components/SceneComponents.hpp"
 #include "Application.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 	void DirectionalLightsSystem::update()
 	{
 		auto &renderContext = getSingleton<components::RenderContext>();
@@ -40,15 +40,15 @@ namespace nexo::system {
         auto &app = Application::getInstance();
         const std::string &sceneName = app.getSceneManager().getScene(sceneRendered).getName();
 		if (!partition) {
-            LOG_ONCE(NEXO_WARN, "No directional light found in scene {}, skipping", sceneName);
+            LOG_ONCE(PARALLAX_WARN, "No directional light found in scene {}, skipping", sceneName);
             return;
         }
-        nexo::Logger::resetOnce(NEXO_LOG_ONCE_KEY("No directional light found in scene {}, skipping", sceneName));
+        parallax::Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("No directional light found in scene {}, skipping", sceneName));
 
         if (partition->count != 1)
-            LOG_ONCE(NEXO_WARN, "For scene {}, found {} directional lights, only one is supported, picking the first one", sceneName, partition->count);
+            LOG_ONCE(PARALLAX_WARN, "For scene {}, found {} directional lights, only one is supported, picking the first one", sceneName, partition->count);
         else
-            nexo::Logger::resetOnce(NEXO_LOG_ONCE_KEY("For scene {}, found {} directional lights, only one is supported, picking the first one", sceneName, partition->count));
+            parallax::Logger::resetOnce(PARALLAX_LOG_ONCE_KEY("For scene {}, found {} directional lights, only one is supported, picking the first one", sceneName, partition->count));
 
         const auto &lights = get<components::DirectionalLightComponent>();  // now 'lights' names the container
         const auto &dirLight = lights[0];

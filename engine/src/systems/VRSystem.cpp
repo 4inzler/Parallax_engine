@@ -14,7 +14,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-namespace nexo {
+namespace parallax {
 
     //==========================================================================
     // VRHeadsetTrackingSystem
@@ -236,7 +236,7 @@ namespace nexo {
         if (thumbstick.y > 0.5f && !teleportState.isAiming)
         {
             teleportState.isAiming = true;
-            LOG(NEXO_TRACE, "[VR] Teleport aiming started");
+            LOG(PARALLAX_TRACE, "[VR] Teleport aiming started");
         }
 
         if (teleportState.isAiming)
@@ -253,7 +253,7 @@ namespace nexo {
                 if (teleportState.hasValidTarget)
                 {
                     transform.pos = teleportState.targetPosition;
-                    LOG(NEXO_INFO, "[VR] Teleported to ({}, {}, {})",
+                    LOG(PARALLAX_INFO, "[VR] Teleported to ({}, {}, {})",
                         transform.pos.x, transform.pos.y, transform.pos.z);
 
                     // Haptic feedback
@@ -322,7 +322,7 @@ namespace nexo {
                 // Haptic feedback
                 m_openXR.triggerHaptic(VRHand::RIGHT, 0.3f, 80.0f, 0.05f);
 
-                LOG(NEXO_TRACE, "[VR] Snap turn: {} degrees", angle);
+                LOG(PARALLAX_TRACE, "[VR] Snap turn: {} degrees", angle);
             }
 
             if (std::abs(thumbstick.x) < 0.3f)
@@ -442,7 +442,7 @@ namespace nexo {
                 m_openXR.triggerHaptic(controller.hand, interactable->hapticAmplitude, 150.0f,
                                         interactable->hapticDuration);
 
-                LOG(NEXO_INFO, "[VR] Grabbed object with {} hand", (int)controller.hand);
+                LOG(PARALLAX_INFO, "[VR] Grabbed object with {} hand", (int)controller.hand);
             }
         }
         else if (!gripPressed)
@@ -456,7 +456,7 @@ namespace nexo {
                 {
                     interactable.isGrabbed = false;
                     interactable.grabbingController = entt::null;
-                    LOG(NEXO_INFO, "[VR] Released object");
+                    LOG(PARALLAX_INFO, "[VR] Released object");
                 }
             }
         }
@@ -523,7 +523,7 @@ namespace nexo {
     {
         // TODO: Implement vignette shader rendering
         // This would render a radial gradient overlay to reduce peripheral vision
-        LOG(NEXO_TRACE, "[VR] Rendering vignette: strength={}", strength);
+        LOG(PARALLAX_TRACE, "[VR] Rendering vignette: strength={}", strength);
     }
 
     void VRComfortSystem::checkPlayAreaProximity(entt::entity entity, const TransformComponent& transform,
@@ -548,4 +548,4 @@ namespace nexo {
         m_openXR.beginFrame();
     }
 
-} // namespace nexo
+} // namespace parallax

@@ -23,7 +23,7 @@
     #include "opengl/OpenGlShaderStorageBuffer.hpp"
 #endif
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
 	std::shared_ptr<NxShaderStorageBuffer> NxShaderStorageBuffer::create(unsigned int size)
 	{

@@ -194,7 +194,7 @@ EXPORT_PLUGIN(MyPlugin)
 7. **Scroll Zoom Fix** - Prevent Scene Tree scroll zoom conflict
 
 ### Low Priority:
-8. **Nexo → Parallax Rename** - Global find-replace
+8. **Parallax → Parallax Rename** - Global find-replace
 9. **Advanced Materials UI** - Better material editing
 10. **Plugin Marketplace** - Browse and install plugins
 

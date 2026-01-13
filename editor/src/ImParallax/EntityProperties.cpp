@@ -16,12 +16,12 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "ImNexo/ImNexo.hpp"
+#include "ImParallax/ImParallax.hpp"
 #include "Widgets.hpp"
 #include "Guard.hpp"
 #include "EntityProperties.hpp"
 #include "IconsFontAwesome.h"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "components/Camera.hpp"
 #include "context/Selector.hpp"
 #include "components/Uuid.hpp"
@@ -30,9 +30,9 @@
 #include "math/Vector.hpp"
 #include "math/Light.hpp"
 
-namespace ImNexo {
+namespace ImParallax {
 
-    void Ambient(nexo::components::AmbientLightComponent &ambientComponent)
+    void Ambient(parallax::components::AmbientLightComponent &ambientComponent)
     {
         ImGui::Spacing();
         static ImGuiColorEditFlags colorPickerMode = ImGuiColorEditFlags_PickerHueBar;
@@ -45,7 +45,7 @@ namespace ImNexo {
         ambientComponent.color = color;
     }
 
-    void DirectionalLight(nexo::components::DirectionalLightComponent &directionalComponent)
+    void DirectionalLight(parallax::components::DirectionalLightComponent &directionalComponent)
     {
         ImGui::Spacing();
         static ImGuiColorEditFlags colorPickerMode = ImGuiColorEditFlags_PickerHueBar;
@@ -73,8 +73,8 @@ namespace ImNexo {
     }
 
     void PointLight(
-        nexo::components::PointLightComponent &pointComponent,
-        nexo::components::TransformComponent &pointTransform
+        parallax::components::PointLightComponent &pointComponent,
+        parallax::components::TransformComponent &pointTransform
     ) {
         ImGui::Spacing();
         static ImGuiColorEditFlags colorPickerMode = ImGuiColorEditFlags_PickerHueBar;
@@ -103,7 +103,7 @@ namespace ImNexo {
         ImGui::SameLine();
         if (ImGui::DragFloat("##DistanceSlider", &pointComponent.maxDistance, 1.0f, 1.0f, 3250.0f)) {
             // Recompute the attenuation from the distance
-            auto [lin, quad] = nexo::math::computeAttenuationFromDistance(pointComponent.maxDistance);
+            auto [lin, quad] = parallax::math::computeAttenuationFromDistance(pointComponent.maxDistance);
             pointComponent.constant = 1.0f;
             pointComponent.linear = lin;
             pointComponent.quadratic = quad;
@@ -117,7 +117,7 @@ namespace ImNexo {
         ImGui::PopStyleVar();
     }
 
-    void SpotLight(nexo::components::SpotLightComponent &spotComponent, nexo::components::TransformComponent &spotTransform)
+    void SpotLight(parallax::components::SpotLightComponent &spotComponent, parallax::components::TransformComponent &spotTransform)
     {
         ImGui::Spacing();
     	static ImGuiColorEditFlags colorPickerMode = ImGuiColorEditFlags_PickerHueBar;
@@ -151,7 +151,7 @@ namespace ImNexo {
 
             if (RowDragFloat1("Distance", "", &spotComponent.maxDistance, 1.0f, 3250.0f, 1.0f))
             {
-					auto [lin, quad] = nexo::math::computeAttenuationFromDistance(spotComponent.maxDistance);
+					auto [lin, quad] = parallax::math::computeAttenuationFromDistance(spotComponent.maxDistance);
 					spotComponent.linear = lin;
 					spotComponent.quadratic = quad;
             }
@@ -168,7 +168,7 @@ namespace ImNexo {
         ImGui::PopStyleVar();
     }
 
-    void Transform(nexo::components::TransformComponent &transformComponent, glm::vec3 &lastDisplayedEuler)
+    void Transform(parallax::components::TransformComponent &transformComponent, glm::vec3 &lastDisplayedEuler)
 	{
 	    // Increase cell padding so rows have more space:
            ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(5.0f, 10.0f));
@@ -208,7 +208,7 @@ namespace ImNexo {
            ImGui::PopStyleVar();
 	}
 
-	void Camera(nexo::components::CameraComponent &cameraComponent)
+	void Camera(parallax::components::CameraComponent &cameraComponent)
 	{
         ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(5.0f, 10.0f));
         if (ImGui::BeginTable("CameraInspectorViewPortParams", 4,
@@ -263,32 +263,32 @@ namespace ImNexo {
         ColorEditor("##ColorEditor Spot light", &cameraComponent.clearColor, &colorPickerMode, &showColorPicker);
 	}
 
-	void CameraTarget(nexo::components::PerspectiveCameraTarget &cameraTargetComponent)
+	void CameraTarget(parallax::components::PerspectiveCameraTarget &cameraTargetComponent)
 	{
         ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(5.0f, 10.0f));
         if (ImGui::BeginTable("InspectorControllerTable", 2,
                             ImGuiTableFlags_SizingStretchProp))
         {
-            auto &selector = nexo::editor::Selector::get();
+            auto &selector = parallax::editor::Selector::get();
             ImGui::TableSetupColumn("##Label", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
             ImGui::TableSetupColumn("##X", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
 
-            const std::vector<nexo::ecs::Entity> &entities = nexo::Application::m_coordinator->getAllEntitiesWith<
-                                                            nexo::components::TransformComponent,
-                                                            nexo::ecs::Exclude<nexo::components::CameraComponent>,
-                                                            nexo::ecs::Exclude<nexo::components::DirectionalLightComponent>,
-                                                            nexo::ecs::Exclude<nexo::components::PointLightComponent>,
-                                                            nexo::ecs::Exclude<nexo::components::AmbientLightComponent>,
-                                                            nexo::ecs::Exclude<nexo::components::SpotLightComponent>>();
+            const std::vector<parallax::ecs::Entity> &entities = parallax::Application::m_coordinator->getAllEntitiesWith<
+                                                            parallax::components::TransformComponent,
+                                                            parallax::ecs::Exclude<parallax::components::CameraComponent>,
+                                                            parallax::ecs::Exclude<parallax::components::DirectionalLightComponent>,
+                                                            parallax::ecs::Exclude<parallax::components::PointLightComponent>,
+                                                            parallax::ecs::Exclude<parallax::components::AmbientLightComponent>,
+                                                            parallax::ecs::Exclude<parallax::components::SpotLightComponent>>();
 
             RowDragFloat1("Mouse sensitivity", "", &cameraTargetComponent.mouseSensitivity, 0.1f);
             RowDragFloat1("Distance", "", &cameraTargetComponent.distance, 0.1f);
             RowEntityDropdown(
                 "Target Entity",
                 cameraTargetComponent.targetEntity, entities,
-                [&selector](const nexo::ecs::Entity e) {
+                [&selector](const parallax::ecs::Entity e) {
                     return selector.getUiHandle(
-                        nexo::Application::m_coordinator->getComponent<nexo::components::UuidComponent>(e).uuid,
+                        parallax::Application::m_coordinator->getComponent<parallax::components::UuidComponent>(e).uuid,
                         std::to_string(e)
                     );
                 }
@@ -298,7 +298,7 @@ namespace ImNexo {
         ImGui::PopStyleVar();
 	}
 
-	void CameraController(nexo::components::PerspectiveCameraController &cameraControllerComponent)
+	void CameraController(parallax::components::PerspectiveCameraController &cameraControllerComponent)
 	{
         ImGui::Spacing();
 

@@ -22,7 +22,7 @@
 
 #include <glm/glm.hpp>
 
-namespace nexo {
+namespace parallax {
 	class CameraFactory {
 		public:
 			static ecs::Entity createPerspectiveCamera(glm::vec3 pos, unsigned int width,

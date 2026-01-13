@@ -22,7 +22,7 @@
 #endif
 
 
-namespace nexo::event {
+namespace parallax::event {
 
     std::shared_ptr<Input> Input::_instance = nullptr;
 

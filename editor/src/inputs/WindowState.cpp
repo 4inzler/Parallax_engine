@@ -18,7 +18,7 @@
 
 #include "WindowState.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     unsigned int WindowState::getId() const
     {

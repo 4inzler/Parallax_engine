@@ -20,7 +20,7 @@
 #include <optional>
 #include <iostream>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
 	void DockingRegistry::setDockId(const std::string& name, const ImGuiID id)
 	{

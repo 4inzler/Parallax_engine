@@ -19,7 +19,7 @@
 #include <cmath>
 #include <cstring>
 
-namespace nexo::vr {
+namespace parallax::vr {
 
     //==========================================================================
     // Helper: Convert OpenXR types to GLM
@@ -86,39 +86,39 @@ namespace nexo::vr {
     {
         if (m_initialized)
         {
-            LOG(NEXO_WARN, "[OpenXR] Already initialized");
+            LOG(PARALLAX_WARN, "[OpenXR] Already initialized");
             return true;
         }
 
-        LOG(NEXO_INFO, "[OpenXR] Initializing OpenXR runtime...");
+        LOG(PARALLAX_INFO, "[OpenXR] Initializing OpenXR runtime...");
         m_graphicsAPI = api;
 
         if (!enumerateExtensions())
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to enumerate extensions");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to enumerate extensions");
             return false;
         }
 
         if (!createInstanceInternal())
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to create XrInstance");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to create XrInstance");
             return false;
         }
 
         if (!getSystem())
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to get XrSystem");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to get XrSystem");
             return false;
         }
 
         if (!enumerateViewConfigurations())
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to enumerate view configurations");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to enumerate view configurations");
             return false;
         }
 
         m_initialized = true;
-        LOG(NEXO_INFO, "[OpenXR] Initialized successfully. Runtime: {}, System: {}",
+        LOG(PARALLAX_INFO, "[OpenXR] Initialized successfully. Runtime: {}, System: {}",
             m_runtimeName, m_systemName);
 
         return true;
@@ -129,7 +129,7 @@ namespace nexo::vr {
         if (!m_initialized)
             return;
 
-        LOG(NEXO_INFO, "[OpenXR] Shutting down...");
+        LOG(PARALLAX_INFO, "[OpenXR] Shutting down...");
 
         destroySession();
         destroyActions();
@@ -153,7 +153,7 @@ namespace nexo::vr {
         m_stageSpace = nullptr;
         m_initialized = false;
 
-        LOG(NEXO_INFO, "[OpenXR] Shutdown complete");
+        LOG(PARALLAX_INFO, "[OpenXR] Shutdown complete");
     }
 
     bool OpenXRManager::enumerateExtensions()
@@ -164,10 +164,10 @@ namespace nexo::vr {
         std::vector<XrExtensionProperties> extensions(extensionCount, {XR_TYPE_EXTENSION_PROPERTIES});
         xrEnumerateInstanceExtensionProperties(nullptr, extensionCount, &extensionCount, extensions.data());
 
-        LOG(NEXO_INFO, "[OpenXR] Available extensions: {}", extensionCount);
+        LOG(PARALLAX_INFO, "[OpenXR] Available extensions: {}", extensionCount);
         for (const auto& ext : extensions)
         {
-            LOG(NEXO_TRACE, "[OpenXR]   - {}", ext.extensionName);
+            LOG(PARALLAX_TRACE, "[OpenXR]   - {}", ext.extensionName);
         }
 
         return true;
@@ -190,7 +190,7 @@ namespace nexo::vr {
         XrResult result = xrCreateInstance(&createInfo, reinterpret_cast<XrInstance*>(&m_instance));
         if (XR_FAILED(result))
         {
-            LOG(NEXO_ERROR, "[OpenXR] xrCreateInstance failed: {}", (int)result);
+            LOG(PARALLAX_ERROR, "[OpenXR] xrCreateInstance failed: {}", (int)result);
             return false;
         }
 
@@ -210,7 +210,7 @@ namespace nexo::vr {
         XrResult result = xrGetSystem(m_instance, &systemInfo, reinterpret_cast<XrSystemId*>(&m_systemId));
         if (XR_FAILED(result))
         {
-            LOG(NEXO_ERROR, "[OpenXR] xrGetSystem failed: {}", (int)result);
+            LOG(PARALLAX_ERROR, "[OpenXR] xrGetSystem failed: {}", (int)result);
             return false;
         }
 
@@ -219,9 +219,9 @@ namespace nexo::vr {
         xrGetSystemProperties(m_instance, m_systemId, &systemProps);
         m_systemName = systemProps.systemName;
 
-        LOG(NEXO_INFO, "[OpenXR] System: {}", m_systemName);
-        LOG(NEXO_INFO, "[OpenXR]   Max layers: {}", systemProps.graphicsProperties.maxLayerCount);
-        LOG(NEXO_INFO, "[OpenXR]   Max swapchain size: {}x{}",
+        LOG(PARALLAX_INFO, "[OpenXR] System: {}", m_systemName);
+        LOG(PARALLAX_INFO, "[OpenXR]   Max layers: {}", systemProps.graphicsProperties.maxLayerCount);
+        LOG(PARALLAX_INFO, "[OpenXR]   Max swapchain size: {}x{}",
             systemProps.graphicsProperties.maxSwapchainImageWidth,
             systemProps.graphicsProperties.maxSwapchainImageHeight);
 
@@ -242,7 +242,7 @@ namespace nexo::vr {
 
         if (viewCount != 2)
         {
-            LOG(NEXO_ERROR, "[OpenXR] Expected 2 views for stereo, got {}", viewCount);
+            LOG(PARALLAX_ERROR, "[OpenXR] Expected 2 views for stereo, got {}", viewCount);
             return false;
         }
 
@@ -252,7 +252,7 @@ namespace nexo::vr {
             m_eyeRenderInfo[i].width = views[i].recommendedImageRectWidth;
             m_eyeRenderInfo[i].height = views[i].recommendedImageRectHeight;
 
-            LOG(NEXO_INFO, "[OpenXR] Eye {}: recommended {}x{}, max {}x{}",
+            LOG(PARALLAX_INFO, "[OpenXR] Eye {}: recommended {}x{}, max {}x{}",
                 i, views[i].recommendedImageRectWidth, views[i].recommendedImageRectHeight,
                 views[i].maxImageRectWidth, views[i].maxImageRectHeight);
         }
@@ -268,11 +268,11 @@ namespace nexo::vr {
     {
         if (m_session)
         {
-            LOG(NEXO_WARN, "[OpenXR] Session already exists");
+            LOG(PARALLAX_WARN, "[OpenXR] Session already exists");
             return true;
         }
 
-        LOG(NEXO_INFO, "[OpenXR] Creating session...");
+        LOG(PARALLAX_INFO, "[OpenXR] Creating session...");
 
         // OpenGL graphics binding (platform-specific)
         #ifdef _WIN32
@@ -293,25 +293,25 @@ namespace nexo::vr {
         XrResult result = xrCreateSession(m_instance, &sessionInfo, reinterpret_cast<XrSession*>(&m_session));
         if (XR_FAILED(result))
         {
-            LOG(NEXO_ERROR, "[OpenXR] xrCreateSession failed: {}", (int)result);
+            LOG(PARALLAX_ERROR, "[OpenXR] xrCreateSession failed: {}", (int)result);
             return false;
         }
 
         if (!createSpaces())
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to create reference spaces");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to create reference spaces");
             return false;
         }
 
         if (!createSwapchains())
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to create swapchains");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to create swapchains");
             return false;
         }
 
         if (!createActions())
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to create action system");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to create action system");
             return false;
         }
 
@@ -322,12 +322,12 @@ namespace nexo::vr {
         result = xrBeginSession(m_session, &beginInfo);
         if (XR_FAILED(result))
         {
-            LOG(NEXO_ERROR, "[OpenXR] xrBeginSession failed: {}", (int)result);
+            LOG(PARALLAX_ERROR, "[OpenXR] xrBeginSession failed: {}", (int)result);
             return false;
         }
 
         m_sessionState = SessionState::READY;
-        LOG(NEXO_INFO, "[OpenXR] Session created and started");
+        LOG(PARALLAX_INFO, "[OpenXR] Session created and started");
 
         return true;
     }
@@ -337,7 +337,7 @@ namespace nexo::vr {
         if (!m_session)
             return;
 
-        LOG(NEXO_INFO, "[OpenXR] Destroying session...");
+        LOG(PARALLAX_INFO, "[OpenXR] Destroying session...");
 
         xrEndSession(m_session);
         xrDestroySession(m_session);
@@ -355,7 +355,7 @@ namespace nexo::vr {
         spaceInfo.referenceSpaceType = XR_REFERENCE_SPACE_TYPE_VIEW;
         if (XR_FAILED(xrCreateReferenceSpace(m_session, &spaceInfo, &m_viewSpace)))
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to create VIEW space");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to create VIEW space");
             return false;
         }
 
@@ -363,7 +363,7 @@ namespace nexo::vr {
         spaceInfo.referenceSpaceType = XR_REFERENCE_SPACE_TYPE_LOCAL;
         if (XR_FAILED(xrCreateReferenceSpace(m_session, &spaceInfo, &m_localSpace)))
         {
-            LOG(NEXO_ERROR, "[OpenXR] Failed to create LOCAL space");
+            LOG(PARALLAX_ERROR, "[OpenXR] Failed to create LOCAL space");
             return false;
         }
 
@@ -372,11 +372,11 @@ namespace nexo::vr {
         XrResult result = xrCreateReferenceSpace(m_session, &spaceInfo, &m_stageSpace);
         if (XR_FAILED(result))
         {
-            LOG(NEXO_WARN, "[OpenXR] STAGE space not supported, using LOCAL instead");
+            LOG(PARALLAX_WARN, "[OpenXR] STAGE space not supported, using LOCAL instead");
             m_stageSpace = m_localSpace;  // Fallback
         }
 
-        LOG(NEXO_INFO, "[OpenXR] Reference spaces created");
+        LOG(PARALLAX_INFO, "[OpenXR] Reference spaces created");
         return true;
     }
 
@@ -398,7 +398,7 @@ namespace nexo::vr {
             XrResult result = xrCreateSwapchain(m_session, &swapchainInfo, &swapchain);
             if (XR_FAILED(result))
             {
-                LOG(NEXO_ERROR, "[OpenXR] Failed to create swapchain for eye {}", eye);
+                LOG(PARALLAX_ERROR, "[OpenXR] Failed to create swapchain for eye {}", eye);
                 return false;
             }
 
@@ -418,7 +418,7 @@ namespace nexo::vr {
                 m_eyeRenderInfo[eye].swapchainImages.push_back(img.image);
             }
 
-            LOG(NEXO_INFO, "[OpenXR] Swapchain for eye {}: {} images, {}x{}",
+            LOG(PARALLAX_INFO, "[OpenXR] Swapchain for eye {}: {} images, {}x{}",
                 eye, imageCount, swapchainInfo.width, swapchainInfo.height);
         }
 
@@ -430,7 +430,7 @@ namespace nexo::vr {
         // TODO: Implement action system for input
         // This would create XrActionSet, XrAction for buttons/triggers/thumbsticks
         // For now, just return true (input not yet implemented)
-        LOG(NEXO_WARN, "[OpenXR] Action system not yet implemented");
+        LOG(PARALLAX_WARN, "[OpenXR] Action system not yet implemented");
         return true;
     }
 
@@ -454,7 +454,7 @@ namespace nexo::vr {
         XrResult result = xrWaitFrame(m_session, &waitInfo, &frameState);
         if (XR_FAILED(result))
         {
-            LOG(NEXO_ERROR, "[OpenXR] xrWaitFrame failed: {}", (int)result);
+            LOG(PARALLAX_ERROR, "[OpenXR] xrWaitFrame failed: {}", (int)result);
             return false;
         }
 
@@ -462,7 +462,7 @@ namespace nexo::vr {
         result = xrBeginFrame(m_session, &beginInfo);
         if (XR_FAILED(result))
         {
-            LOG(NEXO_ERROR, "[OpenXR] xrBeginFrame failed: {}", (int)result);
+            LOG(PARALLAX_ERROR, "[OpenXR] xrBeginFrame failed: {}", (int)result);
             return false;
         }
 
@@ -485,7 +485,7 @@ namespace nexo::vr {
         XrResult result = xrEndFrame(m_session, &endInfo);
         if (XR_FAILED(result))
         {
-            LOG(NEXO_ERROR, "[OpenXR] xrEndFrame failed: {}", (int)result);
+            LOG(PARALLAX_ERROR, "[OpenXR] xrEndFrame failed: {}", (int)result);
             return false;
         }
 
@@ -607,7 +607,7 @@ namespace nexo::vr {
     void OpenXRManager::triggerHaptic(VRHand hand, float amplitude, float frequency, float duration)
     {
         // TODO: Implement haptic feedback via xrApplyHapticFeedback()
-        LOG(NEXO_TRACE, "[OpenXR] Haptic feedback: hand={}, amp={}, freq={}, dur={}",
+        LOG(PARALLAX_TRACE, "[OpenXR] Haptic feedback: hand={}, amp={}, freq={}, dur={}",
             (int)hand, amplitude, frequency, duration);
     }
 
@@ -621,4 +621,4 @@ namespace nexo::vr {
         return !m_playAreaBounds.empty();
     }
 
-} // namespace nexo::vr
+} // namespace parallax::vr

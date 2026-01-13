@@ -12,7 +12,7 @@
 //
 //  Author:      Guillaume HEIN
 //  Date:        10/11/2024
-//  Description: Main file for the nexo editor
+//  Description: Main file for the parallax editor
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -37,19 +37,19 @@ int main(int argc, char **argv)
 try {
     loguru::init(argc, argv);
     loguru::g_stderr_verbosity = loguru::Verbosity_3;
-    nexo::editor::Editor &editor = nexo::editor::Editor::getInstance();
+    parallax::editor::Editor &editor = parallax::editor::Editor::getInstance();
 
-    editor.registerWindow<nexo::editor::EditorScene>(
-        std::format("Default Scene{}{}", NEXO_WND_USTRID_DEFAULT_SCENE, 0)
+    editor.registerWindow<parallax::editor::EditorScene>(
+        std::format("Default Scene{}{}", PARALLAX_WND_USTRID_DEFAULT_SCENE, 0)
     );
-    editor.registerWindow<nexo::editor::SceneTreeWindow>(NEXO_WND_USTRID_SCENE_TREE);
-    editor.registerWindow<nexo::editor::InspectorWindow>(NEXO_WND_USTRID_INSPECTOR);
-    editor.registerWindow<nexo::editor::ConsoleWindow>(NEXO_WND_USTRID_CONSOLE);
-    editor.registerWindow<nexo::editor::MaterialInspector>(NEXO_WND_USTRID_MATERIAL_INSPECTOR);
-    editor.registerWindow<nexo::editor::PrimitiveWindow>(NEXO_WND_USTRID_PRIMITIVE_WINDOW);
-    editor.registerWindow<nexo::editor::AssetManagerWindow>(NEXO_WND_USTRID_ASSET_MANAGER);
+    editor.registerWindow<parallax::editor::SceneTreeWindow>(PARALLAX_WND_USTRID_SCENE_TREE);
+    editor.registerWindow<parallax::editor::InspectorWindow>(PARALLAX_WND_USTRID_INSPECTOR);
+    editor.registerWindow<parallax::editor::ConsoleWindow>(PARALLAX_WND_USTRID_CONSOLE);
+    editor.registerWindow<parallax::editor::MaterialInspector>(PARALLAX_WND_USTRID_MATERIAL_INSPECTOR);
+    editor.registerWindow<parallax::editor::PrimitiveWindow>(PARALLAX_WND_USTRID_PRIMITIVE_WINDOW);
+    editor.registerWindow<parallax::editor::AssetManagerWindow>(PARALLAX_WND_USTRID_ASSET_MANAGER);
 
-    if (const auto defaultScene = editor.getWindow<nexo::editor::EditorScene>(std::format("Default Scene{}{}", NEXO_WND_USTRID_DEFAULT_SCENE, 0)).lock())
+    if (const auto defaultScene = editor.getWindow<parallax::editor::EditorScene>(std::format("Default Scene{}{}", PARALLAX_WND_USTRID_DEFAULT_SCENE, 0)).lock())
         defaultScene->setDefault();
 
     editor.init();
@@ -68,13 +68,13 @@ try {
 
     editor.shutdown();
     return 0;
-} catch (const nexo::Exception &e) {
+} catch (const parallax::Exception &e) {
     LOG_EXCEPTION(e);
     return 1;
 } catch (const std::exception &e) {
-    LOG(NEXO_ERROR, "Unhandled exception: {}", e.what());
+    LOG(PARALLAX_ERROR, "Unhandled exception: {}", e.what());
     return 1;
 } catch (...) {
-    LOG(NEXO_ERROR, "Unhandled unknown exception");
+    LOG(PARALLAX_ERROR, "Unhandled unknown exception");
     return 1;
 }

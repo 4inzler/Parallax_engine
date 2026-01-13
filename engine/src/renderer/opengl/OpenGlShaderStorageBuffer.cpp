@@ -19,7 +19,7 @@
 #include <glad/glad.h>
 #include "OpenGlShaderStorageBuffer.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 	NxOpenGlShaderStorageBuffer::NxOpenGlShaderStorageBuffer(const unsigned int size)
 	{
 		glCreateBuffers(1, &m_id);

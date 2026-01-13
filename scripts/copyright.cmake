@@ -8,7 +8,7 @@
 #
 #  Author:      Guillaume HEIN
 #  Date:        15/04/2025
-#  Description: CMake to generate the copyright file for the NEXO project.
+#  Description: CMake to generate the copyright file for the PARALLAX project.
 #
 ###############################################################################
 
@@ -16,9 +16,9 @@ cmake_minimum_required(VERSION 3.28)
 
 message(STATUS "Generating copyright file...")
 
-set(UPSTREAM_NAME "NEXO Engine")
-set(UPSTREAM_CONTACT "NEXO Engine Team <nexo.engine@gmail.com>")
-set(UPSTREAM_SOURCE "https://github.com/NexoEngine/game-engine")
+set(UPSTREAM_NAME "PARALLAX Engine")
+set(UPSTREAM_CONTACT "PARALLAX Engine Team <parallax.engine@gmail.com>")
+set(UPSTREAM_SOURCE "https://github.com/ParallaxEngine/game-engine")
 
 set(COPYRIGHT_LIST "")
 

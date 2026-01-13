@@ -27,7 +27,7 @@
 #include "Attributes.hpp"
 #include "UniformCache.hpp"
 
-namespace nexo::renderer
+namespace parallax::renderer
 {
     enum class NxShaderUniforms
     {

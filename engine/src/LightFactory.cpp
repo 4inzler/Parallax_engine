@@ -23,7 +23,7 @@
 #include "components/Transform.hpp"
 #include "components/Uuid.hpp"
 
-namespace nexo {
+namespace parallax {
 	ecs::Entity LightFactory::createAmbientLight(const glm::vec3 color)
 	{
 		const ecs::Entity newAmbientLight = Application::m_coordinator->createEntity();

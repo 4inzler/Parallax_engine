@@ -24,14 +24,14 @@
 #include "ecs/Coordinator.hpp"
 
 // Forward declarations to avoid circular dependencies
-namespace nexo::ecs {
+namespace parallax::ecs {
     class Coordinator;
 }
 
-namespace nexo::scene {
+namespace parallax::scene {
 
 // Create a mock for the Coordinator class
-class MockCoordinator : public nexo::ecs::Coordinator {
+class MockCoordinator : public parallax::ecs::Coordinator {
 public:
     // Define the Entity type to match what's used in the real code
     using Entity = std::uint32_t;
@@ -46,13 +46,13 @@ class SceneManagerTest : public ::testing::Test {
 protected:
     void SetUp() override {
         // Reset nextSceneId to ensure predictable scene IDs in tests
-        nexo::scene::nextSceneId = 0;
+        parallax::scene::nextSceneId = 0;
 
         // Create a mock coordinator
         mockCoordinator = std::make_shared<MockCoordinator>();
 
         // This cast is necessary since Scene expects a shared_ptr<ecs::Coordinator>
-        coordinator = std::static_pointer_cast<nexo::ecs::Coordinator>(mockCoordinator);
+        coordinator = std::static_pointer_cast<parallax::ecs::Coordinator>(mockCoordinator);
 
         // Create a fresh SceneManager for each test
         manager = std::make_unique<SceneManager>();
@@ -60,7 +60,7 @@ protected:
     }
 
     std::shared_ptr<MockCoordinator> mockCoordinator;
-    std::shared_ptr<nexo::ecs::Coordinator> coordinator;
+    std::shared_ptr<parallax::ecs::Coordinator> coordinator;
     std::unique_ptr<SceneManager> manager;
 };
 
@@ -285,4 +285,4 @@ TEST_F(SceneManagerTest, CreateSceneAfterReset) {
     EXPECT_EQ(sceneId2, 1);
 }
 
-} // namespace nexo::scene
+} // namespace parallax::scene

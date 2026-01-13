@@ -19,7 +19,7 @@
 #include <gtest/gtest.h>
 #include "renderer/RendererExceptions.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     TEST(RendererExceptionsTest, FileNotFoundException) {
         constexpr const char* expectedFile = __FILE__;

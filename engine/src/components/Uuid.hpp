@@ -20,7 +20,7 @@
 #include <string>
 #include <random>
 
-namespace nexo::components {
+namespace parallax::components {
 	//TODO: Implement a safer uuid generator
 	inline std::string genUuid()
 	{

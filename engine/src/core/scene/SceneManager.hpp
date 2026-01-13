@@ -20,7 +20,7 @@
 #include "ecs/Coordinator.hpp"
 #include "Scene.hpp"
 
-namespace nexo::scene {
+namespace parallax::scene {
 	using SceneId = unsigned int;
 
 	/**

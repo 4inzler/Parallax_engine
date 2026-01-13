@@ -12,11 +12,11 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <ImNexo/Elements.hpp>
+#include <ImParallax/Elements.hpp>
 
 #include "AssetManagerWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
      * @brief Displays the right-click menu for assets.
@@ -45,7 +45,7 @@ namespace nexo::editor {
 
         ImGui::Text("Are you sure you want to delete %s?", assetName.c_str());
         ImGui::Separator();
-        if (Button("Delete", ImNexo::VALIDATION)) {
+        if (Button("Delete", ImParallax::VALIDATION)) {
             // TODO: Check if the asset is used before deleting
             // if (m_assetActionState.assetData->isUsed()) {
             //     m_popupManager.openPopup("Delete Used Asset Popup");
@@ -62,7 +62,7 @@ namespace nexo::editor {
             }
             // }
             ImGui::SameLine();
-            if (Button("Cancel", ImNexo::CANCEL)) {
+            if (Button("Cancel", ImParallax::CANCEL)) {
                 m_assetActionState.reset();
                 PopupManager::closePopup();
             }
@@ -80,7 +80,7 @@ namespace nexo::editor {
 
         ImGui::Text("%s is used by one or more entities.\nAre you sure you want to delete it?", assetName.c_str());
         ImGui::Separator();
-        if (Button("Delete", ImNexo::VALIDATION) &&
+        if (Button("Delete", ImParallax::VALIDATION) &&
             assets::AssetCatalog::getInstance().deleteAsset(m_assetActionState.assetData->getID())) {
             m_assetActionState.reset();
             PopupManager::closePopup();
@@ -89,7 +89,7 @@ namespace nexo::editor {
             m_assetActionState.errorMessage = "Failed to delete the asset (may currently be in use)";
         }
         ImGui::SameLine();
-        if (Button("Cancel", ImNexo::CANCEL)) {
+        if (Button("Cancel", ImParallax::CANCEL)) {
             m_assetActionState.reset();
             PopupManager::closePopup();
         }
@@ -148,14 +148,14 @@ namespace nexo::editor {
         ImGui::Separator();
 
         // Buttons for renaming or canceling the action
-        if (Button("Rename", ImNexo::VALIDATION) && handleAssetRenaming(newName)) {
+        if (Button("Rename", ImParallax::VALIDATION) && handleAssetRenaming(newName)) {
             m_assetActionState.reset();
             newName = "";
             PopupManager::closePopup();
             isFocus = true;
         }
         ImGui::SameLine();
-        if (Button("Cancel", ImNexo::CANCEL)) {
+        if (Button("Cancel", ImParallax::CANCEL)) {
             m_assetActionState.reset();
             newName = "";
             PopupManager::closePopup();
@@ -179,11 +179,11 @@ namespace nexo::editor {
         ImGui::Text("Status: %s", m_assetActionState.assetData->isLoaded() ? "Loaded" : "Not Loaded");
 
         ImGui::Separator();
-        if (Button("Close", ImNexo::CANCEL)) {
+        if (Button("Close", ImParallax::CANCEL)) {
             m_assetActionState.reset();
             PopupManager::closePopup();
         }
         PopupManager::endPopup();
     }
 
-} // namespace nexo::editor
+} // namespace parallax::editor

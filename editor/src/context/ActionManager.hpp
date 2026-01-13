@@ -22,7 +22,7 @@
 #include "context/actions/EntityActions.hpp"
 #include <memory>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class ActionManager {
         public:

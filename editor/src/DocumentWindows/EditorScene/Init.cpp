@@ -28,7 +28,7 @@
 #include "assets/AssetImporter.hpp"
 #include "Path.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
     void EditorScene::setup()
     {
@@ -150,7 +150,7 @@ namespace nexo::editor
                                       const glm::vec4& color, system::ShapeType shapeType, JPH::EMotionType motionType)
         {
             ecs::Entity entity;
-            LOG(NEXO_DEV, "Creating entity of type: {}", static_cast<int>(shapeType));
+            LOG(PARALLAX_DEV, "Creating entity of type: {}", static_cast<int>(shapeType));
             switch (shapeType)
             {
                 case system::ShapeType::Box:
@@ -173,7 +173,7 @@ namespace nexo::editor
             }
             JPH::BodyID bodyId = app.getPhysicsSystem()->createBodyFromShape(entity, Application::m_coordinator->getComponent<components::TransformComponent>(entity), shapeType, motionType);
             if (bodyId.IsInvalid()) {
-                LOG(NEXO_ERROR, "Failed to create physics body for entity {}", entity);
+                LOG(PARALLAX_ERROR, "Failed to create physics body for entity {}", entity);
             }
             scene.addEntity(entity);
             return entity;

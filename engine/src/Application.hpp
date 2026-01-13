@@ -43,9 +43,9 @@
 #include "systems/TransformMatrixSystem.hpp"
 #include "systems/PhysicsSystem.hpp"
 
-#define NEXO_PROFILE(name) nexo::Timer timer##__LINE__(name, [&](ProfileResult profileResult) {m_profileResults.push_back(profileResult); })
+#define PARALLAX_PROFILE(name) parallax::Timer timer##__LINE__(name, [&](ProfileResult profileResult) {m_profileResults.push_back(profileResult); })
 
-namespace nexo {
+namespace parallax {
 
     namespace system {
         class ScriptingSystem;
@@ -168,18 +168,18 @@ namespace nexo {
 
             void handleEvent(event::EventAnySignal &event) override
             {
-                LOG(NEXO_INFO, "Received signal via {}", event);
+                LOG(PARALLAX_INFO, "Received signal via {}", event);
             }
 
             void handleEvent(event::EventSignal<SIGTERM>&) override
             {
-                LOG(NEXO_INFO, "Received terminate signal");
+                LOG(PARALLAX_INFO, "Received terminate signal");
                 m_isRunning = false;
             }
 
             void handleEvent(event::EventSignalInterrupt&) override
             {
-                LOG(NEXO_INFO, "Received interrupt signal");
+                LOG(PARALLAX_INFO, "Received interrupt signal");
                 m_isRunning = false;
             }
 

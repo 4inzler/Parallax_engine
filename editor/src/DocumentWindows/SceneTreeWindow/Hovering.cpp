@@ -18,7 +18,7 @@
 
 #include "SceneTreeWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void SceneTreeWindow::cameraHovered(const SceneObject &obj)
     {
@@ -31,7 +31,7 @@ namespace nexo::editor {
             cameraComponent.render = true;
             const unsigned int textureId = cameraComponent.m_renderTarget->getColorAttachmentId(0);
 
-            ImNexo::Image(
+            ImParallax::Image(
                 static_cast<ImTextureID>(static_cast<intptr_t>(textureId)),
                 ImVec2(previewSize, previewSize)
             );

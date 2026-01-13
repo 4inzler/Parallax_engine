@@ -22,7 +22,7 @@
 
 #include "inputs/WindowState.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     using WindowId = unsigned int;
 

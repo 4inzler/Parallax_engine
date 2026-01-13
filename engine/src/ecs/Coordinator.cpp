@@ -18,9 +18,9 @@
 
 #include "Coordinator.hpp"
 
-std::shared_ptr<nexo::ecs::Coordinator> nexo::ecs::System::coord = nullptr;
+std::shared_ptr<parallax::ecs::Coordinator> parallax::ecs::System::coord = nullptr;
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     void Coordinator::init()
     {
@@ -31,7 +31,7 @@ namespace nexo::ecs {
 
         System::coord = std::shared_ptr<Coordinator>(this, [](const Coordinator*) {});
 
-        LOG(NEXO_DEV, "ecs: Coordinator initialized");
+        LOG(PARALLAX_DEV, "ecs: Coordinator initialized");
     }
 
     Entity Coordinator::createEntity() const

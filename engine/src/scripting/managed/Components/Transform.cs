@@ -19,7 +19,7 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace Nexo.Components
+namespace Parallax.Components
 {
 
     [StructLayout(LayoutKind.Sequential)]

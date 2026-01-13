@@ -17,18 +17,18 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "MaterialProperty.hpp"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Elements.hpp"
 #include "Types.hpp"
 #include "components/Camera.hpp"
 #include "components/SceneComponents.hpp"
 #include "context/ThumbnailCache.hpp"
 #include "DocumentWindows/MaterialInspector/MaterialInspector.hpp"
 #include "assets/AssetCatalog.hpp"
-#include "ImNexo/Panels.hpp"
+#include "ImParallax/Panels.hpp"
 #include "utils/ScenePreview.hpp"
 #include <imgui.h>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void MaterialProperty::cleanupPopup(assets::AssetRef<assets::Material> &materialRef, utils::ScenePreviewOut &out)
     {
@@ -77,7 +77,7 @@ namespace nexo::editor {
             const auto material = materialRef.lock();
             components::Material& materialData = *material->getData();
 
-            if (ImNexo::MaterialInspector(materialData))
+            if (ImParallax::MaterialInspector(materialData))
                 ThumbnailCache::getInstance().updateMaterialThumbnail(materialRef);
 
             ImGui::EndChild();
@@ -103,7 +103,7 @@ namespace nexo::editor {
             const float displayWidth = displayHeight * aspectRatio;
 
             ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX() + 4, ImGui::GetCursorPosY() + 4));
-            ImNexo::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)),
+            ImParallax::Image(static_cast<ImTextureID>(static_cast<intptr_t>(textureId)),
                         ImVec2(displayWidth, displayHeight));
 
             ImGui::EndChild();
@@ -114,7 +114,7 @@ namespace nexo::editor {
 
         constexpr float buttonWidth = 120.0f;
 
-        if (ImNexo::Button("OK", ImVec2(buttonWidth, 0)))
+        if (ImParallax::Button("OK", ImVec2(buttonWidth, 0)))
         {
             // Create a new permanent material based on the preview material
             if (materialRef.isValid()) {
@@ -138,13 +138,13 @@ namespace nexo::editor {
 
                 auto& materialComponent = Application::m_coordinator->getComponent<components::MaterialComponent>(entity);
                 materialComponent.material = newMaterialRef;
-                LOG(NEXO_INFO, "Applied new material '{}' to entity {}", finalLocation.getFullLocation(), entity);
+                LOG(PARALLAX_INFO, "Applied new material '{}' to entity {}", finalLocation.getFullLocation(), entity);
             }
 
             cleanupPopup(materialRef, out);
         }
         ImGui::SameLine();
-        if (ImNexo::Button("Cancel", ImVec2(buttonWidth, 0)))
+        if (ImParallax::Button("Cancel", ImVec2(buttonWidth, 0)))
             cleanupPopup(materialRef, out);
     }
 
@@ -156,10 +156,10 @@ namespace nexo::editor {
             Application::m_coordinator->entityHasComponent<components::SpotLightComponent>(entity))
             return;
         const auto &materialComponent = Application::getEntityComponent<components::MaterialComponent>(entity);
-        if (ImNexo::Header("##MaterialNode", "Material Component"))
+        if (ImParallax::Header("##MaterialNode", "Material Component"))
         {
             const ImTextureID textureID = ThumbnailCache::getInstance().getMaterialThumbnail(materialComponent.material);
-            ImNexo::Image(textureID, ImVec2(64, 64));
+            ImParallax::Image(textureID, ImVec2(64, 64));
             ImGui::SameLine();
 
             ImGui::BeginGroup();
@@ -170,12 +170,12 @@ namespace nexo::editor {
                 ImGui::Combo("##MaterialType", &selectedMaterialIndex, materialTypes, IM_ARRAYSIZE(materialTypes));
 
                 // --- Material Action Buttons ---
-                if (ImNexo::Button("Create new material"))
+                if (ImParallax::Button("Create new material"))
                 {
                     m_popupManager.openPopup("Create new material", ImVec2(1440,900));
                 }
                 ImGui::SameLine();
-                if (ImNexo::Button("Modify Material"))
+                if (ImParallax::Button("Modify Material"))
                 {
                     m_inspector.setSubInspectorVisibility<MaterialInspector>(true);
                 }

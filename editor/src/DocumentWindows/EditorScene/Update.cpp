@@ -23,7 +23,7 @@
 #include "components/Uuid.hpp"
 #include "components/Parent.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     int EditorScene::sampleEntityTexture(const float mx, const float my) const
     {
         const auto &coord = Application::m_coordinator;

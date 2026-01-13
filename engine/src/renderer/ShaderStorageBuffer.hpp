@@ -20,7 +20,7 @@
 
 #include <memory>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 	class NxShaderStorageBuffer {
 		public:
 			virtual ~NxShaderStorageBuffer() = default;

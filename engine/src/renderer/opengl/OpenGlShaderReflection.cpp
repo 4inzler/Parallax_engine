@@ -20,7 +20,7 @@
 #include "Logger.hpp"
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     std::unordered_map<std::string, UniformInfo> ShaderReflection::reflectUniforms(unsigned int programId)
     {
@@ -29,7 +29,7 @@ namespace nexo::renderer {
         GLint linkStatus;
         glGetProgramiv(programId, GL_LINK_STATUS, &linkStatus);
         if (linkStatus != GL_TRUE) {
-            LOG(NEXO_ERROR, "Cannot reflect uniforms from unlinked program {}", programId);
+            LOG(PARALLAX_ERROR, "Cannot reflect uniforms from unlinked program {}", programId);
             return uniforms;
         }
 

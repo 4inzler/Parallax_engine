@@ -20,10 +20,10 @@
 
 #include "TypeErasedProperty.hpp"
 
-#include "ImNexo/Components.hpp"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Components.hpp"
+#include "ImParallax/Elements.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void showField(const ecs::Field& field, void *data)
     {
@@ -74,7 +74,7 @@ namespace nexo::editor {
                     ImGui::TableSetupColumn("##Y", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
                     ImGui::TableSetupColumn("##Z", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
 
-                    ImNexo::RowDragFloat3(field.name.c_str(), "X", "Y", "Z", static_cast<float *>(data));
+                    ImParallax::RowDragFloat3(field.name.c_str(), "X", "Y", "Z", static_cast<float *>(data));
 
                     ImGui::EndTable();
                 }
@@ -101,7 +101,7 @@ namespace nexo::editor {
             return;
         }
 
-        if (ImNexo::Header(std::format("##{}", m_description->name), m_description->name + " Component"))
+        if (ImParallax::Header(std::format("##{}", m_description->name), m_description->name + " Component"))
         {
             for (const auto& field : m_description->fields) {
                 // Move to pointer to next field data

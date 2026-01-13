@@ -28,7 +28,7 @@
 #include "AssetImporterInput.hpp"
 #include "json.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
     struct AssetDependency;
 
     class AssetImporterBase;
@@ -151,7 +151,7 @@ namespace nexo::assets {
             depLoc.setName(formatUniqueName(location.getName().data(), AssetType::TYPE, ++m_depUniqueId));
             if (m_depUniqueId > ASSET_MAX_DEPENDENCIES) {
                 // Prevent infinite loop
-                LOG(NEXO_ERROR, "Failed to generate unique name for asset: {}: couldn't find unique id", depLoc.getFullLocation());
+                LOG(PARALLAX_ERROR, "Failed to generate unique name for asset: {}: couldn't find unique id", depLoc.getFullLocation());
                 break;
             }
         }
@@ -176,4 +176,4 @@ namespace nexo::assets {
 
 
 
-} // namespace nexo::assets
+} // namespace parallax::assets

@@ -27,7 +27,7 @@
 #include "AssetPackName.hpp"
 #include "Path.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     class InvalidAssetLocation final : public Exception {
         public:
@@ -260,4 +260,4 @@ namespace nexo::assets {
     };
 
 
-} // namespace nexo::assets
+} // namespace parallax::assets

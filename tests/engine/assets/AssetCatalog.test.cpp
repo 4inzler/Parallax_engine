@@ -22,7 +22,7 @@
 #include "assets/Assets/Texture/Texture.hpp"
 #include "assets/Assets/Model/Model.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     class MockAssetCatalog : public AssetCatalog {
         public:
@@ -350,4 +350,4 @@ namespace nexo::assets {
 
 
     // TODO: Tests for getAssetsOfType and getAssetsOfTypeView would need to be added once the static_assert in these methods is resolved
-} // namespace nexo::assets
+} // namespace parallax::assets

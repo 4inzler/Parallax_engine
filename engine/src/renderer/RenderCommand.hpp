@@ -19,7 +19,7 @@
 
 #include "RendererAPI.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     /**
      * @class NxRenderCommand
      * @brief Provides a high-level interface for issuing rendering commands.

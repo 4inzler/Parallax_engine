@@ -286,7 +286,7 @@ Contributions are welcome! This project is developed by:
 - **Parel Development Team** - VR development and engine enhancements
 - **Project:** Parel VR - Next-generation VR gaming experience
 
-Based on the original NEXO Engine by the EPITECH Strasbourg team.
+Based on the original PARALLAX Engine by the EPITECH Strasbourg team.
 
 ### How to Contribute
 
@@ -298,11 +298,11 @@ Based on the original NEXO Engine by the EPITECH Strasbourg team.
 
 ## Acknowledgments
 
-Parallax Engine is built upon the foundation of **[NEXO Engine](https://github.com/NexoEngine/game-engine)**, created by talented students from EPITECH Strasbourg.
+Parallax Engine is built upon the foundation of **[PARALLAX Engine](https://github.com/ParallaxEngine/game-engine)**, created by talented students from EPITECH Strasbourg.
 
-### NEXO Engine Team
+### PARALLAX Engine Team
 
-We extend our deepest gratitude to the original NEXO Engine team:
+We extend our deepest gratitude to the original PARALLAX Engine team:
 - **Guillaume HEIN** ([@Thyodas](https://github.com/Thyodas))
 - **Jean CARDONNE** ([@jcardonne](https://github.com/jcardonne))
 - **Marie GIACOMEL** ([@Sauterelle57](https://github.com/Sauterelle57))
@@ -311,7 +311,7 @@ We extend our deepest gratitude to the original NEXO Engine team:
 
 Their excellent work on the core ECS architecture, rendering pipeline, editor framework, and build system made Parallax Engine possible.
 
-**What we inherited from NEXO:**
+**What we inherited from PARALLAX:**
 - Complete Entity-Component-System architecture
 - Modern C++20 codebase with excellent code quality
 - Robust OpenGL rendering pipeline with multi-camera support
@@ -330,11 +330,11 @@ Their excellent work on the core ECS architecture, rendering pipeline, editor fr
 
 For complete credits and third-party attributions, see **[CREDITS.md](CREDITS.md)**.
 
-### Links to NEXO Engine
+### Links to PARALLAX Engine
 
-- **Repository:** https://github.com/NexoEngine/game-engine
-- **Website:** https://www.nexo-engine.com/
-- **Documentation:** https://nexoengine.github.io/game-engine/
+- **Repository:** https://github.com/ParallaxEngine/game-engine
+- **Website:** https://www.parallax-engine.com/
+- **Documentation:** https://parallaxengine.github.io/game-engine/
 
 ## License
 
@@ -342,14 +342,14 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 **Original Copyright Notice:**
 ```
-Copyright (c) 2024-2025 NEXO Engine Team
+Copyright (c) 2024-2025 PARALLAX Engine Team
 ```
 
 **Derivative Work:**
 ```
 Copyright (c) 2026 Parel LLC / Arosen Systems
 Parallax Engine - Developed by Parel Development Team for Parel VR
-Based on NEXO Engine
+Based on PARALLAX Engine
 ```
 
 As required by the MIT License, the above copyright notices and permission notice must be included in all copies or substantial portions of the Software.

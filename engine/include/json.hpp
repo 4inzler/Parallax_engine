@@ -20,7 +20,7 @@
 
 #include <nlohmann/json.hpp>
 
-namespace nexo {
+namespace parallax {
 
     using json = nlohmann::json;
 
@@ -29,8 +29,8 @@ namespace nexo {
      *
      * To make a type JSONSerializable, implement the following non-member functions:
      * @code{.cpp}
-     * void to_json(nexo::json& j, const YourType& obj);
-     * void from_json(const nexo::json& j, YourType& obj);
+     * void to_json(parallax::json& j, const YourType& obj);
+     * void from_json(const parallax::json& j, YourType& obj);
      * @endcode
      *
      * @note See nlohmann::json documentation for detailed implementation guidelines.
@@ -41,4 +41,4 @@ namespace nexo {
         { from_json(j, obj) } -> std::same_as<void>;
     };
 
-} // namespace nexo
+} // namespace parallax

@@ -27,7 +27,7 @@
 #include <algorithm>
 #include <cstring>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
     /**
      * @class IComponentArray
      * @brief Base interface for all component array types.
@@ -215,7 +215,7 @@ namespace nexo::ecs {
             ensureSparseCapacity(entity);
 
             if (hasComponent(entity)) {
-                LOG(NEXO_WARN, "Entity {} already has component: {}", entity, typeid(T).name());
+                LOG(PARALLAX_WARN, "Entity {} already has component: {}", entity, typeid(T).name());
                 return;
             }
 
@@ -245,7 +245,7 @@ namespace nexo::ecs {
             ensureSparseCapacity(entity);
 
             if (hasComponent(entity)) {
-                LOG(NEXO_WARN, "Entity {} already has component: {}", entity, typeid(T).name());
+                LOG(PARALLAX_WARN, "Entity {} already has component: {}", entity, typeid(T).name());
                 return;
             }
 

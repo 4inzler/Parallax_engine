@@ -24,7 +24,7 @@
 
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     void NxOpenGlRendererApi::init()
     {
@@ -45,7 +45,7 @@ namespace nexo::renderer {
         m_maxWidth = static_cast<unsigned int>(maxViewportSize[0]);
         m_maxHeight = static_cast<unsigned int>(maxViewportSize[1]);
         m_initialized = true;
-        LOG(NEXO_DEV, "Opengl renderer api initialized");
+        LOG(PARALLAX_DEV, "Opengl renderer api initialized");
     }
 
     void NxOpenGlRendererApi::setViewport(const unsigned int x, const unsigned int y, const unsigned int width, const unsigned int height)

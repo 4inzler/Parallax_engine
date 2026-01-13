@@ -23,7 +23,7 @@
 #include <optional>
 #include <string_view>
 
-namespace nexo::assets {
+namespace parallax::assets {
     struct FilenameValidator {
         static inline const auto ValidationRegex = std::regex("^[a-zA-Z0-9._-]*$");
         static constexpr auto MaxLength = 255;

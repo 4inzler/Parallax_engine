@@ -23,7 +23,7 @@
 
 #include <unordered_map>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class InspectorWindow final : public ADocumentWindow {
 	    public:
@@ -144,7 +144,7 @@ namespace nexo::editor {
                     if (auto ptr = std::any_cast<Data>(&it->second)) {
                         return *ptr;
                     }
-                    LOG(NEXO_ERROR, "Failed to cast sub-inspector data for type {}",
+                    LOG(PARALLAX_ERROR, "Failed to cast sub-inspector data for type {}",
                         typeid(WindowType).name());
                     return std::nullopt;
                 }
@@ -200,7 +200,7 @@ namespace nexo::editor {
             void registerProperty(const ecs::ComponentType type, std::shared_ptr<IEntityProperty> property)
             {
 			    if (!property) {
-                    LOG(NEXO_ERROR, "Attempted to register a null property for component type {}", type);
+                    LOG(PARALLAX_ERROR, "Attempted to register a null property for component type {}", type);
                     return;
                 }
                 m_entityProperties[type] = std::move(property);

@@ -23,7 +23,7 @@
 #include <bitset>
 #include <cassert>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 	// Entity type definition
 
 	/**

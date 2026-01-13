@@ -19,7 +19,7 @@
 #include "ADocumentWindow.hpp"
 #include <imgui_internal.h>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void ADocumentWindow::beginRender(const std::string &windowName)
     {

@@ -22,7 +22,7 @@
 #include <utility>
 #include <glm/gtc/type_ptr.hpp>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     static constexpr unsigned int sMaxFramebufferSize = 8192;
 
@@ -293,7 +293,7 @@ namespace nexo::renderer {
     void NxOpenGlFramebuffer::bindAsTexture(const unsigned int slot, unsigned int attachment)
     {
         if (attachment >= m_colorAttachments.size()) {
-            LOG(NEXO_ERROR, "Attachment index {} out of bounds (max: {})", attachment, m_colorAttachments.size() - 1);
+            LOG(PARALLAX_ERROR, "Attachment index {} out of bounds (max: {})", attachment, m_colorAttachments.size() - 1);
             return;
         }
         glActiveTexture(GL_TEXTURE0 + slot);
@@ -314,7 +314,7 @@ namespace nexo::renderer {
     void NxOpenGlFramebuffer::copy(const std::shared_ptr<NxFramebuffer> source)
     {
         if (!source) {
-            LOG(NEXO_ERROR, "Cannot copy from null framebuffer");
+            LOG(PARALLAX_ERROR, "Cannot copy from null framebuffer");
             return;
         }
         if (toResize) {

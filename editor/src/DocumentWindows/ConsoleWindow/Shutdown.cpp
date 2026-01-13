@@ -18,7 +18,7 @@
 
 #include "ConsoleWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void ConsoleWindow::shutdown()
     {

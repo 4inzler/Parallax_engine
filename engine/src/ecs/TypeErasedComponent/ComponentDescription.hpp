@@ -25,11 +25,11 @@
 
 #include "Field.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     struct ComponentDescription {
         std::string name;           // Name of the component
         std::vector<Field> fields;  // List of fields in the component
     };
 
-} // namespace nexo::ecs
+} // namespace parallax::ecs

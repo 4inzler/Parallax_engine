@@ -25,7 +25,7 @@
 #include "renderer/RendererExceptions.hpp"
 #include <array>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     // Mock for testing abstract classes
     class MockVertexBuffer : public NxVertexBuffer {

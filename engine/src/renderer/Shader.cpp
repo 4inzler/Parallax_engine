@@ -26,7 +26,7 @@
 
 #include <fstream>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     std::shared_ptr<NxShader> NxShader::create(const std::string &path)
     {

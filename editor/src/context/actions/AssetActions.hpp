@@ -17,7 +17,7 @@
 #include "assets/Asset.hpp"
 #include <string>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
      * @brief Action for moving assets between folders in the Asset Manager
@@ -39,4 +39,4 @@ namespace nexo::editor {
         std::string m_toPath;
     };
 
-} // namespace nexo::editor
+} // namespace parallax::editor

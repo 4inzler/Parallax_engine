@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>@NEXO_FRAMEWORK@</TargetFramework>
+    <TargetFramework>@PARALLAX_FRAMEWORK@</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>ParallaxManaged</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +18,7 @@
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <OutputPath>@NEXO_MANAGED_OUTPUT_DIR_REL@</OutputPath>
+    <OutputPath>@PARALLAX_MANAGED_OUTPUT_DIR_REL@</OutputPath>
   </PropertyGroup>
 
 </Project>

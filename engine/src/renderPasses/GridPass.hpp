@@ -20,7 +20,7 @@
 #include "renderer/RenderPass.hpp"
 #include "renderer/Framebuffer.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     class GridPass : public RenderPass {
         public:

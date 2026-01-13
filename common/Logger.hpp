@@ -27,7 +27,7 @@
 #include <unordered_set>
 #include <mutex>
 
-namespace nexo {
+namespace parallax {
 
     template<typename T>
     auto toFormatFriendly(const T &value)
@@ -225,10 +225,10 @@ namespace nexo {
 }
 
 #define LOG(level, fmt, ...) \
-    nexo::Logger::logWithFormat(level, std::source_location::current(), fmt, ##__VA_ARGS__)
+    parallax::Logger::logWithFormat(level, std::source_location::current(), fmt, ##__VA_ARGS__)
 
 #define LOG_EXCEPTION(exception) \
-    LOG(NEXO_ERROR, "{}:{} - Exception: {}", exception.getFile(), exception.getLine(), exception.getMessage())
+    LOG(PARALLAX_ERROR, "{}:{} - Exception: {}", exception.getFile(), exception.getLine(), exception.getMessage())
 
 /**
  * @brief Generate a unique key for a log message incorporating format and parameters
@@ -236,8 +236,8 @@ namespace nexo {
  * This creates a key that includes both the format string and the parameter values,
  * allowing specific message instances to be reset later.
  */
-#define NEXO_LOG_ONCE_KEY(fmt, ...) \
-    nexo::Logger::generateKey(fmt, std::string(__FILE__) + ":" + std::to_string(__LINE__), ##__VA_ARGS__)
+#define PARALLAX_LOG_ONCE_KEY(fmt, ...) \
+    parallax::Logger::generateKey(fmt, std::string(__FILE__) + ":" + std::to_string(__LINE__), ##__VA_ARGS__)
 
 /**
  * @brief Log a message only once until it's reset
@@ -247,12 +247,12 @@ namespace nexo {
  * will be ignored until the message is reset.
  */
 #define LOG_ONCE(level, fmt, ...) \
-    nexo::Logger::logOnce(level, std::source_location::current(), fmt, \
-        NEXO_LOG_ONCE_KEY(fmt, ##__VA_ARGS__), ##__VA_ARGS__)
+    parallax::Logger::logOnce(level, std::source_location::current(), fmt, \
+        PARALLAX_LOG_ONCE_KEY(fmt, ##__VA_ARGS__), ##__VA_ARGS__)
 
-#define NEXO_FATAL nexo::LogLevel::FATAL
-#define NEXO_ERROR nexo::LogLevel::ERR
-#define NEXO_WARN nexo::LogLevel::WARN
-#define NEXO_INFO nexo::LogLevel::INFO
-#define NEXO_DEBUG nexo::LogLevel::DEBUG
-#define NEXO_DEV nexo::LogLevel::DEV
+#define PARALLAX_FATAL parallax::LogLevel::FATAL
+#define PARALLAX_ERROR parallax::LogLevel::ERR
+#define PARALLAX_WARN parallax::LogLevel::WARN
+#define PARALLAX_INFO parallax::LogLevel::INFO
+#define PARALLAX_DEBUG parallax::LogLevel::DEBUG
+#define PARALLAX_DEV parallax::LogLevel::DEV

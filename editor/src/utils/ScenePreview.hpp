@@ -21,7 +21,7 @@
 #include "core/scene/SceneManager.hpp"
 #include <glm/glm.hpp>
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
 
 	/**
      * @brief Structure to store output data for a generated scene preview.

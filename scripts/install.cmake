@@ -8,19 +8,19 @@
 #
 #  Author:      Guillaume HEIN
 #  Date:        24/11/2024
-#  Description: CMake to pack the Nexo project and create an installer.
+#  Description: CMake to pack the Parallax project and create an installer.
 #
 ###############################################################################
 
 cmake_minimum_required(VERSION 3.28)
 
 # Installation rules
-install(TARGETS nexoEditor
+install(TARGETS Parallax
         RUNTIME DESTINATION bin
 )
 
 # Automatically install runtime dependencies (Windows .dll files, Linux .so files, etc.)
-install(TARGETS nexoEditor
+install(TARGETS Parallax
         RUNTIME_DEPENDENCIES
         PRE_EXCLUDE_REGEXES "api-ms-" "ext-ms-" ".*system32.*" [[.*(\\|/)system32(\\|/).*\.dll]]
         POST_EXCLUDE_REGEXES ".*windows.*" ".*Microsoft.*" [[.*(\\|/)system32(\\|/).*\.dll]]

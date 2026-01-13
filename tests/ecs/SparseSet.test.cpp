@@ -20,7 +20,7 @@
 #include <gmock/gmock.h>
 #include "ecs/System.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
     class SparseSetTest : public ::testing::Test {
     protected:
         SparseSet sparseSet;

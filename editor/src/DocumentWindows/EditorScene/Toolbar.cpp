@@ -28,13 +28,13 @@
 #include <imgui_internal.h>
 #include <format>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void EditorScene::createOrFocusGameWindow()
     {
         // Create or focus the game window
         auto& editor = Editor::getInstance();
-        const std::string gameWindowName = std::format("Game View - {}{}{}", m_sceneUuid, NEXO_WND_USTRID_GAME_WINDOW, m_sceneId);
+        const std::string gameWindowName = std::format("Game View - {}{}{}", m_sceneUuid, PARALLAX_WND_USTRID_GAME_WINDOW, m_sceneId);
 
         // Check if game window already exists
         if (const auto gameWindow = editor.getWindow<GameWindow>(gameWindowName).lock()) {
@@ -95,12 +95,12 @@ namespace nexo::editor {
 
     bool EditorScene::renderToolbarButton(const std::string& uniqueId, const std::string& icon,
                                           const std::string& tooltip,
-                                          const std::vector<ImNexo::GradientStop>& gradientStop, bool* rightClicked)
+                                          const std::vector<ImParallax::GradientStop>& gradientStop, bool* rightClicked)
     {
         constexpr float buttonWidth = 35.0f;
         constexpr float buttonHeight = 35.0f;
         const bool clicked =
-            ImNexo::IconGradientButton(uniqueId, icon, ImVec2(buttonWidth, buttonHeight), gradientStop);
+            ImParallax::IconGradientButton(uniqueId, icon, ImVec2(buttonWidth, buttonHeight), gradientStop);
         if (!tooltip.empty() && ImGui::IsItemHovered())
             ImGui::SetTooltip("%s", tooltip.c_str());
         if (rightClicked != nullptr)
@@ -112,7 +112,7 @@ namespace nexo::editor {
                                              bool& showPrimitiveMenu)
     {
         auto& app = getApp();
-        static const std::vector<ImNexo::ButtonProps> buttonProps =
+        static const std::vector<ImParallax::ButtonProps> buttonProps =
         {
             {
                 .uniqueId = "cube_primitive",
@@ -132,7 +132,7 @@ namespace nexo::editor {
                 .icon = ICON_FA_CIRCLE,
                 .onClick = [this]()
                 {
-                    // ImNexo::PrimitiveCustomizationMenu(this->m_sceneId, SPHERE);
+                    // ImParallax::PrimitiveCustomizationMenu(this->m_sceneId, SPHERE);
                     this->m_popupManager.openPopup("Sphere creation popup");
                 },
                 .tooltip = "Create Sphere"
@@ -142,7 +142,7 @@ namespace nexo::editor {
                 .icon = ICON_FA_PLUS,
                 .onClick = [this]()
                 {
-                    // ImNexo::PrimitiveCustomizationMenu(this->m_sceneId, CYLINDER);
+                    // ImParallax::PrimitiveCustomizationMenu(this->m_sceneId, CYLINDER);
                     this->m_popupManager.openPopup("Cylinder creation popup");
                 },
                 .tooltip = "Create Cylinder"
@@ -176,12 +176,12 @@ namespace nexo::editor {
                 .tooltip = "Create Tetrahedron"
             },
         };
-        ImNexo::ButtonDropDown(primitiveButtonPos, buttonSize, buttonProps, showPrimitiveMenu);
+        ImParallax::ButtonDropDown(primitiveButtonPos, buttonSize, buttonProps, showPrimitiveMenu);
     }
 
     void EditorScene::renderSnapSubMenu(const ImVec2& snapButtonPos, const ImVec2& buttonSize, bool& showSnapMenu)
     {
-        const std::vector<ImNexo::ButtonProps> buttonProps =
+        const std::vector<ImParallax::ButtonProps> buttonProps =
         {
             {
                 .uniqueId = "toggle_translate_snap",
@@ -227,7 +227,7 @@ namespace nexo::editor {
             //     .buttonGradient = (m_snapScaleOn) ? m_selectedGradient : buttonGradient
             // }
         };
-        ImNexo::ButtonDropDown(snapButtonPos, buttonSize, buttonProps, showSnapMenu);
+        ImParallax::ButtonDropDown(snapButtonPos, buttonSize, buttonProps, showSnapMenu);
     }
 
     void EditorScene::snapSettingsPopup()
@@ -248,7 +248,7 @@ namespace nexo::editor {
                     "##Y", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
                 ImGui::TableSetupColumn(
                     "##Z", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
-                ImNexo::RowDragFloat3("Translate Snap", "X", "Y", "Z", &this->m_snapTranslate.x);
+                ImParallax::RowDragFloat3("Translate Snap", "X", "Y", "Z", &this->m_snapTranslate.x);
                 ImGui::EndTable();
             }
 
@@ -265,7 +265,7 @@ namespace nexo::editor {
                 ImGui::TableSetupColumn(
                     "##Empty2", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
 
-                ImNexo::RowDragFloat1("Rotate Snap", "", &this->m_angleSnap);
+                ImParallax::RowDragFloat1("Rotate Snap", "", &this->m_angleSnap);
                 ImGui::EndTable();
             }
             ImGui::Spacing();
@@ -275,7 +275,7 @@ namespace nexo::editor {
             const float windowWidth = ImGui::GetWindowSize().x;
             ImGui::SetCursorPosX((windowWidth - buttonWidth) * 0.5f);
 
-            if (ImNexo::Button("OK", ImVec2(buttonWidth, 0.0f)))
+            if (ImParallax::Button("OK", ImVec2(buttonWidth, 0.0f)))
             {
                 PopupManager::closePopup();
             }
@@ -302,14 +302,14 @@ namespace nexo::editor {
                     "##Label", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
                 ImGui::TableSetupColumn(
                     "##X", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHeaderLabel);
-                ImNexo::RowDragFloat1("Grid size", "", &gridSettings.gridSize, 50.0f, 150.0f);
+                ImParallax::RowDragFloat1("Grid size", "", &gridSettings.gridSize, 50.0f, 150.0f);
                 if (ImGui::IsItemHovered())
                     ImGui::SetTooltip("The total size of the grid");
-                ImNexo::RowDragFloat1("Pixel cell spacing", "", &gridSettings.minPixelsBetweenCells, 0.0f, 100.0f,
+                ImParallax::RowDragFloat1("Pixel cell spacing", "", &gridSettings.minPixelsBetweenCells, 0.0f, 100.0f,
                                       0.1f);
                 if (ImGui::IsItemHovered())
                     ImGui::SetTooltip("Level of detail of internal cells");
-                ImNexo::RowDragFloat1("Cell size", "", &gridSettings.cellSize, 0.1f, 20.0f, 0.02f);
+                ImParallax::RowDragFloat1("Cell size", "", &gridSettings.cellSize, 0.1f, 20.0f, 0.02f);
                 if (ImGui::IsItemHovered())
                     ImGui::SetTooltip("The size of the internal cells");
                 ImGui::EndTable();
@@ -322,7 +322,7 @@ namespace nexo::editor {
             const float windowWidth = ImGui::GetWindowSize().x;
             ImGui::SetCursorPosX((windowWidth - buttonWidth) * 0.5f);
 
-            if (ImNexo::Button("OK", ImVec2(buttonWidth, 0.0f)))
+            if (ImParallax::Button("OK", ImVec2(buttonWidth, 0.0f)))
             {
                 PopupManager::closePopup();
             }
@@ -361,14 +361,14 @@ namespace nexo::editor {
         }
     }
 
-    bool EditorScene::renderGizmoModeToolbarButton(const bool showGizmoModeMenu, ImNexo::ButtonProps& activeGizmoMode,
-                                                   ImNexo::ButtonProps& inactiveGizmoMode)
+    bool EditorScene::renderGizmoModeToolbarButton(const bool showGizmoModeMenu, ImParallax::ButtonProps& activeGizmoMode,
+                                                   ImParallax::ButtonProps& inactiveGizmoMode)
     {
-        static const ImNexo::ButtonProps gizmoLocalModeButtonProps = {
+        static const ImParallax::ButtonProps gizmoLocalModeButtonProps = {
             "local_coords", ICON_FA_CROSSHAIRS, [this]() { this->m_currentGizmoMode = ImGuizmo::MODE::LOCAL; }, nullptr,
             "Local coordinates"
         };
-        static const ImNexo::ButtonProps gizmoWorldModeButtonProps = {
+        static const ImParallax::ButtonProps gizmoWorldModeButtonProps = {
             "world_coords", ICON_FA_GLOBE, [this]() { this->m_currentGizmoMode = ImGuizmo::MODE::WORLD; }, nullptr,
             "World coordinates"
         };
@@ -414,30 +414,30 @@ namespace nexo::editor {
         ImGui::SameLine();
 
         // -------- Gizmo operation button --------
-        static const auto gizmoTranslateButtonProps = ImNexo::ButtonProps{
+        static const auto gizmoTranslateButtonProps = ImParallax::ButtonProps{
             "translate", ICON_FA_ARROWS, [this]() { this->m_currentGizmoOperation = ImGuizmo::OPERATION::TRANSLATE; },
             nullptr, "Translate"
         };
-        static const auto gizmoRotateButtonProps = ImNexo::ButtonProps{
+        static const auto gizmoRotateButtonProps = ImParallax::ButtonProps{
             "rotate", ICON_FA_REFRESH, [this]() { this->m_currentGizmoOperation = ImGuizmo::OPERATION::ROTATE; },
             nullptr, "Rotate"
         };
-        static const auto gizmoScaleButtonProps = ImNexo::ButtonProps{
+        static const auto gizmoScaleButtonProps = ImParallax::ButtonProps{
             "scale", ICON_FA_EXPAND, [this]() { this->m_currentGizmoOperation = ImGuizmo::OPERATION::SCALE; }, nullptr,
             "Scale"
         };
-        static const auto gizmoUniversalButtonProps = ImNexo::ButtonProps{
+        static const auto gizmoUniversalButtonProps = ImParallax::ButtonProps{
             "universal", ICON_FA_ARROWS_ALT,
             [this]() { this->m_currentGizmoOperation = ImGuizmo::OPERATION::UNIVERSAL; }, nullptr, "Universal"
         };
-        std::vector<ImNexo::ButtonProps> gizmoButtons = {
+        std::vector<ImParallax::ButtonProps> gizmoButtons = {
             gizmoTranslateButtonProps,
             gizmoRotateButtonProps,
             gizmoScaleButtonProps,
             gizmoUniversalButtonProps
         };
 
-        ImNexo::ButtonProps activeOp;
+        ImParallax::ButtonProps activeOp;
         switch (m_currentGizmoOperation)
         {
         case ImGuizmo::OPERATION::TRANSLATE:
@@ -471,8 +471,8 @@ namespace nexo::editor {
         ImGui::SameLine();
 
         // -------- Gizmo operation button --------
-        ImNexo::ButtonProps activeGizmoMode;
-        ImNexo::ButtonProps inactiveGizmoMode;
+        ImParallax::ButtonProps activeGizmoMode;
+        ImParallax::ButtonProps inactiveGizmoMode;
         ImVec2 changeGizmoModePos = ImGui::GetCursorScreenPos();
         static bool showGizmoModeMenu = false;
         bool changeGizmoModeClicked = renderGizmoModeToolbarButton(showGizmoModeMenu, activeGizmoMode,
@@ -531,7 +531,7 @@ namespace nexo::editor {
         ImGui::SameLine();
 
         auto& app = getApp();
-        const bool isPlaying = app.getGameState() == nexo::GameState::PLAY_MODE;
+        const bool isPlaying = app.getGameState() == parallax::GameState::PLAY_MODE;
         
         const char* icon = isPlaying ? ICON_FA_STOP : ICON_FA_PLAY;
         const char* tooltip = isPlaying ? "Stop scene" : "Play scene";
@@ -540,9 +540,9 @@ namespace nexo::editor {
         if (renderToolbarButton("play_stop", icon, tooltip, gradient))
         {
             if (isPlaying) {
-                app.setGameState(nexo::GameState::EDITOR_MODE);
+                app.setGameState(parallax::GameState::EDITOR_MODE);
             } else {
-                app.setGameState(nexo::GameState::PLAY_MODE);
+                app.setGameState(parallax::GameState::PLAY_MODE);
             }
         }
 
@@ -560,13 +560,13 @@ namespace nexo::editor {
         // -------- Gizmo operation sub-menu --------
         if (showGizmoOpMenu)
         {
-            ImNexo::ButtonDropDown(changeGizmoOpPos, buttonSize, gizmoButtons, showGizmoOpMenu);
+            ImParallax::ButtonDropDown(changeGizmoOpPos, buttonSize, gizmoButtons, showGizmoOpMenu);
         }
 
         // -------- Gizmo mode sub-menu --------
         if (showGizmoModeMenu)
         {
-            ImNexo::ButtonDropDown(changeGizmoModePos, buttonSize, {inactiveGizmoMode}, showGizmoModeMenu);
+            ImParallax::ButtonDropDown(changeGizmoModePos, buttonSize, {inactiveGizmoMode}, showGizmoModeMenu);
         }
 
         // -------- Snap sub-menu --------

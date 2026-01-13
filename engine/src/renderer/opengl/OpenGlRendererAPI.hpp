@@ -19,7 +19,7 @@
 
 #include "renderer/RendererAPI.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
     * @class NxOpenGlRendererApi

@@ -22,7 +22,7 @@
     #include "opengl/openglImGuiBackend.hpp"
 #endif
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void ImGuiBackend::init([[maybe_unused]] const std::shared_ptr<renderer::NxWindow>& window)
     {

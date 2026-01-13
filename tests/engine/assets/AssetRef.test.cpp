@@ -22,7 +22,7 @@
 #include "assets/Assets/Texture/Texture.hpp"
 #include "assets/Assets/Model/Model.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     class AssetRefTest : public ::testing::Test {
         protected:
@@ -182,4 +182,4 @@ namespace nexo::assets {
         EXPECT_NO_FATAL_FAILURE(ref.unload());
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

@@ -27,7 +27,7 @@
 #include "components/SceneComponents.hpp"
 #include "components/RenderContext.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
 	/**
 	* @brief System responsible for updating the camera context.

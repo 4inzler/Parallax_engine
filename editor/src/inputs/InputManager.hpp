@@ -22,7 +22,7 @@
 #include <bitset>
 #include <utility>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     struct CommandInfo {
         std::string key;

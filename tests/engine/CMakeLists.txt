@@ -43,4 +43,4 @@ add_executable(engine_tests
 )
 
 # Link gtest and engine (renderer) libraries
-target_link_libraries(engine_tests PRIVATE GTest::gtest GTest::gmock nexoRenderer)
+target_link_libraries(engine_tests PRIVATE GTest::gtest GTest::gmock parallaxRenderer)

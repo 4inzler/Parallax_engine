@@ -23,7 +23,7 @@
 #include <imgui.h>
 #include <vector>
 
-namespace nexo::editor {
+namespace parallax::editor {
 	/**
 	* @brief Finds and returns the dock ID of a given window from the ImGui configuration file.
 	*

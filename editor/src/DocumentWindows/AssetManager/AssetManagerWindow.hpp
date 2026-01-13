@@ -26,7 +26,7 @@
 #include "FolderManager.hpp"
 #include "assets/Asset.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     static constexpr std::string_view INTERNAL_FOLDER_PREFIX = "_internal";
     static constexpr float ERROR_DISPLAY_TIMEOUT             = 3.0f;
@@ -232,4 +232,4 @@ namespace nexo::editor {
         char path[256]{}; ///< Path to the folder
         char name[64]{};  ///< Display name of the folder
     };
-} // namespace nexo::editor
+} // namespace parallax::editor

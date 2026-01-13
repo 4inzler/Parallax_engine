@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "SubTexture2D.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     NxSubTexture2D::NxSubTexture2D(const std::shared_ptr<NxTexture2D> &texture, const glm::vec2 &min, const glm::vec2 &max)
         : m_texture(texture)
     {

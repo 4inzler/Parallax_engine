@@ -21,7 +21,7 @@
 #include "assets/AssetName.hpp"
 #include "assets/AssetPackName.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     TEST(AssetLocationTest, ValidFullLocationWithPackAndPath)
     {
@@ -254,4 +254,4 @@ namespace nexo::assets {
         EXPECT_EQ(locationNeq, fullLocationNeq);
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

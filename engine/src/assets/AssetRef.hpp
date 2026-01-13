@@ -25,7 +25,7 @@
 #include <Logger.hpp>
 #include <memory>
 
-namespace nexo::assets {
+namespace parallax::assets {
     class IAsset;
 
     enum class AssetType;
@@ -116,7 +116,7 @@ namespace nexo::assets {
             if (auto ptr = lock()) {
                 // TODO: Implement reloadAsset in AssetCatalog
                 // Example: AssetCatalog::getInstance().reloadAsset(ptr);
-                LOG(NEXO_WARN, "AssetRef::reload() not implemented");
+                LOG(PARALLAX_WARN, "AssetRef::reload() not implemented");
             }
         }
 
@@ -127,7 +127,7 @@ namespace nexo::assets {
             if (auto ptr = lock()) {
                 // TODO: Implement unloadAsset in AssetCatalog
                 // Example: AssetCatalog::getInstance().unloadAsset(ptr);
-                LOG(NEXO_WARN, "AssetRef::unload() not implemented");
+                LOG(PARALLAX_WARN, "AssetRef::unload() not implemented");
             }
         }
 
@@ -209,4 +209,4 @@ namespace nexo::assets {
     {
         return std::static_pointer_cast<TAsset>(GenericAssetRef::lock());
     }
-} // namespace nexo::assets
+} // namespace parallax::assets

@@ -12,7 +12,7 @@
 //
 //  Author:      Mehdy MORVAN
 //  Date:        12/11/2024
-//  Description: Common header file for the nexo base exception class
+//  Description: Common header file for the parallax base exception class
 //
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -22,7 +22,7 @@
 #include <source_location>
 #include <exception>
 
-namespace nexo {
+namespace parallax {
     class Exception : public std::exception {
         public:
             explicit Exception(const std::string& message, const std::source_location& loc)

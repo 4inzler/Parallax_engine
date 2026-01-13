@@ -26,7 +26,7 @@
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/matrix_decompose.hpp>
 
-namespace nexo::editor {
+namespace parallax::editor {
     // Class-level variables for tracking gizmo state between frames
     bool EditorScene::s_wasUsingGizmo = false;
     ImGuizmo::OPERATION EditorScene::s_lastOperation = ImGuizmo::OPERATION::UNIVERSAL;
@@ -45,7 +45,7 @@ namespace nexo::editor {
 
     static std::optional<ecs::Entity> findEntityWithTransform(const std::vector<int>& entities)
     {
-        const auto& coord = nexo::Application::m_coordinator;
+        const auto& coord = parallax::Application::m_coordinator;
 
         for (const auto& entity : entities) {
             if (coord->tryGetComponent<components::TransformComponent>(entity)) {
@@ -66,7 +66,7 @@ namespace nexo::editor {
 
     static glm::mat4 getEntityParentWorldMatrix(const ecs::Entity entity)
     {
-        const auto& coord = nexo::Application::m_coordinator;
+        const auto& coord = parallax::Application::m_coordinator;
 
         const auto parentComponent = coord->tryGetComponent<components::ParentComponent>(entity);
         if (!parentComponent)
@@ -93,7 +93,7 @@ namespace nexo::editor {
 
     static void updateEntityWorldMatrix(const ecs::Entity entity)
     {
-        const auto& coord = nexo::Application::m_coordinator;
+        const auto& coord = parallax::Application::m_coordinator;
         const auto transform = coord->tryGetComponent<components::TransformComponent>(entity);
 
         if (!transform)
@@ -111,7 +111,7 @@ namespace nexo::editor {
 
     static void updateEntityWorldMatrixRecursive(const ecs::Entity entity)
     {
-        const auto& coord = nexo::Application::m_coordinator;
+        const auto& coord = parallax::Application::m_coordinator;
         const auto parentComponent = coord->tryGetComponent<components::ParentComponent>(entity);
         if (parentComponent) {
             const ecs::Entity parentEntity = parentComponent->get().parent;
@@ -156,7 +156,7 @@ namespace nexo::editor {
 
     void EditorScene::captureInitialTransformStates(const std::vector<int>& entities)
     {
-        const auto& coord = nexo::Application::m_coordinator;
+        const auto& coord = parallax::Application::m_coordinator;
         s_initialTransformStates.clear();
 
         for (const auto& entity : entities) {

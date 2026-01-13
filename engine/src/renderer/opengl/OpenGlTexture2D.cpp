@@ -23,7 +23,7 @@
 
 #include <stb_image.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     NxOpenGlTexture2D::NxOpenGlTexture2D(const unsigned int width, const unsigned int height) : m_width(width), m_height(height)
     {

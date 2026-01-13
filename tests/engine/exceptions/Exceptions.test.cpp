@@ -19,7 +19,7 @@
 #include <gtest/gtest.h>
 #include "core/exceptions/Exceptions.hpp"
 
-namespace nexo::core {
+namespace parallax::core {
 
     TEST(ExceptionsTest, FileNotFoundException) {
         constexpr const char* expectedFile = __FILE__;

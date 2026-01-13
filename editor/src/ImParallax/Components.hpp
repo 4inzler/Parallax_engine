@@ -27,9 +27,9 @@
 #include "renderer/Texture.hpp"
 #include "Elements.hpp"
 #include "Guard.hpp"
-#include "ImNexo.hpp"
+#include "ImParallax.hpp"
 
-namespace ImNexo {
+namespace ImParallax {
 
     /**
      * @brief Creates a button with both an icon and text label.
@@ -69,7 +69,7 @@ namespace ImNexo {
     * @param[out] outPath The path to the selected texture.
     * @return true if a texture path was set; false otherwise.
     */
-	bool TextureButton(const std::string &label, const std::shared_ptr<nexo::renderer::NxTexture2D>& texture, std::filesystem::path& outPath);
+	bool TextureButton(const std::string &label, const std::shared_ptr<parallax::renderer::NxTexture2D>& texture, std::filesystem::path& outPath);
 
     /**
      * @brief Creates a customizable gradient button with a centered icon.
@@ -116,8 +116,8 @@ namespace ImNexo {
      template<typename GetNameFunc>
      bool RowEntityDropdown(
          const std::string& label,
-         nexo::ecs::Entity& targetEntity,
-         const std::vector<nexo::ecs::Entity>& entities,
+         parallax::ecs::Entity& targetEntity,
+         const std::vector<parallax::ecs::Entity>& entities,
          GetNameFunc&& getNameFunc
      )
      {
@@ -132,9 +132,9 @@ namespace ImNexo {
          bool changed = false;
 
          // Build entity-name mapping
-         static std::vector<std::pair<nexo::ecs::Entity, std::string>> entityNamePairs;
-         static nexo::ecs::Entity lastTargetEntity = 0;
-         static std::vector<nexo::ecs::Entity> lastEntities;
+         static std::vector<std::pair<parallax::ecs::Entity, std::string>> entityNamePairs;
+         static parallax::ecs::Entity lastTargetEntity = 0;
+         static std::vector<parallax::ecs::Entity> lastEntities;
 
          // Only rebuild the mapping if entities list changed or target entity changed
          bool needRebuild = lastTargetEntity != targetEntity || lastEntities.size() != entities.size();
@@ -151,7 +151,7 @@ namespace ImNexo {
              lastEntities = entities;
              lastTargetEntity = targetEntity;
 
-             for (nexo::ecs::Entity entity : entities) {
+             for (parallax::ecs::Entity entity : entities) {
                  std::string name = getNameFunc(entity);
                  entityNamePairs.emplace_back(entity, name);
              }
@@ -174,8 +174,8 @@ namespace ImNexo {
          if (ImGui::BeginCombo("##entity_dropdown", currentItemName.c_str()))
          {
              // Optional: Add a "None" option for clearing the target
-             if (ImGui::Selectable("None", targetEntity == nexo::ecs::MAX_ENTITIES)) {
-                 targetEntity = nexo::ecs::MAX_ENTITIES;
+             if (ImGui::Selectable("None", targetEntity == parallax::ecs::MAX_ENTITIES)) {
+                 targetEntity = parallax::ecs::MAX_ENTITIES;
                  changed = true;
              }
 

@@ -20,13 +20,13 @@
 #include "ADocumentWindow.hpp"
 
 #include "utils/Config.hpp"
-#include "Nexo.hpp"
+#include "Parallax.hpp"
 #include "Editor.hpp"
 #include "Logger.hpp"
 #include "Path.hpp"
 #include "backends/ImGuiBackend.hpp"
 #include "IconsFontAwesome.h"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Elements.hpp"
 #include "context/ActionManager.hpp"
 #include "DocumentWindows/TestWindow/TestWindow.hpp"
 
@@ -42,15 +42,15 @@
 #include "DocumentWindows/AssetManager/AssetManagerWindow.hpp"
 #include "DocumentWindows/MaterialInspector/MaterialInspector.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void Editor::shutdown() const
     {
         const Application& app = Application::getInstance();
 
         app.shutdownScripting();
-        LOG(NEXO_INFO, "Closing editor");
-        LOG(NEXO_INFO, "All windows destroyed");
+        LOG(PARALLAX_INFO, "Closing editor");
+        LOG(PARALLAX_INFO, "All windows destroyed");
         m_windowRegistry.shutdown();
         ImGuiBackend::shutdown();
     }
@@ -63,14 +63,14 @@ namespace nexo::editor {
 #ifdef __linux__
     #ifndef WAYLAND_APP_ID
         #warning "WAYLAND_APP_ID not defined, cannot set Wayland app id for window"
-        LOG(NEXO_WARN, "WAYLAND_APP_ID not defined, cannot set Wayland app id for window");
+        LOG(PARALLAX_WARN, "WAYLAND_APP_ID not defined, cannot set Wayland app id for window");
     #else
         window->setWaylandAppId(WAYLAND_APP_ID);
-        window->setWmClass(WAYLAND_APP_ID, "nexo-editor");
+        window->setWmClass(WAYLAND_APP_ID, "parallax-editor");
     #endif
 #endif
 
-        nexo::init();
+        parallax::init();
 
         ImGuiBackend::setErrorCallback(window);
 
@@ -97,15 +97,15 @@ namespace nexo::editor {
         float scaleFactorY = 0.0f;
         getApp().getWindow()->getDpiScale(&scaleFactorX, &scaleFactorY);
         getApp().getWindow()->setWindowIcon(Path::resolvePathRelativeToExe(
-            "../resources/nexo.png"));
+            "../resources/parallax.png"));
         if (scaleFactorX > 1.0f || scaleFactorY > 1.0f)
         {
-            LOG(NEXO_WARN,
+            LOG(PARALLAX_WARN,
                 "Scale factor is greater than 1.0, if you have any issue try adjusting the system's scale factor");
-            LOG(NEXO_INFO, "DPI scale: x: {}, y: {}", scaleFactorX, scaleFactorY);
+            LOG(PARALLAX_INFO, "DPI scale: x: {}, y: {}", scaleFactorX, scaleFactorY);
         }
 
-        LOG(NEXO_INFO, "ImGui version: {}", IMGUI_VERSION);
+        LOG(PARALLAX_INFO, "ImGui version: {}", IMGUI_VERSION);
 
         ImGuiIO &io = ImGui::GetIO();
         io.DisplaySize = ImVec2(static_cast<float>(getApp().getWindow()->getWidth()),
@@ -123,7 +123,7 @@ namespace nexo::editor {
         style->WindowMenuButtonPosition = ImGuiDir_Right;
         style->ScaleAllSizes(std::max(scaleFactorX, scaleFactorY));
 
-        // Setup NEXO Color Scheme
+        // Setup PARALLAX Color Scheme
         ImVec4* colors = style->Colors;
         constexpr auto colWindowBg                  = ImVec4(0.02f, 0.02f, 0.04f, 0.59f); // Every color above it will depend on it because of the alpha
         constexpr auto colTitleBg                   = ImVec4(0.00f, 0.00f, 0.00f, 0.28f);
@@ -193,7 +193,7 @@ namespace nexo::editor {
         if (scaleFactorX > 1.0f || scaleFactorY > 1.0f)
         {
             fontSize = std::ceil(fontSize * std::max(scaleFactorX, scaleFactorY));
-            LOG(NEXO_WARN, "Font size adjusted to {}", fontSize);
+            LOG(PARALLAX_WARN, "Font size adjusted to {}", fontSize);
         }
         const float iconFontSize = fontSize * 2.0f / 3.0f;
 
@@ -201,7 +201,7 @@ namespace nexo::editor {
             "../resources/fonts/SourceSans3-Regular.ttf").string();
         ImFont *font = io.Fonts->AddFontFromFileTTF(sourceSansPath.c_str(), fontSize,
                                                     &fontConfig);
-        LOG(NEXO_DEBUG, "Font path: {}", sourceSansPath);
+        LOG(PARALLAX_DEBUG, "Font path: {}", sourceSansPath);
         IM_ASSERT(font != nullptr);
         io.FontDefault = font;
 
@@ -226,7 +226,7 @@ namespace nexo::editor {
             "../resources/fonts/fontawesome4.ttf").string();
         io.Fonts->AddFontFromFileTTF(fontawesomePath.c_str(), iconFontSize, &fontawesome_config, icon_ranges);
 
-        LOG(NEXO_DEBUG, "Fonts initialized");
+        LOG(PARALLAX_DEBUG, "Fonts initialized");
     }
 
     void Editor::init() const
@@ -253,10 +253,10 @@ namespace nexo::editor {
             // File Menu
             if (ImGui::BeginMenu("File"))
             {
-                if (ImGui::MenuItem(ICON_FA_SAVE " Save", "Ctrl+S"))
+                if (ImGui::MenuItem(ICON_FA_FLOPPY_O " Save", "Ctrl+S"))
                 {
                     // TODO: Implement scene save functionality
-                    LOG(NEXO_INFO, "Save requested");
+                    LOG(PARALLAX_INFO, "Save requested");
                 }
 
                 ImGui::Separator();
@@ -267,19 +267,19 @@ namespace nexo::editor {
                     if (ImGui::MenuItem("Unity Package..."))
                     {
                         // TODO: Implement Unity package import
-                        LOG(NEXO_INFO, "Unity Package import requested");
+                        LOG(PARALLAX_INFO, "Unity Package import requested");
                     }
 
                     if (ImGui::MenuItem("Model (OBJ)..."))
                     {
                         // TODO: Implement OBJ model import
-                        LOG(NEXO_INFO, "OBJ Model import requested");
+                        LOG(PARALLAX_INFO, "OBJ Model import requested");
                     }
 
                     if (ImGui::MenuItem("Model (FBX)..."))
                     {
                         // TODO: Implement FBX model import (requires plugin)
-                        LOG(NEXO_WARN, "FBX import requires FBX Importer plugin");
+                        LOG(PARALLAX_WARN, "FBX import requires FBX Importer plugin");
                     }
 
                     ImGui::Separator();
@@ -287,7 +287,7 @@ namespace nexo::editor {
                     if (ImGui::MenuItem("Texture..."))
                     {
                         // TODO: Implement texture import
-                        LOG(NEXO_INFO, "Texture import requested");
+                        LOG(PARALLAX_INFO, "Texture import requested");
                     }
 
                     ImGui::EndMenu();
@@ -306,13 +306,13 @@ namespace nexo::editor {
                     if (ImGui::MenuItem("Export Scene"))
                     {
                         // TODO: Implement scene export with custom extension
-                        LOG(NEXO_INFO, "Export scene as .{}", exportExtension);
+                        LOG(PARALLAX_INFO, "Export scene as .{}", exportExtension);
                     }
 
                     if (ImGui::MenuItem("Export Selection"))
                     {
                         // TODO: Implement selection export
-                        LOG(NEXO_INFO, "Export selection as .{}", exportExtension);
+                        LOG(PARALLAX_INFO, "Export selection as .{}", exportExtension);
                     }
 
                     ImGui::EndMenu();
@@ -332,7 +332,7 @@ namespace nexo::editor {
                 if (ImGui::MenuItem(ICON_FA_TH " Tab Viewer"))
                 {
                     // TODO: Open Tab Viewer window
-                    LOG(NEXO_INFO, "Tab Viewer requested");
+                    LOG(PARALLAX_INFO, "Tab Viewer requested");
                 }
 
                 ImGui::Separator();
@@ -340,7 +340,7 @@ namespace nexo::editor {
                 // Show/hide individual panels
                 ImGui::Text("Panels:");
 
-                if (auto sceneTree = m_windowRegistry.getWindow<SceneTreeWindow>(NEXO_WND_USTRID_SCENE_TREE).lock())
+                if (auto sceneTree = m_windowRegistry.getWindow<SceneTreeWindow>(PARALLAX_WND_USTRID_SCENE_TREE).lock())
                 {
                     bool opened = sceneTree->isOpened();
                     if (ImGui::MenuItem(ICON_FA_SITEMAP " Scene Tree", nullptr, &opened))
@@ -349,7 +349,7 @@ namespace nexo::editor {
                     }
                 }
 
-                if (auto inspector = m_windowRegistry.getWindow<InspectorWindow>(NEXO_WND_USTRID_INSPECTOR).lock())
+                if (auto inspector = m_windowRegistry.getWindow<InspectorWindow>(PARALLAX_WND_USTRID_INSPECTOR).lock())
                 {
                     bool opened = inspector->isOpened();
                     if (ImGui::MenuItem(ICON_FA_INFO_CIRCLE " Inspector", nullptr, &opened))
@@ -358,7 +358,7 @@ namespace nexo::editor {
                     }
                 }
 
-                if (auto console = m_windowRegistry.getWindow<ConsoleWindow>(NEXO_WND_USTRID_CONSOLE).lock())
+                if (auto console = m_windowRegistry.getWindow<ConsoleWindow>(PARALLAX_WND_USTRID_CONSOLE).lock())
                 {
                     bool opened = console->isOpened();
                     if (ImGui::MenuItem(ICON_FA_TERMINAL " Console", nullptr, &opened))
@@ -367,7 +367,7 @@ namespace nexo::editor {
                     }
                 }
 
-                if (auto assetMgr = m_windowRegistry.getWindow<AssetManagerWindow>(NEXO_WND_USTRID_ASSET_MANAGER).lock())
+                if (auto assetMgr = m_windowRegistry.getWindow<AssetManagerWindow>(PARALLAX_WND_USTRID_ASSET_MANAGER).lock())
                 {
                     bool opened = assetMgr->isOpened();
                     if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Asset Manager", nullptr, &opened))
@@ -376,7 +376,7 @@ namespace nexo::editor {
                     }
                 }
 
-                if (auto matInspector = m_windowRegistry.getWindow<MaterialInspector>(NEXO_WND_USTRID_MATERIAL_INSPECTOR).lock())
+                if (auto matInspector = m_windowRegistry.getWindow<MaterialInspector>(PARALLAX_WND_USTRID_MATERIAL_INSPECTOR).lock())
                 {
                     bool opened = matInspector->isOpened();
                     if (ImGui::MenuItem(ICON_FA_PAINT_BRUSH " Material Inspector", nullptr, &opened))
@@ -397,13 +397,13 @@ namespace nexo::editor {
                 if (ImGui::MenuItem(ICON_FA_PUZZLE_PIECE " Load Plugin..."))
                 {
                     // TODO: Implement plugin loader
-                    LOG(NEXO_INFO, "Plugin loader requested");
+                    LOG(PARALLAX_INFO, "Plugin loader requested");
                 }
 
                 if (ImGui::MenuItem(ICON_FA_LIST " Manage Plugins..."))
                 {
                     // TODO: Open plugin manager window
-                    LOG(NEXO_INFO, "Plugin manager requested");
+                    LOG(PARALLAX_INFO, "Plugin manager requested");
                 }
 
                 ImGui::Separator();
@@ -463,20 +463,20 @@ namespace nexo::editor {
 
             // ─────────────────────────────────────────────
             // Dock the windows into their corresponding nodes.
-            const std::string defaultSceneUniqueStrId = std::format("{}{}", NEXO_WND_USTRID_DEFAULT_SCENE, 0); // for the default scene
+            const std::string defaultSceneUniqueStrId = std::format("{}{}", PARALLAX_WND_USTRID_DEFAULT_SCENE, 0); // for the default scene
             ImGui::DockBuilderDockWindow(defaultSceneUniqueStrId.c_str(), mainSceneTop);
-            ImGui::DockBuilderDockWindow(NEXO_WND_USTRID_CONSOLE, consoleNode);
-            ImGui::DockBuilderDockWindow(NEXO_WND_USTRID_SCENE_TREE, sceneTreeNode);
-            ImGui::DockBuilderDockWindow(NEXO_WND_USTRID_INSPECTOR, inspectorNode);
-            ImGui::DockBuilderDockWindow(NEXO_WND_USTRID_MATERIAL_INSPECTOR, materialInspectorNode);
-            ImGui::DockBuilderDockWindow(NEXO_WND_USTRID_ASSET_MANAGER, consoleNode);
+            ImGui::DockBuilderDockWindow(PARALLAX_WND_USTRID_CONSOLE, consoleNode);
+            ImGui::DockBuilderDockWindow(PARALLAX_WND_USTRID_SCENE_TREE, sceneTreeNode);
+            ImGui::DockBuilderDockWindow(PARALLAX_WND_USTRID_INSPECTOR, inspectorNode);
+            ImGui::DockBuilderDockWindow(PARALLAX_WND_USTRID_MATERIAL_INSPECTOR, materialInspectorNode);
+            ImGui::DockBuilderDockWindow(PARALLAX_WND_USTRID_ASSET_MANAGER, consoleNode);
 
             m_windowRegistry.setDockId(defaultSceneUniqueStrId, mainSceneTop);
-            m_windowRegistry.setDockId(NEXO_WND_USTRID_CONSOLE, consoleNode);
-            m_windowRegistry.setDockId(NEXO_WND_USTRID_SCENE_TREE, sceneTreeNode);
-            m_windowRegistry.setDockId(NEXO_WND_USTRID_INSPECTOR, inspectorNode);
-            m_windowRegistry.setDockId(NEXO_WND_USTRID_MATERIAL_INSPECTOR, materialInspectorNode);
-            m_windowRegistry.setDockId(NEXO_WND_USTRID_ASSET_MANAGER, consoleNode);
+            m_windowRegistry.setDockId(PARALLAX_WND_USTRID_CONSOLE, consoleNode);
+            m_windowRegistry.setDockId(PARALLAX_WND_USTRID_SCENE_TREE, sceneTreeNode);
+            m_windowRegistry.setDockId(PARALLAX_WND_USTRID_INSPECTOR, inspectorNode);
+            m_windowRegistry.setDockId(PARALLAX_WND_USTRID_MATERIAL_INSPECTOR, materialInspectorNode);
+            m_windowRegistry.setDockId(PARALLAX_WND_USTRID_ASSET_MANAGER, consoleNode);
             dockingRegistryFilled = true;
 
             // Finish building the dock layout.
@@ -510,17 +510,17 @@ namespace nexo::editor {
         if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl) && ImGui::IsKeyPressed(ImGuiKey_S))
         {
             // TODO: Implement scene save functionality
-            LOG(NEXO_INFO, "Save requested (Ctrl+S)");
+            LOG(PARALLAX_INFO, "Save requested (Ctrl+S)");
         }
 
         // Ctrl+Shift+T for Test Window
         if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl) && ImGui::IsKeyDown(ImGuiKey_LeftShift) && ImGui::IsKeyPressed(ImGuiKey_T))
         {
-            if (const auto testWindow = getWindow<TestWindow>(NEXO_WND_USTRID_TEST).lock()) {
+            if (const auto testWindow = getWindow<TestWindow>(PARALLAX_WND_USTRID_TEST).lock()) {
                 testWindow->setOpened(true);
             } else {
-                registerWindow<TestWindow>(NEXO_WND_USTRID_TEST);
-                getWindow<TestWindow>(NEXO_WND_USTRID_TEST).lock()->setup();
+                registerWindow<TestWindow>(PARALLAX_WND_USTRID_TEST);
+                getWindow<TestWindow>(PARALLAX_WND_USTRID_TEST).lock()->setup();
             }
         }
     }
@@ -589,7 +589,7 @@ namespace nexo::editor {
             ImGuiWindowFlags_NoInputs |
             ImGuiWindowFlags_NoBackground;
 
-        if (ImGui::Begin(NEXO_WND_USTRID_BOTTOM_BAR, nullptr, bottomBarFlags))
+        if (ImGui::Begin(PARALLAX_WND_USTRID_BOTTOM_BAR, nullptr, bottomBarFlags))
         {
             constexpr float textScaleFactor = 0.90f; // 15% larger text
             ImGui::SetWindowFontScale(textScaleFactor);
@@ -685,7 +685,7 @@ namespace nexo::editor {
                         ImGuiWindowFlags_NoScrollbar |
                         ImGuiWindowFlags_NoBackground);
 
-        const std::vector<ImNexo::GradientStop> stops = {
+        const std::vector<ImParallax::GradientStop> stops = {
             { 0.06f, IM_COL32(58, 124, 161, 255) },
             {0.26f, IM_COL32(88, 87, 154, 255) },
             { 0.50f, IM_COL32(88, 87, 154, 255) },
@@ -694,7 +694,7 @@ namespace nexo::editor {
 
         constexpr float angle = 148;
 
-        ImNexo::RectFilledLinearGradient(viewport->Pos,
+        ImParallax::RectFilledLinearGradient(viewport->Pos,
                 ImVec2(viewport->Pos.x + viewport->Size.x, viewport->Pos.y + viewport->Size.y), angle, stops);
 
         ImGui::End();

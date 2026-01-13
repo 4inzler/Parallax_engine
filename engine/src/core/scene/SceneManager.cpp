@@ -21,7 +21,7 @@
 #include "core/exceptions/Exceptions.hpp"
 #include <cmath>
 
-namespace nexo::scene {
+namespace parallax::scene {
 	SceneManager::SceneManager() = default;
 
 	void SceneManager::setCoordinator(const std::shared_ptr<ecs::Coordinator> &coordinator)

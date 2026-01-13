@@ -19,7 +19,7 @@
 #include "System.hpp"
 #include "Coordinator.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
     class MockCoordinator : public Coordinator {};
 
     // Mock systems for testing
@@ -122,31 +122,31 @@ namespace nexo::ecs {
     protected:
         void SetUp() override {
             // Setup code
-            nexo::ecs::System::coord = std::make_shared<nexo::ecs::MockCoordinator>();
+            parallax::ecs::System::coord = std::make_shared<parallax::ecs::MockCoordinator>();
 
             // Register systems
-            querySystem = systemManager.registerQuerySystem<nexo::ecs::MockQuerySystem>();
-            groupSystem = systemManager.registerGroupSystem<nexo::ecs::MockGroupSystem>();
+            querySystem = systemManager.registerQuerySystem<parallax::ecs::MockQuerySystem>();
+            groupSystem = systemManager.registerGroupSystem<parallax::ecs::MockGroupSystem>();
 
             // Set signatures
             querySignature.set(0, true); // System requires component 0
             querySystem->signature = querySignature;
-            systemManager.setSignature<nexo::ecs::MockQuerySystem>(querySignature);
+            systemManager.setSignature<parallax::ecs::MockQuerySystem>(querySignature);
         }
 
         void TearDown() override {
-            nexo::ecs::System::coord.reset();
+            parallax::ecs::System::coord.reset();
         }
 
-        nexo::ecs::SystemManager systemManager;
-        std::shared_ptr<nexo::ecs::MockQuerySystem> querySystem;
-        std::shared_ptr<nexo::ecs::MockGroupSystem> groupSystem;
-        nexo::ecs::Signature querySignature;
+        parallax::ecs::SystemManager systemManager;
+        std::shared_ptr<parallax::ecs::MockQuerySystem> querySystem;
+        std::shared_ptr<parallax::ecs::MockGroupSystem> groupSystem;
+        parallax::ecs::Signature querySignature;
     };
 
     TEST_F(SystemImplementationTest, EntityDestroyedRemovesFromAllSystems) {
         // Add entity to the system
-        nexo::ecs::Entity entity = 1;
+        parallax::ecs::Entity entity = 1;
         querySystem->entities.insert(entity);
 
         // Destroy entity
@@ -157,9 +157,9 @@ namespace nexo::ecs {
     }
 
     TEST_F(SystemImplementationTest, EntitySignatureChangedAddsToMatchingSystems) {
-        nexo::ecs::Entity entity = 1;
-        nexo::ecs::Signature oldSignature; // Empty
-        nexo::ecs::Signature newSignature;
+        parallax::ecs::Entity entity = 1;
+        parallax::ecs::Signature oldSignature; // Empty
+        parallax::ecs::Signature newSignature;
         newSignature.set(0, true); // Now matches querySystem
 
         // Initially not in system
@@ -173,10 +173,10 @@ namespace nexo::ecs {
     }
 
     TEST_F(SystemImplementationTest, EntitySignatureChangedRemovesFromNonMatchingSystems) {
-        nexo::ecs::Entity entity = 1;
-        nexo::ecs::Signature oldSignature;
+        parallax::ecs::Entity entity = 1;
+        parallax::ecs::Signature oldSignature;
         oldSignature.set(0, true); // Initially matches querySystem
-        nexo::ecs::Signature newSignature; // Empty, no longer matches
+        parallax::ecs::Signature newSignature; // Empty, no longer matches
 
         // Add to system
         querySystem->entities.insert(entity);
@@ -199,15 +199,15 @@ namespace nexo::ecs {
             Signature signature;
         };
         auto otherSystem = systemManager.registerQuerySystem<AnotherMockQuerySystem>();
-        nexo::ecs::Signature otherSignature;
+        parallax::ecs::Signature otherSignature;
         otherSignature.set(1, true); // This system requires component 1
         otherSystem->signature = otherSignature;
 
-        nexo::ecs::Entity entity = 1;
-        nexo::ecs::Signature oldSignature;
+        parallax::ecs::Entity entity = 1;
+        parallax::ecs::Signature oldSignature;
         oldSignature.set(0, true); // Matches only querySystem
 
-        nexo::ecs::Signature newSignature;
+        parallax::ecs::Signature newSignature;
         newSignature.set(1, true); // Matches only otherSystem
 
         // Add to first system

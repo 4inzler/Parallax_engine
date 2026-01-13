@@ -15,7 +15,7 @@
 #include "PrimitiveWindow.hpp"
 #include "DocumentWindows/InspectorWindow/InspectorWindow.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
     void PrimitiveWindow::renderPrimitiveWindow() const
     {
@@ -43,7 +43,7 @@ namespace nexo::editor
 
     void PrimitiveWindow::show()
     {
-        const auto inspectorWindow = m_windowRegistry.getWindow<InspectorWindow>(NEXO_WND_USTRID_INSPECTOR).lock();
+        const auto inspectorWindow = m_windowRegistry.getWindow<InspectorWindow>(PARALLAX_WND_USTRID_INSPECTOR).lock();
         if (!inspectorWindow)
             return;
         if (inspectorWindow->getSubInspectorVisibility<PrimitiveWindow>())
@@ -52,10 +52,10 @@ namespace nexo::editor
             if (m_firstOpened)
                 window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus;
 
-            if (ImGui::Begin("Primitive Window" NEXO_WND_USTRID_PRIMITIVE_WINDOW,
+            if (ImGui::Begin("Primitive Window" PARALLAX_WND_USTRID_PRIMITIVE_WINDOW,
                              &inspectorWindow->getSubInspectorVisibility<PrimitiveWindow>(), window_flags))
             {
-                beginRender(NEXO_WND_USTRID_PRIMITIVE_WINDOW);
+                beginRender(PARALLAX_WND_USTRID_PRIMITIVE_WINDOW);
                 renderPrimitiveWindow();
             }
             ImGui::End();

@@ -20,7 +20,7 @@
 #include <utility>
 #include <array>
 
-namespace nexo::math {
+namespace parallax::math {
 	struct AttenuationData {
 	    float distance;
 	    float constant;

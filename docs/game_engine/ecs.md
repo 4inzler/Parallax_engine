@@ -143,7 +143,7 @@ struct Velocity {
 ```
 Then we set up the `MovementSystem`:
 ```c++
-class MovementSystem : public nexo::ecs::System {
+class MovementSystem : public parallax::ecs::System {
     public:
         void update(float deltaTime) {
             for (auto entity : entities) {
@@ -163,7 +163,7 @@ The coordinator is a static member initialized during the init call of the coord
 
 Now we can do our basic initialization routine :
 ```c++
-nexo::ecs::Coordinator coordinator;
+parallax::ecs::Coordinator coordinator;
 coordinator.init();
 
 coordinator.registerComponent<Position>();
@@ -172,7 +172,7 @@ coordinator.registerComponent<Velocity>();
 Create our system and assign it its signature :
 ```c++
 auto movementSystem = coordinator.registerSystem<MovementSystem>();
-nexo::ecs::Signature movementSignature;
+parallax::ecs::Signature movementSignature;
 movementSignature.set(coordinator.getComponentType<Position>(), true);
 movementSignature.set(coordinator.getComponentType<Velocity>(), true);
 coordinator.setSystemSignature<MovementSystem>(movementSignature);

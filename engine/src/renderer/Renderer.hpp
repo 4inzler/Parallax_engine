@@ -19,7 +19,7 @@
 
 #include <glm/glm.hpp>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     class NxRenderer {
         public:

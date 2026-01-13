@@ -68,11 +68,11 @@ void log(const std::string& message)
 // The query system induces a small performance overhead because of the indirection required to access the components
 // (because the entities we are iterating on does not necessarily have contiguous components in memory)
 // This should be used when you want to create a group system that does not own any components
-class QueryBenchmarkSystem : public nexo::ecs::QuerySystem<
-    nexo::ecs::Write<Position>,
-    nexo::ecs::Read<Velocity>,
-    nexo::ecs::ReadSingleton<GameConfig>,
-    nexo::ecs::WriteSingleton<GameState>
+class QueryBenchmarkSystem : public parallax::ecs::QuerySystem<
+    parallax::ecs::Write<Position>,
+    parallax::ecs::Read<Velocity>,
+    parallax::ecs::ReadSingleton<GameConfig>,
+    parallax::ecs::WriteSingleton<GameState>
 > {
 	public:
 	    void runBenchmark()
@@ -101,7 +101,7 @@ class QueryBenchmarkSystem : public nexo::ecs::QuerySystem<
 	        for (int i = 0; i < numIterations; i++) {
 				// We can safely update the game state here
 				gameState.gameTime += 10;
-	            for (nexo::ecs::Entity entity : entities) {
+	            for (parallax::ecs::Entity entity : entities) {
 	                auto &position = getComponent<Position>(entity);
 	                auto &velocity = getComponent<Velocity>(entity);
 
@@ -128,14 +128,14 @@ class QueryBenchmarkSystem : public nexo::ecs::QuerySystem<
 // Also here we get the singleton components game config as write and game state as read
 // But in most case, those are blazingly fast
 // If unsure, you can try both a query system and a group system to test out what is best for your use case !
-class GroupBenchmarkSystem : public nexo::ecs::GroupSystem<
-    nexo::ecs::Owned<
-        nexo::ecs::Write<Position>,
-        nexo::ecs::Read<Velocity>
+class GroupBenchmarkSystem : public parallax::ecs::GroupSystem<
+    parallax::ecs::Owned<
+        parallax::ecs::Write<Position>,
+        parallax::ecs::Read<Velocity>
     >,
-    nexo::ecs::NonOwned<>,
-    nexo::ecs::WriteSingleton<GameConfig>,
-    nexo::ecs::ReadSingleton<GameState>
+    parallax::ecs::NonOwned<>,
+    parallax::ecs::WriteSingleton<GameConfig>,
+    parallax::ecs::ReadSingleton<GameState>
 > {
 	public:
 	    void runBenchmark()
@@ -186,7 +186,7 @@ class GroupBenchmarkSystem : public nexo::ecs::GroupSystem<
 	        auto start = std::chrono::high_resolution_clock::now();
 
 	        for (int i = 0; i < numIterations; i++) {
-	            m_group->each([]([[maybe_unused]] nexo::ecs::Entity entity, Position& position, const Velocity& velocity) {
+	            m_group->each([]([[maybe_unused]] parallax::ecs::Entity entity, Position& position, const Velocity& velocity) {
 	                position.x += velocity.x;
 	                position.y += velocity.y;
 
@@ -196,7 +196,7 @@ class GroupBenchmarkSystem : public nexo::ecs::GroupSystem<
 
 	            // But here, this would compile even though the user forgot to mention the const in the lambda function,
 				// which can be problematic in multihreaded systems
-	            // m_group->each([](nexo::ecs::Entity entity, Position& position, Velocity& velocity) {
+	            // m_group->each([](parallax::ecs::Entity entity, Position& position, Velocity& velocity) {
 	            //     position.x += velocity.x;
 	            //     position.y += velocity.y;
 
@@ -262,7 +262,7 @@ class GroupBenchmarkSystem : public nexo::ecs::GroupSystem<
 
 int main() {
     // Initialize ECS Coordinator
-    nexo::ecs::Coordinator coordinator;
+    parallax::ecs::Coordinator coordinator;
     coordinator.init();
 
     log("ECS initialized");
@@ -288,11 +288,11 @@ int main() {
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> velocityDist(-10.0, 10.0);
 
-    std::vector<nexo::ecs::Entity> entities;
+    std::vector<parallax::ecs::Entity> entities;
     entities.reserve(5000);
 
     for (int i = 0; i < 5000; ++i) {
-        nexo::ecs::Entity entity = coordinator.createEntity();
+        parallax::ecs::Entity entity = coordinator.createEntity();
 
         float velX = static_cast<float>(velocityDist(gen));
         float velY = static_cast<float>(velocityDist(gen));

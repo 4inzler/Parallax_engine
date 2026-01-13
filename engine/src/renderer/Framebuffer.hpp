@@ -21,7 +21,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
      * @enum NxFrameBufferTextureFormats

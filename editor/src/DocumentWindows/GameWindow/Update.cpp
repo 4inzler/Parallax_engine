@@ -24,7 +24,7 @@
 #include "core/scene/SceneManager.hpp"
 #include "Logger.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
 
     void GameWindow::update()
@@ -67,12 +67,12 @@ namespace nexo::editor
                 // Destroy the entity
                 coordinator.destroyEntity(m_gameCamera);
 
-                LOG(NEXO_INFO, "Destroyed game camera entity {}", m_gameCamera);
+                LOG(PARALLAX_INFO, "Destroyed game camera entity {}", m_gameCamera);
             }
             else
             {
                 // Camera was already destroyed
-                LOG(NEXO_WARN, "Failed to properly clean up game camera");
+                LOG(PARALLAX_WARN, "Failed to properly clean up game camera");
             }
 
             m_gameCamera = ecs::INVALID_ENTITY;

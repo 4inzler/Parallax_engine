@@ -22,7 +22,7 @@
 
 #include "scripting/native/systems/ManagedWorldState.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
     class ScriptingSystem {
         public:

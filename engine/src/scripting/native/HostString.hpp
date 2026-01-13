@@ -18,13 +18,14 @@
 
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <vector>
 #include <iterator>
 
 #include <hostfxr.h>
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     class HostString {
         public:
@@ -35,7 +36,7 @@ namespace nexo::scripting {
             HostString(HostString&&) = default;
             HostString& operator=(HostString&&) = default;
 
-            explicit HostString(nullptr_t) : m_buffer{}
+            explicit HostString(std::nullptr_t) : m_buffer{}
             {}
 
             // Implicit constructors
@@ -121,4 +122,4 @@ namespace nexo::scripting {
             void init_from_wide(const std::wstring& wide);
     };
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

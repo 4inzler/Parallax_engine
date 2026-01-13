@@ -24,7 +24,7 @@
 #include "assets/Assets/Model/Model.hpp"
 #include "json.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     struct TestParams {
         int intValue{};

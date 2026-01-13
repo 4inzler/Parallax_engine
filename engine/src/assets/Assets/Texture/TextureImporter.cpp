@@ -24,7 +24,7 @@
 #include "assets/Assets/Texture/Texture.hpp"
 #include <boost/uuid/random_generator.hpp>
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     bool TextureImporter::canRead(const ImporterInputVariant& inputVariant)
     {
@@ -71,4 +71,4 @@ namespace nexo::assets {
         return ok;
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

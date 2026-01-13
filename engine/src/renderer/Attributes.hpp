@@ -19,7 +19,7 @@
 
 #include <cstdint>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
    	struct RequiredAttributes {
 		union BitFields {

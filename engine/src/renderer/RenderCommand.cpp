@@ -21,7 +21,7 @@
     #include "opengl/OpenGlRendererAPI.hpp"
 #endif
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     #ifdef NX_GRAPHICS_API_OPENGL
         NxRendererApi *NxRenderCommand::_rendererApi = new NxOpenGlRendererApi;

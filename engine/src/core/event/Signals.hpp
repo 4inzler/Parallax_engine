@@ -21,7 +21,7 @@
 #include <csignal>
 #include <cstring>
 
-namespace nexo::utils {
+namespace parallax::utils {
 
 #ifdef _WIN32
     constexpr const char *strsignal(const int signal)

@@ -19,7 +19,7 @@
 
 #include <cstdint>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     constexpr uint32_t F_FORWARD_PASS  = 1 << 0;
     constexpr uint32_t F_OUTLINE_MASK  = 1 << 1;
     constexpr uint32_t F_OUTLINE_PASS  = 1 << 2;

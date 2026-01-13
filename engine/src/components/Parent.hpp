@@ -21,7 +21,7 @@
 #include "assets/AssetRef.hpp"
 #include "assets/Assets/Model/Model.hpp"
 
-namespace nexo::components {
+namespace parallax::components {
 
     struct ParentComponent {
         ecs::Entity parent;

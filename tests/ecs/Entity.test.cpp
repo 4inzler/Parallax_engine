@@ -23,7 +23,7 @@
 #include <set>
 #include <algorithm>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	class EntityManagerTest : public ::testing::Test {
 	protected:

@@ -14,7 +14,7 @@
 #include "../ecs/System.hpp"
 #include "Timestep.hpp"
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Manages ray tracing backend initialization and configuration
@@ -199,4 +199,4 @@ namespace nexo {
         const float DESKTOP_TARGET_FRAME_TIME_MS = 16.6f;  // 60 FPS
     };
 
-} // namespace nexo
+} // namespace parallax

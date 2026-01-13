@@ -17,14 +17,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "PopupManager.hpp"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Elements.hpp"
 #include "Logger.hpp"
 
 #include <imgui.h>
 
 #include <utility>
 
-namespace nexo::editor {
+namespace parallax::editor {
     void PopupManager::openPopup(const std::string &popupName, const ImVec2 &popupSize)
     {
         const PopupProps props{
@@ -98,7 +98,7 @@ namespace nexo::editor {
         const auto pMax = ImVec2(pMin.x + size.x, pMin.y + size.y);
         ImDrawList* drawList = ImGui::GetWindowDrawList();
 
-        const std::vector<ImNexo::GradientStop> stops = {
+        const std::vector<ImParallax::GradientStop> stops = {
             { 0.06f, IM_COL32(58 / 3, 124 / 3, 161 / 3, 255) },
             { 0.26f, IM_COL32(88 / 3,  87 / 3, 154 / 3, 255) },
             { 0.50f, IM_COL32(88 / 3,  87 / 3, 154 / 3, 255) },
@@ -106,7 +106,7 @@ namespace nexo::editor {
         };
         constexpr float angle = 148.0f;
 
-        ImNexo::RectFilledLinearGradient(pMin, pMax, angle, stops, drawList);
+        ImParallax::RectFilledLinearGradient(pMin, pMax, angle, stops, drawList);
 
         return true;
     }

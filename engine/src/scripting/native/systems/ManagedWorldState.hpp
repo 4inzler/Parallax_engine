@@ -23,7 +23,7 @@
 
 #include "scripting/native/ManagedTypedef.hpp"
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     /**
      * @brief Represents the state of the world in the game engine.
@@ -48,4 +48,4 @@ namespace nexo::scripting {
         }
     };
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

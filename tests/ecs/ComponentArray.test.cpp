@@ -20,7 +20,7 @@
 #include "ComponentArray.hpp"
 #include "ECSExceptions.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     struct TestComponent {
         int value;

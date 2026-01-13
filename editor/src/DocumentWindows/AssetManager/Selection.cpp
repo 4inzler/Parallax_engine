@@ -14,7 +14,7 @@
 
 #include "AssetManagerWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     void AssetManagerWindow::handleSelection(const unsigned int index, const bool isSelected)
     {
         if (ImGui::IsKeyDown(ImGuiKey_ModCtrl)) {
@@ -76,4 +76,4 @@ namespace nexo::editor {
         m_selectedFolders.clear();
         m_selectedFolders.insert(folderPath);
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

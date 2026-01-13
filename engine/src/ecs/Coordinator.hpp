@@ -29,7 +29,7 @@
 #include "Logger.hpp"
 #include "TypeErasedComponent/ComponentDescription.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     template <typename T>
     struct Exclude {

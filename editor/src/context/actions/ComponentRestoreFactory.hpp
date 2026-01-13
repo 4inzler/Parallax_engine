@@ -23,7 +23,7 @@
 #include <any>
 #include <typeindex>
 
-namespace nexo::editor {
+namespace parallax::editor {
     class ComponentRestoreFactory {
         public:
             static std::unique_ptr<Action> createRestoreComponent(ecs::Entity entity, const std::any& typeIndex);

@@ -20,7 +20,7 @@
 
 #include <boost/uuid/random_generator.hpp>
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     bool AssetCatalog::deleteAsset(const AssetID id)
     {
@@ -98,4 +98,4 @@ namespace nexo::assets {
         return GenericAssetRef(shared_ptr);
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

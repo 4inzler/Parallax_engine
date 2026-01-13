@@ -25,10 +25,10 @@
 #include "inputs/WindowState.hpp"
 #include "core/scene/SceneManager.hpp"
 #include "../PopupManager.hpp"
-#include "ImNexo/Widgets.hpp"
+#include "ImParallax/Widgets.hpp"
 #include "DocumentWindows/AssetManager/AssetManagerWindow.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
     class EditorScene final : public ADocumentWindow
     {
@@ -117,7 +117,7 @@ namespace nexo::editor
 
         PopupManager m_popupManager;
 
-        const std::vector<ImNexo::GradientStop> m_buttonGradient = {
+        const std::vector<ImParallax::GradientStop> m_buttonGradient = {
             {0.0f, IM_COL32(50, 50, 70, 230)},
             {1.0f, IM_COL32(30, 30, 45, 230)}
         };
@@ -131,7 +131,7 @@ namespace nexo::editor
         std::string m_gameWindowNameToSplit;
 
         // Selected button gradient - lighter blue gradient
-        const std::vector<ImNexo::GradientStop> m_selectedGradient = {
+        const std::vector<ImParallax::GradientStop> m_selectedGradient = {
             {0.0f, IM_COL32(70, 70, 120, 230)},
             {1.0f, IM_COL32(50, 50, 100, 230)}
         };
@@ -211,8 +211,8 @@ namespace nexo::editor
          */
         bool renderGizmoModeToolbarButton(
             bool showGizmoModeMenu,
-            ImNexo::ButtonProps& activeGizmoMode,
-            ImNexo::ButtonProps& inactiveGizmoMode
+            ImParallax::ButtonProps& activeGizmoMode,
+            ImParallax::ButtonProps& inactiveGizmoMode
         );
 
         /**
@@ -266,7 +266,7 @@ namespace nexo::editor
             const std::string& uniqueId,
             const std::string& icon,
             const std::string& tooltip,
-            const std::vector<ImNexo::GradientStop>& gradientStop,
+            const std::vector<ImParallax::GradientStop>& gradientStop,
             bool* rightClicked = nullptr
         );
 

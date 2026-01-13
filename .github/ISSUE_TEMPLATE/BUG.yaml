@@ -1,17 +1,17 @@
 name: Bug report
-description: Use this template to report a bug in the Nexo Engine project.
+description: Use this template to report a bug in the Parallax Engine project.
 title: "fix: "
 labels: ["bug"]
 type: "Bug"
-projects: ["NexoEngine/3"]
+projects: ["ParallaxEngine/3"]
 
 body:
   - type: markdown
     attributes:
       value: |
-        ## Welcome to the Nexo Engine Bug Report!
+        ## Welcome to the Parallax Engine Bug Report!
         
-        Thank you for taking the time to help improve Nexo Engine. Please provide as much detail as possible so we can address the issue promptly.
+        Thank you for taking the time to help improve Parallax Engine. Please provide as much detail as possible so we can address the issue promptly.
 
         > [!NOTE]
         > You can attach screenshots in any text field, it's a welcomed addition :)

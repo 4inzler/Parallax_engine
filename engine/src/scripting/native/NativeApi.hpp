@@ -18,36 +18,37 @@
 
 #pragma once
 
-#ifdef NEXO_EXPORT
+#ifdef PARALLAX_EXPORT
     #ifdef WIN32
-        #define NEXO_API __declspec(dllexport)
+        #define PARALLAX_API __declspec(dllexport)
     #elif defined(__GNUC__) || defined(__clang__)
-        #define NEXO_API __attribute__((visibility("default")))
+        #define PARALLAX_API __attribute__((visibility("default")))
     #else
-        #define NEXO_API
+        #define PARALLAX_API
     #endif
 #else
     #ifdef WIN32
-        #define NEXO_API __declspec(dllimport)
+        #define PARALLAX_API __declspec(dllimport)
     #else
-        #define NEXO_API
+        #define PARALLAX_API
     #endif
 #endif
 
 #ifdef WIN32 // Set calling convention according to .NET https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.dllimportattribute.callingconvention?view=net-9.0#remarks
-    #define NEXO_CALL  __stdcall
+    #define PARALLAX_CALL  __stdcall
 #elif defined(__GNUC__) || defined(__clang__)
-    #define NEXO_CALL // Empty on GCC/Clang since cdecl is default
+    #define PARALLAX_CALL // Empty on GCC/Clang since cdecl is default
 #else
-    #define NEXO_CALL __cdecl
+    #define PARALLAX_CALL __cdecl
 #endif
 
-#define NEXO_RET(type) NEXO_API type NEXO_CALL
+#define PARALLAX_RET(type) PARALLAX_API type PARALLAX_CALL
 
+#include <cstddef>
 #include "ManagedTypedef.hpp"
 #include "components/Transform.hpp"
 
-namespace nexo::scripting {
+namespace parallax::scripting {
     struct Field;
 
     template<typename Sig>
@@ -55,12 +56,12 @@ namespace nexo::scripting {
 
     template<typename Ret, typename... Args>
     struct ApiCallback<Ret(Args...)> {
-        using Type = Ret (NEXO_CALL *)(Args...);
+        using Type = Ret (PARALLAX_CALL *)(Args...);
 
         // Constructor explicitly accepting function pointers
         explicit ApiCallback(Type f) : func(f) {}
 
-        explicit ApiCallback(nullptr_t) = delete;
+        explicit ApiCallback(std::nullptr_t) = delete;
 
         // Delete the default constructor to enforce initialization
         ApiCallback() = delete;
@@ -85,29 +86,29 @@ namespace nexo::scripting {
             UInt32 PhysicsBodyComponent;
         };
 
-        NEXO_RET(void) NxHelloFromNative(void);
-        NEXO_RET(Int32) NxAddNumbers(Int32 a, Int32 b);
-        NEXO_RET(const char*) NxGetNativeMessage(void);
-        NEXO_RET(void) NxLog(UInt32 level, const char *message);
+        PARALLAX_RET(void) NxHelloFromNative(void);
+        PARALLAX_RET(Int32) NxAddNumbers(Int32 a, Int32 b);
+        PARALLAX_RET(const char*) NxGetNativeMessage(void);
+        PARALLAX_RET(void) NxLog(UInt32 level, const char *message);
 
-        NEXO_RET(ecs::Entity) NxCreateCube(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color);
-        NEXO_RET(components::TransformComponent *) NxGetTransformComponent(ecs::Entity entity);
-        NEXO_RET(void *) NxGetComponent(ecs::Entity entity, UInt32 componentTypeId);
-        NEXO_RET(void) NxAddComponent(ecs::Entity entity, UInt32 componentTypeId, const void *componentData);
-        NEXO_RET(void) NxRemoveComponent(ecs::Entity entity, UInt32 componentTypeId);
-        NEXO_RET(void) NxDestroyEntity(ecs::Entity entity);
-        NEXO_RET(bool) NxHasComponent(ecs::Entity entity, UInt32 componentTypeId);
-        NEXO_RET(Int64) NxRegisterComponent(const char *name, UInt64 componentSize, const Field *fields, UInt64 fieldCount);
-        NEXO_RET(ComponentTypeIds) NxGetComponentTypeIds();
+        PARALLAX_RET(ecs::Entity) NxCreateCube(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color);
+        PARALLAX_RET(components::TransformComponent *) NxGetTransformComponent(ecs::Entity entity);
+        PARALLAX_RET(void *) NxGetComponent(ecs::Entity entity, UInt32 componentTypeId);
+        PARALLAX_RET(void) NxAddComponent(ecs::Entity entity, UInt32 componentTypeId, const void *componentData);
+        PARALLAX_RET(void) NxRemoveComponent(ecs::Entity entity, UInt32 componentTypeId);
+        PARALLAX_RET(void) NxDestroyEntity(ecs::Entity entity);
+        PARALLAX_RET(bool) NxHasComponent(ecs::Entity entity, UInt32 componentTypeId);
+        PARALLAX_RET(Int64) NxRegisterComponent(const char *name, UInt64 componentSize, const Field *fields, UInt64 fieldCount);
+        PARALLAX_RET(ComponentTypeIds) NxGetComponentTypeIds();
 
-        NEXO_RET(ecs::Entity) NxCreateTetrahedron(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color);
-        NEXO_RET(ecs::Entity) NxCreatePyramid(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color);
-        NEXO_RET(ecs::Entity) NxCreateCylinder(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color, UInt32 nbSegment);
-        NEXO_RET(ecs::Entity) NxCreateSphere(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color, UInt32 nbSubdivision);
+        PARALLAX_RET(ecs::Entity) NxCreateTetrahedron(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color);
+        PARALLAX_RET(ecs::Entity) NxCreatePyramid(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color);
+        PARALLAX_RET(ecs::Entity) NxCreateCylinder(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color, UInt32 nbSegment);
+        PARALLAX_RET(ecs::Entity) NxCreateSphere(Vector3 position, Vector3 size, Vector3 rotation, Vector4 color, UInt32 nbSubdivision);
         
         // Physics functions
-        NEXO_RET(void) NxCreateBodyFromShape(ecs::Entity entity, Vector3 position, Vector3 size, Vector3 rotation, UInt32 shapeType, UInt32 motionType);
-        NEXO_RET(void) NxApplyForce(ecs::Entity entity, Vector3 force);
+        PARALLAX_RET(void) NxCreateBodyFromShape(ecs::Entity entity, Vector3 position, Vector3 size, Vector3 rotation, UInt32 shapeType, UInt32 motionType);
+        PARALLAX_RET(void) NxApplyForce(ecs::Entity entity, Vector3 force);
 
     }
 
@@ -139,4 +140,4 @@ namespace nexo::scripting {
 
     inline NativeApiCallbacks nativeApiCallbacks;
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

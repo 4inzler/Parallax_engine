@@ -31,7 +31,7 @@
 
 #undef ERROR // Avoid conflict with Windows.h
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     constexpr unsigned short ASSET_MAX_DEPENDENCIES = 10000;
 
@@ -245,4 +245,4 @@ namespace nexo::assets {
         data = std::move(newData);
         return *this;
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

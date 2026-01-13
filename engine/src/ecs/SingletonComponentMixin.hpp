@@ -21,7 +21,7 @@
 #include "SingletonComponent.hpp"
 #include <memory>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     /**
      * @brief Mixin class that provides singleton component functionality to systems

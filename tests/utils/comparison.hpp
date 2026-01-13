@@ -20,7 +20,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace nexo::utils {
+namespace parallax::utils {
     inline void expectMat4Near(const glm::mat4& a, const glm::mat4& b, const float epsilon = 1e-5f)
     {
         for (int i = 0; i < 4; ++i)
@@ -68,9 +68,9 @@ namespace nexo::utils {
 
 }
 
-#define EXPECT_MAT4_NEAR(a, b, epsilon) nexo::utils::expectMat4Near(a, b, epsilon)
-#define EXPECT_QUAT_NEAR(a, b, epsilon) nexo::utils::expectQuatNear(a, b, epsilon)
-#define EXPECT_VEC4_NEAR(a, b, epsilon) nexo::utils::expectVec4Near(a, b, epsilon)
-#define EXPECT_VEC2_NEAR(a, b, epsilon) nexo::utils::expectVec2Near(a, b, epsilon)
-#define EXPECT_VEC3_NEAR(a, b, epsilon) nexo::utils::expectVec3Near(a, b, epsilon)
-#define EXPECT_FLOAT_NEAR(a, b, epsilon) nexo::utils::expectFloatNear(a, b, epsilon)
+#define EXPECT_MAT4_NEAR(a, b, epsilon) parallax::utils::expectMat4Near(a, b, epsilon)
+#define EXPECT_QUAT_NEAR(a, b, epsilon) parallax::utils::expectQuatNear(a, b, epsilon)
+#define EXPECT_VEC4_NEAR(a, b, epsilon) parallax::utils::expectVec4Near(a, b, epsilon)
+#define EXPECT_VEC2_NEAR(a, b, epsilon) parallax::utils::expectVec2Near(a, b, epsilon)
+#define EXPECT_VEC3_NEAR(a, b, epsilon) parallax::utils::expectVec3Near(a, b, epsilon)
+#define EXPECT_FLOAT_NEAR(a, b, epsilon) parallax::utils::expectFloatNear(a, b, epsilon)

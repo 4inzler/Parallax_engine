@@ -26,7 +26,7 @@
 #include "components/StaticMesh.hpp"
 #include "components/Transform.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
 	/**
 	* @brief System responsible for rendering the scene.

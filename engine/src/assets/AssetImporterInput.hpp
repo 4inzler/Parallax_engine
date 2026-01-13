@@ -22,7 +22,7 @@
 #include <vector>
 #include <filesystem>
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     // Import from file, importer should open and read the file
     struct ImporterFileInput {
@@ -37,4 +37,4 @@ namespace nexo::assets {
 
     using ImporterInputVariant = std::variant<ImporterFileInput, ImporterMemoryInput>;
 
-} // namespace nexo::assets
+} // namespace parallax::assets

@@ -20,7 +20,7 @@
 
 #include "json.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     /**
      * @brief Import parameters for textures
@@ -60,4 +60,4 @@ namespace nexo::assets {
     };
 
 
-} // namespace nexo::assets
+} // namespace parallax::assets

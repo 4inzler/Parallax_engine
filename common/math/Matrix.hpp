@@ -20,7 +20,7 @@
 
 #include <glm/glm.hpp>
 
-namespace nexo::math {
+namespace parallax::math {
 	/**
      * @brief Decomposes a 4x4 transformation matrix into translation, Euler rotation, and scale components.
      *

@@ -27,7 +27,7 @@
 
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     ForwardPass::ForwardPass() : RenderPass(Passes::FORWARD, "Forward Pass")
     {
 

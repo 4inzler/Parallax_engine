@@ -24,7 +24,7 @@
 
 #include "utils/TransparentStringHash.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
      * @brief Manages associations between window names and their docking identifiers.

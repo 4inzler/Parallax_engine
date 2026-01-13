@@ -20,7 +20,7 @@
 #include <gmock/gmock.h>
 #include "ecs/SingletonComponent.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	// Test components
 	struct TestComponent {

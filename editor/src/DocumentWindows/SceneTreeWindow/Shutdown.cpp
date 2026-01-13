@@ -18,7 +18,7 @@
 
 #include "SceneTreeWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void SceneTreeWindow::shutdown()
     {

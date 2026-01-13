@@ -23,7 +23,7 @@
 #include <iostream>
 #include <ranges>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     EntityManager::EntityManager()
     {

@@ -21,7 +21,7 @@
     #include "opengl/OpenGlVertexArray.hpp"
 #endif
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     std::shared_ptr<NxVertexArray> createVertexArray()
     {

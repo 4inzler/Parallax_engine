@@ -20,7 +20,7 @@
 #include "components/Name.hpp"
 #include "components/Uuid.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     // Node creation methods
     SceneObject SceneTreeWindow::newSceneNode(const std::string &sceneName, const scene::SceneId sceneId, const WindowId uiId)
@@ -98,7 +98,7 @@ namespace nexo::editor {
         cameraNode.data.sceneProperties = sceneProperties;
         cameraNode.data.entity = cameraEntity;
         auto &selector = Selector::get();
-        const auto entityUuid = nexo::Application::m_coordinator->tryGetComponent<components::UuidComponent>(cameraEntity);
+        const auto entityUuid = parallax::Application::m_coordinator->tryGetComponent<components::UuidComponent>(cameraEntity);
         if (entityUuid)
         {
             cameraNode.uuid = entityUuid->get().uuid;

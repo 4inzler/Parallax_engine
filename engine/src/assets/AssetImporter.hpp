@@ -28,7 +28,7 @@
 #include "AssetImporterInput.hpp"
 #include "json.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     class AssetImporterBase;
 
@@ -274,7 +274,7 @@ namespace nexo::assets {
     {
         auto importers = getImportersForType<AssetType>();
         if (importers.empty()) {
-            LOG(NEXO_ERROR, "No importers registered for asset type {}", typeid(AssetType).name());
+            LOG(PARALLAX_ERROR, "No importers registered for asset type {}", typeid(AssetType).name());
             return GenericAssetRef::null().as<AssetType>();
         }
         return importAssetTryImporters(location, inputVariant, importers).template as<AssetType>();
@@ -301,4 +301,4 @@ namespace nexo::assets {
         const auto typeIdx = std::type_index(typeid(AssetType));
         unregisterAllImportersForType(typeIdx);
     }
-} // namespace nexo::assets
+} // namespace parallax::assets

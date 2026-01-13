@@ -17,29 +17,29 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "CameraController.hpp"
-#include "ImNexo/ImNexo.hpp"
+#include "ImParallax/ImParallax.hpp"
 #include "components/Camera.hpp"
-#include "ImNexo/Elements.hpp"
-#include "ImNexo/EntityProperties.hpp"
+#include "ImParallax/Elements.hpp"
+#include "ImParallax/EntityProperties.hpp"
 #include "context/ActionManager.hpp"
 #include "context/actions/EntityActions.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
 	void CameraController::show(const ecs::Entity entity)
 	{
         auto& controllerComponent = Application::getEntityComponent<components::PerspectiveCameraController>(entity);
         static components::PerspectiveCameraController::Memento beforeState;
 
-        if (ImNexo::Header("##ControllerNode", "Camera Controller"))
+        if (ImParallax::Header("##ControllerNode", "Camera Controller"))
         {
             ImGui::Spacing();
             const auto controllerComponentCopy = controllerComponent;
-            ImNexo::resetItemStates();
-            ImNexo::CameraController(controllerComponent);
-            if (ImNexo::isItemActivated()) {
+            ImParallax::resetItemStates();
+            ImParallax::CameraController(controllerComponent);
+            if (ImParallax::isItemActivated()) {
                 beforeState = controllerComponentCopy.save();
-            } else if (ImNexo::isItemDeactivated()) {
+            } else if (ImParallax::isItemDeactivated()) {
                 auto afterState = controllerComponent.save();
                 auto action = std::make_unique<ComponentChangeAction<components::PerspectiveCameraController>>(entity, beforeState, afterState);
                 ActionManager::get().recordAction(std::move(action));

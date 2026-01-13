@@ -24,7 +24,7 @@
 #include <array>
 #include <glm/glm.hpp>
 
-namespace nexo::renderer
+namespace parallax::renderer
 {
     struct NxVertex
     {

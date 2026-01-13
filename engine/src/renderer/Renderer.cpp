@@ -19,7 +19,7 @@
 #include "Renderer.hpp"
 #include "RenderCommand.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     NxRenderer::NxSceneData *NxRenderer::_sceneData = new NxSceneData;
 

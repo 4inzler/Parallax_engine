@@ -27,7 +27,7 @@
 
 #include <Jolt/RegisterTypes.h>
 
-namespace nexo::system {
+namespace parallax::system {
     PhysicsSystem::PhysicsSystem() = default;
 
     PhysicsSystem::~PhysicsSystem() {
@@ -143,7 +143,7 @@ namespace nexo::system {
             }
 
             default:
-                LOG(NEXO_ERROR, "Unsupported shape type");
+                LOG(PARALLAX_ERROR, "Unsupported shape type");
                 return {};
         }
 
@@ -151,7 +151,7 @@ namespace nexo::system {
         try {
             shape = shapeSettings->Create().Get();
         } catch (const std::exception& e) {
-            LOG(NEXO_ERROR, "Exception during shape creation: {}", e.what());
+            LOG(PARALLAX_ERROR, "Exception during shape creation: {}", e.what());
             delete shapeSettings;
             return {};
         }
@@ -159,7 +159,7 @@ namespace nexo::system {
         delete shapeSettings;
 
         if (!shape) {
-            LOG(NEXO_ERROR, "Shape was null after creation.");
+            LOG(PARALLAX_ERROR, "Shape was null after creation.");
             return {};
         }
 
@@ -173,7 +173,7 @@ namespace nexo::system {
 
         const JPH::Body* body = bodyInterface->CreateBody(bodySettings);
         if (!body) {
-            LOG(NEXO_ERROR, "Body creation failed.");
+            LOG(PARALLAX_ERROR, "Body creation failed.");
             return {};
         }
 

@@ -24,7 +24,7 @@
 
 #include "../Texture/TextureParameters.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     /**
      * @brief Import parameters for 3D models
@@ -87,4 +87,4 @@ namespace nexo::assets {
     );
 
 
-} // namespace nexo::assets
+} // namespace parallax::assets

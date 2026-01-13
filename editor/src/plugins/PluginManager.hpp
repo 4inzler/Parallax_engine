@@ -21,7 +21,7 @@
     typedef void* PluginHandle;
 #endif
 
-namespace nexo::editor::plugins {
+namespace parallax::editor::plugins {
 
     /**
      * @brief Manages editor plugins
@@ -133,4 +133,4 @@ namespace nexo::editor::plugins {
         PluginFactoryFunc getFactoryFunction(PluginHandle handle);
     };
 
-} // namespace nexo::editor::plugins
+} // namespace parallax::editor::plugins

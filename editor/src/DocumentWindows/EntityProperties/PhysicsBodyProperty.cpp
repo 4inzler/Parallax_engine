@@ -15,13 +15,13 @@
 
 #include "PhysicsBodyProperty.hpp"
 
-#include "ImNexo/Components.hpp"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Components.hpp"
+#include "ImParallax/Elements.hpp"
 #include "Application.hpp"
 #include "components/Transform.hpp"
 #include "systems/PhysicsSystem.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void PhysicsBodyProperty::show(const ecs::Entity entity)
     {
@@ -34,7 +34,7 @@ namespace nexo::editor {
 
         auto& physicsBody = physicsBodyOpt->get();
         
-        if (ImNexo::Header("##PhysicsBody", "Physics Body Component"))
+        if (ImParallax::Header("##PhysicsBody", "Physics Body Component"))
         {
             const auto currentType = physicsBody.type;
             
@@ -73,7 +73,7 @@ namespace nexo::editor {
         auto physicsSystem = app.getPhysicsSystem();
         
         if (!physicsSystem) {
-            LOG(NEXO_ERROR, "PhysicsSystem not available");
+            LOG(PARALLAX_ERROR, "PhysicsSystem not available");
             return;
         }
 
@@ -81,7 +81,7 @@ namespace nexo::editor {
         auto transformOpt = coordinator->tryGetComponent<components::TransformComponent>(entity);
         
         if (!physicsBodyOpt || !transformOpt) {
-            LOG(NEXO_ERROR, "Entity {} missing required components for physics body recreation", entity);
+            LOG(PARALLAX_ERROR, "Entity {} missing required components for physics body recreation", entity);
             return;
         }
 
@@ -104,18 +104,18 @@ namespace nexo::editor {
             }
             
             if (newBodyID.IsInvalid()) {
-                LOG(NEXO_ERROR, "Failed to create new physics body for entity {}", entity);
+                LOG(PARALLAX_ERROR, "Failed to create new physics body for entity {}", entity);
                 return;
             }
             
             physicsBody.bodyID = newBodyID;
             physicsBody.type = newType;
             
-            LOG(NEXO_INFO, "Successfully recreated physics body for entity {} (type: {})", 
+            LOG(PARALLAX_INFO, "Successfully recreated physics body for entity {} (type: {})", 
                 entity, (newType == components::PhysicsBodyComponent::Type::Static) ? "Static" : "Dynamic");
                 
         } catch (const std::exception& e) {
-            LOG(NEXO_ERROR, "Exception during physics body recreation for entity {}: {}", entity, e.what());
+            LOG(PARALLAX_ERROR, "Exception during physics body recreation for entity {}: {}", entity, e.what());
         }
     }
 
@@ -126,13 +126,13 @@ namespace nexo::editor {
         auto physicsSystem = app.getPhysicsSystem();
         
         if (!physicsSystem) {
-            LOG(NEXO_ERROR, "PhysicsSystem not available");
+            LOG(PARALLAX_ERROR, "PhysicsSystem not available");
             return;
         }
 
         auto transformOpt = coordinator->tryGetComponent<components::TransformComponent>(entity);
         if (!transformOpt) {
-            LOG(NEXO_ERROR, "Entity {} missing TransformComponent for physics body creation", entity);
+            LOG(PARALLAX_ERROR, "Entity {} missing TransformComponent for physics body creation", entity);
             return;
         }
 
@@ -148,17 +148,17 @@ namespace nexo::editor {
             }
             
             if (bodyID.IsInvalid()) {
-                LOG(NEXO_ERROR, "Failed to create physics body for entity {}", entity);
+                LOG(PARALLAX_ERROR, "Failed to create physics body for entity {}", entity);
                 return;
             }
             
             coordinator->addComponent(entity, components::PhysicsBodyComponent{bodyID, type});
             
-            LOG(NEXO_INFO, "Added physics component to entity {} (type: {})", 
+            LOG(PARALLAX_INFO, "Added physics component to entity {} (type: {})", 
                 entity, isDynamic ? "Dynamic" : "Static");
                 
         } catch (const std::exception& e) {
-            LOG(NEXO_ERROR, "Exception during physics component creation for entity {}: {}", entity, e.what());
+            LOG(PARALLAX_ERROR, "Exception during physics component creation for entity {}: {}", entity, e.what());
         }
     }
 

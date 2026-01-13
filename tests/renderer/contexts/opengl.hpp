@@ -24,7 +24,7 @@
 
 #include "renderer/Buffer.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     // Class to set up an OpenGL context
     class OpenGLTest : public ::testing::Test {

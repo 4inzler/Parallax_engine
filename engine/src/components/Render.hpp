@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-namespace nexo::components
+namespace parallax::components
 {
     enum class PrimitiveType
     {

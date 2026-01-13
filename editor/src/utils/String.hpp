@@ -19,7 +19,7 @@
 
 #include <string>
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
 	/**
 	* @brief Removes the icon prefix from a string.
 	*

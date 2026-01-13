@@ -19,7 +19,7 @@
 
 #include "ADocumentWindow.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
 	class MaterialInspector final : public ADocumentWindow {
 		public:

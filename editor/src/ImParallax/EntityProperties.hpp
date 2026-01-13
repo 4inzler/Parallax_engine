@@ -21,15 +21,15 @@
 #include "components/Transform.hpp"
 #include "components/Camera.hpp"
 
-namespace ImNexo {
+namespace ImParallax {
 
-    void Ambient(nexo::components::AmbientLightComponent &ambientComponent);
+    void Ambient(parallax::components::AmbientLightComponent &ambientComponent);
 
-    void DirectionalLight(nexo::components::DirectionalLightComponent &directionalComponent);
+    void DirectionalLight(parallax::components::DirectionalLightComponent &directionalComponent);
 
-    void PointLight(nexo::components::PointLightComponent &pointComponent, nexo::components::TransformComponent &pointTransform);
+    void PointLight(parallax::components::PointLightComponent &pointComponent, parallax::components::TransformComponent &pointTransform);
 
-    void SpotLight(nexo::components::SpotLightComponent &spotComponent, nexo::components::TransformComponent &spotTransform);
+    void SpotLight(parallax::components::SpotLightComponent &spotComponent, parallax::components::TransformComponent &spotTransform);
 
 
     /**
@@ -43,7 +43,7 @@ namespace ImNexo {
      * @param transformComponent Reference to the transform component being edited
      * @param lastDisplayedEuler Reference to vector storing the last displayed euler angles for computing deltas
      */
-    void Transform(nexo::components::TransformComponent &transformComponent, glm::vec3 &lastDisplayedEuler);
+    void Transform(parallax::components::TransformComponent &transformComponent, glm::vec3 &lastDisplayedEuler);
 
 
     /**
@@ -60,7 +60,7 @@ namespace ImNexo {
      *
      * @param cameraComponent Reference to the camera component being edited
      */
-    void Camera(nexo::components::CameraComponent &cameraComponent);
+    void Camera(parallax::components::CameraComponent &cameraComponent);
 
     /**
      * @brief Renders and handles the camera target component editor UI.
@@ -75,7 +75,7 @@ namespace ImNexo {
      *
      * @param cameraTargetComponent Reference to the camera target component being edited
      */
-    void CameraTarget(nexo::components::PerspectiveCameraTarget &cameraTargetComponent);
+    void CameraTarget(parallax::components::PerspectiveCameraTarget &cameraTargetComponent);
 
     /**
      * @brief Renders and handles the camera controller component editor UI.
@@ -86,6 +86,6 @@ namespace ImNexo {
      *
      * @param cameraControllerComponent Reference to the camera controller component being edited
      */
-    void CameraController(nexo::components::PerspectiveCameraController &cameraControllerComponent);
+    void CameraController(parallax::components::PerspectiveCameraController &cameraControllerComponent);
 
 }

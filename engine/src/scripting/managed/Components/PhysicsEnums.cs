@@ -18,7 +18,7 @@
 
 using System;
 
-namespace Nexo.Components
+namespace Parallax.Components
 {
     /// <summary>
     /// Available physics shape types

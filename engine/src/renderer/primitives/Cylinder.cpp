@@ -24,7 +24,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace nexo::renderer
+namespace parallax::renderer
 {
     constexpr float CYLINDER_HEIGHT = 1.0f; // Height of the cylinder should be 1.0f
 
@@ -294,7 +294,7 @@ namespace nexo::renderer
         // Ensure the number of segments is at least 3, defaulting to 8 if not.
         if (nbSegment < 3)
         {
-            LOG(NEXO_WARN, "Cylinder segments must be at least 3, using default value of 8.");
+            LOG(PARALLAX_WARN, "Cylinder segments must be at least 3, using default value of 8.");
             nbSegment = 8;
         }
 

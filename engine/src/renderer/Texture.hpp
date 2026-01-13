@@ -21,7 +21,7 @@
 #include <string>
 #include <string_view>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
     * @class NxTexture

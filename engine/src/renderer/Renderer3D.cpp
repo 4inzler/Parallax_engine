@@ -29,7 +29,7 @@
 #include <glad/glad.h>
 #include "Path.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     void NxRenderer3D::init()
     {
@@ -78,7 +78,7 @@ namespace nexo::renderer {
 
         m_storage->textureSlots[0] = m_storage->whiteTexture;
 
-        LOG(NEXO_DEV, "NxRenderer3D initialized");
+        LOG(PARALLAX_DEV, "NxRenderer3D initialized");
     }
 
     void NxRenderer3D::shutdown()

@@ -22,7 +22,7 @@
 #include <ranges>
 #include <string>
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
 	std::string removeIconPrefix(const std::string &str)
 	{
 		if (const size_t pos = str.find(' '); pos != std::string::npos)

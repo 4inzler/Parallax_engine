@@ -22,7 +22,7 @@
     #include "opengl/OpenGlWindow.hpp"
 #endif
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     std::shared_ptr<NxWindow> NxWindow::create(int width, int height, const std::string &title)
     {

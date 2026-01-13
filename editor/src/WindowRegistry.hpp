@@ -29,7 +29,7 @@
 #include <algorithm>
 #include <ranges>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
      * @brief Helper function to cast a window from IDocumentWindow to a specific type.
@@ -119,7 +119,7 @@ namespace nexo::editor {
 			{
                 const auto it = m_windows.find(typeid(T));
                 if (it == m_windows.end()) {
-                    LOG(NEXO_WARN, "Window of type {} not found", typeid(T).name());
+                    LOG(PARALLAX_WARN, "Window of type {} not found", typeid(T).name());
                     return;
                 }
 
@@ -129,7 +129,7 @@ namespace nexo::editor {
                 });
 
                 if (found == windowsOfType.end()) {
-                    LOG(NEXO_WARN, "Window of type {} with name {} not found", typeid(T).name(), windowName);
+                    LOG(PARALLAX_WARN, "Window of type {} with name {} not found", typeid(T).name(), windowName);
                     return;
                 }
 
@@ -154,7 +154,7 @@ namespace nexo::editor {
 			    const auto it = m_windows.find(typeid(T));
 			    if (it == m_windows.end())
 				{
-					LOG(NEXO_WARN, "Window of type {} not found", typeid(T).name());
+					LOG(PARALLAX_WARN, "Window of type {} not found", typeid(T).name());
      				return {};
 				}
 
@@ -165,7 +165,7 @@ namespace nexo::editor {
 
 			    if (found == windowsOfType.end())
 				{
-					LOG(NEXO_WARN, "Window of type {} with name {} not found", typeid(T).name(), windowName);
+					LOG(PARALLAX_WARN, "Window of type {} with name {} not found", typeid(T).name(), windowName);
      				return {};
 				}
 

@@ -32,7 +32,7 @@
 #include <algorithm>
 #include <string>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
 	/**
 	 * @brief Interface for ECS groups.

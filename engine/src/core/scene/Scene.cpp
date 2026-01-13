@@ -24,7 +24,7 @@
 #include "components/Transform.hpp"
 #include "components/Uuid.hpp"
 
-namespace nexo::scene {
+namespace parallax::scene {
 	Scene::Scene(std::string sceneName, const std::shared_ptr<ecs::Coordinator> &coordinator, const bool editorOnly) : m_sceneName(std::move(sceneName)), m_coordinator(coordinator), isEditor(editorOnly)
 	{
 		m_uuid = components::genUuid();

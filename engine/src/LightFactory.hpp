@@ -21,7 +21,7 @@
 
 #include <glm/glm.hpp>
 
-namespace nexo {
+namespace parallax {
 
 	/**
 	* @brief A static factory class for creating light entities.

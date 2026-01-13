@@ -23,7 +23,7 @@
 #include "FieldType.hpp"
 #include "scripting/native/ManagedTypedef.hpp"
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     struct Field {
         IntPtr name;      // Pointer to the name of the field
@@ -32,4 +32,4 @@ namespace nexo::scripting {
         UInt64 offset;    // Offset of the field in the component
     };
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

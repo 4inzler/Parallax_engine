@@ -18,6 +18,6 @@
 
 #include "Asset.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
-} // namespace nexo::assets
+} // namespace parallax::assets

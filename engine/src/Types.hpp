@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-namespace nexo {
+namespace parallax {
     enum class RenderingType {
         WINDOW,
         FRAMEBUFFER

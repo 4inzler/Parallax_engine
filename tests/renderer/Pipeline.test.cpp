@@ -24,7 +24,7 @@
 #include "RenderPass.hpp"
 #include "Framebuffer.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
 
 class MockRenderPass : public RenderPass {
@@ -460,4 +460,4 @@ TEST_F(RenderPipelineTest, HasPrerequisitesAndEffects) {
     EXPECT_FALSE(pipeline.hasEffects(9999));
 }
 
-} // namespace nexo::renderer
+} // namespace parallax::renderer

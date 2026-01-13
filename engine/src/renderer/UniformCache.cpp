@@ -18,7 +18,7 @@
 
 #include "UniformCache.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     void UniformCache::setFloat(const std::string& name, float value)
     {

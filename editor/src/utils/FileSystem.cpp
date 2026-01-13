@@ -26,7 +26,7 @@
 #include "FileSystem.hpp"
 #include "Logger.hpp"
 
-namespace nexo::editor::utils {
+namespace parallax::editor::utils {
     void openFolder(const std::string &folderPath)
     {
         #ifdef _WIN32
@@ -36,9 +36,9 @@ namespace nexo::editor::utils {
             ss << "xdg-open " << std::quoted(folderPath);
             const int status = std::system(ss.str().c_str());
             if (status == -1)
-                LOG(NEXO_ERROR, "Failed to open folder '{}'", folderPath);
+                LOG(PARALLAX_ERROR, "Failed to open folder '{}'", folderPath);
             else if (status != 0)
-                LOG(NEXO_WARN, "Opening folder '{}' returned exit code {}", folderPath, status);
+                LOG(PARALLAX_WARN, "Opening folder '{}' returned exit code {}", folderPath, status);
         #endif
     }
 }

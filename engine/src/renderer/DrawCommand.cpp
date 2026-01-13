@@ -19,7 +19,7 @@
 #include "DrawCommand.hpp"
 #include "RenderCommand.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     void DrawCommand::execute() const
     {
         static unsigned int currentShader = 0;

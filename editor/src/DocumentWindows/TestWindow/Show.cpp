@@ -17,9 +17,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "TestWindow.hpp"
-#include "ImNexo/Components.hpp"
+#include "ImParallax/Components.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     static void renderRadioButtons(TestResult &result)
     {
@@ -80,7 +80,7 @@ namespace nexo::editor {
         for (unsigned int i = 0; i < subSections.size(); ++i) {
             auto &sub = subSections[i];
             ImGui::PushID(static_cast<int>(i));
-            ImNexo::ToggleButtonWithSeparator(sub.name, &sub.sectionOpen);
+            ImParallax::ToggleButtonWithSeparator(sub.name, &sub.sectionOpen);
             if (sub.sectionOpen)
                 renderTestCases(sub);
             ImGui::PopID();
@@ -89,16 +89,16 @@ namespace nexo::editor {
 
     void TestWindow::show()
     {
-        if (!ImGui::Begin(NEXO_WND_USTRID_TEST, &m_opened, ImGuiWindowFlags_None)) {
+        if (!ImGui::Begin(PARALLAX_WND_USTRID_TEST, &m_opened, ImGuiWindowFlags_None)) {
             ImGui::End();
             return;
         }
-        beginRender(NEXO_WND_USTRID_TEST);
+        beginRender(PARALLAX_WND_USTRID_TEST);
 
         for (unsigned int i = 0; i < m_testSections.size(); ++i) {
             auto &section = m_testSections[i];
             ImGui::PushID(static_cast<int>(i));
-            if (ImNexo::Header(std::format("##MainSection{}", i), section.name)) {
+            if (ImParallax::Header(std::format("##MainSection{}", i), section.name)) {
                 // Any test cases directly in this section
                 renderTestCases(section);
 

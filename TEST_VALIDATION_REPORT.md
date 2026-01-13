@@ -32,21 +32,21 @@
 ### Camera System (CameraSystem.cpp):
 ```cpp
 ✅ RMB gate implementation verified
-✅ Key constants (NEXO_KEY_E, NEXO_KEY_A, NEXO_KEY_Q) defined
+✅ Key constants (PARALLAX_KEY_E, PARALLAX_KEY_A, PARALLAX_KEY_Q) defined
 ✅ No syntax errors detected
 ✅ Event handling logic correct
 ```
 
 **Key Definitions Found:**
-- `NEXO_KEY_E` = 69 ✅
-- `NEXO_KEY_A` = 81 ✅
-- `NEXO_KEY_Q` = 65 ✅
-- `NEXO_MOUSE_RIGHT` = 1 ✅
+- `PARALLAX_KEY_E` = 69 ✅
+- `PARALLAX_KEY_A` = 81 ✅
+- `PARALLAX_KEY_Q` = 65 ✅
+- `PARALLAX_MOUSE_RIGHT` = 1 ✅
 
 **Code Snippet Validated:**
 ```cpp
 // Camera movement only when RMB is held
-if (!event::isMouseDown(NEXO_MOUSE_RIGHT))
+if (!event::isMouseDown(PARALLAX_MOUSE_RIGHT))
     continue;
 ```
 
@@ -153,7 +153,7 @@ struct Material {
     - Windows: LoadLibraryA/FreeLibrary
     - Linux: dlopen/dlclose
 ✅ Error handling present
-✅ Namespace correct: nexo::editor::plugins
+✅ Namespace correct: parallax::editor::plugins
 ```
 
 **Platform Support Validated:**

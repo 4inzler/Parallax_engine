@@ -22,7 +22,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace Nexo.Components.Ui;
+namespace Parallax.Components.Ui;
 
 public unsafe class FieldArray : IDisposable
 {

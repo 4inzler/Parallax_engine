@@ -22,13 +22,13 @@
 #include "LightFactory.hpp"
 #include "context/actions/EntityActions.hpp"
 #include "utils/EditorProps.hpp"
-#include "ImNexo/Panels.hpp"
+#include "ImParallax/Panels.hpp"
 #include "context/ActionManager.hpp"
 #include "components/PhysicsBodyComponent.hpp"
 #include "components/Transform.hpp"
 #include "systems/PhysicsSystem.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
     void SceneTreeWindow::showSceneSelectionContextMenu(scene::SceneId sceneId, const std::string& uuid,
                                                         const std::string& uiName)
@@ -52,7 +52,7 @@ namespace nexo::editor
             // --- Primitives submenu ---
             const auto& selector = Selector::get();
             const int currentSceneId = selector.getSelectedScene();
-            ImNexo::PrimitiveSubMenu(currentSceneId, m_popupManager);
+            ImParallax::PrimitiveSubMenu(currentSceneId, m_popupManager);
 
             // --- Model item (with file‑dialog) ---
             if (ImGui::MenuItem("Model"))
@@ -100,7 +100,7 @@ namespace nexo::editor
                     {
                         if (scene->getSceneId() == sceneId)
                         {
-                            ImNexo::CameraInspector(sceneId);
+                            ImParallax::CameraInspector(sceneId);
                             break;
                         }
                     }
@@ -143,14 +143,14 @@ namespace nexo::editor
         ImGui::Text("Enter Scene Name:");
         ImGui::InputText("##SceneName", sceneNameBuffer, sizeof(sceneNameBuffer));
 
-        if (ImNexo::Button("Create") && handleSceneCreation(sceneNameBuffer))
+        if (ImParallax::Button("Create") && handleSceneCreation(sceneNameBuffer))
         {
             memset(sceneNameBuffer, 0, sizeof(sceneNameBuffer));
             PopupManager::closePopup();
         }
 
         ImGui::SameLine();
-        if (ImNexo::Button("Cancel"))
+        if (ImParallax::Button("Cancel"))
             PopupManager::closePopup();
 
         PopupManager::endPopup();
@@ -236,10 +236,10 @@ namespace nexo::editor
         ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 300, 20), ImGuiCond_FirstUseEver);
         ImGui::SetNextWindowSize(ImVec2(300, ImGui::GetIO().DisplaySize.y - 40), ImGuiCond_FirstUseEver);
 
-        if (ImGui::Begin(ICON_FA_SITEMAP " Scene Tree" NEXO_WND_USTRID_SCENE_TREE, &m_opened,
+        if (ImGui::Begin(ICON_FA_SITEMAP " Scene Tree" PARALLAX_WND_USTRID_SCENE_TREE, &m_opened,
                          ImGuiWindowFlags_NoCollapse))
         {
-            beginRender(NEXO_WND_USTRID_SCENE_TREE);
+            beginRender(PARALLAX_WND_USTRID_SCENE_TREE);
 
             const auto& selector = Selector::get();
 
@@ -272,12 +272,12 @@ namespace nexo::editor
             if (m_popupManager.showPopup("Sphere creation popup"))
             {
                 const int sceneId = selector.getSelectedScene();
-                ImNexo::PrimitiveCustomizationMenu(sceneId, SPHERE);
+                ImParallax::PrimitiveCustomizationMenu(sceneId, SPHERE);
             }
             if (m_popupManager.showPopup("Cylinder creation popup"))
             {
                 const int sceneId = selector.getSelectedScene();
-                ImNexo::PrimitiveCustomizationMenu(sceneId, CYLINDER);
+                ImParallax::PrimitiveCustomizationMenu(sceneId, CYLINDER);
             }
             physicsTypeSelectionPopup();
         }

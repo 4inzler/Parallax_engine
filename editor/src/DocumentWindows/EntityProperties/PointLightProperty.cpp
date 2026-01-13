@@ -17,15 +17,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "PointLightProperty.hpp"
-#include "ImNexo/EntityProperties.hpp"
-#include "ImNexo/ImNexo.hpp"
+#include "ImParallax/EntityProperties.hpp"
+#include "ImParallax/ImParallax.hpp"
 #include "components/Light.hpp"
 #include "components/Transform.hpp"
 #include "context/actions/EntityActions.hpp"
-#include "ImNexo/Widgets.hpp"
+#include "ImParallax/Widgets.hpp"
 #include "context/ActionManager.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
 	void PointLightProperty::show(const ecs::Entity entity)
 	{
@@ -35,16 +35,16 @@ namespace nexo::editor {
         static components::PointLightComponent::Memento beforeStatePoint;
         static components::TransformComponent::Memento beforeStateTransform;
 
-        if (ImNexo::Header("##PointNode", "Point light"))
+        if (ImParallax::Header("##PointNode", "Point light"))
         {
             auto pointComponentCopy = pointComponent;
             auto transformComponentCopy = transform;
-            ImNexo::resetItemStates();
-            ImNexo::PointLight(pointComponent, transform);
-            if (ImNexo::isItemActivated()) {
+            ImParallax::resetItemStates();
+            ImParallax::PointLight(pointComponent, transform);
+            if (ImParallax::isItemActivated()) {
                 beforeStatePoint = pointComponentCopy.save();
                 beforeStateTransform = transformComponentCopy.save();
-            } else if (ImNexo::isItemDeactivated()) {
+            } else if (ImParallax::isItemDeactivated()) {
                 auto afterStatePoint = pointComponent.save();
                 auto afterStateTransform = transform.save();
                 auto actionGroup = ActionManager::createActionGroup();

@@ -25,7 +25,7 @@
 #include "assets/Assets/Model/Model.hpp"
 #include "assets/AssetRef.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     constexpr float OPACITY_THRESHOLD = 0.99f;
     constexpr float TRANSPARENCY_EPSILON = 0.01f;
@@ -56,4 +56,4 @@ namespace nexo::assets {
             std::vector<AssetRef<Material>> m_materials; //< Map of materials used in the model, index is the assimp material index
     };
 
-} // namespace nexo::assets
+} // namespace parallax::assets

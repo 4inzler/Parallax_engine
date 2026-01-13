@@ -19,7 +19,7 @@
 
 #include <string>
 
-namespace nexo::components {
+namespace parallax::components {
     struct NameComponent {
         std::string name;
 

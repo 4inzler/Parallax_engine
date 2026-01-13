@@ -19,7 +19,7 @@
 #include "Utils.hpp"
 #include <imgui_internal.h>
 
-namespace ImNexo::utils {
+namespace ImParallax::utils {
 
     ImU32 imLerpColor(const ImU32 colA, const ImU32 colB, const float t)
     {

@@ -19,7 +19,7 @@
 #include "AssetLocation.hpp"
 #include "Path.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     void AssetLocation::setLocation(
         const AssetName& name,
@@ -31,4 +31,4 @@ namespace nexo::assets {
         _path = normalizePathAndRemovePrefixSlash(path);
         _packName = packName;
     }
-} // namespace nexo::assets
+} // namespace parallax::assets

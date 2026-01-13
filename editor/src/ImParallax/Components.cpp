@@ -21,12 +21,12 @@
 #include "Guard.hpp"
 #include "Utils.hpp"
 #include "tinyfiledialogs.h"
-#include "ImNexo.hpp"
+#include "ImParallax.hpp"
 
 #include <imgui.h>
 #include <imgui_internal.h>
 
-namespace ImNexo {
+namespace ImParallax {
 
     bool ButtonWithIconAndText(
         const std::string &uniqueId,
@@ -102,7 +102,7 @@ namespace ImNexo {
     }
 
 
-    bool TextureButton(const std::string &label, const std::shared_ptr<nexo::renderer::NxTexture2D>& texture, std::filesystem::path& outPath)
+    bool TextureButton(const std::string &label, const std::shared_ptr<parallax::renderer::NxTexture2D>& texture, std::filesystem::path& outPath)
 	{
 		bool modified = false;
 		constexpr ImVec2 previewSize(32, 32);

@@ -23,7 +23,7 @@
 #include <source_location>
 #include <format>
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     class InternalError final : public Exception {
     public:

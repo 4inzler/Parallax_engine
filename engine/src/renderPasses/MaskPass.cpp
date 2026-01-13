@@ -26,7 +26,7 @@
 #include "Masks.hpp"
 #include "Passes.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     MaskPass::MaskPass(unsigned int width, unsigned int height) : RenderPass(Passes::MASK, "Mask pass")
     {
         renderer::NxFramebufferSpecs maskFramebufferSpecs;

@@ -41,7 +41,7 @@ TEST_F(ExtractCameraComponentsTest, IdentityRotation) {
     //   rotation.x = 180 and rotation.y = -90.
     glm::vec3 rotation(180.0f, -90.0f, 0.0f);
     glm::vec3 front, right, up;
-    nexo::math::extractCameraComponents(rotation, front, right, up);
+    parallax::math::extractCameraComponents(rotation, front, right, up);
 
     glm::vec3 expectedFront(1.0f, 0.0f, 0.0f);
     glm::vec3 expectedRight(0.0f, 0.0f, 1.0f);
@@ -60,7 +60,7 @@ TEST_F(ExtractCameraComponentsTest, ArbitraryRotation) {
     //   yaw   = -80 + 90 = 10 degrees.
     glm::vec3 rotation(200.0f, -80.0f, 0.0f);
     glm::vec3 front, right, up;
-    nexo::math::extractCameraComponents(rotation, front, right, up);
+    parallax::math::extractCameraComponents(rotation, front, right, up);
 
     // Manually compute expected vectors:
     float pitch = 20.0f; // 200 - 180
@@ -84,7 +84,7 @@ TEST_F(ExtractCameraComponentsTest, NonZeroRotation) {
     // Then, pitch = 210 - 180 = 30 degrees, and yaw = -100 + 90 = -10 degrees.
     glm::vec3 rotation(210.0f, -100.0f, 0.0f);
     glm::vec3 front, right, up;
-    nexo::math::extractCameraComponents(rotation, front, right, up);
+    parallax::math::extractCameraComponents(rotation, front, right, up);
 
     float pitch = 30.0f;
     float yaw = -10.0f;

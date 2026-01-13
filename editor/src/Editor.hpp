@@ -25,7 +25,7 @@
 #include "WindowRegistry.hpp"
 #include "inputs/InputManager.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class Editor {
         private:
@@ -98,7 +98,7 @@ namespace nexo::editor {
             void registerWindow(const std::string &name)
             {
             	if (m_windowRegistry.hasWindow(name)) {
-            		LOG(NEXO_WARN, "A window with the name '{}' already exists. Please choose a different name.", name);
+            		LOG(PARALLAX_WARN, "A window with the name '{}' already exists. Please choose a different name.", name);
             		return;
             	}
             	auto window = std::make_shared<T>(name, m_windowRegistry);
@@ -128,7 +128,7 @@ namespace nexo::editor {
 	         *
 	         * This function sets up essential engine features, including:
 	         * - On Linux, configuring the window's Wayland app ID and window manager class if WAYLAND_APP_ID is defined. A warning is issued if the macro is undefined.
-	         * - Initializing the engine core via nexo::init().
+	         * - Initializing the engine core via parallax::init().
 	         * - Creating and initializing the ImGui context along with its backend error callback.
 	         * - Setting the path for ImGui's default layout configuration.
 	         * - Applying a dark color style and configuring ImGuizmo with the current ImGui context.

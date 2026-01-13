@@ -22,7 +22,7 @@
 #include "components/SceneComponents.hpp"
 #include "components/RenderContext.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
     class TransformMatrixSystem final : public ecs::QuerySystem<
         ecs::Write<components::TransformComponent>,
         ecs::Read<components::SceneTag>,

@@ -22,7 +22,7 @@
 #include "assets/Asset.hpp"
 #include "assets/Assets/Material/Material.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     struct Mesh {
         std::string name;

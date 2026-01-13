@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include <cstddef>
 #include <coreclr_delegates.h>
 
 #include "Exception.hpp"
@@ -25,7 +26,7 @@
 #include "components/Transform.hpp"
 #include "systems/ManagedWorldState.hpp"
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     class InvalidManagedApi final : public Exception {
         public:
@@ -56,7 +57,7 @@ namespace nexo::scripting {
             return func(args...);
         }
 
-        explicit ManagedApiFn(nullptr_t) = delete;
+        explicit ManagedApiFn(std::nullptr_t) = delete;
 
         // Delete the default constructor to enforce initialization
         ManagedApiFn() = default;
@@ -118,4 +119,4 @@ namespace nexo::scripting {
 
     };
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

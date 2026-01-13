@@ -13,13 +13,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "AssetManagerWindow.hpp"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Elements.hpp"
 #include "assets/Asset.hpp"
 #include "assets/AssetCatalog.hpp"
 #include "assets/AssetRef.hpp"
 #include "context/ThumbnailCache.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     static constexpr ImU32 getAssetTypeOverlayColor(const assets::AssetType type)
     {
@@ -344,4 +344,4 @@ namespace nexo::editor {
         }
         clipper.End();
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

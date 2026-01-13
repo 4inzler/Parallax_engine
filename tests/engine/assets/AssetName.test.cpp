@@ -19,7 +19,7 @@
 #include <gtest/gtest.h>
 #include "assets/AssetName.hpp"
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     TEST(AssetNameTest, ValidAssetNames)
     {
@@ -154,4 +154,4 @@ namespace nexo::assets {
         }
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

@@ -23,7 +23,7 @@
 #include <functional>
 #include <span>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class Command {
         public:

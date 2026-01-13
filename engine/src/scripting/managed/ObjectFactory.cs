@@ -18,7 +18,7 @@
 
 using System.Runtime.InteropServices;
 
-namespace Nexo
+namespace Parallax
 {
     public static class ObjectFactory
     {

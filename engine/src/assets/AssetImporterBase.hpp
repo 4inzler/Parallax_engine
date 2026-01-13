@@ -24,7 +24,7 @@
 #include <fstream>
 #include <iomanip>
 
-namespace nexo::assets {
+namespace parallax::assets {
 
     /**
      * @class AssetImporterBase
@@ -68,26 +68,26 @@ namespace nexo::assets {
                 try {
                     importImpl(ctx);
                     if (ctx.getMainAsset() == nullptr) {
-                        LOG(NEXO_ERROR, "Importer did not set main asset data in context");
+                        LOG(PARALLAX_ERROR, "Importer did not set main asset data in context");
                         return;
                     }
                 } catch (const std::exception& e) {
                     // Log the error
                     if (std::holds_alternative<ImporterFileInput>(ctx.input))
-                        LOG(NEXO_ERROR, "Failed to import asset {} from file {}: {}",
+                        LOG(PARALLAX_ERROR, "Failed to import asset {} from file {}: {}",
                             std::quoted(ctx.location.getFullLocation()),
                             std::quoted(std::get<ImporterFileInput>(ctx.input).filePath.generic_string()),
                             e.what());
                     else if (std::holds_alternative<ImporterMemoryInput>(ctx.input))
-                        LOG(NEXO_ERROR, "Failed to import asset {} from memory: {}",
+                        LOG(PARALLAX_ERROR, "Failed to import asset {} from memory: {}",
                             std::quoted(ctx.location.getFullLocation()),
                             e.what());
                     else
-                        LOG(NEXO_ERROR, "Failed to import asset {}: {}",
+                        LOG(PARALLAX_ERROR, "Failed to import asset {}: {}",
                             std::quoted(ctx.location.getFullLocation()),
                             e.what());
                 }
             }
     };
 
-} // namespace nexo::assets
+} // namespace parallax::assets

@@ -1,4 +1,4 @@
-﻿namespace Nexo
+﻿namespace Parallax
 {
 
     public class AssemblyManager

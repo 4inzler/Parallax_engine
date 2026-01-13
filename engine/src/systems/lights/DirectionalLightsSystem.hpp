@@ -22,7 +22,7 @@
 #include "components/RenderContext.hpp"
 #include "components/SceneComponents.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
 
 	/**
 	* @brief System responsible for updating directional lights in the scene.

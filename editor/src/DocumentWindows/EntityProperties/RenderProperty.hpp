@@ -21,7 +21,7 @@
 #include "AEntityProperty.hpp"
 #include "DocumentWindows/PopupManager.hpp"
 
-namespace nexo::editor
+namespace parallax::editor
 {
 
     constexpr const char *PrimitiveTypeNames[] = {

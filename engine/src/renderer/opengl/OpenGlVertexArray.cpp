@@ -22,7 +22,7 @@
 
 #include <glad/glad.h>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
     * @brief Converts an `NxShaderDataType` enum value to the corresponding OpenGL type.

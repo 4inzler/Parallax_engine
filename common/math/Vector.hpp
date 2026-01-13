@@ -20,7 +20,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace nexo::math {
+namespace parallax::math {
 	/**
      * @brief Extracts camera orientation components from a rotation vector
      *

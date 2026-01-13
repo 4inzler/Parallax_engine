@@ -12,7 +12,7 @@
 //
 //  Author:      Guillaume HEIN
 //  Date:        21/11/2024
-//  Description: NEXO temp engine test file
+//  Description: PARALLAX temp engine test file
 //
 ///////////////////////////////////////////////////////////////////////////////
 

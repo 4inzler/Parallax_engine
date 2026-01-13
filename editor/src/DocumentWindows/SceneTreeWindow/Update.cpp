@@ -21,7 +21,7 @@
 #include "components/Name.hpp"
 #include "components/Uuid.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void SceneTreeWindow::generateHierarchicalNodes(std::map<scene::SceneId, SceneObject> &scenes)
     {

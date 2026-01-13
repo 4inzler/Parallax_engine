@@ -21,7 +21,7 @@
 #include <memory>
 #include <deque>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     /**
     * Maintains the undo and redo stacks

@@ -22,7 +22,7 @@
 #endif
 
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     std::shared_ptr<NxVertexBuffer> createVertexBuffer(float *vertices, unsigned int size)
     {

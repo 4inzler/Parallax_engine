@@ -285,7 +285,7 @@ EXPORT_PLUGIN(MyPlugin)
 - `editor/src/DocumentWindows/EditorScene/Shortcuts.cpp`
 - `editor/src/DocumentWindows/EditorScene/Gizmo.cpp`
 
-#### 8. Nexo → Parallax Renaming
+#### 8. Parallax → Parallax Renaming
 **Requirements:**
 - Rename all namespace references
 - Update class names
@@ -296,8 +296,8 @@ EXPORT_PLUGIN(MyPlugin)
 **Tools:** Use find-and-replace with regex
 ```bash
 # Example commands
-find . -type f -name "*.cpp" -o -name "*.hpp" | xargs sed -i 's/nexo::/parallax::/g'
-find . -type f -name "*.cpp" -o -name "*.hpp" | xargs sed -i 's/NEXO_/PARALLAX_/g'
+find . -type f -name "*.cpp" -o -name "*.hpp" | xargs sed -i 's/parallax::/parallax::/g'
+find . -type f -name "*.cpp" -o -name "*.hpp" | xargs sed -i 's/PARALLAX_/PARALLAX_/g'
 ```
 
 ## Testing Recommendations
@@ -391,7 +391,7 @@ New shaders are loaded at runtime. No build system changes required.
 - [ ] Grid Snapping Improvements
 - [ ] Keybinding System Overhaul
 - [ ] Scroll Zoom Bug Fix
-- [ ] Nexo → Parallax Renaming
+- [ ] Parallax → Parallax Renaming
 
 ### Phase 4 (Polish - 1-2 weeks)
 - [ ] Comprehensive Testing
@@ -407,7 +407,7 @@ New shaders are loaded at runtime. No build system changes required.
 
 ## License
 
-This changelog documents improvements to the Parallax Engine (formerly Nexo Engine).
+This changelog documents improvements to the Parallax Engine (formerly Parallax Engine).
 Refer to project LICENSE file for usage terms.
 
 ---

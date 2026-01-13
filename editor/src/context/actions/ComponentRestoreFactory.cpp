@@ -28,7 +28,7 @@
 #include "components/Transform.hpp"
 #include "components/Uuid.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     std::unique_ptr<Action> ComponentRestoreFactory::createRestoreComponent(ecs::Entity entity, const std::any& typeIndex)
     {

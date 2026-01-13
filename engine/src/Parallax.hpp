@@ -1,4 +1,4 @@
-//// Nexo.hpp /////////////////////////////////////////////////////////////////
+//// Parallax.hpp /////////////////////////////////////////////////////////////////
 //
 // ⢀⢀⢀⣤⣤⣤⡀⢀⢀⢀⢀⢀⢀⢠⣤⡄⢀⢀⢀⢀⢀⣠⣤⣤⣤⣤⣤⣤⣤⣤⣤⡀⢀⢀⢠⣤⣄⢀⢀⢀⢀⢀⢀⢀⣤⣤⢀⢀⢀⢀⢀⢀⢀⢀⣀⣄⢀⢀⢠⣄⣀⢀⢀⢀⢀⢀⢀⢀
 // ⢀⢀⢀⣿⣿⣿⣷⡀⢀⢀⢀⢀⢀⢸⣿⡇⢀⢀⢀⢀⢀⣿⣿⡟⡛⡛⡛⡛⡛⡛⡛⢁⢀⢀⢀⢻⣿⣦⢀⢀⢀⢀⢠⣾⡿⢃⢀⢀⢀⢀⢀⣠⣾⣿⢿⡟⢀⢀⡙⢿⢿⣿⣦⡀⢀⢀⢀⢀
@@ -13,7 +13,7 @@
 //
 //  Author:      Mehdy MORVAN
 //  Date:        08/11/2024
-//  Description: Main header file for nexo
+//  Description: Main header file for parallax
 //
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -36,7 +36,7 @@
 
 #include "components/Components.hpp"
 
-namespace nexo {
+namespace parallax {
 
 
     template<typename DerivedApp, typename ...Args>

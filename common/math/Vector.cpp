@@ -18,7 +18,7 @@
 
 #include "Vector.hpp"
 
-namespace nexo::math {
+namespace parallax::math {
 	void extractCameraComponents(const glm::vec3 &rotation, glm::vec3 &front, glm::vec3 &right, glm::vec3 &up)
 	{
 		const float pitch = rotation.x - 180.0f;

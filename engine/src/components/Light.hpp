@@ -26,7 +26,7 @@
 constexpr unsigned int MAX_POINT_LIGHTS = 10;
 constexpr unsigned int MAX_SPOT_LIGHTS = 10;
 
-namespace nexo::components {
+namespace parallax::components {
 
     struct AmbientLightComponent {
         glm::vec3 color{};

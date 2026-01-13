@@ -14,7 +14,7 @@
 #include "../ecs/System.hpp"
 #include "Timestep.hpp"
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Initializes audio raytracing backend
@@ -241,4 +241,4 @@ namespace nexo {
         const float TARGET_AUDIO_TIME_MS = 2.0f;
     };
 
-} // namespace nexo
+} // namespace parallax

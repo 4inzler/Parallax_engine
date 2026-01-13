@@ -23,7 +23,7 @@
 #include <filesystem>
 #include <algorithm>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     assets::AssetLocation AssetManagerWindow::getAssetLocation(const std::filesystem::path &path) const
     {
@@ -33,7 +33,7 @@ namespace nexo::editor {
 
         std::string locationString = assetName + "@" + targetFolder;
 
-        LOG(NEXO_DEV,
+        LOG(PARALLAX_DEV,
             "Creating asset location: {} (current folder: '{}', hovered: '{}')",
             locationString,
             m_currentFolder,
@@ -68,7 +68,7 @@ namespace nexo::editor {
         const std::filesystem::path path(filePath);
 
         if (!std::filesystem::exists(path)) {
-            LOG(NEXO_WARN, "Dropped file does not exist: {}", filePath);
+            LOG(PARALLAX_WARN, "Dropped file does not exist: {}", filePath);
             return;
         }
 
@@ -81,9 +81,9 @@ namespace nexo::editor {
         try {
             assets::AssetImporter importer;
             if (const auto assetRef = importer.importAssetAuto(location, fileInput); !assetRef)
-                LOG(NEXO_ERROR, "Failed to import asset: {}", location.getPath().data());
+                LOG(PARALLAX_ERROR, "Failed to import asset: {}", location.getPath().data());
         } catch (const std::exception& e) {
-            LOG(NEXO_ERROR, "Exception while importing {}: {}", location.getPath().data(), e.what());
+            LOG(PARALLAX_ERROR, "Exception while importing {}: {}", location.getPath().data(), e.what());
         }
     }
 }

@@ -18,7 +18,7 @@
 
 #include "SignalEvent.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
 
     void SignalHandler::signalHandler(const int signal)
     {
@@ -32,7 +32,7 @@ namespace nexo::event {
                 emitEventToAll<EventSignalInterrupt>();
                 break;
             default:
-                LOG(NEXO_WARN, "SignalHandler: cannot emit event: unknown signal {}", signal);
+                LOG(PARALLAX_WARN, "SignalHandler: cannot emit event: unknown signal {}", signal);
                 break;
         }
     }
@@ -73,4 +73,4 @@ namespace nexo::event {
         signal(SIGTERM, signalHandler);
         signal(SIGINT, signalHandler);
     }
-} // namespace nexo::event
+} // namespace parallax::event

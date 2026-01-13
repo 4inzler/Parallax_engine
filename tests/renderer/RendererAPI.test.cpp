@@ -24,7 +24,7 @@
 #include "opengl/OpenGlRendererAPI.hpp"
 #include "renderer/RendererExceptions.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     TEST_F(OpenGLTest, InitializationTest) {
         NxOpenGlRendererApi rendererApi;
         // Validate init

@@ -21,7 +21,7 @@
 #include <string_view>
 #include <ranges>
 
-namespace nexo {
+namespace parallax {
     /**
      * @brief Compare two strings case-insensitively.
      *
@@ -38,4 +38,4 @@ namespace nexo {
     }
 
 
-} // namespace nexo
+} // namespace parallax

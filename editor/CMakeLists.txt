@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 
 # Set project name
-project(nexoEditor)
+project(Parallax)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 20)
@@ -23,13 +23,13 @@ set(SRCS
         editor/src/context/actions/EntityActions.cpp
         editor/src/context/actions/ComponentRestoreFactory.cpp
         editor/src/context/actions/AssetActions.cpp
-        editor/src/ImNexo/EntityProperties.cpp
-        editor/src/ImNexo/Components.cpp
-        editor/src/ImNexo/Elements.cpp
-        editor/src/ImNexo/Panels.cpp
-        editor/src/ImNexo/Utils.cpp
-        editor/src/ImNexo/Widgets.cpp
-        editor/src/ImNexo/ImNexo.cpp
+        editor/src/ImParallax/EntityProperties.cpp
+        editor/src/ImParallax/Components.cpp
+        editor/src/ImParallax/Elements.cpp
+        editor/src/ImParallax/Panels.cpp
+        editor/src/ImParallax/Utils.cpp
+        editor/src/ImParallax/Widgets.cpp
+        editor/src/ImParallax/ImParallax.cpp
         editor/src/utils/ScenePreview.cpp
         editor/src/utils/Config.cpp
         editor/src/utils/String.cpp
@@ -118,15 +118,15 @@ set(SRCS
 
 # Windows App Icon
 if (WIN32)
-    list(APPEND SRCS ${CMAKE_SOURCE_DIR}/resources/nexo.rc)
+    list(APPEND SRCS ${CMAKE_SOURCE_DIR}/resources/parallax.rc)
 endif()
 
-add_executable(nexoEditor ${SRCS})
-set(WAYLAND_APP_ID "app.nexo-engine.editor")
+add_executable(Parallax ${SRCS})
+set(WAYLAND_APP_ID "app.parallax-engine.editor")
 # Add custom DEFINE for the app id
 add_compile_definitions(WAYLAND_APP_ID="${WAYLAND_APP_ID}")
 
-set_target_properties(nexoEditor
+set_target_properties(Parallax
         PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/"
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/"
@@ -155,33 +155,33 @@ endif()
 
 # loguru
 find_package(loguru CONFIG REQUIRED)
-target_link_libraries(nexoEditor PRIVATE loguru::loguru)
+target_link_libraries(Parallax PRIVATE loguru::loguru)
 
 # ImGuizmo
 find_package(imguizmo CONFIG REQUIRED)
-target_link_libraries(nexoEditor PRIVATE imguizmo::imguizmo)
+target_link_libraries(Parallax PRIVATE imguizmo::imguizmo)
 
 # ImGui
 find_package(imgui CONFIG REQUIRED)
-target_link_libraries(nexoEditor PRIVATE nexoRenderer imgui::imgui)
+target_link_libraries(Parallax PRIVATE parallaxRenderer imgui::imgui)
 
 # TinyFileDialogs
 find_package(tinyfiledialogs CONFIG REQUIRED)
-target_link_libraries(nexoEditor PRIVATE tinyfiledialogs::tinyfiledialogs)
+target_link_libraries(Parallax PRIVATE tinyfiledialogs::tinyfiledialogs)
 
 # boost-dll
 find_package(Boost CONFIG REQUIRED COMPONENTS dll)
-target_link_libraries(nexoEditor PRIVATE Boost::dll)
+target_link_libraries(Parallax PRIVATE Boost::dll)
 
 # Boost UUID
 find_package(boost_uuid CONFIG REQUIRED)
-target_link_libraries(nexoEditor PRIVATE Boost::uuid)
+target_link_libraries(Parallax PRIVATE Boost::uuid)
 
 include_directories(include)
 
-if(NEXO_GRAPHICS_API STREQUAL "OpenGL")
-    target_compile_definitions(nexoEditor PRIVATE NX_GRAPHICS_API_OPENGL)
+if(PARALLAX_GRAPHICS_API STREQUAL "OpenGL")
+    target_compile_definitions(Parallax PRIVATE NX_GRAPHICS_API_OPENGL)
 endif()
 
 # Set the output directory for the executable (prevents generator from creating Debug/Release folders)
-set_target_properties(nexoEditor PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/$<0:>)
+set_target_properties(Parallax PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/$<0:>)

@@ -20,7 +20,7 @@
 
 #include "renderer/Buffer.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     class NxOpenGlVertexBuffer final : public NxVertexBuffer {
         public:

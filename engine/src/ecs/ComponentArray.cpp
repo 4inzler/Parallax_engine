@@ -18,7 +18,7 @@
 
 #include "ComponentArray.hpp"
 
-namespace nexo::ecs {
+namespace parallax::ecs {
 
     TypeErasedComponentArray::TypeErasedComponentArray(const size_t componentSize, const size_t initialCapacity): m_componentSize(componentSize), m_capacity(initialCapacity)
     {
@@ -44,7 +44,7 @@ namespace nexo::ecs {
         ensureSparseCapacity(entity);
 
         if (hasComponent(entity)) {
-            LOG(NEXO_WARN, "Entity {} already has component", entity);
+            LOG(PARALLAX_WARN, "Entity {} already has component", entity);
             return;
         }
 
@@ -255,4 +255,4 @@ namespace nexo::ecs {
         }
     }
 
-} // namespace nexo::ecs
+} // namespace parallax::ecs

@@ -35,7 +35,7 @@
 #include "../tests/renderer/contexts/opengl.hpp"
 
 using namespace testing;
-using namespace nexo::assets;
+using namespace parallax::assets;
 
 class TestModelImporter : public ModelImporter {
     FRIEND_TEST(ModelImporterTestFixture, CanReadSupportsValidExtensions);
@@ -47,7 +47,7 @@ class TestModelImporter : public ModelImporter {
 };
 
 // Test fixture for ModelImporter tests
-class ModelImporterTestFixture : public nexo::renderer::OpenGLTest {
+class ModelImporterTestFixture : public parallax::renderer::OpenGLTest {
 protected:
     void SetUp() override {
         OpenGLTest::SetUp();
@@ -126,20 +126,20 @@ TEST_F(ModelImporterTestFixture, ConvertAssimpMatrixToGLM) {
 // Test convertAssimpHintToNxTextureFormat method
 TEST_F(ModelImporterTestFixture, ConvertAssimpHintToNxTextureFormat) {
     // Test various format hints
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8888"), nexo::renderer::NxTextureFormat::RGBA8);
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8880"), nexo::renderer::NxTextureFormat::RGB8);
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8800"), nexo::renderer::NxTextureFormat::RG8);
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8000"), nexo::renderer::NxTextureFormat::R8);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8888"), parallax::renderer::NxTextureFormat::RGBA8);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8880"), parallax::renderer::NxTextureFormat::RGB8);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8800"), parallax::renderer::NxTextureFormat::RG8);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba8000"), parallax::renderer::NxTextureFormat::R8);
 
     // Tests invalid format because of length
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba88888"), nexo::renderer::NxTextureFormat::INVALID);
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba888"), nexo::renderer::NxTextureFormat::INVALID);
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba88"), nexo::renderer::NxTextureFormat::INVALID);
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(""), nexo::renderer::NxTextureFormat::INVALID);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba88888"), parallax::renderer::NxTextureFormat::INVALID);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba888"), parallax::renderer::NxTextureFormat::INVALID);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba88"), parallax::renderer::NxTextureFormat::INVALID);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(""), parallax::renderer::NxTextureFormat::INVALID);
 
     // Test invalid format hints
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("invalid0"), nexo::renderer::NxTextureFormat::INVALID);
-    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba7777"), nexo::renderer::NxTextureFormat::INVALID);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("invalid0"), parallax::renderer::NxTextureFormat::INVALID);
+    EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat("rgba7777"), parallax::renderer::NxTextureFormat::INVALID);
 
     // Test all permutations of rgba
     std::string hint = "abgr0000";
@@ -152,22 +152,22 @@ TEST_F(ModelImporterTestFixture, ConvertAssimpHintToNxTextureFormat) {
         const auto aPos = std::ranges::find(hint, 'a');
 
         hint[rPos - hint.begin() + 4] = '8';
-        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), nexo::renderer::NxTextureFormat::R8);
+        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), parallax::renderer::NxTextureFormat::R8);
 
         if (rPos >= gPos)
             continue;
         hint[gPos - hint.begin() + 4] = '8';
-        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), nexo::renderer::NxTextureFormat::RG8);
+        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), parallax::renderer::NxTextureFormat::RG8);
 
         if (gPos >= bPos)
             continue;
         hint[bPos - hint.begin() + 4] = '8';
-        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), nexo::renderer::NxTextureFormat::RGB8);
+        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), parallax::renderer::NxTextureFormat::RGB8);
 
         if (bPos >= aPos)
             continue;
         hint[aPos - hint.begin() + 4] = '8';
-        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), nexo::renderer::NxTextureFormat::RGBA8);
+        EXPECT_EQ(importer.convertAssimpHintToNxTextureFormat(hint.c_str()), parallax::renderer::NxTextureFormat::RGBA8);
         GTEST_LOG_(INFO) << "HINT: " << hint;
     } while (std::next_permutation(hint.begin(), hint.begin() + 4));
 }
@@ -178,7 +178,7 @@ TEST_F(ModelImporterTestFixture, ImportCubeModel) {
 
     AssetImporterContext ctx = {};
     ctx.location = AssetLocation("test::cube_model@test_folder");
-    ctx.input = ImporterFileInput{std::filesystem::path(nexo::Path::resolvePathRelativeToExe("../tests/engine/assets/Assets/Model/cube.obj"))};
+    ctx.input = ImporterFileInput{std::filesystem::path(parallax::Path::resolvePathRelativeToExe("../tests/engine/assets/Assets/Model/cube.obj"))};
     importer.import(ctx);
 
     EXPECT_NE(ctx.getMainAsset(), nullptr);

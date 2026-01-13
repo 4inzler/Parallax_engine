@@ -20,7 +20,7 @@
 
 #include <GLFW/glfw3.h>
 
-namespace nexo::editor {
+namespace parallax::editor {
 	/**
      * @brief Implements the ImGui backend for OpenGL using GLFW.
      *

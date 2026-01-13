@@ -20,7 +20,7 @@
 #include "Command.hpp"
 #include <span>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     class WindowState {
         public:

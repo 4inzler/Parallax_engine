@@ -20,7 +20,7 @@
 #include "utils/Config.hpp"
 #include <imgui_internal.h>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     bool SceneTreeWindow::setupNewDockSpaceNode(const std::string &floatingWindowName, const std::string &newSceneName) const
     {
@@ -54,7 +54,7 @@ namespace nexo::editor {
     bool SceneTreeWindow::handleSceneCreation(const std::string &newSceneName) const
     {
         if (newSceneName.empty()) {
-            LOG(NEXO_WARN, "Scene name is empty !");
+            LOG(PARALLAX_WARN, "Scene name is empty !");
             return false;
         }
 
@@ -71,7 +71,7 @@ namespace nexo::editor {
                 const auto dockId = m_windowRegistry.getDockId(editorSceneInConfig[0]);
                 if (!dockId.has_value())
                     return false;
-                m_windowRegistry.setDockId(std::format("{}{}", NEXO_WND_USTRID_DEFAULT_SCENE, newScene->getSceneId()), *dockId);
+                m_windowRegistry.setDockId(std::format("{}{}", PARALLAX_WND_USTRID_DEFAULT_SCENE, newScene->getSceneId()), *dockId);
                 return true;
             }
             // If nothing is present in config file, simply let it float
@@ -79,14 +79,14 @@ namespace nexo::editor {
         }
 
         // Else we retrieve the first active editor scene
-        const std::string windowName = std::format("{}{}", NEXO_WND_USTRID_DEFAULT_SCENE, currentEditorSceneWindow[0]->getSceneId());
+        const std::string windowName = std::format("{}{}", PARALLAX_WND_USTRID_DEFAULT_SCENE, currentEditorSceneWindow[0]->getSceneId());
         const auto dockId = m_windowRegistry.getDockId(windowName);
         // If we dont find the dockId, it means the scene is floating, so we create a new dock space node
         if (!dockId.has_value()) {
-            setupNewDockSpaceNode(windowName, std::format("{}{}", NEXO_WND_USTRID_DEFAULT_SCENE, newScene->getSceneId()));
+            setupNewDockSpaceNode(windowName, std::format("{}{}", PARALLAX_WND_USTRID_DEFAULT_SCENE, newScene->getSceneId()));
             return true;
         }
-        m_windowRegistry.setDockId(std::format("{}{}", NEXO_WND_USTRID_DEFAULT_SCENE, newScene->getSceneId()), *dockId);
+        m_windowRegistry.setDockId(std::format("{}{}", PARALLAX_WND_USTRID_DEFAULT_SCENE, newScene->getSceneId()), *dockId);
         return true;
     }
 }

@@ -22,7 +22,7 @@
 
 #include "VertexArray.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     enum class CulledFace {
         BACK,

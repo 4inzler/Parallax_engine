@@ -1,13 +1,13 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Comment:
- NEXO Engine Exhaustive list of all licenses used in the project
+ PARALLAX Engine Exhaustive list of all licenses used in the project
  ---------------------------------------------------------------
  This file is a template that is processed by CMake to generate the
  final copyright file. See scripts/copyright.cmake for more information.
  When generated some information might be missing and should be
  verified and updated manually.
  .
- This file lists copyright holders and licenses for the NEXO project, its
+ This file lists copyright holders and licenses for the PARALLAX project, its
  source code, dependencies and libraries.
  .
  The format is based on the Debian copyright format 1.0, which is a
@@ -20,8 +20,8 @@ Upstream-Contact: @UPSTREAM_CONTACT@
 Source: @UPSTREAM_SOURCE@
 
 Files: *
-Comment: NEXO Engine
-Copyright: 2025 NEXO Engine contributors
+Comment: PARALLAX Engine
+Copyright: 2025 PARALLAX Engine contributors
 License: MIT
 
 @COPYRIGHT_LIST@

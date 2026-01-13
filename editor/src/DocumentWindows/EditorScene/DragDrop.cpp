@@ -25,7 +25,7 @@
 #include "components/MaterialComponent.hpp"
 #include "context/ActionManager.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void EditorScene::handleDropModel(const AssetDragDropPayload &payload) const
     {

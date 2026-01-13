@@ -22,7 +22,7 @@
 #include "core/event/Listener.hpp"
 #include "core/scene/Scene.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
     class TestEvent : public Event<TestEvent> {
         public:
             explicit TestEvent(int data) : data(data) {}

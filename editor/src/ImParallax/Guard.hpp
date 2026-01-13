@@ -21,7 +21,7 @@
 #include <vector>
 #include <string>
 
-namespace ImNexo {
+namespace ImParallax {
     /**
      * @brief Guard class for managing ImGui style colors.
      *

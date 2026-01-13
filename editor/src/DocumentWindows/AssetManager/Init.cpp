@@ -23,7 +23,7 @@
 #include "assets/Assets/Texture/TextureImporter.hpp"
 #include "Path.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     void AssetManagerWindow::setup()
     {
         {
@@ -34,9 +34,9 @@ namespace nexo::editor {
         }
         {
             assets::AssetImporter importer;
-            std::filesystem::path path = Path::resolvePathRelativeToExe("../resources/textures/logo_nexo.png");
+            std::filesystem::path path = Path::resolvePathRelativeToExe("../resources/textures/logo_parallax.png");
             assets::ImporterFileInput fileInput{path};
-            auto textureRef = importer.importAsset<assets::Texture>(assets::AssetLocation("nexo_logo@Random"), fileInput);
+            auto textureRef = importer.importAsset<assets::Texture>(assets::AssetLocation("parallax_logo@Random"), fileInput);
         }
         {
             assets::AssetImporter importer;

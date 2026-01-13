@@ -15,7 +15,7 @@
 #include "../ecs/System.hpp"
 #include "Timestep.hpp"
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Updates VR headset tracking data from OpenXR runtime
@@ -169,4 +169,4 @@ namespace nexo {
         vr::OpenXRManager& m_openXR = vr::OpenXRManager::getInstance();
     };
 
-} // namespace nexo
+} // namespace parallax

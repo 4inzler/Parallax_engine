@@ -25,7 +25,7 @@
 #include "components/RenderContext.hpp"
 #include "ecs/GroupSystem.hpp"
 
-namespace nexo::system {
+namespace parallax::system {
     class RenderBillboardSystem final : public ecs::GroupSystem<
 		ecs::Owned<
 	        ecs::Read<components::BillboardComponent>>,

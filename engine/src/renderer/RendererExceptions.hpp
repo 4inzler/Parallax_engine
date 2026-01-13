@@ -22,7 +22,7 @@
 #include <source_location>
 #include <format>
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
 	class NxOutOfRangeException final : public Exception {
         public:

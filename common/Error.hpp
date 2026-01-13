@@ -18,7 +18,7 @@
 #include <cstring>
 #include <string>
 
-namespace nexo {
+namespace parallax {
 
     /**
      * @brief Thread-safe wrapper for strerror functionality
@@ -116,4 +116,4 @@ namespace nexo {
         return SafeStrerror::getErrorMessage();
     }
 
-} // namespace nexo
+} // namespace parallax

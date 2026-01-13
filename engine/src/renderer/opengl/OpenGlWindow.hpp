@@ -20,7 +20,7 @@
 
 #include "renderer/Window.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
 
     /**
     * @class NxOpenGlWindow
@@ -49,7 +49,7 @@ namespace nexo::renderer {
             */
             explicit NxOpenGlWindow(const int width = 1920,
                          const int height = 1080,
-                         const std::string &title = "Nexo window") :
+                         const std::string &title = "Parallax window") :
                     _props(width, height, title) {}
 
             /**
@@ -121,9 +121,9 @@ namespace nexo::renderer {
             void setWaylandAppId(const char* appId) override;
             void setWmClass(const char* className, const char* instanceName) override;
         private:
-            std::string _waylandAppId = "nexo";
-            std::string _x11ClassName = "nexo";
-            std::string _x11InstanceName = "nexo";
+            std::string _waylandAppId = "parallax";
+            std::string _x11ClassName = "parallax";
+            std::string _x11InstanceName = "parallax";
 #endif
         private:
             GLFWwindow *_openGlWindow{};

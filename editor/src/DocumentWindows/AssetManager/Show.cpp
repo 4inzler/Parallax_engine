@@ -19,17 +19,17 @@
 #include <imgui.h>
 #include "AssetManagerWindow.hpp"
 #include "IconsFontAwesome.h"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Elements.hpp"
 #include "Path.hpp"
 #include "assets/AssetCatalog.hpp"
 #include "context/ThumbnailCache.hpp"
 #include "context/ActionManager.hpp"
 #include "context/actions/AssetActions.hpp"
-#include "ImNexo/Elements.hpp"
+#include "ImParallax/Elements.hpp"
 #include <cstring>
 #include <imgui.h>
 
-namespace nexo::editor {
+namespace parallax::editor {
 
     void AssetManagerWindow::drawMenuBar()
     {
@@ -86,7 +86,7 @@ namespace nexo::editor {
             ImGui::PushID(("breadcrumb_" + crumb).c_str());
             if (i == lastIndex)
                 ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.0f, 1.0f), "%s", crumb.c_str());
-            else if (ImNexo::Button(crumb + "##" + std::to_string(i)))
+            else if (ImParallax::Button(crumb + "##" + std::to_string(i)))
                 m_currentFolder = fullPath;
 
             handleAssetDrop(fullPath);
@@ -98,10 +98,10 @@ namespace nexo::editor {
     void AssetManagerWindow::show()
     {
         ImGui::SetNextWindowSize(ImVec2(800, 600), ImGuiCond_FirstUseEver);
-        ImGui::Begin(ICON_FA_FOLDER_OPEN " Asset Manager" NEXO_WND_USTRID_ASSET_MANAGER, &m_opened,
+        ImGui::Begin(ICON_FA_FOLDER_OPEN " Asset Manager" PARALLAX_WND_USTRID_ASSET_MANAGER, &m_opened,
                      ImGuiWindowFlags_MenuBar);
 
-        beginRender(NEXO_WND_USTRID_ASSET_MANAGER);
+        beginRender(PARALLAX_WND_USTRID_ASSET_MANAGER);
 
         drawMenuBar();
 
@@ -151,4 +151,4 @@ namespace nexo::editor {
 
         ImGui::End();
     }
-} // namespace nexo::editor
+} // namespace parallax::editor

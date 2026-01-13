@@ -21,7 +21,7 @@
 
 #include "renderer/Window.hpp"
 
-namespace nexo::event {
+namespace parallax::event {
 
 	/**
 	* @brief Abstract class for input handling.

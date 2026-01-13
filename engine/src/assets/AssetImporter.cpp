@@ -27,7 +27,7 @@
 
 #include <boost/uuid/random_generator.hpp>
 
-namespace nexo::assets {
+namespace parallax::assets {
     AssetImporter::AssetImporter()
     {
         registerImporter<Texture, TextureImporter>(100);
@@ -135,4 +135,4 @@ namespace nexo::assets {
         m_importersDetails.erase(typeIdx);
     }
 
-} // namespace nexo::assets
+} // namespace parallax::assets

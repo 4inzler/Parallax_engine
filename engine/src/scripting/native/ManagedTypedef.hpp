@@ -22,7 +22,7 @@
 
 #include <glm/glm.hpp>
 
-namespace nexo::scripting {
+namespace parallax::scripting {
 
     extern "C" {
 
@@ -53,4 +53,4 @@ namespace nexo::scripting {
         using Vector4 = glm::vec4;
     }
 
-} // namespace nexo::scripting
+} // namespace parallax::scripting

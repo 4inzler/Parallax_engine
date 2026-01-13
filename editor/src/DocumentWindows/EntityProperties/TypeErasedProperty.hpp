@@ -22,7 +22,7 @@
 
 #include "AEntityProperty.hpp"
 
-namespace nexo::editor {
+namespace parallax::editor {
     class TypeErasedProperty final : public AEntityProperty {
         public:
         	TypeErasedProperty(InspectorWindow &inspector, const ecs::ComponentType componentType, const std::shared_ptr<ecs::ComponentDescription>& description)

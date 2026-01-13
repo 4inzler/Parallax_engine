@@ -26,7 +26,7 @@
 #include "contexts/opengl.hpp"
 #include "flattenedAssets/testLogo.hpp"
 
-namespace nexo::renderer {
+namespace parallax::renderer {
     class OpenGlTexture2DTest : public OpenGLTest {
         protected:
             std::string temporaryTextureFilePath = "test_texture.png";
